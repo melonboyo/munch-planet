@@ -4,8 +4,8 @@ Theme is "mode".
 
 ## Critter Guy Game (tentative title: Munchmee World)
 3D Action game. Online multiplayer.
-There are challenges that you cannot overcome! But there are little critter guys roaming around making funny noises.
-Eat one to gain a cool power! They squirm a bit, and that's okay. (like kakunte tribe from moon)
+There are challenges that you cannot overcome! But there are little critter guys roaming around making funny noises (munchmees).
+Munch one up to add it to your collection! They squirm a bit, and that's okay. (like kakunte tribe from moon)
 
 
 _Gameplay loop_
