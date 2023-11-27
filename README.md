@@ -23,22 +23,21 @@ _Gameplay loop_
 ### Sketches
 
 ![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/chai_1.png)  
-_chai_1.png_
+*chai_1.png*
 
 ![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/pc_1.png)  
-_pc_1.png_
+*pc_1.png*
 
 ![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/chai_2.png)  
-_chai_2.png_
+*chai_2.png*
 
 ![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/chai_3.png)  
-_chai_3.png_
+*chai_3.png*
 
 ![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/melon_1.jpg)  
-_melon_1.jpg_
+*melon_1.jpg*
 
-![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/Silly_Tune_Narrated_By_Chai_(tentative).ogg)  
-_Silly_Tune_Narrated_By_Chai_(tentative).ogg_
+put movie here
 
 ![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/chai_4.png)  
-_chai_4.png_
+*chai_4.png*
