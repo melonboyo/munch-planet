@@ -37,7 +37,7 @@ _Gameplay loop_
 ![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/melon_1.jpg)  
 *melon_1.jpg*
 
-https://github.com/melonboyo/munchmee-world/raw/main/sketches/Silly_Tune_Narrated_By_Chai_(tentative).mp4
+https://github.com/melonboyo/munchmee-world/assets/1461061/2af1787c-cb9a-4198-b84d-b859958732d0
 
 ![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/chai_4.png)  
 *chai_4.png*
