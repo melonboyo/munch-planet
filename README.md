@@ -18,3 +18,8 @@ Eat one to gain a cool power! They squirm a bit, and that's okay. (like kakunte 
 _Gameplay loop_
 You grab a critter and eat it. You get to name it and see its stats.
 That's it.
+
+### Sketches
+
+![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/pc_1.png)
+_pc_1.png_
