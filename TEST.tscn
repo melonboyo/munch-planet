@@ -1,3 +1,114 @@
-[gd_scene format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=16 format=3 uid="uid://cgni33flxl26p"]
 
-[node name="Node3D" type="Node3D"]
+[ext_resource type="Script" path="res://Player.gd" id="1_7idvs"]
+[ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
+[ext_resource type="Script" path="res://Camera.gd" id="2_nh0ay"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7lkah"]
+radius = 200.0
+height = 400.0
+radial_segments = 256
+rings = 128
+
+[sub_resource type="Gradient" id="Gradient_a3mn0"]
+colors = PackedColorArray(0.494118, 0.360784, 0.2, 1, 0.566358, 0.902756, 0.329011, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rr8se"]
+noise_type = 2
+frequency = 0.053
+fractal_octaves = 3
+fractal_lacunarity = 0.68
+fractal_weighted_strength = 0.51
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wfw1q"]
+width = 4096
+height = 2048
+invert = true
+seamless = true
+color_ramp = SubResource("Gradient_a3mn0")
+noise = SubResource("FastNoiseLite_rr8se")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylsff"]
+albedo_texture = SubResource("NoiseTexture2D_wfw1q")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6h70g"]
+friction = 0.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5kljp"]
+radius = 200.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wx677"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d88ir"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_daxb8"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hjwtv"]
+
+[sub_resource type="Environment" id="Environment_df6u4"]
+background_mode = 1
+background_color = Color(0.564706, 0.929412, 0.941176, 1)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_12yvb")
+
+[node name="SphereMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0.0441132, 0.180145, -0.0724068)
+mesh = SubResource("SphereMesh_7lkah")
+surface_material_override/0 = SubResource("StandardMaterial3D_ylsff")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SphereMesh"]
+physics_material_override = SubResource("PhysicsMaterial_6h70g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SphereMesh/StaticBody3D"]
+shape = SubResource("SphereShape3D_5kljp")
+
+[node name="Muncher" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 202.264, 0)
+collision_layer = 2
+script = ExtResource("1_7idvs")
+walking_speed = 8.0
+camera_path = NodePath("../CameraPivot/SpringArm3D/Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Muncher"]
+shape = SubResource("CapsuleShape3D_wx677")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Muncher"]
+mesh = SubResource("CapsuleMesh_d88ir")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Muncher"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1)
+mesh = SubResource("CylinderMesh_daxb8")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 202, 0)
+script = ExtResource("2_nh0ay")
+focus_path = NodePath("../Muncher")
+min_vertical_angle = -10.0
+max_vertical_angle = 85.0
+up_alignment_speed = 10.0
+mouse_sensitivity = 20.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_mask = 5
+shape = SubResource("SphereShape3D_hjwtv")
+spring_length = 6.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.36416)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 19.6719, 0)
+light_indirect_energy = 2.055
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_df6u4")
