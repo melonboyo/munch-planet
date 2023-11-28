@@ -22,5 +22,22 @@ _Gameplay loop_
 
 ### Sketches
 
-![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/pc_1.png)
-_pc_1.png_
+![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/chai_1.png)  
+*chai_1.png*
+
+![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/pc_1.png)  
+*pc_1.png*
+
+![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/chai_2.png)  
+*chai_2.png*
+
+![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/chai_3.png)  
+*chai_3.png*
+
+![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/melon_1.jpg)  
+*melon_1.jpg*
+
+https://github.com/melonboyo/munchmee-world/assets/1461061/2af1787c-cb9a-4198-b84d-b859958732d0
+
+![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/chai_4.png)  
+*chai_4.png*
