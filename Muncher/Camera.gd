@@ -45,7 +45,7 @@ func _ready():
 	up_axis = focus.global_position.normalized()
 	rotation_degrees = Vector3(orbit_angles.x, orbit_angles.y, 0.0)
 	orbit_rotation = Quaternion.from_euler(Vector3(deg_to_rad(orbit_angles.x), deg_to_rad(orbit_angles.y), 0.0))
-	focus_point = focus.global_position
+	focus_point = focus.global_position + up_axis * 0.5
 	
 	gravity_alignment = from_to_rotation(Vector3.UP, up_axis) * gravity_alignment
 	var look_rotation: Quaternion = gravity_alignment * orbit_rotation
@@ -66,7 +66,7 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta):
-	focus_point = focus.global_transform.origin
+	focus_point = focus.global_position + up_axis * 0.5
 	up_axis = focus_point.normalized()
 	
 	# Update gravity alignment

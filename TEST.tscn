@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=14 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -40,9 +40,24 @@ friction = 0.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_5kljp"]
 radius = 200.0
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sl1pb"]
+sky_top_color = Color(0.219608, 0.713726, 0.866667, 1)
+sky_horizon_color = Color(0.219608, 0.713726, 0.866667, 1)
+ground_bottom_color = Color(0.219608, 0.713726, 0.866667, 1)
+ground_horizon_color = Color(0.219608, 0.713726, 0.866667, 1)
+
+[sub_resource type="Sky" id="Sky_o0yw1"]
+sky_material = SubResource("ProceduralSkyMaterial_sl1pb")
+
 [sub_resource type="Environment" id="Environment_df6u4"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.564706, 0.929412, 0.941176, 1)
+sky = SubResource("Sky_o0yw1")
+tonemap_mode = 1
+tonemap_exposure = 0.55
+tonemap_white = 0.6
+ssr_enabled = true
+ssao_enabled = true
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
@@ -59,13 +74,17 @@ physics_material_override = SubResource("PhysicsMaterial_6h70g")
 shape = SubResource("SphereShape3D_5kljp")
 
 [node name="Muncher" parent="." instance=ExtResource("2_b0ky1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 202.264, 0)
+walking_speed = 20.0
 
 [node name="CameraPivot" parent="." instance=ExtResource("3_8oj03")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 19.6719, 0)
-light_indirect_energy = 2.055
+transform = Transform3D(1, 0, 0, 0, 2.38419e-07, 1, 0, -1, 2.38419e-07, 0, 234.264, 0)
+light_color = Color(1, 0.933333, 0.937255, 1)
+light_energy = 0.8
 shadow_enabled = true
+shadow_blur = 3.21
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_df6u4")

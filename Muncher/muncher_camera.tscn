@@ -8,7 +8,7 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 202, 0)
 script = ExtResource("1_sofu5")
 focus_path = NodePath("../Muncher")
-min_vertical_angle = -10.0
+min_vertical_angle = 2.0
 max_vertical_angle = 85.0
 up_alignment_speed = 10.0
 mouse_sensitivity = 20.0
