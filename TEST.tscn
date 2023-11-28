@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=12 format=3 uid="uid://cgni33flxl26p"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_7idvs"]
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
-[ext_resource type="Script" path="res://Camera.gd" id="2_nh0ay"]
+[ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
+[ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/muncher_camera.tscn" id="3_8oj03"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7lkah"]
 radius = 200.0
@@ -40,17 +40,6 @@ friction = 0.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_5kljp"]
 radius = 200.0
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wx677"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_d88ir"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_daxb8"]
-top_radius = 0.05
-bottom_radius = 0.05
-height = 1.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_hjwtv"]
-
 [sub_resource type="Environment" id="Environment_df6u4"]
 background_mode = 1
 background_color = Color(0.564706, 0.929412, 0.941176, 1)
@@ -69,41 +58,9 @@ physics_material_override = SubResource("PhysicsMaterial_6h70g")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SphereMesh/StaticBody3D"]
 shape = SubResource("SphereShape3D_5kljp")
 
-[node name="Muncher" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 202.264, 0)
-collision_layer = 2
-script = ExtResource("1_7idvs")
-walking_speed = 8.0
-camera_path = NodePath("../CameraPivot/SpringArm3D/Camera3D")
+[node name="Muncher" parent="." instance=ExtResource("2_b0ky1")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Muncher"]
-shape = SubResource("CapsuleShape3D_wx677")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Muncher"]
-mesh = SubResource("CapsuleMesh_d88ir")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Muncher"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1)
-mesh = SubResource("CylinderMesh_daxb8")
-
-[node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 202, 0)
-script = ExtResource("2_nh0ay")
-focus_path = NodePath("../Muncher")
-min_vertical_angle = -10.0
-max_vertical_angle = 85.0
-up_alignment_speed = 10.0
-mouse_sensitivity = 20.0
-
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-collision_mask = 5
-shape = SubResource("SphereShape3D_hjwtv")
-spring_length = 6.0
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.36416)
+[node name="CameraPivot" parent="." instance=ExtResource("3_8oj03")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 19.6719, 0)

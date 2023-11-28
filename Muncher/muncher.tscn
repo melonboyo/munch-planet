@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3m5sa6by34tu"]
+
+[ext_resource type="Script" path="res://Muncher/Player.gd" id="1_dnfvd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wx677"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d88ir"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_daxb8"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.0
+
+[node name="Muncher" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 202.264, 0)
+collision_layer = 2
+script = ExtResource("1_dnfvd")
+walking_speed = 8.0
+camera_path = NodePath("../CameraPivot/SpringArm3D/Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_wx677")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_d88ir")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1)
+mesh = SubResource("CylinderMesh_daxb8")
