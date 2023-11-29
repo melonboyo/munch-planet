@@ -1,9 +1,26 @@
-[gd_resource type="VisualShader" load_steps=46 format=3 uid="uid://bg5ar60o2lhuv"]
+[gd_resource type="VisualShader" load_steps=56 format=3 uid="uid://bg5ar60o2lhuv"]
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_jyc0i"]
-parameter_name = "ColorParameter"
+parameter_name = "Albedo"
 default_value_enabled = true
 default_value = Color(0.780392, 0.992157, 0.278431, 1)
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_glft7"]
+parameter_name = "AlbedoTexture"
+texture_filter = 1
+texture_repeat = 1
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_25gpn"]
+source = 5
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_cfrcs"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_af22q"]
+parameter_name = "AlbedoTextureBlend"
+hint = 1
+default_value_enabled = true
 
 [sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_ryn6l"]
 default_input_values = [0, 0.0, 1, 0.0, 2, 0.3]
@@ -36,6 +53,30 @@ operator = 2
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1yvb4"]
 input_name = "diffuse"
 
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_qlaee"]
+constant = 2.0
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_242od"]
+parameter_name = "LightBlendColor"
+default_value_enabled = true
+default_value = Color(1, 0.735861, 0.618202, 1)
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_yb5bc"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_yfl21"]
+constant = 0.5
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_6253b"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_tq3bm"]
+parameter_name = "LightBlendColor2"
+default_value_enabled = true
+default_value = Color(0.381338, 0.121407, 0.0692279, 1)
+
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_sluxi"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_n55b0"]
@@ -47,7 +88,7 @@ input_name = "light"
 [sub_resource type="VisualShaderNodeDotProduct" id="VisualShaderNodeDotProduct_3bwoi"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_1yv1c"]
-default_input_values = [0, 0.0, 1, 0.1]
+default_input_values = [0, 0.0, 1, 0.05]
 operator = 5
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_jyrc1"]
@@ -140,17 +181,34 @@ function = 0
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
-uniform vec4 ColorParameter : source_color = vec4(0.780392, 0.992157, 0.278431, 1.000000);
+uniform vec4 Albedo : source_color = vec4(0.780392, 0.992157, 0.278431, 1.000000);
+uniform sampler2D AlbedoTexture : filter_nearest, repeat_enable;
+uniform float AlbedoTextureBlend : hint_range(0, 1) = 0;
+uniform vec4 LightBlendColor : source_color = vec4(1.000000, 0.735861, 0.618202, 1.000000);
+uniform vec4 LightBlendColor2 : source_color = vec4(0.381338, 0.121407, 0.069228, 1.000000);
 
 
 
 void fragment() {
 // ColorParameter:2
-	vec4 n_out2p0 = ColorParameter;
+	vec4 n_out2p0 = Albedo;
+
+
+	vec4 n_out4p0;
+// Texture2D:4
+	n_out4p0 = texture(AlbedoTexture, UV);
+
+
+// FloatParameter:6
+	float n_out6p0 = AlbedoTextureBlend;
+
+
+// Mix:5
+	vec3 n_out5p0 = mix(vec3(n_out2p0.xyz), vec3(n_out4p0.xyz), vec3(n_out6p0));
 
 
 // Output:0
-	ALBEDO = vec3(n_out2p0.xyz);
+	ALBEDO = n_out5p0;
 
 
 }
@@ -160,8 +218,20 @@ void light() {
 	vec3 n_out2p0 = DIFFUSE_LIGHT;
 
 
+// ColorParameter:22
+	vec4 n_out22p0 = LightBlendColor;
+
+
 // Input:18
 	vec3 n_out18p0 = LIGHT_COLOR;
+
+
+// FloatConstant:24
+	float n_out24p0 = 0.500000;
+
+
+// Mix:23
+	vec3 n_out23p0 = mix(vec3(n_out22p0.xyz), n_out18p0, vec3(n_out24p0));
 
 
 // Input:4
@@ -177,7 +247,7 @@ void light() {
 
 
 // FloatOp:9
-	float n_in9p1 = 0.10000;
+	float n_in9p1 = 0.05000;
 	float n_out9p0 = pow(n_out8p0, n_in9p1);
 
 
@@ -219,15 +289,27 @@ void light() {
 
 
 // VectorOp:19
-	vec3 n_out19p0 = n_out18p0 * vec3(n_out16p0);
+	vec3 n_out19p0 = n_out23p0 * vec3(n_out16p0);
 
 
 // VectorOp:3
 	vec3 n_out3p0 = n_out2p0 + n_out19p0;
 
 
+// FloatConstant:21
+	float n_out21p0 = 2.000000;
+
+
+// ColorParameter:26
+	vec4 n_out26p0 = LightBlendColor2;
+
+
+// MultiplyAdd:25
+	vec3 n_out25p0 = fma(n_out3p0, vec3(n_out21p0), vec3(n_out26p0.xyz));
+
+
 // Output:0
-	DIFFUSE_LIGHT = n_out3p0;
+	DIFFUSE_LIGHT = n_out25p0;
 
 
 }
@@ -293,19 +375,27 @@ nodes/vertex/35/node = SubResource("VisualShaderNodeFloatOp_dvba8")
 nodes/vertex/35/position = Vector2(-800, 800)
 nodes/vertex/connections = PackedInt32Array(2, 0, 3, 2, 10, 0, 11, 0, 4, 0, 12, 0, 12, 0, 14, 0, 15, 0, 14, 1, 7, 0, 17, 0, 16, 0, 17, 1, 18, 0, 3, 0, 14, 0, 19, 0, 3, 0, 21, 0, 19, 0, 22, 0, 22, 0, 11, 1, 21, 0, 22, 1, 17, 0, 8, 0, 23, 0, 25, 0, 24, 0, 25, 1, 8, 0, 26, 0, 26, 0, 24, 0, 17, 0, 28, 0, 28, 0, 27, 0, 27, 0, 29, 0, 29, 0, 23, 0, 31, 0, 32, 0, 17, 0, 33, 0, 33, 0, 31, 0, 25, 0, 34, 0, 30, 0, 34, 1, 34, 0, 19, 1, 32, 0, 35, 0, 35, 0, 30, 0)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_jyc0i")
-nodes/fragment/2/position = Vector2(-180, 60)
-nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
-nodes/light/0/position = Vector2(720, 160)
+nodes/fragment/2/position = Vector2(-840, 320)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture2DParameter_glft7")
+nodes/fragment/3/position = Vector2(-1380, 480)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_25gpn")
+nodes/fragment/4/position = Vector2(-780, 580)
+nodes/fragment/5/node = SubResource("VisualShaderNodeMix_cfrcs")
+nodes/fragment/5/position = Vector2(-360, 480)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatParameter_af22q")
+nodes/fragment/6/position = Vector2(-700, 740)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 2, 2, 0, 5, 0, 4, 0, 5, 1, 6, 0, 5, 2, 5, 0, 0, 0)
+nodes/light/0/position = Vector2(1420, 140)
 nodes/light/2/node = SubResource("VisualShaderNodeInput_1yvb4")
-nodes/light/2/position = Vector2(-380, 120)
+nodes/light/2/position = Vector2(-260, -40)
 nodes/light/3/node = SubResource("VisualShaderNodeVectorOp_sluxi")
-nodes/light/3/position = Vector2(480, 100)
+nodes/light/3/position = Vector2(480, 160)
 nodes/light/4/node = SubResource("VisualShaderNodeInput_n55b0")
-nodes/light/4/position = Vector2(-1160, 420)
+nodes/light/4/position = Vector2(-1360, 340)
 nodes/light/5/node = SubResource("VisualShaderNodeInput_gx67l")
-nodes/light/5/position = Vector2(-1160, 500)
+nodes/light/5/position = Vector2(-1360, 440)
 nodes/light/8/node = SubResource("VisualShaderNodeDotProduct_3bwoi")
-nodes/light/8/position = Vector2(-820, 440)
+nodes/light/8/position = Vector2(-920, 380)
 nodes/light/9/node = SubResource("VisualShaderNodeFloatOp_1yv1c")
 nodes/light/9/position = Vector2(-620, 400)
 nodes/light/10/node = SubResource("VisualShaderNodeClamp_ryn6l")
@@ -323,7 +413,19 @@ nodes/light/15/position = Vector2(-936.029, 687.489)
 nodes/light/16/node = SubResource("VisualShaderNodeFloatOp_glnaa")
 nodes/light/16/position = Vector2(60, 400)
 nodes/light/18/node = SubResource("VisualShaderNodeInput_maf8n")
-nodes/light/18/position = Vector2(-380, 240)
+nodes/light/18/position = Vector2(-940, 220)
 nodes/light/19/node = SubResource("VisualShaderNodeVectorOp_ac66q")
 nodes/light/19/position = Vector2(260, 280)
-nodes/light/connections = PackedInt32Array(2, 0, 3, 0, 4, 0, 8, 0, 5, 0, 8, 1, 8, 0, 9, 0, 9, 0, 11, 0, 11, 0, 10, 0, 12, 0, 13, 0, 13, 0, 14, 0, 15, 0, 12, 0, 10, 0, 16, 0, 14, 0, 16, 1, 16, 0, 19, 1, 18, 0, 19, 0, 19, 0, 3, 1, 3, 0, 0, 0)
+nodes/light/21/node = SubResource("VisualShaderNodeFloatConstant_qlaee")
+nodes/light/21/position = Vector2(500, 340)
+nodes/light/22/node = SubResource("VisualShaderNodeColorParameter_242od")
+nodes/light/22/position = Vector2(-920, 0)
+nodes/light/23/node = SubResource("VisualShaderNodeMix_yb5bc")
+nodes/light/23/position = Vector2(-260, 80)
+nodes/light/24/node = SubResource("VisualShaderNodeFloatConstant_yfl21")
+nodes/light/24/position = Vector2(-500, 280)
+nodes/light/25/node = SubResource("VisualShaderNodeMultiplyAdd_6253b")
+nodes/light/25/position = Vector2(980, 80)
+nodes/light/26/node = SubResource("VisualShaderNodeColorParameter_tq3bm")
+nodes/light/26/position = Vector2(540, -100)
+nodes/light/connections = PackedInt32Array(2, 0, 3, 0, 4, 0, 8, 0, 8, 0, 9, 0, 9, 0, 11, 0, 11, 0, 10, 0, 12, 0, 13, 0, 13, 0, 14, 0, 15, 0, 12, 0, 14, 0, 16, 1, 16, 0, 19, 1, 19, 0, 3, 1, 18, 0, 23, 1, 22, 0, 23, 0, 23, 0, 19, 0, 24, 0, 23, 2, 5, 0, 8, 1, 10, 0, 16, 0, 3, 0, 25, 0, 21, 0, 25, 1, 25, 0, 0, 0, 26, 0, 25, 2)

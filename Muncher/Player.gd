@@ -60,8 +60,8 @@ func _physics_process(delta):
 	if is_on_floor():
 		floor_normal = get_floor_normal()
 		steps_since_grounded = 0
-		gravity_velocity = -floor_normal * 0.5
-#		gravity_velocity = Vector3.ZERO
+		# Stick to floor
+		gravity_velocity = -floor_normal * 2.8
 	else:
 		floor_normal = up_direction
 		steps_since_grounded += 1
@@ -71,8 +71,8 @@ func _physics_process(delta):
 	var z_axis = project_direction_on_plane(forward_axis, floor_normal)
 	var move_input_speed_scaled = move_input * walking_speed
 	var move_input_rotated = x_axis * move_input_speed_scaled.x + z_axis * move_input_speed_scaled.y
-#	move_velocity = move_velocity.lerp(move_input_rotated, delta * acceleration)
-	move_velocity = move_input_rotated
+	move_velocity = move_velocity.lerp(move_input_rotated, delta * acceleration)
+#	move_velocity = move_input_rotated
 	
 	snap_to_floor()
 	

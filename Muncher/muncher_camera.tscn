@@ -15,7 +15,7 @@ mouse_sensitivity = 20.0
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 collision_mask = 5
 shape = SubResource("SphereShape3D_hjwtv")
-spring_length = 8.0
+spring_length = 6.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 unique_name_in_owner = true

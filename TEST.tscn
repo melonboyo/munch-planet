@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
+[ext_resource type="Shader" uid="uid://bg5ar60o2lhuv" path="res://Muncher/muncher_visual.tres" id="2_gljcf"]
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/muncher_camera.tscn" id="3_8oj03"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
 [ext_resource type="Shader" path="res://Muncher/ScreenShader.gdshader" id="6_gwije"]
@@ -11,48 +12,6 @@ radius = 200.0
 height = 400.0
 radial_segments = 256
 rings = 128
-
-[sub_resource type="Shader" id="Shader_m5iu6"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.1.3.stable's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
-uniform float point_size : hint_range(0,128);
-uniform float roughness : hint_range(0,1);
-uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
-uniform float specular;
-uniform float metallic;
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-
-void vertex() {
-	UV=UV*uv1_scale.xy+uv1_offset.xy;
-}
-
-
-
-
-
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
-	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	SPECULAR = specular;
-}
-"
 
 [sub_resource type="Gradient" id="Gradient_a3mn0"]
 colors = PackedColorArray(0.494118, 0.360784, 0.2, 1, 0.566358, 0.902756, 0.329011, 1)
@@ -76,18 +35,12 @@ noise = SubResource("FastNoiseLite_rr8se")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bm27g"]
 render_priority = 0
-shader = SubResource("Shader_m5iu6")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_wfw1q")
+shader = ExtResource("2_gljcf")
+shader_parameter/Albedo = Color(1, 1, 1, 1)
+shader_parameter/AlbedoTextureBlend = 1.0
+shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
+shader_parameter/LightBlendColor2 = Color(0, 0, 0, 1)
+shader_parameter/AlbedoTexture = SubResource("NoiseTexture2D_wfw1q")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6h70g"]
 friction = 0.0
@@ -106,11 +59,10 @@ sky_material = SubResource("ProceduralSkyMaterial_m8ocr")
 background_mode = 2
 background_color = Color(0.564706, 0.929412, 0.941176, 1)
 sky = SubResource("Sky_87rhe")
-tonemap_mode = 1
-tonemap_exposure = 0.55
 tonemap_white = 0.6
-ssr_enabled = true
-ssao_enabled = true
+adjustment_enabled = true
+adjustment_brightness = 1.05
+adjustment_saturation = 1.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_fehak"]
 flip_faces = true
@@ -120,7 +72,7 @@ size = Vector2(2, 2)
 render_priority = 0
 shader = ExtResource("6_gwije")
 shader_parameter/color_outline_scale = 0.0
-shader_parameter/depth_outline_scale = 3.0
+shader_parameter/depth_outline_scale = 2.0
 shader_parameter/depth_threshold = 2.5
 shader_parameter/depth_multiplier = 1000.0
 shader_parameter/edge_threshold = 0.04
@@ -184,8 +136,9 @@ max_vertical_angle = 86.0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 225.633, 0)
 layers = 2
+light_color = Color(0.960784, 0.960784, 0.960784, 1)
+light_energy = 1.1
 shadow_enabled = true
-directional_shadow_max_distance = 75.0
 script = ExtResource("4_llbt7")
 player_path = NodePath("../Muncher")
 
@@ -222,7 +175,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_uf7ep")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Obstacles"]
-transform = Transform3D(16.1029, 0, 0, 0, 15.4759, 4.44963, 0, -4.44963, 15.4759, 0, 194.994, -27.7007)
+transform = Transform3D(54.8377, 0, 0, 0, 52.7024, 15.153, 0, -15.153, 52.7024, 0, 174.585, -21.8328)
 mesh = SubResource("SphereMesh_fmvrm")
 skeleton = NodePath("../..")
 
