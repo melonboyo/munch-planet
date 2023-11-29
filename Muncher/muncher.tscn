@@ -9,7 +9,8 @@ height = 2.25345
 
 [node name="Muncher" type="CharacterBody3D"]
 collision_layer = 2
-floor_snap_length = 0.5
+floor_stop_on_slope = false
+floor_max_angle = 1.0472
 script = ExtResource("1_dnfvd")
 walking_speed = 8.0
 camera_path = NodePath("../CameraPivot/SpringArm3D/Camera3D")

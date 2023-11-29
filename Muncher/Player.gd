@@ -3,9 +3,11 @@ extends CharacterBody3D
 
 @export_range(0.5, 50.0) var walking_speed: float = 5.0
 @export_range(0.5, 50.0) var acceleration: float = 17.0
-@export_range(0.5, 50.0) var alignment_speed: float = 18.0
+@export_range(0.5, 50.0) var alignment_speed: float = 8.0
 @export_node_path("Node3D") var camera_path: NodePath
 @export_range(0.0, 1.0) var move_input_deadzone: float = 0.3
+@export_range(0.01, 15.0) var probe_dist = 1.5
+@export_range(0.01, 180.0) var max_floor_angle = 60.0
 
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -25,6 +27,11 @@ var last_strong_direction: Vector3 = Vector3.FORWARD
 var moving: bool = false
 var floor_normal: Vector3 = Vector3.UP
 
+var snapped = false
+var steps_since_grounded = 0
+var height = 1.0
+
+@onready var min_floor_dot = cos(deg_to_rad(max_floor_angle))
 @onready var camera: Camera3D = get_node(camera_path)
 
 
@@ -52,17 +59,22 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		floor_normal = get_floor_normal()
+		steps_since_grounded = 0
 		gravity_velocity = -floor_normal * 0.5
-		gravity_velocity = Vector3.ZERO
+#		gravity_velocity = Vector3.ZERO
 	else:
 		floor_normal = up_direction
+		steps_since_grounded += 1
 		gravity_velocity += -up_direction * gravity * delta
 	
 	var x_axis = project_direction_on_plane(right_axis, floor_normal)
 	var z_axis = project_direction_on_plane(forward_axis, floor_normal)
 	var move_input_speed_scaled = move_input * walking_speed
 	var move_input_rotated = x_axis * move_input_speed_scaled.x + z_axis * move_input_speed_scaled.y
-	move_velocity = move_velocity.lerp(move_input_rotated, delta * acceleration)
+#	move_velocity = move_velocity.lerp(move_input_rotated, delta * acceleration)
+	move_velocity = move_input_rotated
+	
+	snap_to_floor()
 	
 	if move_input_speed_scaled.length() > 0.2:
 		last_strong_direction = move_velocity.normalized()
@@ -78,6 +90,31 @@ func orient_to_direction(direction: Vector3, delta: float):
 	global_transform.basis = global_transform.basis.slerp(
 		rotation_basis, delta * alignment_speed
 	)
+
+
+func snap_to_floor() -> bool:
+	if steps_since_grounded < 1 or steps_since_grounded > 3:
+		return false
+	var space_state = get_world_3d().direct_space_state
+	var ray_query = PhysicsRayQueryParameters3D.create(
+		global_transform.origin, global_transform.origin - up_direction * (0.5 * height + probe_dist), 1
+	)
+	var result = space_state.intersect_ray(ray_query)
+	if !result:
+#		print("snap failed: ray cast")
+		return false
+	var up_dot = up_direction.dot(result.normal)
+	# Make sure it's not too steep
+	if up_dot < min_floor_dot:
+#		print("snap failed: up dot: ", up_dot, " < ", min_floor_dot)
+		return false
+	floor_normal = result.normal
+	steps_since_grounded = 0
+	var dot = move_velocity.dot(floor_normal)
+	if dot > 0.0:
+		move_velocity = (move_velocity - floor_normal * dot).normalized() * walking_speed
+#	print("snapped")
+	return true
 
 
 func project_direction_on_plane(direction, normal):

@@ -175,7 +175,6 @@ shape = SubResource("SphereShape3D_5kljp")
 [node name="Muncher" parent="." instance=ExtResource("2_b0ky1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 202.264, 0)
 floor_snap_length = 1.0
-walking_speed = 12.0
 
 [node name="CameraPivot" parent="." instance=ExtResource("3_8oj03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 202, 0)
