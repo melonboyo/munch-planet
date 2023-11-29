@@ -12,8 +12,8 @@ func _run():   # this is the main function
 
 
 func interpolation_change(selection):
-	var anim_track_1 = selection[0].get_animation("Bounce") # get the Animation that you are interested in (change "default" to your Animation's name)
+	var anim_track_1 = selection[0].get_animation("Run") # get the Animation that you are interested in (change "default" to your Animation's name)
 	var count = anim_track_1.get_track_count() # get number of tracks (bones in your case)
 	for i in count:
-		anim_track_1.track_set_interpolation_type(i, 1) # change interpolation mode for every track
+		anim_track_1.track_set_interpolation_type(i, 0) # change interpolation mode for every track
 		print(anim_track_1.track_get_interpolation_type(i))

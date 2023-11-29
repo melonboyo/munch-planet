@@ -8,6 +8,9 @@ extends CharacterBody3D
 @export_range(0.0, 1.0) var move_input_deadzone: float = 0.3
 @export_range(0.01, 15.0) var probe_dist = 1.5
 @export_range(0.01, 180.0) var max_floor_angle = 60.0
+@export_node_path("Node3D") var model_path: NodePath
+
+@onready var model = get_node(model_path)
 
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -77,7 +80,12 @@ func _physics_process(delta):
 	snap_to_floor()
 	
 	if move_input_speed_scaled.length() > 0.2:
+		model.change_animation("Run")
+		model.set_animation_speed_scale(move_velocity.length() * 0.12)
 		last_strong_direction = move_velocity.normalized()
+	else:
+		model.change_animation("Idle")
+		model.set_animation_speed_scale(1.0)
 	orient_to_direction(last_strong_direction, delta)
 
 	velocity = move_velocity + gravity_velocity

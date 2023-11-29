@@ -310,7 +310,6 @@ void light() {
 
 }
 "
-graph_offset = Vector2(-747.989, 152.368)
 nodes/vertex/0/position = Vector2(420, 140)
 nodes/vertex/2/node = SubResource("VisualShaderNodeTexture2DParameter_tum66")
 nodes/vertex/2/position = Vector2(-1340, 1220)
