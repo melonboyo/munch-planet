@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 
 @export_range(0.5, 50.0) var walking_speed: float = 5.0
+@export_range(0.5, 50.0) var acceleration: float = 17.0
 @export_range(0.5, 50.0) var alignment_speed: float = 18.0
 @export_node_path("Node3D") var camera_path: NodePath
 @export_range(0.0, 1.0) var move_input_deadzone: float = 0.3
@@ -51,7 +52,7 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		floor_normal = get_floor_normal()
-#		gravity_velocity = -floor_normal * 0.5
+		gravity_velocity = -floor_normal * 0.5
 		gravity_velocity = Vector3.ZERO
 	else:
 		floor_normal = up_direction
@@ -60,9 +61,10 @@ func _physics_process(delta):
 	var x_axis = project_direction_on_plane(right_axis, floor_normal)
 	var z_axis = project_direction_on_plane(forward_axis, floor_normal)
 	var move_input_speed_scaled = move_input * walking_speed
-	move_velocity = x_axis * move_input_speed_scaled.x + z_axis * move_input_speed_scaled.y
+	var move_input_rotated = x_axis * move_input_speed_scaled.x + z_axis * move_input_speed_scaled.y
+	move_velocity = move_velocity.lerp(move_input_rotated, delta * acceleration)
 	
-	if move_velocity.length() > 0.2:
+	if move_input_speed_scaled.length() > 0.2:
 		last_strong_direction = move_velocity.normalized()
 	orient_to_direction(last_strong_direction, delta)
 

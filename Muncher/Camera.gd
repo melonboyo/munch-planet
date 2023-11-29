@@ -11,7 +11,7 @@ extends Node3D
 @export_range(0.0, 1.0) var look_input_deadzone: float = 0.1
 
 var focus_point: Vector3
-var orbit_angles: Vector2 = Vector2(-45.0, 0.0):
+var orbit_angles: Vector2 = Vector2(45.0, 0.0):
 	set(value):
 		orbit_angles = value
 		orbit_angles.x = clamp(orbit_angles.x, max_vertical_angle, min_vertical_angle)
@@ -45,7 +45,7 @@ func _ready():
 	up_axis = focus.global_position.normalized()
 	rotation_degrees = Vector3(orbit_angles.x, orbit_angles.y, 0.0)
 	orbit_rotation = Quaternion.from_euler(Vector3(deg_to_rad(orbit_angles.x), deg_to_rad(orbit_angles.y), 0.0))
-	focus_point = focus.global_position + up_axis * 0.5
+	focus_point = focus.global_position + up_axis * 1.2
 	
 	gravity_alignment = from_to_rotation(Vector3.UP, up_axis) * gravity_alignment
 	var look_rotation: Quaternion = gravity_alignment * orbit_rotation
@@ -66,7 +66,7 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta):
-	focus_point = focus.global_position + up_axis * 0.5
+	focus_point = focus.global_position + up_axis * 1.2
 	up_axis = focus_point.normalized()
 	
 	# Update gravity alignment
@@ -82,7 +82,7 @@ func _physics_process(delta):
 	# Make combined rotation from gravity alignment and orbit
 	var look_rotation: Quaternion = gravity_alignment * orbit_rotation
 	global_transform.basis = Basis(look_rotation)
-	global_position = focus_point
+	global_position = global_position.slerp(focus_point, delta * 20.0)
 
 
 func look_rotation(delta) -> bool:
@@ -129,4 +129,7 @@ func update_gravity_alignment(delta : float):
 func from_to_rotation(from, to) -> Quaternion:
 	var angle_to = from.angle_to(to)
 	var axis = from.cross(to)
-	return Quaternion(axis.normalized(), angle_to)
+	if axis.is_equal_approx(Vector3.ZERO):
+		return Quaternion.IDENTITY;
+	else:
+		return Quaternion(axis.normalized(), angle_to)

@@ -1,8 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://byqxhfjpv5fey"]
+[gd_scene load_steps=6 format=3 uid="uid://byqxhfjpv5fey"]
 
 [ext_resource type="PackedScene" uid="uid://bofgx4ionr17s" path="res://models/muncher_test.gltf" id="1_3g22p"]
+[ext_resource type="Shader" uid="uid://bg5ar60o2lhuv" path="res://Muncher/muncher_visual.tres" id="2_nlb7k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3us0k"]
+render_priority = 0
+shader = ExtResource("2_nlb7k")
+shader_parameter/ColorParameter = Color(0.596032, 0.901295, 0.278953, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lllo"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ygxww"]
+material = SubResource("StandardMaterial3D_5lllo")
+radius = 0.06
+height = 0.15
+radial_segments = 16
+rings = 8
 
 [node name="muncher_test" instance=ExtResource("1_3g22p")]
+transform = Transform3D(0.713745, 0, 0, 0, 0.713745, 0, 0, 0, 0.713745, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/0/position = Vector3(0, 0.21231, 0)
@@ -13,6 +31,7 @@ bones/8/rotation = Quaternion(0.635766, 0.309519, 0.635766, 0.309519)
 bones/12/rotation = Quaternion(-3.63694e-07, -1.03789e-07, -0.964036, 0.265772)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/rotation = Quaternion(-2.00144e-07, 8.65038e-08, -0.21259, 0.977141)
+bones/13/scale = Vector3(1, 1, 1)
 bones/14/rotation = Quaternion(-1.66664e-07, -7.01434e-08, -0.180326, 0.983607)
 bones/14/scale = Vector3(1, 0.999999, 1)
 bones/16/position = Vector3(0.515128, 0.30739, 1.37529e-07)
@@ -26,6 +45,21 @@ bones/23/rotation = Quaternion(0.0972929, 0.352913, 0.824575, 0.431349)
 bones/24/rotation = Quaternion(0.124926, 0.0271793, 0.172011, 0.976763)
 bones/25/rotation = Quaternion(0.0991013, 0.0181685, 0.150653, 0.983439)
 
+[node name="Body" parent="Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_3us0k")
+surface_material_override/1 = SubResource("ShaderMaterial_3us0k")
+surface_material_override/2 = SubResource("ShaderMaterial_3us0k")
+
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Walk"
 speed_scale = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.321837, 3.10248, 0.290326)
+visible = false
+mesh = SubResource("SphereMesh_ygxww")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322, 3.102, 0.29)
+visible = false
+mesh = SubResource("SphereMesh_ygxww")

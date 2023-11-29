@@ -4,17 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://byqxhfjpv5fey" path="res://Muncher/muncher_model.tscn" id="2_4ecyd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wx677"]
-radius = 1.2238
-height = 3.19658
+radius = 0.878298
+height = 2.25345
 
 [node name="Muncher" type="CharacterBody3D"]
 collision_layer = 2
+floor_snap_length = 0.5
 script = ExtResource("1_dnfvd")
 walking_speed = 8.0
 camera_path = NodePath("../CameraPivot/SpringArm3D/Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59602, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12218, 0)
 shape = SubResource("CapsuleShape3D_wx677")
 
 [node name="muncher_test" parent="." instance=ExtResource("2_4ecyd")]
+transform = Transform3D(0.713745, 0, 0, 0, 0.713745, 0, 0, 0, 0.713745, 0, -0.126402, 0)
