@@ -11,6 +11,7 @@ func interpolation_change(anim: AnimationPlayer):
 		var count = anim_track.get_track_count() # get number of tracks (bones in your case)
 		for i in count:
 			anim_track.track_set_interpolation_type(i, 0) # change interpolation mode for every track
+#			print(anim_track.track_get_interpolation_type(i))
 #	var anim_track_1 = anim.get_animation("Run") # get the Animation that you are interested in (change "default" to your Animation's name)
 	
 #		print(anim_track_1.track_get_interpolation_type(i))

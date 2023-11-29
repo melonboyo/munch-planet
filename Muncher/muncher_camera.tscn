@@ -8,7 +8,7 @@ radius = 0.1
 [node name="CameraPivot" type="Node3D"]
 script = ExtResource("1_sofu5")
 focus_path = NodePath("../Muncher")
-min_vertical_angle = 20.0
+min_vertical_angle = -2.0
 max_vertical_angle = 89.0
 up_alignment_speed = 10.0
 

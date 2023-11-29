@@ -11,7 +11,7 @@ extends Node3D
 @export_range(0.0, 1.0) var look_input_deadzone: float = 0.1
 
 var focus_point: Vector3
-var orbit_angles: Vector2 = Vector2(45.0, 0.0):
+var orbit_angles: Vector2 = Vector2(0.0, 0.0):
 	set(value):
 		orbit_angles = value
 		orbit_angles.x = clamp(orbit_angles.x, max_vertical_angle, min_vertical_angle)
@@ -45,7 +45,7 @@ func _ready():
 	up_axis = focus.global_position.normalized()
 	rotation_degrees = Vector3(orbit_angles.x, orbit_angles.y, 0.0)
 	orbit_rotation = Quaternion.from_euler(Vector3(deg_to_rad(orbit_angles.x), deg_to_rad(orbit_angles.y), 0.0))
-	focus_point = focus.global_position + up_axis * 1.2
+	focus_point = focus.global_position + up_axis * 1.8
 	
 	gravity_alignment = from_to_rotation(Vector3.UP, up_axis) * gravity_alignment
 	var look_rotation: Quaternion = gravity_alignment * orbit_rotation
@@ -56,17 +56,17 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		if not invert_look_x:
-			input.x += event.relative.y
+			input.x += event.relative.y * 0.2
 		else:
-			input.x += -event.relative.y
+			input.x += -event.relative.y * 0.2
 		if not invert_look_y:
-			input.y += event.relative.x
+			input.y += event.relative.x * 0.2
 		else:
-			input.y += -event.relative.x
+			input.y += -event.relative.x * 0.2
 
 
 func _physics_process(delta):
-	focus_point = focus.global_position + up_axis * 1.2
+	focus_point = focus.global_position + up_axis * 1.8
 	up_axis = focus_point.normalized()
 	
 	# Update gravity alignment

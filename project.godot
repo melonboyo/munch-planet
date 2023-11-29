@@ -78,3 +78,10 @@ cancel={
 [physics]
 
 3d/default_gravity=14.5
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+lights_and_shadows/directional_shadow/size=8192
+anti_aliasing/quality/msaa_3d=2
+occlusion_culling/use_occlusion_culling=true

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6er7j0s48ko1"]
+
+[ext_resource type="PackedScene" uid="uid://bbqfs20tqvvea" path="res://Munchme/munchme_1.tscn" id="1_12xms"]
+
+[node name="Munchme" type="Node3D"]
+
+[node name="munchme1" parent="." instance=ExtResource("1_12xms")]
+transform = Transform3D(0.263472, 0, 0, 0, 0.263472, 0, 0, 0, 0.263472, 0, 0, 0)

@@ -16,8 +16,8 @@ uniform bool depth_use_laplace = true; // Sets depth edges to use the laplace op
 uniform bool color_use_laplace = false; // Sets color edges to use the laplace operator instead of sobel
 uniform bool use_bg_texture = false; // Sets shader to use render the BG behind the edges
 
-uniform sampler2D depth_texture : source_color, hint_depth_texture, repeat_disable, filter_linear_mipmap;
-uniform sampler2D screen_texture : source_color, hint_screen_texture, repeat_disable, filter_linear_mipmap;
+uniform sampler2D depth_texture : source_color, hint_depth_texture, repeat_disable, filter_linear;
+uniform sampler2D screen_texture : source_color, hint_screen_texture, repeat_disable, filter_linear;
 
 varying mat4 CAMERA;
 
