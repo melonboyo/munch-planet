@@ -8,7 +8,7 @@ extends DirectionalLight3D
 func _physics_process(delta):
 	global_position = player.global_position + player.up_direction * 10.0
 #	.rotated(Vector3.LEFT, 0.1*PI)
-	global_transform.basis = Basis(from_to_rotation(Vector3.FORWARD.rotated(Vector3.LEFT, 0.12*PI), -player.up_direction))
+	global_transform.basis = Basis(from_to_rotation(Vector3.FORWARD.rotated(Vector3.LEFT, 0.18*PI), -player.up_direction))
 
 
 func from_to_rotation(from, to) -> Quaternion:

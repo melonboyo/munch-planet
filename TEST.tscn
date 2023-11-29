@@ -8,6 +8,8 @@
 [ext_resource type="Shader" path="res://Muncher/ScreenShader.gdshader" id="6_gwije"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7lkah"]
+lightmap_size_hint = Vector2i(6285, 3143)
+add_uv2 = true
 radius = 200.0
 height = 400.0
 radial_segments = 256
@@ -49,8 +51,9 @@ friction = 0.0
 radius = 200.0
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m8ocr"]
-sky_top_color = Color(0.145098, 0.807843, 0.792157, 1)
+sky_top_color = Color(0.772549, 0.988235, 0.976471, 1)
 sky_horizon_color = Color(0.764706, 0.772549, 0.784314, 1)
+sky_energy_multiplier = 0.95
 
 [sub_resource type="Sky" id="Sky_87rhe"]
 sky_material = SubResource("ProceduralSkyMaterial_m8ocr")
@@ -84,17 +87,23 @@ shader_parameter/color_use_laplace = false
 shader_parameter/use_bg_texture = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_01xr1"]
+lightmap_size_hint = Vector2i(14, 21)
+add_uv2 = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lslyh"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="PrismMesh" id="PrismMesh_b5w6x"]
+lightmap_size_hint = Vector2i(24, 18)
+add_uv2 = true
 size = Vector3(2, 0.23, 2)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_uf7ep"]
 data = PackedVector3Array(0, 0.115, 1, 1, -0.115, 1, -1, -0.115, 1, 0, 0.115, -1, -1, -0.115, -1, 1, -0.115, -1, 0, 0.115, 1, 0, 0.115, -1, 1, -0.115, 1, 0, 0.115, -1, 1, -0.115, -1, 1, -0.115, 1, 0, 0.115, -1, 0, 0.115, 1, -1, -0.115, -1, 0, 0.115, 1, -1, -0.115, 1, -1, -0.115, -1, -1, -0.115, 1, 1, -0.115, 1, -1, -0.115, -1, 1, -0.115, 1, 1, -0.115, -1, -1, -0.115, -1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_fmvrm"]
+lightmap_size_hint = Vector2i(17, 9)
+add_uv2 = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_57s3w"]
 
@@ -103,6 +112,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.309701, 0.821053), 0.0, 0.0, 0
 point_count = 5
 
 [sub_resource type="TubeTrailMesh" id="TubeTrailMesh_kjs41"]
+add_uv2 = true
 radial_steps = 16
 sections = 8
 curve = SubResource("Curve_syc5c")
@@ -125,7 +135,7 @@ physics_material_override = SubResource("PhysicsMaterial_6h70g")
 shape = SubResource("SphereShape3D_5kljp")
 
 [node name="Muncher" parent="." instance=ExtResource("2_b0ky1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 202.264, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 200.217, 0)
 floor_snap_length = 1.0
 
 [node name="CameraPivot" parent="." instance=ExtResource("3_8oj03")]
@@ -139,8 +149,8 @@ layers = 2
 light_color = Color(0.960784, 0.960784, 0.960784, 1)
 light_energy = 1.1
 shadow_enabled = true
-directional_shadow_mode = 1
-directional_shadow_pancake_size = 10.0
+shadow_blur = 2.92
+directional_shadow_blend_splits = true
 script = ExtResource("4_llbt7")
 player_path = NodePath("../Muncher")
 
@@ -164,6 +174,7 @@ skeleton = NodePath("../..")
 [node name="StaticBody3D" type="StaticBody3D" parent="Obstacles/MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_lslyh")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Obstacles"]

@@ -5,7 +5,7 @@ extends Node3D
 @export_range(-89.0, 89.0) var min_vertical_angle: float = -45.0
 @export_range(-89.0, 89.0) var max_vertical_angle: float = 45.0
 @export_range(1.0, 360.0) var up_alignment_speed: float = 25.0
-@export_range(1.0, 1000) var mouse_sensitivity: float = 100.0
+@export_range(1.0, 100) var mouse_sensitivity: float = 20.0
 @export var invert_look_y: bool = false
 @export var invert_look_x: bool = false
 @export_range(0.0, 1.0) var look_input_deadzone: float = 0.1
@@ -103,7 +103,7 @@ func look_rotation(delta) -> bool:
 	# Add the input to the orbit angles if larger than e
 	var e = 0.001
 	if input.x < -e or input.x > e or input.y < -e or input.y > e:
-		orbit_angles -= mouse_sensitivity * input * delta
+		orbit_angles -= 2.0 * mouse_sensitivity * input * delta
 		input = Vector2.ZERO
 		return true
 	input = Vector2.ZERO

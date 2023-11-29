@@ -1,42 +1,53 @@
-[gd_scene load_steps=10 format=3 uid="uid://byqxhfjpv5fey"]
+[gd_scene load_steps=11 format=3 uid="uid://byqxhfjpv5fey"]
 
 [ext_resource type="PackedScene" uid="uid://bofgx4ionr17s" path="res://models/muncher_test.gltf" id="1_3g22p"]
-[ext_resource type="Shader" uid="uid://bg5ar60o2lhuv" path="res://Muncher/muncher_visual.tres" id="2_nlb7k"]
 [ext_resource type="Script" path="res://Muncher/muncher_model.gd" id="2_yv0yo"]
 [ext_resource type="Texture2D" uid="uid://uyff5plgwxle" path="res://models/textures/FaceTexture.png" id="3_eits6"]
 [ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Muncher/muncher_head.tres" id="3_s2fbg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3us0k"]
-render_priority = 0
-shader = ExtResource("2_nlb7k")
-shader_parameter/Albedo = Color(1, 0.941176, 0.305882, 1)
-shader_parameter/AlbedoTextureBlend = 0.0
-shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
-shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5y2og"]
+frequency = 0.019
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gq7rm"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_5y2og")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rhw1q"]
 render_priority = 0
 shader = ExtResource("3_s2fbg")
-shader_parameter/Albedo = Color(1, 0.941176, 0.305882, 1)
+shader_parameter/VertexVariationDisplacement = 0.06
+shader_parameter/VertexVariationFrequency = 0.785
+shader_parameter/NumberOfVertexVariations = 5
+shader_parameter/RandomPrimeSeed = 5393
+shader_parameter/Albedo = Color(0.803922, 0.941176, 0.305882, 1)
+shader_parameter/Roughness = 1.0
+shader_parameter/Specular = 0.152
 shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
 shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
-shader_parameter/AlbedoTexture = ExtResource("3_eits6")
+shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_gq7rm")
+shader_parameter/FaceTexture = ExtResource("3_eits6")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qo3tw"]
-render_priority = 0
-shader = ExtResource("2_nlb7k")
-shader_parameter/Albedo = Color(1, 0.941176, 0.305882, 1)
-shader_parameter/AlbedoTextureBlend = 0.0
-shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
-shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8yt8x"]
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_5y2og")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4sg0v"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m1076"]
 render_priority = 0
-shader = ExtResource("2_nlb7k")
-shader_parameter/Albedo = Color(1, 0.439216, 0.305882, 1)
-shader_parameter/AlbedoTextureBlend = 0.0
+shader = ExtResource("3_s2fbg")
+shader_parameter/VertexVariationDisplacement = 0.04
+shader_parameter/VertexVariationFrequency = 0.785
+shader_parameter/NumberOfVertexVariations = 5
+shader_parameter/RandomPrimeSeed = 5393
+shader_parameter/Albedo = Color(0.803922, 0.407843, 0.172549, 1)
+shader_parameter/Roughness = 1.0
+shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
 shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
+shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 
 [node name="muncher_test" instance=ExtResource("1_3g22p")]
 transform = Transform3D(0.713745, 0, 0, 0, 0.713745, 0, 0, 0, 0.713745, 0, 0, 0)
@@ -52,10 +63,10 @@ bones/18/position = Vector3(0.533525, -0.137981, -3.66368e-07)
 bones/18/rotation = Quaternion(-1.00656e-13, -2.38419e-07, -1.06796e-07, 1)
 
 [node name="Body" parent="Armature/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_3us0k")
+surface_material_override/0 = SubResource("ShaderMaterial_rhw1q")
 surface_material_override/1 = SubResource("ShaderMaterial_rhw1q")
-surface_material_override/2 = SubResource("ShaderMaterial_qo3tw")
-surface_material_override/3 = SubResource("ShaderMaterial_4sg0v")
+surface_material_override/2 = SubResource("ShaderMaterial_rhw1q")
+surface_material_override/3 = SubResource("ShaderMaterial_m1076")
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Idle"
