@@ -17,8 +17,21 @@ _Gameplay loop_
 - You can team up with other munchers in your quests or battles with other munchers.
 - You can trade munchmees with other munchers.
 
+## TO-DOs
+### Overworld MODE
+Mode where you walk around and explore.
 
+### Catch MODE
+Mode when you attempt to catch a munchme.
 
+### Manage MODE
+Mode where you manage the health and mood of your munchmes.
+
+### Interact MODE
+Mode where you interact with something using a chosen munchme.
+
+### Fight MODE
+Mode where you fight a player/non-player enemy using your munchmes (may be the same as interact mode).
 
 
 ### Sketches
