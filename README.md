@@ -51,7 +51,9 @@ Mode where you fight a player/non-player enemy using your munchmes (may be the s
 ![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/melon_1.jpg)  
 *melon_1.jpg*
 
-https://github.com/melonboyo/munchmee-world/assets/1461061/2af1787c-cb9a-4198-b84d-b859958732d0
+https://github.com/melonboyo/munch-world/assets/1461061/2af1787c-cb9a-4198-b84d-b859958732d0
 
 ![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/chai_4.png)  
 *chai_4.png*
+
+https://github.com/melonboyo/munch-world/assets/1461061/740fbf29-1138-469f-a93b-dda9d70172fb
