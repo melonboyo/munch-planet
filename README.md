@@ -7,16 +7,17 @@ Theme is "mode".
 There are challenges that you cannot overcome! But there are little critter guys roaming around making funny noises (munchmees).
 Munch one up to add it to your collection! They squirm a bit, and that's okay. (like kakunte tribe from moon)
 
-
 _Gameplay loop_
 - You grab a munchmee and eat it. You get to name it and see its stats.
-- Buy food at the shop for your munchmee, or trade with a kind gomp fellow.
-- Manage your munchemees in your stomach (they have beds and television). 
-- Pitch your munchmees in fights against other gomps' munchmees.
+- Buy food at the shop for your munchmee, or trade with a kind muncher fellow.
+- Manage your munchemes in your stomach (they have beds and television). 
+- Pitch your munchmes in fights against other munchers' munchmees.
 - Go on adventures with your munchmees and solve puzzles, unlock new gadgets, and have a whole ton of fun.
 - Some gadgets are illegal. The munchopolice WILL get you.
-- You can team up with other gomps in your quests or battles with other gomps.
-- You can trade munchmees with other gomps.
+- You can team up with other munchers in your quests or battles with other munchers.
+- You can trade munchmees with other munchers.
+
+
 
 
 
