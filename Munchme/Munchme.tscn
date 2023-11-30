@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6er7j0s48ko1"]
+[gd_scene load_steps=3 format=3 uid="uid://c6er7j0s48ko1"]
 
 [ext_resource type="PackedScene" uid="uid://bbqfs20tqvvea" path="res://Munchme/munchme_1.tscn" id="1_12xms"]
+[ext_resource type="AudioStream" uid="uid://quwmr8lbxl2c" path="res://Music/thoughtful_muncher.ogg" id="2_cpemy"]
 
 [node name="Munchme" type="Node3D"]
 
 [node name="munchme1" parent="." instance=ExtResource("1_12xms")]
 transform = Transform3D(0.263472, 0, 0, 0, 0.263472, 0, 0, 0, 0.263472, 0, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_cpemy")
+unit_size = 5.0
+autoplay = true
