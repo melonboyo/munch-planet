@@ -37,6 +37,8 @@ var height = 1.0
 @onready var min_floor_dot = cos(deg_to_rad(max_floor_angle))
 @onready var camera: Camera3D = get_node(camera_path)
 
+@onready var emoter = $Emoter as Emoter
+
 
 func _ready():
 	InputMap.action_set_deadzone("move_right", move_input_deadzone)
@@ -56,6 +58,14 @@ func _process(delta):
 	forward_axis = project_direction_on_plane(camera.global_transform.basis.z.normalized(), up_direction)
 	move_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
+	if Input.is_action_just_pressed("emote_1"):
+		emoter.play_emote(Constants.Emote.Exclamation)
+	if Input.is_action_just_pressed("emote_2"):
+		emoter.play_emote(Constants.Emote.Happy)
+	if Input.is_action_just_pressed("emote_3"):
+		emoter.play_emote(Constants.Emote.Question)
+	if Input.is_action_just_pressed("emote_4"):
+		emoter.play_emote(Constants.Emote.Mad)
 
 func _physics_process(delta):
 	up_direction = global_transform.origin.normalized()
