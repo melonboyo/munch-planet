@@ -34,26 +34,30 @@ shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_263ks")
 script = ExtResource("2_1tp24")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/rotation = Quaternion(0, 1, 0, -1.94707e-07)
-bones/7/rotation = Quaternion(-1.96089e-07, -1.58491e-07, -0.854972, 0.518673)
-bones/7/scale = Vector3(1.03093, 0.940901, 1.03093)
-bones/8/position = Vector3(1.29052, 0.141607, 1.26861e-07)
-bones/9/rotation = Quaternion(-1.98885e-07, 1.03091e-07, 0.847099, 0.531435)
-bones/9/scale = Vector3(1.05845, 0.892608, 1.05845)
-bones/10/position = Vector3(-1.27246, 0.168691, -3.15354e-08)
-bones/11/rotation = Quaternion(-0.00354617, 0.00850504, 0.990794, -0.135063)
-bones/11/scale = Vector3(0.920832, 1.17934, 0.920832)
-bones/12/position = Vector3(0.749501, -0.809503, 0.0288903)
-bones/13/rotation = Quaternion(0.00354615, 0.00850502, 0.990794, 0.135063)
-bones/13/scale = Vector3(0.920833, 1.17934, 0.920832)
-bones/14/position = Vector3(-0.749501, -0.809503, 0.0288902)
+bones/0/position = Vector3(-0.0161434, -0.194867, 0.229858)
+bones/0/rotation = Quaternion(-0.106517, 0.975407, -0.125147, -0.146881)
+bones/1/rotation = Quaternion(0.389356, 0.128687, 0.0099008, 0.912)
+bones/2/rotation = Quaternion(-0.164035, -0.141977, -0.106135, 0.970397)
+bones/2/scale = Vector3(1.11693, 1.11693, 1.11693)
+bones/3/rotation = Quaternion(0.142212, -0.141349, -0.365973, 0.908768)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.123419, -0.313017, -0.189073, 0.922518)
+bones/5/rotation = Quaternion(-0.0188799, 0.0405047, 0.11312, 0.992576)
+bones/6/rotation = Quaternion(-0.0553304, 0.27751, -0.312826, 0.906679)
+bones/7/position = Vector3(0.741963, 0.462219, 0.124505)
+bones/7/rotation = Quaternion(-1.40922e-07, -2.26705e-07, -0.527359, 0.849643)
+bones/8/position = Vector3(-0.763395, 0.542604, -0.299394)
+bones/8/rotation = Quaternion(-1.46811e-07, 1.28165e-07, 0.527359, 0.849643)
+bones/9/rotation = Quaternion(-0.00269169, 0.0101528, 0.967874, -0.251217)
+bones/10/position = Vector3(-0.693054, 0.0169664, -0.156999)
+bones/10/rotation = Quaternion(0.00269167, 0.0101527, 0.967874, 0.251217)
 
 [node name="Body" parent="Armature/Skeleton3D" index="0"]
 transform = Transform3D(1.68103, 0, 0, 0, 1.68103, 0, 0, 0, 1.68103, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_0a2el")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(-1, 2.65326e-08, -5.99044e-07, -2.23345e-08, 0.996679, 0.081428, 5.99215e-07, 0.081428, -0.996679, 0, 0.694883, 0)
+transform = Transform3D(-0.915099, -0.619557, -0.162115, -0.380181, 0.753081, -0.732032, 0.515359, -0.544571, -0.827881, -0.438, 0.587915, -0.418943)
 bone_name = "Head"
 bone_idx = 2
 

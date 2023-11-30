@@ -1,8 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=31 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
+[ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="2_1yae1"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
-[ext_resource type="Shader" uid="uid://bg5ar60o2lhuv" path="res://Shaders/Toon3D.tres" id="2_vtr1f"]
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/muncher_camera.tscn" id="3_8oj03"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
 [ext_resource type="Shader" path="res://Shaders/ScreenShader.gdshader" id="6_gwije"]
@@ -16,34 +16,41 @@ height = 400.0
 radial_segments = 256
 rings = 128
 
-[sub_resource type="Gradient" id="Gradient_a3mn0"]
-colors = PackedColorArray(0.494118, 0.360784, 0.2, 1, 0.566358, 0.902756, 0.329011, 1)
+[sub_resource type="Gradient" id="Gradient_xc70b"]
+colors = PackedColorArray(0.526296, 0.206658, 0.137044, 1, 0.595643, 0.699295, 0.214182, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_rr8se"]
-noise_type = 2
-frequency = 0.053
-fractal_octaves = 3
-fractal_lacunarity = 0.68
-fractal_weighted_strength = 0.51
-domain_warp_enabled = true
-domain_warp_type = 1
-domain_warp_fractal_octaves = 3
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r0ahm"]
+frequency = 0.1095
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wfw1q"]
-width = 1024
-invert = true
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5tcpo"]
+color_ramp = SubResource("Gradient_xc70b")
+noise = SubResource("FastNoiseLite_r0ahm")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_upbem"]
+frequency = 0.028
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wj3yy"]
+width = 128
+height = 128
+in_3d_space = true
 seamless = true
-color_ramp = SubResource("Gradient_a3mn0")
-noise = SubResource("FastNoiseLite_rr8se")
+seamless_blend_skirt = 0.325
+noise = SubResource("FastNoiseLite_upbem")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bm27g"]
 render_priority = 0
-shader = ExtResource("2_vtr1f")
+shader = ExtResource("2_1yae1")
+shader_parameter/VertexVariationDisplacement = 0.115
+shader_parameter/VertexVariationFrequency = 0.41
+shader_parameter/NumberOfVertexVariations = 11
+shader_parameter/RandomPrimeSeed = 71
 shader_parameter/Albedo = Color(1, 1, 1, 1)
-shader_parameter/AlbedoTextureBlend = 1.0
+shader_parameter/Roughness = 1.0
+shader_parameter/Specular = 0.226
 shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
-shader_parameter/LightBlendColor2 = Color(0, 0, 0, 1)
-shader_parameter/AlbedoTexture = SubResource("NoiseTexture2D_wfw1q")
+shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
+shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_wj3yy")
+shader_parameter/FaceTexture = SubResource("NoiseTexture2D_5tcpo")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6h70g"]
 friction = 0.0
@@ -150,8 +157,8 @@ layers = 2
 light_color = Color(0.960784, 0.960784, 0.960784, 1)
 light_energy = 1.1
 shadow_enabled = true
-directional_shadow_blend_splits = true
-directional_shadow_max_distance = 120.0
+shadow_blur = 1.99
+directional_shadow_pancake_size = 13.0
 script = ExtResource("4_llbt7")
 player_path = NodePath("../Muncher")
 
@@ -160,7 +167,6 @@ environment = SubResource("Environment_df6u4")
 
 [node name="Quad" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54653, -2.66747, 3.12407)
-visible = false
 cast_shadow = 0
 extra_cull_margin = 16384.0
 ignore_occlusion_culling = true
