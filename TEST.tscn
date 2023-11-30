@@ -1,20 +1,22 @@
-[gd_scene load_steps=31 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=35 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
-[ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="2_1yae1"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
+[ext_resource type="Shader" uid="uid://bg5ar60o2lhuv" path="res://Shaders/Toon3D.tres" id="3_0moh7"]
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/muncher_camera.tscn" id="3_8oj03"]
+[ext_resource type="Script" path="res://addons/shell_fur/shell_fur_manager.gd" id="3_quac8"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
+[ext_resource type="Texture2D" uid="uid://o1fagcyldrts" path="res://addons/shell_fur/noise_patterns/rough.png" id="5_trk6g"]
 [ext_resource type="Shader" path="res://Shaders/ScreenShader.gdshader" id="6_gwije"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/Munchme.tscn" id="7_xaxar"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7lkah"]
-lightmap_size_hint = Vector2i(6285, 3143)
+lightmap_size_hint = Vector2i(316, 159)
 add_uv2 = true
-radius = 200.0
-height = 400.0
-radial_segments = 256
-rings = 128
+radius = 10.0
+height = 20.0
+radial_segments = 32
+rings = 16
 
 [sub_resource type="Gradient" id="Gradient_xc70b"]
 colors = PackedColorArray(0.526296, 0.206658, 0.137044, 1, 0.595643, 0.699295, 0.214182, 1)
@@ -22,35 +24,35 @@ colors = PackedColorArray(0.526296, 0.206658, 0.137044, 1, 0.595643, 0.699295, 0
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r0ahm"]
 frequency = 0.1095
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5tcpo"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dk4ks"]
 color_ramp = SubResource("Gradient_xc70b")
 noise = SubResource("FastNoiseLite_r0ahm")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_upbem"]
-frequency = 0.028
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wj3yy"]
-width = 128
-height = 128
-in_3d_space = true
-seamless = true
-seamless_blend_skirt = 0.325
-noise = SubResource("FastNoiseLite_upbem")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bm27g"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f153o"]
 render_priority = 0
-shader = ExtResource("2_1yae1")
-shader_parameter/VertexVariationDisplacement = 0.115
-shader_parameter/VertexVariationFrequency = 0.41
-shader_parameter/NumberOfVertexVariations = 11
-shader_parameter/RandomPrimeSeed = 71
-shader_parameter/Albedo = Color(1, 1, 1, 1)
-shader_parameter/Roughness = 1.0
-shader_parameter/Specular = 0.226
+shader = ExtResource("3_0moh7")
+shader_parameter/Albedo = Color(0.25098, 0.254902, 0.145098, 1)
+shader_parameter/AlbedoTextureBlend = 0.818
 shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
 shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
-shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_wj3yy")
-shader_parameter/FaceTexture = SubResource("NoiseTexture2D_5tcpo")
+shader_parameter/AlbedoTexture = SubResource("NoiseTexture2D_dk4ks")
+
+[sub_resource type="Gradient" id="Gradient_lodx3"]
+colors = PackedColorArray(0.0337528, 0.650494, 0.485517, 1, 0.613153, 0.795713, 0.212582, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v5gww"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k0lwl"]
+color_ramp = SubResource("Gradient_lodx3")
+noise = SubResource("FastNoiseLite_v5gww")
+
+[sub_resource type="SphereMesh" id="SphereMesh_l6vh0"]
+lightmap_size_hint = Vector2i(6285, 3143)
+add_uv2 = true
+radius = 200.0
+height = 400.0
+radial_segments = 128
+rings = 64
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6h70g"]
 friction = 0.0
@@ -131,10 +133,53 @@ data = PackedVector3Array(0, 0.8, 0, 0, 0.8, 0, 0, 0.7333, 0.0204, 0, 0.8, 0, 0.
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
 
+[node name="SphereMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0.0441132, 212.314, 37.7587)
+mesh = SubResource("SphereMesh_7lkah")
+surface_material_override/0 = SubResource("ShaderMaterial_f153o")
+
+[node name="ShellFur" type="Node3D" parent="SphereMesh2"]
+script = ExtResource("3_quac8")
+shader_type = 0
+custom_shader = null
+layers = 4
+pattern_selector = 2
+pattern_texture = ExtResource("5_trk6g")
+pattern_uv_scale = 3.936
+cast_shadow = false
+mat_transmission = null
+mat_ao = null
+mat_ao_light_affect = null
+mat_roughness = 0.834
+mat_albedo_color = null
+mat_albedo_uv_scale = null
+mat_shape_length = 1.645
+mat_shape_length_rand = 0.0
+mat_shape_density = null
+mat_shape_thickness_base = null
+mat_shape_thickness_tip = 0.24
+mat_shape_thickness_rand = 0.0
+mat_shape_growth = 0.0
+mat_shape_growth_rand = 0.0
+mat_shape_ldtg_uv_scale = null
+mat_albedo_texture = SubResource("NoiseTexture2D_k0lwl")
+mat_shape_ldtg_texture = SubResource("NoiseTexture2D_k0lwl")
+physics_custom_physics_pivot = NodePath("..")
+physics_gravity = 0.0
+physics_spring = 0.0
+physics_damping = 0.33
+physics_wind_strength = 1.62
+physics_wind_speed = 0.0
+physics_wind_scale = 0.55
+physics_wind_angle = 3.86
+styling_blendshape = 0
+lod_LOD0_distance = 10.0
+lod_LOD1_distance = 100.0
+
 [node name="SphereMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0.0441132, 0.180145, -0.0724068)
-mesh = SubResource("SphereMesh_7lkah")
-surface_material_override/0 = SubResource("ShaderMaterial_bm27g")
+mesh = SubResource("SphereMesh_l6vh0")
+surface_material_override/0 = SubResource("ShaderMaterial_f153o")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SphereMesh"]
 physics_material_override = SubResource("PhysicsMaterial_6h70g")
@@ -167,6 +212,7 @@ environment = SubResource("Environment_df6u4")
 
 [node name="Quad" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54653, -2.66747, 3.12407)
+visible = false
 cast_shadow = 0
 extra_cull_margin = 16384.0
 ignore_occlusion_culling = true

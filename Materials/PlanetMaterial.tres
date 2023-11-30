@@ -1,0 +1,39 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://dy28hi0gdefwy"]
+
+[ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="1_mbx0l"]
+
+[sub_resource type="Gradient" id="Gradient_xc70b"]
+colors = PackedColorArray(0.526296, 0.206658, 0.137044, 1, 0.595643, 0.699295, 0.214182, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r0ahm"]
+frequency = 0.1095
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5tcpo"]
+color_ramp = SubResource("Gradient_xc70b")
+noise = SubResource("FastNoiseLite_r0ahm")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_upbem"]
+frequency = 0.028
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wj3yy"]
+width = 128
+height = 128
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.325
+noise = SubResource("FastNoiseLite_upbem")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_mbx0l")
+shader_parameter/VertexVariationDisplacement = 0.115
+shader_parameter/VertexVariationFrequency = 0.41
+shader_parameter/NumberOfVertexVariations = 11
+shader_parameter/RandomPrimeSeed = 71
+shader_parameter/Albedo = Color(1, 1, 1, 1)
+shader_parameter/Roughness = 1.0
+shader_parameter/Specular = 0.226
+shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
+shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
+shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_wj3yy")
+shader_parameter/FaceTexture = SubResource("NoiseTexture2D_5tcpo")
