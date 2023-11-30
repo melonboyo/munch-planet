@@ -84,13 +84,13 @@ size = Vector2(2, 2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y7s8r"]
 render_priority = 0
 shader = ExtResource("6_gwije")
-shader_parameter/color_outline_scale = 2.0
+shader_parameter/color_outline_scale = 1.5
 shader_parameter/depth_outline_scale = 0.0
 shader_parameter/depth_threshold = 2.5
 shader_parameter/depth_multiplier = 1000.0
 shader_parameter/edge_threshold = 0.04
-shader_parameter/max_edge_alpha = 0.94
-shader_parameter/edge_alpha_multiplier = 3.51
+shader_parameter/max_edge_alpha = 0.23
+shader_parameter/edge_alpha_multiplier = 3.0
 shader_parameter/edge_color = Color(0, 0, 0.0117647, 1)
 shader_parameter/depth_use_laplace = true
 shader_parameter/color_use_laplace = false
@@ -135,6 +135,7 @@ script = ExtResource("1_12yvb")
 
 [node name="SphereMesh2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0.0441132, 212.314, 37.7587)
+visible = false
 mesh = SubResource("SphereMesh_7lkah")
 surface_material_override/0 = SubResource("ShaderMaterial_f153o")
 
@@ -185,6 +186,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_f153o")
 physics_material_override = SubResource("PhysicsMaterial_6h70g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SphereMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.092392, -0.0464034, 0.272608)
 shape = SubResource("SphereShape3D_5kljp")
 
 [node name="Muncher" parent="." instance=ExtResource("2_b0ky1")]
@@ -212,7 +214,6 @@ environment = SubResource("Environment_df6u4")
 
 [node name="Quad" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54653, -2.66747, 3.12407)
-visible = false
 cast_shadow = 0
 extra_cull_margin = 16384.0
 ignore_occlusion_culling = true
