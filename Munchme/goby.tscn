@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6er7j0s48ko1"]
+
+[ext_resource type="Script" path="res://Munchme/Goby.gd" id="1_5nldq"]
+[ext_resource type="PackedScene" uid="uid://0puha086kvgb" path="res://Munchme/goby_model.tscn" id="3_o5rs3"]
+[ext_resource type="AudioStream" uid="uid://quwmr8lbxl2c" path="res://Music/thoughtful_muncher.ogg" id="4_dwwvf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_100ea"]
+radius = 0.334128
+height = 0.742897
+
+[node name="Goby" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_5nldq")
+
+[node name="GobyModel" parent="." instance=ExtResource("3_o5rs3")]
+transform = Transform3D(0.376657, 0, 0, 0, 0.376657, 0, 0, 0, 0.376657, 0, 0.00391814, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.364462, 0)
+shape = SubResource("CapsuleShape3D_100ea")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_dwwvf")
+unit_size = 2.0
+autoplay = true
+max_distance = 20.0
+panning_strength = 1.9
+attenuation_filter_cutoff_hz = 6185.0
+attenuation_filter_db = 0.0
+doppler_tracking = 1

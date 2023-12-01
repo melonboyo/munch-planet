@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
 [ext_resource type="Texture2D" uid="uid://o1fagcyldrts" path="res://addons/shell_fur/noise_patterns/rough.png" id="5_trk6g"]
 [ext_resource type="Shader" path="res://Shaders/ScreenShader.gdshader" id="6_gwije"]
-[ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/Munchme.tscn" id="7_xaxar"]
+[ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/goby.tscn" id="7_xaxar"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7lkah"]
 lightmap_size_hint = Vector2i(316, 159)
@@ -186,7 +186,6 @@ surface_material_override/0 = SubResource("ShaderMaterial_f153o")
 physics_material_override = SubResource("PhysicsMaterial_6h70g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SphereMesh/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.092392, -0.0464034, 0.272608)
 shape = SubResource("SphereShape3D_5kljp")
 
 [node name="Muncher" parent="." instance=ExtResource("2_b0ky1")]
@@ -264,4 +263,4 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_rki7l")
 
 [node name="Munchme" parent="." instance=ExtResource("7_xaxar")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 1.87627, 201.835, 5.28738)
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 1.87627, 200.035, 5.28738)
