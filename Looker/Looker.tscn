@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://tjvibtamtkfc"]
+[gd_scene load_steps=6 format=3 uid="uid://tjvibtamtkfc"]
 
 [ext_resource type="Script" path="res://Looker/Looker.gd" id="1_ma5x6"]
 [ext_resource type="Texture2D" uid="uid://dw68i5xjuryr5" path="res://Sprites/looker_border.png" id="1_mym4m"]
@@ -6,12 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://ih5s11xjdud0" path="res://Sprites/looker_placeholder_bg.png" id="4_7cfud"]
 [ext_resource type="Texture2D" uid="uid://chh44dm0uj520" path="res://Sprites/looker_placeholder.png" id="5_n8s8f"]
 
-[sub_resource type="World3D" id="World3D_45wj8"]
-
 [node name="Looker" type="NinePatchRect"]
 custom_minimum_size = Vector2(300, 200)
 offset_right = 300.0
 offset_bottom = 200.0
+mouse_filter = 0
 texture = ExtResource("1_mym4m")
 patch_margin_left = 32
 patch_margin_top = 32
@@ -35,6 +34,7 @@ theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
 [node name="PlaceholderBackground" type="TextureRect" parent="ContentMarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("4_7cfud")
 
@@ -51,16 +51,9 @@ layout_mode = 2
 texture = ExtResource("5_n8s8f")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="ContentMarginContainer"]
-visible = false
+unique_name_in_owner = true
 layout_mode = 2
 stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer"]
-own_world_3d = true
-world_3d = SubResource("World3D_45wj8")
-handle_input_locally = false
-size = Vector2i(288, 162)
-render_target_update_mode = 0
 
 [node name="TopMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -78,7 +71,6 @@ layout_mode = 2
 [node name="Title" type="Label" parent="TopMarginContainer/TopHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 0
 theme_override_font_sizes/font_size = 16
 text = "New Window"
 
@@ -87,6 +79,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="CloseButton" type="TextureButton" parent="TopMarginContainer/TopHBoxContainer/CloseButtonCenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_n7ool")

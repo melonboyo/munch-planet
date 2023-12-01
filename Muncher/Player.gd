@@ -76,7 +76,7 @@ func _physics_process(delta):
 		# Stick to floor
 		gravity_velocity = -floor_normal * 2.8
 	else:
-#		floor_normal = up_direction
+		floor_normal = up_direction
 		steps_since_grounded += 1
 		gravity_velocity += -up_direction * gravity * delta
 	
