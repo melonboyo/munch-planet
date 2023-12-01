@@ -27,6 +27,7 @@ var up_axis: Vector3 = Vector3.UP
 
 @onready var focus: Node3D = get_node(focus_path)
 @onready var camera: Camera3D = %Camera3D
+@onready var listener = $AudioListener3D
 
 
 func _ready():
@@ -51,6 +52,9 @@ func _ready():
 	var look_rotation: Quaternion = gravity_alignment * orbit_rotation
 	global_transform.basis = Basis(look_rotation)
 	global_position = focus_point
+	
+	listener.global_transform.basis = Basis(look_rotation)
+	listener.global_position = focus.global_position
 
 
 func _input(event):
@@ -83,6 +87,9 @@ func _physics_process(delta):
 	var look_rotation: Quaternion = gravity_alignment * orbit_rotation
 	global_transform.basis = Basis(look_rotation)
 	global_position = global_position.slerp(focus_point, delta * 20.0)
+	
+	listener.global_transform.basis = Basis(look_rotation)
+	listener.global_position = focus.global_position
 
 
 func look_rotation(delta) -> bool:

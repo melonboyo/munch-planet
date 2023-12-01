@@ -19,3 +19,5 @@ spring_length = 6.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 unique_name_in_owner = true
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
