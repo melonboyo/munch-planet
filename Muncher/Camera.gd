@@ -93,7 +93,7 @@ func _physics_process(delta):
 
 
 func look_rotation(delta) -> bool:
-	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		input = Vector2.ZERO
 		return false
 	

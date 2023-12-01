@@ -3,6 +3,7 @@ extends NinePatchRect
 
 var is_dragging_window = false
 var internal_viewport = null
+var prev_mouse_mode = null
 
 @export var title: String = "New Window":
 	get:
@@ -22,6 +23,12 @@ var internal_viewport = null
 		return size.y
 	set(value):
 		size.y = value
+
+@export var can_close: bool = true:
+	set(value):
+		if %CloseButton != null:
+			%CloseButton.visible = value
+			can_close = value
 
 
 func _ready():
@@ -59,7 +66,12 @@ func _on_close_button_pressed():
 
 func _on_top_margin_container_gui_input(event):
 	if event is InputEventMouseButton:
-		is_dragging_window = event.button_index == 1 and event.pressed
+		is_dragging_window = event.button_index == MOUSE_BUTTON_LEFT and event.pressed
+		if is_dragging_window:
+			prev_mouse_mode = Input.mouse_mode
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		elif prev_mouse_mode != null:
+			Input.mouse_mode = prev_mouse_mode
 		
 	if is_dragging_window and event is InputEventMouseMotion:
 		position += event.relative
