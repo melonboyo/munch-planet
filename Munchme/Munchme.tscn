@@ -1,18 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6er7j0s48ko1"]
+[gd_scene load_steps=7 format=3 uid="uid://c6er7j0s48ko1"]
 
-[ext_resource type="PackedScene" uid="uid://bbqfs20tqvvea" path="res://Munchme/munchme_1.tscn" id="1_12xms"]
-[ext_resource type="AudioStream" uid="uid://quwmr8lbxl2c" path="res://Music/thoughtful_muncher.ogg" id="2_cpemy"]
+[ext_resource type="Script" path="res://Munchme/Munchme3D.gd" id="1_ix2pk"]
+[ext_resource type="Texture2D" uid="uid://enx4ki0dp4ui" path="res://Munchme/Sprites/munchme-1/munchme-1.png" id="1_sh1c0"]
+[ext_resource type="Script" path="res://Munchme/munchme.gd" id="2_5sx7h"]
 
-[node name="Munchme" type="Node3D"]
+[sub_resource type="Resource" id="Resource_1g7h7"]
+script = ExtResource("2_5sx7h")
+max_health = 100
+mood = 1
 
-[node name="munchme1" parent="." instance=ExtResource("1_12xms")]
-transform = Transform3D(0.263472, 0, 0, 0, 0.263472, 0, 0, 0, 0.263472, 0, 0, 0)
+[sub_resource type="SpriteFrames" id="SpriteFrames_77edw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sh1c0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_cpemy")
-unit_size = 2.0
-autoplay = true
-max_distance = 20.0
-panning_strength = 1.9
-attenuation_filter_cutoff_hz = 6185.0
-attenuation_filter_db = 0.0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_100ea"]
+radius = 0.277897
+height = 0.596372
+
+[node name="Munchme" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_ix2pk")
+resource = SubResource("Resource_1g7h7")
+
+[node name="Munchme1" type="AnimatedSprite3D" parent="."]
+pixel_size = 0.004
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_77edw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0210992, 0)
+shape = SubResource("CapsuleShape3D_100ea")

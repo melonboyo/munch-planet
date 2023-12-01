@@ -11,5 +11,6 @@ enum Mood {
 
 
 @export var max_health: int = 100
+@export var mood = Mood.Happy
 
 var health = max_health

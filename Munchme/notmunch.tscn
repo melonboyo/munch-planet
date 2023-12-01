@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bbqfs20tqvvea"]
 
-[ext_resource type="PackedScene" uid="uid://dqxm2xdjytd3v" path="res://models/munchmes/munchme1.gltf" id="1_vlt5c"]
-[ext_resource type="Script" path="res://Muncher/muncher_model.gd" id="2_1tp24"]
-[ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="3_itquw"]
-[ext_resource type="Texture2D" uid="uid://ks2xnrmraktq" path="res://Munchme/Faces/face1.png" id="4_0el4i"]
+[ext_resource type="PackedScene" uid="uid://dqxm2xdjytd3v" path="res://models/munchmes/munchme1.gltf" id="1_t6j4t"]
+[ext_resource type="Script" path="res://Muncher/muncher_model.gd" id="2_2h00b"]
+[ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="3_bmqci"]
+[ext_resource type="Texture2D" uid="uid://ks2xnrmraktq" path="res://Munchme/Faces/face1.png" id="4_nmis0"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bj2xq"]
 frequency = 0.0265
@@ -18,7 +18,7 @@ noise = SubResource("FastNoiseLite_bj2xq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0a2el"]
 render_priority = 0
-shader = ExtResource("3_itquw")
+shader = ExtResource("3_bmqci")
 shader_parameter/VertexVariationDisplacement = 0.05
 shader_parameter/VertexVariationFrequency = 2.355
 shader_parameter/NumberOfVertexVariations = 5
@@ -30,8 +30,8 @@ shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
 shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_263ks")
 
-[node name="munchme1" instance=ExtResource("1_vlt5c")]
-script = ExtResource("2_1tp24")
+[node name="notmunch" instance=ExtResource("1_t6j4t")]
+script = ExtResource("2_2h00b")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/0/position = Vector3(-0.0161434, -0.194867, 0.229858)
@@ -65,7 +65,7 @@ bone_idx = 2
 transform = Transform3D(1, -2.19991e-07, 3.14768e-08, 2.16346e-07, 0.931323, -0.364194, 5.08041e-08, 0.364194, 0.931323, 4.71725e-07, 0.585745, -0.761518)
 pixel_size = 0.0371
 texture_filter = 0
-texture = ExtResource("4_0el4i")
+texture = ExtResource("4_nmis0")
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Wriggle"
