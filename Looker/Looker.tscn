@@ -1,12 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://tjvibtamtkfc"]
+[gd_scene load_steps=6 format=3 uid="uid://tjvibtamtkfc"]
 
 [ext_resource type="Script" path="res://Looker/Looker.gd" id="1_ma5x6"]
 [ext_resource type="Texture2D" uid="uid://dw68i5xjuryr5" path="res://Sprites/looker_border.png" id="1_mym4m"]
 [ext_resource type="Texture2D" uid="uid://cbrgd510xsrdv" path="res://Sprites/looker_close_button.png" id="3_n7ool"]
 [ext_resource type="Texture2D" uid="uid://ih5s11xjdud0" path="res://Sprites/looker_placeholder_bg.png" id="4_7cfud"]
 [ext_resource type="Texture2D" uid="uid://chh44dm0uj520" path="res://Sprites/looker_placeholder.png" id="5_n8s8f"]
-
-[sub_resource type="World3D" id="World3D_45wj8"]
 
 [node name="Looker" type="NinePatchRect"]
 custom_minimum_size = Vector2(300, 200)
@@ -35,6 +33,7 @@ theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
 [node name="PlaceholderBackground" type="TextureRect" parent="ContentMarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("4_7cfud")
 
@@ -51,16 +50,9 @@ layout_mode = 2
 texture = ExtResource("5_n8s8f")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="ContentMarginContainer"]
-visible = false
+unique_name_in_owner = true
 layout_mode = 2
 stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer"]
-own_world_3d = true
-world_3d = SubResource("World3D_45wj8")
-handle_input_locally = false
-size = Vector2i(288, 162)
-render_target_update_mode = 0
 
 [node name="TopMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

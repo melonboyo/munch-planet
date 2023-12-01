@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://br7ovxc647pik"]
+
+[ext_resource type="PackedScene" uid="uid://byqxhfjpv5fey" path="res://Muncher/muncher_model.tscn" id="1_y6ssd"]
+
+[node name="LookerViewportTest" type="SubViewport"]
+own_world_3d = true
+
+[node name="muncher_test" parent="." instance=ExtResource("1_y6ssd")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53591, 2.51915)

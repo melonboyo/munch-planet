@@ -1,6 +1,7 @@
 [gd_scene load_steps=36 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
+[ext_resource type="PackedScene" uid="uid://dlgxw4g1r448" path="res://Looker/MuncherLooker.tscn" id="2_7m660"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
 [ext_resource type="Shader" uid="uid://bg5ar60o2lhuv" path="res://Shaders/Toon3D.tres" id="3_0moh7"]
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/muncher_camera.tscn" id="3_8oj03"]
@@ -9,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://o1fagcyldrts" path="res://addons/shell_fur/noise_patterns/rough.png" id="5_trk6g"]
 [ext_resource type="Shader" path="res://Shaders/ScreenShader.gdshader" id="6_gwije"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/goby.tscn" id="7_xaxar"]
-[ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="10_7d740"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7lkah"]
 lightmap_size_hint = Vector2i(316, 159)
@@ -143,14 +143,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Looker" parent="UI" instance=ExtResource("10_7d740")]
+[node name="MuncherLooker" parent="UI" instance=ExtResource("2_7m660")]
 layout_mode = 1
-offset_right = 400.0
-offset_bottom = 250.0
-mouse_filter = 0
-title = "Look into the LOOKER"
-window_width = 400
-window_height = 250
 
 [node name="SphereMesh2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0.0441132, 212.314, 37.7587)

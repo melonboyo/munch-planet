@@ -2,6 +2,7 @@
 extends NinePatchRect
 
 var is_dragging_window = false
+var internal_viewport = null
 
 @export var title: String = "New Window":
 	get:
@@ -22,6 +23,35 @@ var is_dragging_window = false
 	set(value):
 		size.y = value
 
+
+func _ready():
+	_setup_viewport_from_child()
+	if not Engine.is_editor_hint():
+		var looker_viewport = get_looker_viewport()
+		if looker_viewport != null:
+			looker_viewport.queue_free()
+
+
+func _setup_viewport_from_child():
+	var looker_viewport = get_looker_viewport()
+	
+	if looker_viewport == null and internal_viewport != null:
+		internal_viewport.queue_free()
+		%PlaceholderBackground.visible = true
+	elif looker_viewport != null and internal_viewport == null:
+		internal_viewport = looker_viewport.duplicate()
+		%SubViewportContainer.add_child(internal_viewport)
+		%PlaceholderBackground.visible = false
+
+
+func get_looker_viewport():
+	for child in get_children():
+		if child is SubViewport:
+			return child
+	
+	return null
+
+
 func _on_close_button_pressed():
 	print("i tried to close i tried it!!")
 	queue_free()
@@ -39,3 +69,11 @@ func _on_top_margin_container_gui_input(event):
 			clamp(position.x, 0, window_size.x - size.x),
 			clamp(position.y, 0, window_size.y - size.y)
 		)
+
+
+func _get_configuration_warnings():
+	print("get configuration warnings")
+	_setup_viewport_from_child()
+	
+	if internal_viewport == null:
+		return ["This node needs a SubViewport as a child"]

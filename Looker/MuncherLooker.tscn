@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlgxw4g1r448"]
+
+[ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="1_5swc0"]
+[ext_resource type="PackedScene" uid="uid://b2jwi0r3ssexq" path="res://Looker/MuncherLookerWorld.tscn" id="2_wwusm"]
+
+[node name="MuncherLooker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Looker" parent="." instance=ExtResource("1_5swc0")]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 500.0
+title = "KILL YOU KILL YOU KILL YOU!!"
+window_width = 500
+window_height = 500
+
+[node name="SubViewport" type="SubViewport" parent="Looker"]
+
+[node name="MuncherLookerWorld" parent="Looker/SubViewport" instance=ExtResource("2_wwusm")]
