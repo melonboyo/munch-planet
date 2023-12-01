@@ -33,3 +33,9 @@ func _on_top_margin_container_gui_input(event):
 		
 	if is_dragging_window and event is InputEventMouseMotion:
 		position += event.relative
+		
+		var window_size = get_viewport().size
+		position = Vector2(
+			clamp(position.x, 0, window_size.x - size.x),
+			clamp(position.y, 0, window_size.y - size.y)
+		)
