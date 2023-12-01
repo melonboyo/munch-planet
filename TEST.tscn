@@ -8,8 +8,8 @@
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
 [ext_resource type="Texture2D" uid="uid://o1fagcyldrts" path="res://addons/shell_fur/noise_patterns/rough.png" id="5_trk6g"]
 [ext_resource type="Shader" path="res://Shaders/ScreenShader.gdshader" id="6_gwije"]
-[ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="10_7d740"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/goby.tscn" id="7_xaxar"]
+[ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="10_7d740"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7lkah"]
 lightmap_size_hint = Vector2i(316, 159)

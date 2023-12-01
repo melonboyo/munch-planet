@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="MUNCH WORLD"
+config/tags=PackedStringArray("bigmode", "gamejam", "gofrog")
 run/main_scene="res://TEST.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=30
