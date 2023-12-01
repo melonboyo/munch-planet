@@ -62,7 +62,6 @@ _data = {
 [node name="Emote" type="Node3D"]
 transform = Transform3D(-0.774818, 0, -0.632185, 0, 1, 0, 0.632185, 0, -0.774818, 0, 0, 0)
 script = ExtResource("2_n3hja")
-play = null
 
 [node name="Path1" type="Path3D" parent="."]
 curve = SubResource("Curve3D_pd51p")
@@ -74,9 +73,9 @@ libraries = {
 }
 
 [node name="Follower" type="PathFollow3D" parent="Path1"]
-transform = Transform3D(0.465226, -0.883507, -0.0539041, -5.95974e-08, 0.0609034, -0.998028, 0.885063, 0.464408, 0.0283342, 0, 0, 0)
+transform = Transform3D(0.465226, -0.883507, -0.0539041, -2.97987e-08, 0.0609033, -0.998028, 0.885063, 0.464408, 0.0283342, 0, 0, 0)
 
 [node name="Emote" type="Sprite3D" parent="Path1/Follower"]
-billboard = 2
+billboard = 1
 texture_filter = 0
 texture = ExtResource("2_yufjn")
