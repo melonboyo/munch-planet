@@ -53,7 +53,7 @@ func _ready():
 	global_position = focus_point
 
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion:
 		if not invert_look_x:
 			input.x += event.relative.y * 0.2

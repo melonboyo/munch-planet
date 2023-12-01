@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://tjvibtamtkfc"]
+
+[ext_resource type="Script" path="res://Looker/Looker.gd" id="1_ma5x6"]
+[ext_resource type="Texture2D" uid="uid://dw68i5xjuryr5" path="res://Sprites/looker_border.png" id="1_mym4m"]
+[ext_resource type="Texture2D" uid="uid://cbrgd510xsrdv" path="res://Sprites/looker_close_button.png" id="3_n7ool"]
+[ext_resource type="Texture2D" uid="uid://ih5s11xjdud0" path="res://Sprites/looker_placeholder_bg.png" id="4_7cfud"]
+[ext_resource type="Texture2D" uid="uid://chh44dm0uj520" path="res://Sprites/looker_placeholder.png" id="5_n8s8f"]
+
+[sub_resource type="World3D" id="World3D_45wj8"]
+
+[node name="Looker" type="NinePatchRect"]
+custom_minimum_size = Vector2(300, 200)
+offset_right = 300.0
+offset_bottom = 200.0
+texture = ExtResource("1_mym4m")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+script = ExtResource("1_ma5x6")
+
+[node name="ContentMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="PlaceholderBackground" type="TextureRect" parent="ContentMarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_7cfud")
+
+[node name="PlaceholderCenterContainer" type="CenterContainer" parent="ContentMarginContainer/PlaceholderBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ContentMarginContainer/PlaceholderBackground/PlaceholderCenterContainer"]
+layout_mode = 2
+texture = ExtResource("5_n8s8f")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ContentMarginContainer"]
+visible = false
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer"]
+own_world_3d = true
+world_3d = SubResource("World3D_45wj8")
+handle_input_locally = false
+size = Vector2i(288, 162)
+render_target_update_mode = 0
+
+[node name="TopMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 29.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 20
+
+[node name="TopHBoxContainer" type="HBoxContainer" parent="TopMarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="TopMarginContainer/TopHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 0
+theme_override_font_sizes/font_size = 16
+text = "New Window"
+
+[node name="CloseButtonCenterContainer" type="CenterContainer" parent="TopMarginContainer/TopHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="CloseButton" type="TextureButton" parent="TopMarginContainer/TopHBoxContainer/CloseButtonCenterContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_n7ool")
+
+[connection signal="gui_input" from="TopMarginContainer" to="." method="_on_top_margin_container_gui_input"]
+[connection signal="pressed" from="TopMarginContainer/TopHBoxContainer/CloseButtonCenterContainer/CloseButton" to="." method="_on_close_button_pressed"]
