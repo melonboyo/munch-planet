@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlgxw4g1r448"]
+
+[ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="1_17vrw"]
+[ext_resource type="PackedScene" uid="uid://dg1b5732ogt5i" path="res://Looker/Manage/ManageScene.tscn" id="2_0thvi"]
+
+[node name="ManageLooker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Looker" parent="." instance=ExtResource("1_17vrw")]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 512.0
+title = "KILL YOU KILL YOU KILL YOU!!"
+window_width = 700
+window_height = 512
+can_close = false
+
+[node name="SubViewport" type="SubViewport" parent="Looker"]
+own_world_3d = true
+audio_listener_enable_3d = true
+physics_object_picking = true
+size = Vector2i(700, 512)
+
+[node name="Tummy3D" parent="Looker/SubViewport" instance=ExtResource("2_0thvi")]

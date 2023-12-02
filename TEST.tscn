@@ -1,7 +1,6 @@
-[gd_scene load_steps=36 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=35 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
-[ext_resource type="PackedScene" uid="uid://dlgxw4g1r448" path="res://Looker/MuncherLooker.tscn" id="2_7m660"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
 [ext_resource type="Shader" uid="uid://bg5ar60o2lhuv" path="res://Shaders/Toon3D.tres" id="3_0moh7"]
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/muncher_camera.tscn" id="3_8oj03"]
@@ -16,13 +15,13 @@ sky_top_color = Color(0.772549, 0.988235, 0.976471, 1)
 sky_horizon_color = Color(0.764706, 0.772549, 0.784314, 1)
 sky_energy_multiplier = 0.95
 
-[sub_resource type="Sky" id="Sky_87rhe"]
+[sub_resource type="Sky" id="Sky_2iofh"]
 sky_material = SubResource("ProceduralSkyMaterial_m8ocr")
 
 [sub_resource type="Environment" id="Environment_df6u4"]
 background_mode = 2
 background_color = Color(0.564706, 0.929412, 0.941176, 1)
-sky = SubResource("Sky_87rhe")
+sky = SubResource("Sky_2iofh")
 tonemap_white = 0.6
 adjustment_enabled = true
 adjustment_brightness = 1.05
@@ -37,10 +36,10 @@ radial_segments = 32
 rings = 16
 
 [sub_resource type="Gradient" id="Gradient_xc70b"]
-colors = PackedColorArray(0.526296, 0.206658, 0.137044, 1, 0.595643, 0.699295, 0.214182, 1)
+colors = PackedColorArray(0.466967, 0.262914, 0.118214, 1, 0.55678, 0.71312, 0.133622, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r0ahm"]
-frequency = 0.1095
+frequency = 0.023
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dk4ks"]
 color_ramp = SubResource("Gradient_xc70b")
@@ -145,9 +144,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-
-[node name="MuncherLooker" parent="UI" instance=ExtResource("2_7m660")]
-layout_mode = 1
 
 [node name="SphereMesh2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0.0441132, 212.314, 37.7587)
@@ -275,5 +271,5 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/MeshInstance3D3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rki7l")
 
-[node name="Munchme" parent="." instance=ExtResource("7_xaxar")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 1.87627, 200.035, 5.28738)
+[node name="Goby" parent="." instance=ExtResource("7_xaxar")]
+transform = Transform3D(-0.948107, 0, -0.31795, 0, 1, 0, 0.31795, 0, -0.948107, 0, 199.994, 9.0817)

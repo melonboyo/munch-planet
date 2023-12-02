@@ -7,3 +7,7 @@ enum Emote {
 	Happy,
 	Mad,
 }
+
+enum Munchme {
+	Goby,
+}

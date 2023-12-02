@@ -1,7 +1,7 @@
 [gd_scene load_steps=55 format=3 uid="uid://dg1b5732ogt5i"]
 
 [ext_resource type="Texture2D" uid="uid://bnv51mffvaltj" path="res://models/textures/tummy-texture.png" id="1_g51i6"]
-[ext_resource type="Environment" uid="uid://ce5g5cyrrhs7p" path="res://Looker/TummyEnv.tres" id="1_um3nj"]
+[ext_resource type="Environment" uid="uid://ce5g5cyrrhs7p" path="res://Looker/Manage/ManageEnv.tres" id="1_um3nj"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/goby.tscn" id="2_nsxu2"]
 [ext_resource type="Shader" path="res://Shaders/ScreenShader.gdshader" id="3_4a2et"]
 
@@ -360,7 +360,6 @@ void light() {
 
 }
 "
-graph_offset = Vector2(346.819, 21.4397)
 nodes/vertex/0/position = Vector2(840, 220)
 nodes/vertex/2/node = SubResource("VisualShaderNodeTexture2DParameter_nhcl7")
 nodes/vertex/2/position = Vector2(-1360, 1240)

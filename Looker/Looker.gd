@@ -17,12 +17,14 @@ var prev_mouse_mode = null
 		return size.x
 	set(value):
 		size.x = value
+		%ScreenTransition.material.set_shader_parameter("screen_width", value)
 
 @export_range(200, 900) var window_height: int = 200:
 	get:
 		return size.y
 	set(value):
 		size.y = value
+		%ScreenTransition.material.set_shader_parameter("screen_height", value)
 
 @export var can_close: bool = true:
 	set(value):

@@ -1,167 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6er7j0s48ko1"]
+[gd_scene load_steps=5 format=3 uid="uid://c6er7j0s48ko1"]
 
-[ext_resource type="Script" path="res://Munchme/munchme.gd" id="1_p26sy"]
+[ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_7eeg5"]
+[ext_resource type="Script" path="res://Munchme/Goby.gd" id="2_osfwf"]
 [ext_resource type="PackedScene" uid="uid://0puha086kvgb" path="res://Munchme/goby_model.tscn" id="3_o5rs3"]
-[ext_resource type="AudioStream" uid="uid://quwmr8lbxl2c" path="res://Music/thoughtful_muncher.ogg" id="4_dwwvf"]
-[ext_resource type="Texture2D" uid="uid://b4dick7xt0bw2" path="res://Sprites/catch_text.png" id="4_f5riv"]
-[ext_resource type="Texture2D" uid="uid://8lob40dnypeu" path="res://Sprites/catch_border.png" id="5_55qhp"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_100ea"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y0bei"]
 radius = 0.334128
 height = 0.742897
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_l0wtp"]
-height = 2.02097
-radius = 1.6
+[node name="Goby" instance=ExtResource("1_7eeg5")]
+script = ExtResource("2_osfwf")
 
-[sub_resource type="Animation" id="Animation_21jsc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextFront:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("TextBack:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_omket"]
-resource_name = "pulsate"
-length = 0.26
-loop_mode = 1
-step = 0.13
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13, 0.26),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1.115, 1.115, 1.115), Vector3(1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextFront:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13, 0.26),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.0666667, 0.980392, 0.776471, 1), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("TextBack:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.13, 0.26),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.0666667, 0.980392, 0.776471, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ys37"]
-_data = {
-"RESET": SubResource("Animation_21jsc"),
-"pulsate": SubResource("Animation_omket")
-}
-
-[node name="Goby" type="CharacterBody3D"]
-collision_layer = 2
-script = ExtResource("1_p26sy")
-
-[node name="GobyModel" parent="." instance=ExtResource("3_o5rs3")]
+[node name="GobyModel" parent="." index="2" instance=ExtResource("3_o5rs3")]
 transform = Transform3D(0.376657, 0, 0, 0, 0.376657, 0, 0, 0, 0.376657, 0, 0.00391814, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.364462, 0)
-shape = SubResource("CapsuleShape3D_100ea")
+shape = SubResource("CapsuleShape3D_y0bei")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_dwwvf")
-volume_db = -10.165
-unit_size = 2.0
-autoplay = true
-max_distance = 20.0
-panning_strength = 0.5
-attenuation_filter_cutoff_hz = 6185.0
-attenuation_filter_db = -4.0
-doppler_tracking = 1
-
-[node name="CatchArea" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 256
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CatchArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.647009, 0)
-shape = SubResource("CylinderShape3D_l0wtp")
-
-[node name="CatchText" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.09324, 0)
-visible = false
-
-[node name="TextFront" type="Sprite3D" parent="CatchText"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.005)
-pixel_size = 0.005
-billboard = 1
-no_depth_test = true
-texture = ExtResource("4_f5riv")
-
-[node name="TextBack" type="Sprite3D" parent="CatchText"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.005)
-pixel_size = 0.005
-billboard = 1
-no_depth_test = true
-texture = ExtResource("4_f5riv")
-
-[node name="Border" type="Sprite3D" parent="CatchText"]
-pixel_size = 0.005
-billboard = 1
-no_depth_test = true
-texture = ExtResource("5_55qhp")
-
-[node name="Animation" type="AnimationPlayer" parent="CatchText"]
-libraries = {
-"": SubResource("AnimationLibrary_4ys37")
-}
-autoplay = "pulsate"
-
-[connection signal="area_entered" from="CatchArea" to="." method="_on_catch_area_area_entered"]
-[connection signal="area_exited" from="CatchArea" to="." method="_on_catch_area_area_exited"]
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]
 [connection signal="body_exited" from="CatchArea" to="." method="_on_catch_area_body_exited"]

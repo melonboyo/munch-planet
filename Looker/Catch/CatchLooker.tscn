@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp2u2ehfhjmgb"]
+
+[ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="1_31cjo"]
+[ext_resource type="PackedScene" uid="uid://ct2kqjitntgre" path="res://Looker/Catch/CatchScene.tscn" id="2_y2bt6"]
+
+[node name="CatchLooker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Looker" parent="." instance=ExtResource("1_31cjo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.059375
+anchor_bottom = 0.0583333
+offset_right = 900.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+title = "CATCH HIM!!"
+window_width = 1014
+window_height = 763
+can_close = false
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Looker"]
+own_world_3d = true
+audio_listener_enable_3d = true
+physics_object_picking = true
+size = Vector2i(900, 700)
+
+[node name="CatchScene" parent="Looker/SubViewport" instance=ExtResource("2_y2bt6")]
