@@ -1,5 +1,7 @@
 extends Node
 
+const DISABLED_VOLUME_DB = -80
+
 enum Track {
 	Overworld,
 	ThoughtfulMuncher
@@ -25,7 +27,7 @@ var position:
 
 func _ready():
 	music_player = AudioStreamPlayer.new()
-	music_player.volume_db = -80.0
+	music_player.volume_db = DISABLED_VOLUME_DB
 	music_player.bus = "Music"
 	add_child(music_player)
 
@@ -40,6 +42,9 @@ func play(track: Track):
 	music_player.play()
 
 
-func stop():
-	var fade_out_tween = create_tween()
-	fade_out_tween.tween_property(music_player, "volume_db", -80, 1.2).from_current()
+func stop(fade: bool = true):
+	if fade:
+		var fade_out_tween = create_tween()
+		fade_out_tween.tween_property(music_player, "volume_db", DISABLED_VOLUME_DB, 1.2).from_current()
+	else:
+		music_player.volume_db = DISABLED_VOLUME_DB
