@@ -19,6 +19,7 @@ config/icon="res://sketches/munch-icon.png"
 
 [autoload]
 
+Music="*res://Globals/Music.gd"
 Scenes="*res://Globals/Scenes.gd"
 
 [display]
