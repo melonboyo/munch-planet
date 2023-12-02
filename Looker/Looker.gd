@@ -62,7 +62,6 @@ func get_looker_viewport():
 
 
 func _on_close_button_pressed():
-	print("i tried to close i tried it!!")
 	queue_free()
 
 
@@ -86,7 +85,6 @@ func _on_top_margin_container_gui_input(event):
 
 
 func _get_configuration_warnings():
-	print("get configuration warnings")
 	_setup_viewport_from_child()
 	
 	if internal_viewport == null:
