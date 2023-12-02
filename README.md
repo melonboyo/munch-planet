@@ -88,3 +88,6 @@ https://github.com/melonboyo/munch-world/assets/1461061/2af1787c-cb9a-4198-b84d-
 https://github.com/melonboyo/munch-world/assets/1461061/740fbf29-1138-469f-a93b-dda9d70172fb
 
 https://github.com/melonboyo/munch-world/assets/1461061/41abfc69-92f8-42fe-b415-5b856d6dbb2f
+
+https://github.com/melonboyo/munch-world/assets/1461061/a846ab48-a826-4931-ab20-d5aa79364d23
+
