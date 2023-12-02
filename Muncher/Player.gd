@@ -39,6 +39,11 @@ var height = 1.0
 
 @onready var emoter = $Emoter as Emoter
 
+var is_loading = false
+var should_sync_state: bool:
+	get:
+		return not is_loading
+
 
 func _ready():
 	InputMap.action_set_deadzone("move_right", move_input_deadzone)
@@ -51,6 +56,21 @@ func _ready():
 		floor_normal = get_floor_normal()
 	else:
 		floor_normal = up_direction
+
+
+func sync_state():
+	State.sync_player(
+			position,
+			rotation,
+			velocity,
+		)
+
+
+func load_state():
+	var state = State.load_player()
+	position = state.position
+	rotation = state.rotation
+	velocity = state.velocity
 
 
 func _process(delta):
@@ -66,6 +86,9 @@ func _process(delta):
 		emoter.play_emote(Constants.Emote.Question)
 	if Input.is_action_just_pressed("emote_4"):
 		emoter.play_emote(Constants.Emote.Mad)
+	
+	if should_sync_state:
+		sync_state()
 
 func _physics_process(delta):
 	up_direction = global_transform.origin.normalized()

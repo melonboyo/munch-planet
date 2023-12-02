@@ -19,6 +19,7 @@ config/icon="res://sketches/munch-icon.png"
 
 [autoload]
 
+State="*res://Globals/State.gd"
 Music="*res://Globals/Music.gd"
 
 [display]
