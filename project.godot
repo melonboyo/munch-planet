@@ -14,7 +14,7 @@ config/name="MUNCH WORLD"
 config/tags=PackedStringArray("bigmode", "gamejam", "gofrog")
 run/main_scene="res://TEST.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-run/max_fps=30
+run/max_fps=60
 config/icon="res://sketches/munch-icon.png"
 
 [display]

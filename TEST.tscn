@@ -11,6 +11,23 @@
 [ext_resource type="Shader" path="res://Shaders/ScreenShader.gdshader" id="6_gwije"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/goby.tscn" id="7_xaxar"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m8ocr"]
+sky_top_color = Color(0.772549, 0.988235, 0.976471, 1)
+sky_horizon_color = Color(0.764706, 0.772549, 0.784314, 1)
+sky_energy_multiplier = 0.95
+
+[sub_resource type="Sky" id="Sky_87rhe"]
+sky_material = SubResource("ProceduralSkyMaterial_m8ocr")
+
+[sub_resource type="Environment" id="Environment_df6u4"]
+background_mode = 2
+background_color = Color(0.564706, 0.929412, 0.941176, 1)
+sky = SubResource("Sky_87rhe")
+tonemap_white = 0.6
+adjustment_enabled = true
+adjustment_brightness = 1.05
+adjustment_saturation = 1.1
+
 [sub_resource type="SphereMesh" id="SphereMesh_7lkah"]
 lightmap_size_hint = Vector2i(316, 159)
 add_uv2 = true
@@ -60,23 +77,6 @@ friction = 0.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5kljp"]
 radius = 200.0
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m8ocr"]
-sky_top_color = Color(0.772549, 0.988235, 0.976471, 1)
-sky_horizon_color = Color(0.764706, 0.772549, 0.784314, 1)
-sky_energy_multiplier = 0.95
-
-[sub_resource type="Sky" id="Sky_87rhe"]
-sky_material = SubResource("ProceduralSkyMaterial_m8ocr")
-
-[sub_resource type="Environment" id="Environment_df6u4"]
-background_mode = 2
-background_color = Color(0.564706, 0.929412, 0.941176, 1)
-sky = SubResource("Sky_87rhe")
-tonemap_white = 0.6
-adjustment_enabled = true
-adjustment_brightness = 1.05
-adjustment_saturation = 1.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_fehak"]
 flip_faces = true
@@ -133,6 +133,9 @@ data = PackedVector3Array(0, 0.8, 0, 0, 0.8, 0, 0, 0.7333, 0.0204, 0, 0.8, 0, 0.
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_df6u4")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -221,10 +224,7 @@ directional_shadow_pancake_size = 13.0
 script = ExtResource("4_llbt7")
 player_path = NodePath("../Muncher")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_df6u4")
-
-[node name="Quad" type="MeshInstance3D" parent="."]
+[node name="ScreenShader" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54653, -2.66747, 3.12407)
 cast_shadow = 0
 extra_cull_margin = 16384.0

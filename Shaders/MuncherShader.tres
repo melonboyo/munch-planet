@@ -136,7 +136,7 @@ default_value = 1.0
 default_input_values = [0, 0.0, 1, 7.0, 2, 0.0]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_mjsf7"]
-input_name = "normal"
+input_name = "uv2"
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_brh18"]
 parameter_name = "VertexVariationDisplacement"
@@ -276,12 +276,12 @@ void vertex() {
 
 
 // Input:39
-	vec3 n_out39p0 = NORMAL;
+	vec2 n_out39p0 = UV2;
 
 
 	vec4 n_out3p0;
 // Texture2D:3
-	n_out3p0 = texture(VertexVariationNoise, vec2(n_out39p0.xy));
+	n_out3p0 = texture(VertexVariationNoise, n_out39p0);
 
 
 // MultiplyAdd:52

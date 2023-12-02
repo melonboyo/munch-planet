@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnv51mffvaltj"
-path="res://.godot/imported/tummy-texture.png-85f4ae3f95a4eda591eec78f0d0ac770.ctex"
+uid="uid://ctje5nmu5xdb0"
+path="res://.godot/imported/tummy-texture-old.png-9cad711d747b92ad4fd5687b896f1019.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/textures/tummy-texture.png"
-dest_files=["res://.godot/imported/tummy-texture.png-85f4ae3f95a4eda591eec78f0d0ac770.ctex"]
+source_file="res://models/textures/tummy-texture-old.png"
+dest_files=["res://.godot/imported/tummy-texture-old.png-9cad711d747b92ad4fd5687b896f1019.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

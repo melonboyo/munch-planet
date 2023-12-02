@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlgxw4g1r448"]
 
 [ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="1_5swc0"]
-[ext_resource type="PackedScene" uid="uid://b2jwi0r3ssexq" path="res://Looker/MuncherLookerWorld.tscn" id="2_wwusm"]
+[ext_resource type="PackedScene" uid="uid://dg1b5732ogt5i" path="res://Looker/Tummy3D.tscn" id="2_da5ue"]
 
 [node name="MuncherLooker" type="Control"]
 layout_mode = 3
@@ -22,5 +22,8 @@ window_height = 500
 can_close = false
 
 [node name="SubViewport" type="SubViewport" parent="Looker"]
+own_world_3d = true
+audio_listener_enable_3d = true
+physics_object_picking = true
 
-[node name="MuncherLookerWorld" parent="Looker/SubViewport" instance=ExtResource("2_wwusm")]
+[node name="Tummy3D" parent="Looker/SubViewport" instance=ExtResource("2_da5ue")]
