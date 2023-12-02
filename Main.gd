@@ -6,6 +6,7 @@ var mouse_captured = true
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Music.play(Music.Track.Overworld)
 
 
 func _process(delta):

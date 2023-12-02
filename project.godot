@@ -17,6 +17,10 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=60
 config/icon="res://sketches/munch-icon.png"
 
+[autoload]
+
+Music="*res://Globals/Music.gd"
+
 [display]
 
 window/size/viewport_width=1920
