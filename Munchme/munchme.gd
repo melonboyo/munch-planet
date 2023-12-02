@@ -2,10 +2,19 @@ extends CharacterBody3D
 class_name Munchme
 
 @export var resource: MunchmeResource
+@export var situation: Constants.Situation = Constants.Situation.Overworld
 
 var is_in_area = false
 var can_catch = false
 var player: Node3D = null
+
+signal catch_munchme(munchme: MunchmeResource)
+
+
+func _ready():
+	if situation == Constants.Situation.Overworld:
+		var root = get_parent().get_parent()
+		catch_munchme.connect(root._on_catch_munchme)
 
 
 func _process(delta):
@@ -22,7 +31,7 @@ func _process(delta):
 	$CatchText.visible = can_catch
 	
 	if Input.is_action_just_pressed("interact") and can_catch:
-		print("YOU CAUGHT ME")
+		attempt_catch()
 
 
 func _on_catch_area_body_entered(body):
@@ -34,3 +43,7 @@ func _on_catch_area_body_exited(body):
 	is_in_area = false
 	can_catch = false
 	$CatchText.visible = false
+
+
+func attempt_catch():
+	emit_signal("catch_munchme", resource)

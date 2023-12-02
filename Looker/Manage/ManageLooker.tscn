@@ -20,6 +20,7 @@ title = "KILL YOU KILL YOU KILL YOU!!"
 window_width = 700
 window_height = 512
 can_close = false
+spawn_centered = null
 
 [node name="SubViewport" type="SubViewport" parent="Looker"]
 own_world_3d = true
@@ -27,4 +28,4 @@ audio_listener_enable_3d = true
 physics_object_picking = true
 size = Vector2i(700, 512)
 
-[node name="Tummy3D" parent="Looker/SubViewport" instance=ExtResource("2_0thvi")]
+[node name="ManageScene" parent="Looker/SubViewport" instance=ExtResource("2_0thvi")]

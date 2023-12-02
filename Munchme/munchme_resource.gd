@@ -2,15 +2,8 @@ extends Resource
 class_name MunchmeResource
 
 
-enum Mood {
-	Sad,
-	Happy,
-	Angry,
-	Bored,
-}
-
-
+@export var munchme_type: Constants.Munchme = Constants.Munchme.Goby
 @export var max_health: int = 100
-@export var mood = Mood.Happy
+@export var mood: Constants.Mood = Constants.Mood.Happy
 
 var health = max_health

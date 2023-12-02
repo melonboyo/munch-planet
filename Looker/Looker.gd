@@ -32,13 +32,24 @@ var prev_mouse_mode = null
 			%CloseButton.visible = value
 			can_close = value
 
+@export var spawn_centered: bool = true
+
 
 func _ready():
 	_setup_viewport_from_child()
+	if spawn_centered:
+		center_to_screen()
 	if not Engine.is_editor_hint():
 		var looker_viewport = get_looker_viewport()
 		if looker_viewport != null:
 			looker_viewport.queue_free()
+
+
+func center_to_screen():
+	var window_size = get_viewport().get_visible_rect().size
+	position = Vector2(
+		0.5*window_size.x - 0.5*size.x, 0.5*window_size.y - 0.5*size.y
+	)
 
 
 func _setup_viewport_from_child():
@@ -78,7 +89,7 @@ func _on_top_margin_container_gui_input(event):
 	if is_dragging_window and event is InputEventMouseMotion:
 		position += event.relative
 		
-		var window_size = get_viewport().size
+		var window_size = get_viewport().get_visible_rect().size
 		position = Vector2(
 			clamp(position.x, 0, window_size.x - size.x),
 			clamp(position.y, 0, window_size.y - size.y)
@@ -86,7 +97,7 @@ func _on_top_margin_container_gui_input(event):
 
 
 func _get_configuration_warnings():
-	print("get configuration warnings")
+	#print("get configuration warnings")
 	_setup_viewport_from_child()
 	
 	if internal_viewport == null:

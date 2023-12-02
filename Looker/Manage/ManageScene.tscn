@@ -523,7 +523,7 @@ shader_parameter/depth_use_laplace = true
 shader_parameter/color_use_laplace = false
 shader_parameter/use_bg_texture = false
 
-[node name="Tummy3D" type="Node3D"]
+[node name="ManageScene" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 9.19601, 9.33578)

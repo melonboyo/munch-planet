@@ -1,8 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://ct2kqjitntgre"]
+[gd_scene load_steps=18 format=3 uid="uid://ct2kqjitntgre"]
 
 [ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="1_blmnl"]
 [ext_resource type="Script" path="res://Looker/Catch/CatchScene.gd" id="1_u7ylu"]
-[ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/goby.tscn" id="3_biud6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_arq71"]
 lightmap_size_hint = Vector2i(202, 202)
@@ -69,6 +68,33 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_4g5vu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivot/Path/PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraPivot/Path/PathFollow/Camera3D:fov")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+
 [sub_resource type="Animation" id="Animation_xegas"]
 resource_name = "enter"
 length = 1.8
@@ -97,33 +123,6 @@ tracks/1/keys = {
 "values": [75.0, 75.0, 92.0, 75.0, 92.0, 75.0]
 }
 
-[sub_resource type="Animation" id="Animation_4g5vu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CameraPivot/Path/PathFollow:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CameraPivot/Path/PathFollow/Camera3D:fov")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [75.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3maul"]
 _data = {
 "RESET": SubResource("Animation_4g5vu"),
@@ -147,7 +146,7 @@ transform = Transform3D(2.36192, 0, 0, 0, 2.36192, 0, 0, 0, 2.36192, -2.931, 0.4
 curve = SubResource("Curve3D_0828f")
 
 [node name="PathFollow" type="PathFollow3D" parent="CameraPivot/Path"]
-transform = Transform3D(-0.680844, -0.0700153, -0.728944, 0.456993, 0.737099, -0.497662, 0.572178, -0.672026, -0.469906, -0.364094, -0.0164032, -0.0642864)
+transform = Transform3D(-0.680844, -0.0700157, -0.728943, 0.456993, 0.737099, -0.497662, 0.572178, -0.672026, -0.469905, -0.364094, -0.0164032, -0.0642864)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/Path/PathFollow"]
 transform = Transform3D(0.951057, 0, -0.309017, 0, 1, 0, 0.309017, 0, 0.951057, 0, 0, 0)
@@ -165,5 +164,3 @@ directional_shadow_pancake_size = 13.0
 libraries = {
 "": SubResource("AnimationLibrary_3maul")
 }
-
-[node name="Goby" parent="." instance=ExtResource("3_biud6")]

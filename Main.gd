@@ -1,6 +1,9 @@
 extends Node3D
 
 
+var catch_looker_scene := preload("res://Looker/Catch/CatchLooker.tscn")
+var manage_looker_scene := preload("res://Looker/Manage/ManageLooker.tscn")
+
 var mouse_captured = true
 
 
@@ -26,3 +29,9 @@ func _unhandled_input(event):
 	):
 		mouse_captured = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+func _on_catch_munchme(munchme: MunchmeResource):
+	var catch_ui: Control = catch_looker_scene.instantiate()
+	catch_ui.get_node("%CatchScene").munchme = munchme
+	$UI.add_child(catch_ui)

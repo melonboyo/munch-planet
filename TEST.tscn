@@ -133,6 +133,11 @@ data = PackedVector3Array(0, 0.8, 0, 0, 0.8, 0, 0, 0.7333, 0.0204, 0, 0.8, 0, 0.
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
 
+[node name="Munchmes" type="Node" parent="."]
+
+[node name="Goby" parent="Munchmes" instance=ExtResource("7_xaxar")]
+transform = Transform3D(-0.948107, 0, -0.31795, 0, 1, 0, 0.31795, 0, -0.948107, 0, 199.994, 9.0817)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_df6u4")
 
@@ -270,6 +275,3 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/MeshInstance3D3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rki7l")
-
-[node name="Goby" parent="." instance=ExtResource("7_xaxar")]
-transform = Transform3D(-0.948107, 0, -0.31795, 0, 1, 0, 0.31795, 0, -0.948107, 0, 199.994, 9.0817)
