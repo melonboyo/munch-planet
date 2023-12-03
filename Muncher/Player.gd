@@ -67,6 +67,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("emote_4"):
 		emoter.play_emote(Constants.Emote.Mad)
 
+
 func _physics_process(delta):
 	up_direction = global_transform.origin.normalized()
 	
@@ -80,12 +81,14 @@ func _physics_process(delta):
 		steps_since_grounded += 1
 		gravity_velocity += -up_direction * gravity * delta
 	
+	if GameState.situation != Constants.Situation.Overworld:
+		move_input = Vector2.ZERO
+	
 	var x_axis = project_direction_on_plane(right_axis, floor_normal)
 	var z_axis = project_direction_on_plane(forward_axis, floor_normal)
 	var move_input_speed_scaled = move_input * walking_speed
 	var move_input_rotated = x_axis * move_input_speed_scaled.x + z_axis * move_input_speed_scaled.y
 	move_velocity = move_velocity.lerp(move_input_rotated, delta * acceleration)
-#	move_velocity = move_input_rotated
 	
 	snap_to_floor()
 	

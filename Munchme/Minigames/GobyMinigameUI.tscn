@@ -8,6 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://dc6wlonqrocbt" path="res://Sprites/rps-button-scissors.png" id="4_xca7t"]
 [ext_resource type="Texture2D" uid="uid://cytsv1vjralcs" path="res://Sprites/rps-button-pressed-scissors.png" id="5_23jie"]
 
+[sub_resource type="Animation" id="Animation_pg06x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBox:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_m8uju"]
 resource_name = "slide_in"
 length = 0.4
@@ -22,21 +37,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_pg06x"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBox:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oko7g"]

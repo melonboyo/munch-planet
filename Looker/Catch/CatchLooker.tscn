@@ -22,6 +22,7 @@ grow_vertical = 2
 title = "CATCH HIM!!"
 window_width = 962
 window_height = 747
+can_close = false
 
 [node name="SubViewport" type="SubViewport" parent="Looker"]
 own_world_3d = true
