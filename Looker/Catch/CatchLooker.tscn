@@ -15,20 +15,20 @@ mouse_filter = 2
 [node name="Looker" parent="." instance=ExtResource("1_31cjo")]
 layout_mode = 1
 anchors_preset = -1
-offset_right = 679.0
-offset_bottom = 853.0
+offset_right = 962.0
+offset_bottom = 747.0
 grow_horizontal = 2
 grow_vertical = 2
 title = "CATCH HIM!!"
-window_width = 679
-window_height = 853
-can_close = false
-spawn_centered = null
+window_width = 962
+window_height = 747
 
 [node name="SubViewport" type="SubViewport" parent="Looker"]
 own_world_3d = true
+handle_input_locally = false
 audio_listener_enable_3d = true
-physics_object_picking = true
 
 [node name="CatchScene" parent="Looker/SubViewport" instance=ExtResource("2_y2bt6")]
 unique_name_in_owner = true
+
+[connection signal="finish_catch" from="Looker/SubViewport/CatchScene" to="Looker" method="_on_finish_catch"]

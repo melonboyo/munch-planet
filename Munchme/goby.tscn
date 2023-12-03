@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6er7j0s48ko1"]
+[gd_scene load_steps=25 format=3 uid="uid://c6er7j0s48ko1"]
 
 [ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_7eeg5"]
 [ext_resource type="Script" path="res://Munchme/Goby.gd" id="2_osfwf"]
 [ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="3_66qx4"]
 [ext_resource type="PackedScene" uid="uid://0puha086kvgb" path="res://Munchme/goby_model.tscn" id="3_o5rs3"]
+[ext_resource type="Texture2D" uid="uid://degsvw6a5pv73" path="res://Sprites/rps/rps-9.png" id="5_o2vp1"]
+[ext_resource type="Texture2D" uid="uid://bskr12uxuu5en" path="res://Sprites/rps/rps-10.png" id="6_w7jtl"]
+[ext_resource type="Texture2D" uid="uid://dvry7ms6jpadp" path="res://Sprites/rps/rps-11.png" id="7_xv53e"]
+[ext_resource type="PackedScene" uid="uid://oh3mtoqhkf6p" path="res://Munchme/Minigames/GobyMinigameUI.tscn" id="8_16muq"]
+[ext_resource type="Texture2D" uid="uid://dpf841x0w3yjr" path="res://Sprites/rps/gun.png" id="8_rpvhp"]
 
 [sub_resource type="Resource" id="Resource_hsa0i"]
 script = ExtResource("3_66qx4")
@@ -14,6 +19,196 @@ mood = 1
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y0bei"]
 radius = 0.334128
 height = 0.742897
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gmveh"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_88q84"]
+load_path = "res://.godot/imported/rps-7.png-dcdc61138b743c271088526ac69c5a0b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6yga6"]
+load_path = "res://.godot/imported/rps-8.png-c5fc875e11f4cee787a3b0b0ed176820.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_db756"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o845t"]
+load_path = "res://.godot/imported/rps-4.png-b537875193e5d5c4f345f21132e547ed.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wt4qc"]
+load_path = "res://.godot/imported/rps-5.png-c007bdcf234f5a12d01024c08d4a9d8f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r3cw8"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ek8nf"]
+load_path = "res://.godot/imported/rps-1.png-9c912610013ceb40d142c4e71adf73c3.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qbldv"]
+load_path = "res://.godot/imported/rps-2.png-327ab5a8be41270e77ea92de5df47dcf.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_32mtf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_o2vp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_w7jtl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xv53e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_rpvhp")
+}],
+"loop": true,
+"name": &"gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_gmveh")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_88q84")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_6yga6")
+}],
+"loop": true,
+"name": &"paper",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_db756")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_o845t")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_wt4qc")
+}],
+"loop": true,
+"name": &"rock",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_r3cw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_ek8nf")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_qbldv")
+}],
+"loop": true,
+"name": &"scissors",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_n0tsc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.419, 1.051, 0.566)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%RPS/../../GobyMinigameUi:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_m30o0"]
+resource_name = "RPS"
+length = 2.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.45, 0.9, 1.1, 1.5, 1.7, 2.1, 2.3),
+"transitions": PackedFloat32Array(0.68302, 1.62451, 0.68302, 1.62451, 0.68302, 1.62451, 1),
+"update": 0,
+"values": [Vector3(-0.419, 1.051, 0.566), Vector3(-0.419, 1.5, 0.566), Vector3(-0.419, 1.051, 0.566), Vector3(-0.419, 1.5, 0.566), Vector3(-0.419, 1.051, 0.566), Vector3(-0.419, 1.5, 0.566), Vector3(-0.419, 1.051, 0.566)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"choose_hand"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%RPS/../../GobyMinigameUi:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wws12"]
+_data = {
+"RESET": SubResource("Animation_n0tsc"),
+"RPS": SubResource("Animation_m30o0")
+}
 
 [node name="Goby" instance=ExtResource("1_7eeg5")]
 script = ExtResource("2_osfwf")
@@ -26,5 +221,32 @@ transform = Transform3D(0.376657, 0, 0, 0, 0.376657, 0, 0, 0, 0.376657, 0, 0.003
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.364462, 0)
 shape = SubResource("CapsuleShape3D_y0bei")
 
+[node name="RPSRoot" type="Node3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.135396, 0, 0)
+
+[node name="RPS" type="AnimatedSprite3D" parent="RPSRoot" index="0"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.419, 1.051, 0.566)
+visible = false
+pixel_size = 0.003
+billboard = 1
+sprite_frames = SubResource("SpriteFrames_32mtf")
+animation = &"gun"
+autoplay = "default"
+
+[node name="Animation" type="AnimationPlayer" parent="." index="5"]
+unique_name_in_owner = true
+root_node = NodePath("../RPSRoot/RPS")
+libraries = {
+"": SubResource("AnimationLibrary_wws12")
+}
+speed_scale = 1.25
+
+[node name="GobyMinigameUi" parent="." index="6" instance=ExtResource("8_16muq")]
+visible = false
+
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]
 [connection signal="body_exited" from="CatchArea" to="." method="_on_catch_area_body_exited"]
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
+[connection signal="player_choose_hand" from="GobyMinigameUi" to="." method="_on_goby_minigame_ui_player_choose_hand"]
+[connection signal="player_choose_hand" from="GobyMinigameUi" to="." method="_on_player_choose_hand"]

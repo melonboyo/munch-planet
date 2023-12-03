@@ -37,12 +37,12 @@ var prev_mouse_mode = null
 
 func _ready():
 	_setup_viewport_from_child()
-	if spawn_centered:
-		center_to_screen()
 	if not Engine.is_editor_hint():
 		var looker_viewport = get_looker_viewport()
 		if looker_viewport != null:
 			looker_viewport.queue_free()
+		if spawn_centered:
+			center_to_screen()
 
 
 func center_to_screen():
@@ -61,6 +61,7 @@ func _setup_viewport_from_child():
 	elif looker_viewport != null and internal_viewport == null:
 		internal_viewport = looker_viewport.duplicate()
 		%SubViewportContainer.add_child(internal_viewport)
+		internal_viewport.handle_input_locally = true
 		%PlaceholderBackground.visible = false
 
 
@@ -73,7 +74,11 @@ func get_looker_viewport():
 
 
 func _on_close_button_pressed():
-	queue_free()
+	close()
+
+
+func close():
+	get_parent().queue_free()
 
 
 func _on_top_margin_container_gui_input(event):
@@ -100,3 +105,7 @@ func _get_configuration_warnings():
 	
 	if internal_viewport == null:
 		return ["This node needs a SubViewport as a child"]
+
+
+func _on_finish_catch(win: bool):
+	close()

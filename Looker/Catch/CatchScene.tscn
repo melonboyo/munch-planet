@@ -142,11 +142,11 @@ environment = SubResource("Environment_x3oj8")
 [node name="CameraPivot" type="Node3D" parent="."]
 
 [node name="Path" type="Path3D" parent="CameraPivot"]
-transform = Transform3D(2.36192, 0, 0, 0, 2.36192, 0, 0, 0, 2.36192, -2.931, 0.437, 3.65592)
+transform = Transform3D(2.36192, 0, 0, 0, 2.36192, 0, 0, 0, 2.36192, -2.931, 0.835557, 3.50799)
 curve = SubResource("Curve3D_0828f")
 
 [node name="PathFollow" type="PathFollow3D" parent="CameraPivot/Path"]
-transform = Transform3D(-0.680844, -0.0700157, -0.728943, 0.456993, 0.737099, -0.497662, 0.572178, -0.672026, -0.469905, -0.364094, -0.0164032, -0.0642864)
+transform = Transform3D(-0.680845, -0.0700157, -0.728943, 0.456993, 0.737099, -0.497662, 0.572178, -0.672027, -0.469905, -0.364094, -0.0164032, -0.0642864)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/Path/PathFollow"]
 transform = Transform3D(0.951057, 0, -0.309017, 0, 1, 0, 0.309017, 0, 0.951057, 0, 0, 0)
@@ -164,3 +164,5 @@ directional_shadow_pancake_size = 13.0
 libraries = {
 "": SubResource("AnimationLibrary_3maul")
 }
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]

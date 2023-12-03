@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://tjvibtamtkfc"]
+[gd_scene load_steps=14 format=3 uid="uid://tjvibtamtkfc"]
 
 [ext_resource type="Script" path="res://Looker/Looker.gd" id="1_ma5x6"]
 [ext_resource type="Texture2D" uid="uid://dw68i5xjuryr5" path="res://Sprites/looker_border.png" id="1_mym4m"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cbrgd510xsrdv" path="res://Sprites/looker_close_button.png" id="3_n7ool"]
 [ext_resource type="Texture2D" uid="uid://ih5s11xjdud0" path="res://Sprites/looker_placeholder_bg.png" id="4_7cfud"]
 [ext_resource type="Texture2D" uid="uid://chh44dm0uj520" path="res://Sprites/looker_placeholder.png" id="5_n8s8f"]
+[ext_resource type="Script" path="res://Looker/LookerSubViewportContainer.gd" id="6_gcktu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dj46p"]
 shader = ExtResource("3_adt3y")
@@ -36,7 +37,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_clj5o"]
 resource_name = "transition_in"
-length = 1.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,7 +44,7 @@ tracks/0/path = NodePath("ContentMarginContainer/ScreenTransition:material:shade
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.6, 1.5),
+"times": PackedFloat32Array(0.1, 0.9),
 "transitions": PackedFloat32Array(2, 1),
 "update": 0,
 "values": [0.0, 1.05]
@@ -93,7 +93,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 6
@@ -117,16 +116,18 @@ grow_vertical = 2
 layout_mode = 2
 texture = ExtResource("5_n8s8f")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="ContentMarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-stretch = true
-
 [node name="ScreenTransition" type="ColorRect" parent="ContentMarginContainer"]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_6mt2y")
 layout_mode = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ContentMarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+stretch = true
+script = ExtResource("6_gcktu")
 
 [node name="TopMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

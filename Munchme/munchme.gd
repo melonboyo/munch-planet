@@ -6,18 +6,39 @@ class_name Munchme
 
 var is_in_area = false
 var can_catch = false
+var in_catch_mode = false
 var player: Node3D = null
 
-signal catch_munchme(munchme: MunchmeResource)
+signal catch_munchme(munchme: Munchme)
+signal finish_catch(win: bool)
 
 
 func _ready():
 	if situation == Constants.Situation.Overworld:
 		var root = get_parent().get_parent()
-		catch_munchme.connect(root._on_catch_munchme)
+		if root != null:
+			catch_munchme.connect(root._on_catch_munchme)
+	elif situation == Constants.Situation.Catch:
+		get_parent().start_minigame.connect(_on_start_minigame)
+		finish_catch.connect(get_parent()._on_munchme_finish_catch)
+	
+	munchme_specific_ready()
+
+
+func munchme_specific_ready():
+	pass
 
 
 func _process(delta):
+	if situation == Constants.Situation.Overworld:
+		_overworld_process(delta)
+
+
+func _overworld_process(delta):
+	if in_catch_mode:
+		$CatchArea.monitoring = false
+		return
+	$CatchArea.monitoring = true
 	if is_in_area and player != null:
 		var direction = player.global_transform.basis.z
 		var direction_towards_me = (global_position - player.global_position).normalized()
@@ -46,4 +67,21 @@ func _on_catch_area_body_exited(body):
 
 
 func attempt_catch():
-	emit_signal("catch_munchme", resource)
+	in_catch_mode = true
+	emit_signal("catch_munchme", self)
+
+
+func _on_start_minigame():
+	start_minigame()
+
+
+func start_minigame():
+	pass
+
+
+func win_catch():
+	finish_catch.emit(true)
+
+
+func lose_catch():
+	finish_catch.emit(false)

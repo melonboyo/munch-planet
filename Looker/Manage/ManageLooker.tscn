@@ -20,7 +20,6 @@ title = "KILL YOU KILL YOU KILL YOU!!"
 window_width = 700
 window_height = 512
 can_close = false
-spawn_centered = null
 
 [node name="SubViewport" type="SubViewport" parent="Looker"]
 own_world_3d = true

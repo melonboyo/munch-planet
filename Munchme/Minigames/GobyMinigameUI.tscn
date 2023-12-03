@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=3 uid="uid://oh3mtoqhkf6p"]
+
+[ext_resource type="Texture2D" uid="uid://c06sh8nx75cx3" path="res://Sprites/rps-button-rock.png" id="1_5iaw5"]
+[ext_resource type="Script" path="res://Munchme/Minigames/GobyMinigameUI.gd" id="1_yepqg"]
+[ext_resource type="Texture2D" uid="uid://dq62ve6b5afoh" path="res://Sprites/rps-button-paper.png" id="2_sdcg5"]
+[ext_resource type="Texture2D" uid="uid://cvaulfvy5unmk" path="res://Sprites/rps-button-pressed-rock.png" id="3_qtosg"]
+[ext_resource type="Texture2D" uid="uid://b752yqmamwxax" path="res://Sprites/rps-button-pressed-paper.png" id="3_uwso2"]
+[ext_resource type="Texture2D" uid="uid://dc6wlonqrocbt" path="res://Sprites/rps-button-scissors.png" id="4_xca7t"]
+[ext_resource type="Texture2D" uid="uid://cytsv1vjralcs" path="res://Sprites/rps-button-pressed-scissors.png" id="5_23jie"]
+
+[sub_resource type="Animation" id="Animation_m8uju"]
+resource_name = "slide_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBox:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pg06x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBox:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oko7g"]
+_data = {
+"RESET": SubResource("Animation_pg06x"),
+"slide_in": SubResource("Animation_m8uju")
+}
+
+[node name="GobyMinigameUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_yepqg")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -304.0
+offset_bottom = 304.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(100, 312.95)
+
+[node name="RockButton" type="TextureButton" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("1_5iaw5")
+texture_pressed = ExtResource("3_qtosg")
+
+[node name="PaperButton" type="TextureButton" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("2_sdcg5")
+texture_pressed = ExtResource("3_uwso2")
+
+[node name="ScissorsButton" type="TextureButton" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("4_xca7t")
+texture_pressed = ExtResource("5_23jie")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oko7g")
+}
+
+[connection signal="button_down" from="VBox/RockButton" to="." method="_on_rock_button_button_down"]
+[connection signal="button_down" from="VBox/PaperButton" to="." method="_on_paper_button_button_down"]
+[connection signal="button_down" from="VBox/ScissorsButton" to="." method="_on_scissors_button_button_down"]

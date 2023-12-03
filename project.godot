@@ -21,6 +21,7 @@ config/icon="res://sketches/munch-icon.png"
 
 Music="*res://Globals/Music.gd"
 Scenes="*res://Globals/Scenes.gd"
+GameState="*res://Globals/GameState.gd"
 
 [display]
 

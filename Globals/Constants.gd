@@ -25,3 +25,10 @@ enum Mood {
 	Angry,
 	Bored,
 }
+
+enum Hand {
+	Rock,
+	Paper,
+	Scissors,
+	None
+}
