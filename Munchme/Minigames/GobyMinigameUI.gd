@@ -23,18 +23,18 @@ func _on_scissors_button_button_down():
 
 
 func enable():
+	%RockButton.button_pressed = false
 	%RockButton.mouse_filter = MOUSE_FILTER_STOP
+	%PaperButton.button_pressed = false
 	%PaperButton.mouse_filter = MOUSE_FILTER_STOP
+	%ScissorsButton.button_pressed = false
 	%ScissorsButton.mouse_filter = MOUSE_FILTER_STOP
 
 
 func disable():
 	%RockButton.mouse_filter = MOUSE_FILTER_IGNORE
-	%RockButton.button_pressed = false
 	%PaperButton.mouse_filter = MOUSE_FILTER_IGNORE
-	%PaperButton.button_pressed = false
 	%ScissorsButton.mouse_filter = MOUSE_FILTER_IGNORE
-	%ScissorsButton.button_pressed = false
 
 
 func play_animation(anim):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://tjvibtamtkfc"]
+[gd_scene load_steps=16 format=3 uid="uid://tjvibtamtkfc"]
 
 [ext_resource type="Script" path="res://Looker/Looker.gd" id="1_ma5x6"]
 [ext_resource type="Texture2D" uid="uid://dw68i5xjuryr5" path="res://Sprites/looker_border.png" id="1_mym4m"]
@@ -65,9 +65,67 @@ tracks/0/keys = {
 "values": [1.05, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_hc8hw"]
+resource_name = "open_1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [0.15, 0.15, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_sgv5b"]
+resource_name = "close_1"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(2, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nwfgo"]
 _data = {
 "RESET": SubResource("Animation_tttbe"),
+"close_1": SubResource("Animation_sgv5b"),
+"open_1": SubResource("Animation_hc8hw"),
 "transition_in": SubResource("Animation_clj5o"),
 "transition_out": SubResource("Animation_yewfk")
 }
@@ -76,6 +134,7 @@ _data = {
 custom_minimum_size = Vector2(300, 200)
 offset_right = 300.0
 offset_bottom = 200.0
+scale = Vector2(1, 1e-05)
 mouse_filter = 0
 texture = ExtResource("1_mym4m")
 patch_margin_left = 32
@@ -116,18 +175,18 @@ grow_vertical = 2
 layout_mode = 2
 texture = ExtResource("5_n8s8f")
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ContentMarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+stretch = true
+script = ExtResource("6_gcktu")
+
 [node name="ScreenTransition" type="ColorRect" parent="ContentMarginContainer"]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_6mt2y")
 layout_mode = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="ContentMarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-stretch = true
-script = ExtResource("6_gcktu")
 
 [node name="TopMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -162,7 +221,8 @@ texture_normal = ExtResource("3_n7ool")
 libraries = {
 "": SubResource("AnimationLibrary_nwfgo")
 }
-autoplay = "transition_in"
+autoplay = "open_1"
 
 [connection signal="gui_input" from="TopMarginContainer" to="." method="_on_top_margin_container_gui_input"]
 [connection signal="pressed" from="TopMarginContainer/TopHBoxContainer/CloseButtonCenterContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_finished"]

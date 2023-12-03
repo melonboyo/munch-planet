@@ -10,23 +10,21 @@ var current_manage_ui
 
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	GameState.situation = Constants.Situation.Overworld
 	Music.play(Music.Track.Overworld)
 
 
 func _process(delta):
 	if GameState.situation != Constants.Situation.Overworld:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		pass
 
 	if (
 		Input.is_action_just_pressed("cancel") and 
 		GameState.situation == Constants.Situation.Overworld
 	):
-		if mouse_captured:
-			mouse_captured = false
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
-			mouse_captured = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	if (
@@ -45,10 +43,9 @@ func _unhandled_input(event):
 	if (event is InputEventMouseButton 
 		and event.get_button_index() == MOUSE_BUTTON_LEFT
 		and event.is_pressed() 
-		and Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE
+		and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED
 		and GameState.situation != Constants.Situation.Overworld
 	):
-		mouse_captured = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
@@ -63,8 +60,6 @@ func _on_catch_munchme(munchme: Munchme):
 
 
 func _on_munchme_finish_catch(win: bool):
-	GameState.situation = Constants.Situation.Overworld
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	munchme_getting_caught.in_catch_mode = false
 	munchme_getting_caught.situation = Constants.Situation.Overworld
 	if win:
@@ -82,6 +77,4 @@ func open_manage():
 
 
 func close_manage():
-	GameState.situation = Constants.Situation.Overworld
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	current_manage_ui.close()

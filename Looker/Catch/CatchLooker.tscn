@@ -15,13 +15,15 @@ mouse_filter = 2
 [node name="Looker" parent="." instance=ExtResource("1_31cjo")]
 layout_mode = 1
 anchors_preset = -1
-offset_right = 962.0
-offset_bottom = 747.0
+offset_right = 910.0
+offset_bottom = 637.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(455, 318.5)
 title = "CATCH HIM!!"
-window_width = 962
-window_height = 747
+window_width = 910
+window_height = 637
 can_close = false
 
 [node name="SubViewport" type="SubViewport" parent="Looker"]

@@ -18,6 +18,8 @@ var prev_mouse_mode = null
 	set(value):
 		size.x = value
 		%ScreenTransition.material.set_shader_parameter("screen_width", value)
+		pivot_offset.x = value*0.5
+		pivot_offset.y = window_height*0.5
 
 @export_range(200, 900) var window_height: int = 200:
 	get:
@@ -25,6 +27,8 @@ var prev_mouse_mode = null
 	set(value):
 		size.y = value
 		%ScreenTransition.material.set_shader_parameter("screen_height", value)
+		pivot_offset.y = value*0.5
+		pivot_offset.x = window_width*0.5
 
 @export var can_close: bool = true:
 	set(value):
@@ -78,7 +82,9 @@ func _on_close_button_pressed():
 
 
 func close():
-	get_parent().queue_free()
+	can_close = false
+	GameState.situation = Constants.Situation.Overworld
+	$Animation.play("close_1")
 
 
 func _on_top_margin_container_gui_input(event):
@@ -109,3 +115,8 @@ func _get_configuration_warnings():
 
 func _on_finish_catch(win: bool):
 	close()
+
+
+func _on_animation_finished(anim_name):
+	if anim_name == "close_1":
+		get_parent().queue_free()

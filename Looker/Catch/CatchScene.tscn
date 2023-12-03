@@ -98,6 +98,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_xegas"]
 resource_name = "enter"
 length = 1.8
+step = 0.0333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -117,10 +118,10 @@ tracks/1/path = NodePath("CameraPivot/Path/PathFollow/Camera3D:fov")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.4, 1.5, 1.6, 1.7, 1.8),
+"times": PackedFloat32Array(0, 1.4, 1.5318, 1.6317, 1.7316, 1.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [75.0, 75.0, 92.0, 75.0, 92.0, 75.0]
+"values": [75.0, 75.0, 92.0, 75.0, 80.0, 75.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3maul"]
@@ -146,7 +147,8 @@ transform = Transform3D(2.36192, 0, 0, 0, 2.36192, 0, 0, 0, 2.36192, -2.931, 0.8
 curve = SubResource("Curve3D_0828f")
 
 [node name="PathFollow" type="PathFollow3D" parent="CameraPivot/Path"]
-transform = Transform3D(-0.680845, -0.0700157, -0.728943, 0.456993, 0.737099, -0.497662, 0.572178, -0.672027, -0.469905, -0.364094, -0.0164032, -0.0642864)
+transform = Transform3D(0.558362, -0.28675, -0.778346, 0.530406, 0.844802, 0.0692845, 0.637717, -0.451576, 0.623865, 0.834413, 0.307459, -0.172658)
+progress = 1.35193
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/Path/PathFollow"]
 transform = Transform3D(0.951057, 0, -0.309017, 0, 1, 0, 0.309017, 0, 0.951057, 0, 0, 0)
