@@ -46,7 +46,7 @@ Here you should be able to:
 - Play with your munchmes, such as poking them or tossing them around.
 - There should also be a version only for looking for when you wanna see someone else's munchmes.
 
-### Interact MODE
+### Interact/Deploy MODE
 Mode where you interact with something using a chosen munchme.
 
 Here you should be able to:
@@ -54,14 +54,17 @@ Here you should be able to:
 - Walk around in a designated area close to the interation point as your chosen munchme.
 - Use your munchme's powers.
 
+Possibilities:
+- You can deploy your munchme anywhere and get a window to control it when focused on it. You can control yourself as well clicking off the window.
+  This would give a whole lot of freedom which might turn out confusing/hard to do level design for/too unruly. Could allow multiple munchmes but would need a way not to clutter the screen.
+- The main camera switches to the deployed munchme and either you follow it around automatically or stay in place.
+  This would mean you can't deploy multiple munchmes and you can't control the player character at the same time. It would make the gameplay more focused and limited for game design while allowing some freedom.
+- You interact with a specific point and the main camera switches to the deployed munchme and you can only move around in a designated area around that point.
+  This would reduce freedom but allows for very focused puzzle/level design.
+
 ### Fight MODE
 Mode where you fight a player/non-player enemy using your munchmes (may be the same as interact mode).
 
-#### Assets
-- Models for buildings, foliage, rocks, terrain, etc.
-- Idle sprites for munchmes
-- Movement sprites for munchmes
-- Munchme faces and expressions
 
 ### Sketches
 
