@@ -56,10 +56,13 @@ Here you should be able to:
 
 Possibilities:
 - You can deploy your munchme anywhere and get a window to control it when focused on it. You can control yourself as well clicking off the window.
+
   This would give a whole lot of freedom which might turn out confusing/hard to do level design for/too unruly. Could allow multiple munchmes but would need a way not to clutter the screen.
 - The main camera switches to the deployed munchme and either you follow it around automatically or stay in place.
+
   This would mean you can't deploy multiple munchmes and you can't control the player character at the same time. It would make the gameplay more focused and limited for game design while allowing some freedom.
 - You interact with a specific point and the main camera switches to the deployed munchme and you can only move around in a designated area around that point.
+  
   This would reduce freedom but allows for very focused puzzle/level design.
 
 ### Fight MODE
