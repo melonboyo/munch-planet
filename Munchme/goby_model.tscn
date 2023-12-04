@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://0puha086kvgb"]
 
-[ext_resource type="PackedScene" uid="uid://br5p3q67quhms" path="res://models/munchmes/munchme2.glb" id="1_2ndti"]
+[ext_resource type="PackedScene" uid="uid://br5p3q67quhms" path="res://models/munchmes/goby.glb" id="1_2ndti"]
 [ext_resource type="Script" path="res://Munchme/munchme_model.gd" id="2_ejjfw"]
 [ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="3_3i43o"]
 [ext_resource type="Texture2D" uid="uid://bpqwm7oe4ad1a" path="res://Sprites/Faces/face-1.png" id="4_11gkq"]
@@ -46,22 +46,21 @@ shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 script = ExtResource("2_ejjfw")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0.808382, 0.706868, 0)
-bones/0/rotation = Quaternion(-0.000840064, 0.019174, -0.216548, 0.976083)
-bones/0/scale = Vector3(1.03068, 0.916884, 1.03068)
-bones/1/position = Vector3(-0.716114, 0.0267778, 0.344491)
-bones/1/rotation = Quaternion(0.261575, -0.427498, 0.226394, 0.835206)
-bones/2/rotation = Quaternion(-0.175954, 0.0158043, 0.00348697, 0.984265)
-bones/3/position = Vector3(0.439233, -0.2306, -0.408919)
-bones/3/rotation = Quaternion(0.723773, 0.27759, -0.045616, 0.630092)
-bones/4/rotation = Quaternion(-0.0606538, 0.0062241, 0.00119929, 0.998139)
+bones/0/position = Vector3(0, 1.01583, 0)
+bones/0/rotation = Quaternion(-0.000860647, 0, 7.63314e-09, 1)
+bones/1/position = Vector3(-0.570111, -0.085701, -0.032333)
+bones/1/rotation = Quaternion(0.471971, -0.365163, 0.12514, 0.792616)
+bones/2/rotation = Quaternion(-0.0663795, 0.00477386, 0.00148155, 0.997782)
+bones/3/position = Vector3(0.570111, -0.085701, -0.032333)
+bones/3/rotation = Quaternion(0.471971, 0.365163, -0.12514, 0.792616)
+bones/4/rotation = Quaternion(-0.0663795, -0.00477386, -0.00148155, 0.997782)
 
 [node name="Munchme1" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_e0rxq")
 surface_material_override/1 = SubResource("ShaderMaterial_ueqdm")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.933259, 0.387572, 0.0389542, -0.435741, 0.830892, -0.0068687, -0.0382042, -0.00911762, 1.02992, 0.808382, 0.706868, 0)
+transform = Transform3D(1, -1.52663e-08, -1.31389e-11, 1.52663e-08, 0.999999, 0.00172129, -1.31389e-11, -0.00172129, 0.999999, 0, 1.01583, 0)
 bone_name = "Body"
 bone_idx = 0
 

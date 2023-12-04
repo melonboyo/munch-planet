@@ -5,11 +5,10 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_hjwtv"]
 radius = 0.1
 
-[node name="CameraPivot" type="Node3D"]
+[node name="Camera" type="Node3D"]
 script = ExtResource("1_sofu5")
 focus_path = NodePath("../Muncher")
-min_vertical_angle = -2.0
-max_vertical_angle = 89.0
+max_vertical_angle = 86.0
 up_alignment_speed = 10.0
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]

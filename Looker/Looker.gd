@@ -12,7 +12,7 @@ var prev_mouse_mode = null
 		if %Title != null:
 			%Title.text = value
 
-@export_range(300, 1200) var window_width: int = 300:
+@export_range(30, 1200) var window_width: int = 300:
 	get:
 		return size.x
 	set(value):
@@ -21,7 +21,7 @@ var prev_mouse_mode = null
 		pivot_offset.x = value*0.5
 		pivot_offset.y = window_height*0.5
 
-@export_range(200, 900) var window_height: int = 200:
+@export_range(20, 900) var window_height: int = 200:
 	get:
 		return size.y
 	set(value):
@@ -42,6 +42,8 @@ var prev_mouse_mode = null
 func _ready():
 	_setup_viewport_from_child()
 	if not Engine.is_editor_hint():
+		scale = Vector2.ZERO
+		$Animation.play("open_1")
 		var looker_viewport = get_looker_viewport()
 		if looker_viewport != null:
 			looker_viewport.queue_free()
@@ -65,6 +67,8 @@ func _setup_viewport_from_child():
 	elif looker_viewport != null and internal_viewport == null:
 		internal_viewport = looker_viewport.duplicate()
 		%SubViewportContainer.add_child(internal_viewport)
+		if internal_viewport.get_children().size() > 0:
+			internal_viewport.get_children()[0]._looker_ready()
 		internal_viewport.handle_input_locally = true
 		%PlaceholderBackground.visible = false
 
@@ -89,7 +93,8 @@ func close():
 
 func _on_top_margin_container_gui_input(event):
 	if event is InputEventMouseButton:
-		is_dragging_window = event.button_index == MOUSE_BUTTON_LEFT and event.pressed
+		is_dragging_window = (event.button_index == MOUSE_BUTTON_LEFT and event.pressed) \
+			or Input.is_action_pressed("click")
 		if is_dragging_window:
 			prev_mouse_mode = Input.mouse_mode
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED

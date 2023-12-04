@@ -1,4 +1,6 @@
+@tool
 extends Node3D
+class_name Camera
 
 @export_node_path("Node3D") var focus_path
 @export_range(1.0, 360.0) var rotation_speed: float = 90.0
@@ -8,7 +10,11 @@ extends Node3D
 @export_range(1.0, 100) var mouse_sensitivity: float = 20.0
 @export var invert_look_y: bool = false
 @export var invert_look_x: bool = false
-@export_range(0.0, 1.0) var look_input_deadzone: float = 0.1
+@export_range(0.0, 1.0) var look_input_deadzone: float = 0.0
+@export_range(1.0, 50.0) var distance_to_focus: float = 6.0:
+	set(value):
+		distance_to_focus = value
+		$SpringArm3D.spring_length = value
 
 var focus_point: Vector3
 var orbit_angles: Vector2 = Vector2(0.0, 0.0):
@@ -25,12 +31,15 @@ var gravity_alignment: Quaternion = Quaternion.IDENTITY
 var input: Vector2 = Vector2.ZERO
 var up_axis: Vector3 = Vector3.UP
 
-@onready var focus: Node3D = get_node(focus_path)
+@onready var focus: Node3D = get_node_or_null(focus_path)
 @onready var camera: Camera3D = %Camera3D
 @onready var listener = $AudioListener3D
 
 
 func _ready():
+	if Engine.is_editor_hint():
+		return
+	
 	InputMap.action_set_deadzone("look_right", look_input_deadzone)
 	InputMap.action_set_deadzone("look_left", look_input_deadzone)
 	InputMap.action_set_deadzone("look_up", look_input_deadzone)
@@ -58,6 +67,9 @@ func _ready():
 
 
 func _input(event):
+	if Engine.is_editor_hint():
+		return
+	
 	if event is InputEventMouseMotion:
 		if not invert_look_x:
 			input.x += event.relative.y * 0.2
@@ -70,6 +82,9 @@ func _input(event):
 
 
 func _physics_process(delta):
+	if Engine.is_editor_hint():
+		return
+	
 	focus_point = focus.global_position + up_axis * 1.8
 	up_axis = focus_point.normalized()
 	

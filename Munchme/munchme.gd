@@ -15,6 +15,7 @@ signal finish_catch(win: bool)
 
 func _ready():
 	if situation == Constants.Situation.Overworld:
+		$OverworldMovement.spherical_gravity = true
 		var root = get_parent().get_parent()
 		if root != null:
 			catch_munchme.connect(root._on_catch_munchme)
@@ -32,6 +33,18 @@ func munchme_specific_ready():
 func _process(delta):
 	if situation == Constants.Situation.Overworld:
 		_overworld_process(delta)
+
+
+func _physics_process(delta):
+	$OverworldMovement._overworld_physics_process(delta)
+
+
+func _overworld_physics_process(delta):
+	pass
+
+
+func _manage_physics_process(delta):
+	pass
 
 
 func _overworld_process(delta):

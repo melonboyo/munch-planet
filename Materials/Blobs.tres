@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://pvbex1u21rer"]
+
+[ext_resource type="Shader" path="res://Materials/Blobs.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://dm36iujvlenxv" path="res://Materials/Blobs_texture_1.png" id="2"]
+
+[resource]
+shader = ExtResource("1")
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/variation = 0.0
+shader_parameter/texture_1 = ExtResource("2")

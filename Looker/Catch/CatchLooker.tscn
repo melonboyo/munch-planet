@@ -19,7 +19,6 @@ offset_right = 910.0
 offset_bottom = 637.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(455, 318.5)
 title = "CATCH HIM!!"
 window_width = 910

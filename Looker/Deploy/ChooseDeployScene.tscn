@@ -1,0 +1,213 @@
+[gd_scene load_steps=5 format=3 uid="uid://b32kd77nue46d"]
+
+[ext_resource type="Script" path="res://Looker/Deploy/ChooseDeployScene.gd" id="1_3l4u4"]
+[ext_resource type="Material" uid="uid://pvbex1u21rer" path="res://Materials/Blobs.tres" id="1_h13gf"]
+[ext_resource type="Script" path="res://Looker/Deploy/DeploySlot.gd" id="2_5ue7q"]
+[ext_resource type="PackedScene" uid="uid://csg0ojcsoq0ek" path="res://Looker/Deploy/DeployableMunchmeScene.tscn" id="2_hraix"]
+
+[node name="ChooseDeployScene" type="Control"]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 216.0
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_3l4u4")
+
+[node name="TextureRect" type="ColorRect" parent="."]
+material = ExtResource("1_h13gf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control1" type="Control" parent="TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(216, 212)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Slot1" type="SubViewportContainer" parent="TextureRect/VBoxContainer/Control1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5ue7q")
+
+[node name="SubViewport" type="SubViewport" parent="TextureRect/VBoxContainer/Control1/Slot1"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(216, 212)
+render_target_update_mode = 4
+
+[node name="DeployableMunchmeScene" parent="TextureRect/VBoxContainer/Control1/Slot1/SubViewport" instance=ExtResource("2_hraix")]
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect/VBoxContainer/Control1/Slot1"]
+layout_mode = 2
+
+[node name="Button1" type="Button" parent="TextureRect/VBoxContainer/Control1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Control2" type="Control" parent="TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(216, 212)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Slot2" type="SubViewportContainer" parent="TextureRect/VBoxContainer/Control2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5ue7q")
+
+[node name="SubViewport" type="SubViewport" parent="TextureRect/VBoxContainer/Control2/Slot2"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(216, 212)
+render_target_update_mode = 4
+
+[node name="DeployableMunchmeScene" parent="TextureRect/VBoxContainer/Control2/Slot2/SubViewport" instance=ExtResource("2_hraix")]
+
+[node name="Button2" type="Button" parent="TextureRect/VBoxContainer/Control2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Control3" type="Control" parent="TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(216, 212)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Slot3" type="SubViewportContainer" parent="TextureRect/VBoxContainer/Control3"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5ue7q")
+
+[node name="SubViewport" type="SubViewport" parent="TextureRect/VBoxContainer/Control3/Slot3"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(216, 212)
+render_target_update_mode = 4
+
+[node name="DeployableMunchmeScene" parent="TextureRect/VBoxContainer/Control3/Slot3/SubViewport" instance=ExtResource("2_hraix")]
+
+[node name="Button3" type="Button" parent="TextureRect/VBoxContainer/Control3"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Control4" type="Control" parent="TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(216, 212)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Slot4" type="SubViewportContainer" parent="TextureRect/VBoxContainer/Control4"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5ue7q")
+
+[node name="SubViewport" type="SubViewport" parent="TextureRect/VBoxContainer/Control4/Slot4"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(216, 212)
+render_target_update_mode = 4
+
+[node name="DeployableMunchmeScene" parent="TextureRect/VBoxContainer/Control4/Slot4/SubViewport" instance=ExtResource("2_hraix")]
+
+[node name="Button4" type="Button" parent="TextureRect/VBoxContainer/Control4"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Control5" type="Control" parent="TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(216, 212)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Slot5" type="SubViewportContainer" parent="TextureRect/VBoxContainer/Control5"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5ue7q")
+
+[node name="SubViewport" type="SubViewport" parent="TextureRect/VBoxContainer/Control5/Slot5"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(216, 212)
+render_target_update_mode = 4
+
+[node name="DeployableMunchmeScene" parent="TextureRect/VBoxContainer/Control5/Slot5/SubViewport" instance=ExtResource("2_hraix")]
+
+[node name="Button5" type="Button" parent="TextureRect/VBoxContainer/Control5"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[connection signal="button_up" from="TextureRect/VBoxContainer/Control1/Button1" to="." method="_on_button1_up"]
+[connection signal="button_up" from="TextureRect/VBoxContainer/Control2/Button2" to="." method="_on_button_up" binds= [2]]
+[connection signal="button_up" from="TextureRect/VBoxContainer/Control3/Button3" to="." method="_on_button_up" binds= [3]]
+[connection signal="button_up" from="TextureRect/VBoxContainer/Control4/Button4" to="." method="_on_button_up" binds= [4]]
+[connection signal="button_up" from="TextureRect/VBoxContainer/Control5/Button5" to="." method="_on_button_up" binds= [5]]

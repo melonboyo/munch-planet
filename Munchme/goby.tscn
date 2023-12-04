@@ -12,6 +12,7 @@
 
 [sub_resource type="Resource" id="Resource_hsa0i"]
 script = ExtResource("3_66qx4")
+name = "JIMBLO"
 munchme_type = 0
 max_health = 100
 mood = 1
@@ -214,7 +215,7 @@ _data = {
 script = ExtResource("2_osfwf")
 resource = SubResource("Resource_hsa0i")
 
-[node name="GobyModel" parent="." index="2" instance=ExtResource("3_o5rs3")]
+[node name="Model" parent="." index="2" instance=ExtResource("3_o5rs3")]
 transform = Transform3D(0.376657, 0, 0, 0, 0.376657, 0, 0, 0, 0.376657, 0, 0.00391814, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
@@ -245,8 +246,11 @@ speed_scale = 1.25
 [node name="GobyMinigameUi" parent="." index="6" instance=ExtResource("8_16muq")]
 visible = false
 
+[node name="OverworldMovement" parent="." index="7"]
+model_path = NodePath("../Model")
+
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]
 [connection signal="body_exited" from="CatchArea" to="." method="_on_catch_area_body_exited"]
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
-[connection signal="player_choose_hand" from="GobyMinigameUi" to="." method="_on_player_choose_hand"]
 [connection signal="player_choose_hand" from="GobyMinigameUi" to="." method="_on_goby_minigame_ui_player_choose_hand"]
+[connection signal="player_choose_hand" from="GobyMinigameUi" to="." method="_on_player_choose_hand"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpjuviai2qv7m"]
+
+[ext_resource type="Script" path="res://Looker/Catch/CatchScene.gd" id="1_d6gdm"]
+[ext_resource type="Script" path="res://Muncher/Camera.gd" id="2_hu80b"]
+
+[node name="DeployScene" type="Node3D"]
+script = ExtResource("1_d6gdm")
+
+[node name="Camera" type="Node3D" parent="."]
+script = ExtResource("2_hu80b")
+max_vertical_angle = 86.0
+up_alignment_speed = 10.0

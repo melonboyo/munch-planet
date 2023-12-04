@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpq3hik347iwm"]
+
+[ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="1_g63g7"]
+[ext_resource type="PackedScene" uid="uid://dpjuviai2qv7m" path="res://Looker/Deploy/DeployScene.tscn" id="2_3ccn4"]
+[ext_resource type="Script" path="res://Looker/Deploy/DeployScene.gd" id="3_nykqq"]
+
+[node name="DeployLooker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Looker" parent="." instance=ExtResource("1_g63g7")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 514.0
+offset_bottom = 393.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(257.5, 196)
+title = "CATCH HIM!!"
+window_width = 515
+window_height = 392
+can_close = false
+
+[node name="SubViewport" type="SubViewport" parent="Looker"]
+own_world_3d = true
+handle_input_locally = false
+audio_listener_enable_3d = true
+
+[node name="DeployScene" parent="Looker/SubViewport" instance=ExtResource("2_3ccn4")]
+script = ExtResource("3_nykqq")
+focus_path = null
+rotation_speed = 90.0
+min_vertical_angle = -45.0
+max_vertical_angle = 45.0
+up_alignment_speed = 25.0
+mouse_sensitivity = 20.0
+invert_look_y = false
+invert_look_x = false
+look_input_deadzone = 0.1
+distance_to_focus = 6.0

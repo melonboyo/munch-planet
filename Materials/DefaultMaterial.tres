@@ -1,8 +1,22 @@
-[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://g11xqdkrl10v"]
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://g11xqdkrl10v"]
 
 [ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="1_wj0r0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0nvi5"]
+
+[sub_resource type="Gradient" id="Gradient_lnnwf"]
+offsets = PackedFloat32Array(0.0129032, 0.522581, 1)
+colors = PackedColorArray(0.438069, 0.594804, 0.106298, 1, 0.43337, 0.48676, 0.107567, 1, 0.429081, 0.251813, 0.0588709, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1aey7"]
+frequency = 0.0126
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ign06"]
+width = 2048
+height = 2048
+seamless = true
+color_ramp = SubResource("Gradient_lnnwf")
+noise = SubResource("FastNoiseLite_1aey7")
 
 [sub_resource type="Gradient" id="Gradient_j6y4m"]
 
@@ -27,3 +41,4 @@ shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
 shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
+shader_parameter/FaceTexture = SubResource("NoiseTexture2D_ign06")

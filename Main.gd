@@ -1,15 +1,25 @@
 extends Node3D
 
 
+@export_range(0.0, 1.0) var look_input_deadzone: float = 0.0
+@export_range(0.0, 1.0) var cursor_sensitivty: float = 0.5
+
 var catch_looker_scene := preload("res://Looker/Catch/CatchLooker.tscn")
 var manage_looker_scene := preload("res://Looker/Manage/ManageLooker.tscn")
+var deploy_looker_scene := preload("res://Looker/Deploy/DeployLooker.tscn")
+var choose_deploy_looker_scene := preload("res://Looker/Deploy/ChooseDeployLooker.tscn")
 
 var mouse_captured = true
 var munchme_getting_caught: Munchme
-var current_manage_ui
+var current_manage_ui = null
 
 
 func _ready():
+	InputMap.action_set_deadzone("look_right", look_input_deadzone)
+	InputMap.action_set_deadzone("look_left", look_input_deadzone)
+	InputMap.action_set_deadzone("look_up", look_input_deadzone)
+	InputMap.action_set_deadzone("look_right", look_input_deadzone)
+	
 	GameState.situation = Constants.Situation.Overworld
 	Music.play(Music.Track.Overworld)
 
@@ -17,10 +27,10 @@ func _ready():
 func _process(delta):
 	if GameState.situation != Constants.Situation.Overworld:
 		pass
-
+	
 	if (
 		Input.is_action_just_pressed("cancel") and 
-		GameState.situation == Constants.Situation.Overworld
+		GameState.situation != Constants.Situation.Catch
 	):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -29,14 +39,33 @@ func _process(delta):
 	
 	if (
 		Input.is_action_just_pressed("open_manage") and 
-		GameState.situation == Constants.Situation.Overworld
+		#GameState.situation == Constants.Situation.Overworld and 
+		current_manage_ui == null
 	):
 		open_manage()
 	elif (
 		Input.is_action_just_pressed("open_manage") and 
-		GameState.situation == Constants.Situation.Manage
+		current_manage_ui != null
 	):
 		close_manage()
+	
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		var stick_input = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+		var pow_length = pow(stick_input.length(), 6.2) * 0.9 + 0.1
+		var speed_mult = 1.0
+		var speed_up_strength = Input.get_action_strength("speed_up_cursor")
+		if speed_up_strength > 0.9:
+			speed_mult = 2.8
+		elif speed_up_strength > 0.1:
+			speed_mult = 1.5
+		stick_input = (pow_length / stick_input.length()) * stick_input * cursor_sensitivty * 30.0 * speed_mult
+		if stick_input.length() > 0.0:
+			call_deferred("move_mouse", stick_input)
+		
+	if Input.is_action_just_pressed("click"):
+		call_deferred("click")
+	elif Input.is_action_just_released("click"):
+		call_deferred("click_released")
 
 
 func _unhandled_input(event):
@@ -44,7 +73,7 @@ func _unhandled_input(event):
 		and event.get_button_index() == MOUSE_BUTTON_LEFT
 		and event.is_pressed() 
 		and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED
-		and GameState.situation != Constants.Situation.Overworld
+		and GameState.situation != Constants.Situation.Catch
 	):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -63,14 +92,14 @@ func _on_munchme_finish_catch(win: bool):
 	munchme_getting_caught.in_catch_mode = false
 	munchme_getting_caught.situation = Constants.Situation.Overworld
 	if win:
-		GameState.munchmes.append(munchme_getting_caught.resource)
+		GameState.add_munchme(munchme_getting_caught.resource)
 		munchme_getting_caught.queue_free()
 	else:
 		pass
 
 
 func open_manage():
-	GameState.situation = Constants.Situation.Manage
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	var manage_ui: Control = manage_looker_scene.instantiate()
 	current_manage_ui = manage_ui.get_node("Looker")
 	$UI.add_child(manage_ui)
@@ -78,3 +107,39 @@ func open_manage():
 
 func close_manage():
 	current_manage_ui.close()
+
+
+#func deploy_munchme():
+	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#var deploy_ui: Control = choose_deploy_looker_scene.instantiate()
+	#current_manage_ui = manage_ui.get_node("Looker")
+	#$UI.add_child(manage_ui)
+
+
+func retrieve_munchme():
+	pass
+
+
+func move_mouse(relative: Vector2):
+	get_viewport().update_mouse_cursor_state()
+	get_viewport().warp_mouse(get_viewport().get_mouse_position() + relative - Vector2(-1,-1))
+	#var a = InputEventMouseMotion.new()
+	#a.relative = relative
+	#Input.parse_input_event(a)
+
+
+func click():
+	var a = InputEventMouseButton.new()
+	a.position = get_viewport().get_mouse_position() * (get_viewport().size as Vector2 / get_viewport().get_visible_rect().size as Vector2)
+	a.button_index = MOUSE_BUTTON_LEFT
+	a.pressed = true
+	a.button_mask = MOUSE_BUTTON_MASK_LEFT
+	Input.parse_input_event(a)
+
+
+func click_released():
+	var a = InputEventMouseButton.new()
+	a.position = get_viewport().get_mouse_position() * (get_viewport().size as Vector2 / get_viewport().get_visible_rect().size as Vector2)
+	a.button_index = MOUSE_BUTTON_LEFT
+	a.pressed = false
+	Input.parse_input_event(a)

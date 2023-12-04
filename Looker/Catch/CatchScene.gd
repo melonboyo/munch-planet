@@ -13,7 +13,7 @@ signal start_minigame
 signal finish_catch(win: bool)
 
 
-func _ready():
+func _looker_ready():
 	var main_node = find_parent("Main")
 	finish_catch.connect(main_node._on_munchme_finish_catch)
 	

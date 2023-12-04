@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://byqxhfjpv5fey"]
 
-[ext_resource type="PackedScene" uid="uid://bofgx4ionr17s" path="res://models/muncher_test.gltf" id="1_3g22p"]
+[ext_resource type="PackedScene" uid="uid://bofgx4ionr17s" path="res://models/muncher.gltf" id="1_3g22p"]
 [ext_resource type="Script" path="res://Muncher/muncher_model.gd" id="2_yv0yo"]
 [ext_resource type="Texture2D" uid="uid://uyff5plgwxle" path="res://models/textures/FaceTexture.png" id="3_eits6"]
 [ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="3_pvpmu"]

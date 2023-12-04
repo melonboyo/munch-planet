@@ -38,6 +38,7 @@ func choose_hand():
 	await get_tree().create_timer(0.8).timeout
 	
 	if goby_hand == player_hand:
+		player_hand = Constants.Hand.None
 		$Animation.play("RPS")
 		%RPS.play("default")
 		$GobyMinigameUi.enable()
