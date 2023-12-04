@@ -91,3 +91,11 @@ https://github.com/melonboyo/munch-world/assets/1461061/41abfc69-92f8-42fe-b415-
 
 https://github.com/melonboyo/munch-world/assets/1461061/a846ab48-a826-4931-ab20-d5aa79364d23
 
+![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/pc_2.png)  
+*pc_2.png*
+
+![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/pc_3.png)  
+*pc_3.png*
+
+![](https://github.com/melonboyo/gofrog-mode/blob/main/sketches/pc_4.png)  
+*pc_4.png*
