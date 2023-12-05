@@ -1,6 +1,14 @@
 extends Node3D
 
 
+var step_sounds := [
+	load("res://SFX/Step/step_mid1.ogg"),
+	load("res://SFX/Step/step_mid2.ogg"),
+	load("res://SFX/Step/step_mid3.ogg"),
+	load("res://SFX/Step/step_mid4.ogg"),
+]
+
+
 func _ready():
 	interpolation_change($AnimationPlayer)
 
@@ -25,3 +33,9 @@ func change_animation(anim: String):
 
 func set_animation_speed_scale(value: float):
 	$AnimationPlayer.speed_scale = value
+
+
+func play_step_sound():
+	var i = randi_range(0, step_sounds.size()-1)
+	$StepPlayer.stream = step_sounds[i]
+	$StepPlayer.play()

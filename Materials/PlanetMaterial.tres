@@ -4,7 +4,7 @@
 
 [sub_resource type="Gradient" id="Gradient_xc70b"]
 offsets = PackedFloat32Array(0, 0.33871, 0.835484, 0.987097)
-colors = PackedColorArray(0.41726, 0.222472, 0.117656, 1, 0.532166, 0.506796, 0.158044, 1, 0.335952, 0.512524, 0.0545193, 1, 0.608369, 0.324072, 0.0268924, 1)
+colors = PackedColorArray(0.0850857, 0.335655, 0.171772, 1, 0.33764, 0.567186, 0.0905708, 1, 0.335952, 0.512524, 0.0545193, 1, 0.608369, 0.324072, 0.0268924, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r0ahm"]
 frequency = 0.0405
@@ -16,11 +16,11 @@ color_ramp = SubResource("Gradient_xc70b")
 noise = SubResource("FastNoiseLite_r0ahm")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_upbem"]
-frequency = 0.028
+frequency = 0.0125
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wj3yy"]
 width = 128
-height = 128
+height = 256
 in_3d_space = true
 seamless = true
 seamless_blend_skirt = 0.325
@@ -29,10 +29,9 @@ noise = SubResource("FastNoiseLite_upbem")
 [resource]
 render_priority = 0
 shader = ExtResource("1_mbx0l")
-shader_parameter/VertexVariationDisplacement = 0.215
-shader_parameter/VertexVariationFrequency = 0.41
+shader_parameter/VertexVariationDisplacement = 0.045
+shader_parameter/VertexVariationFrequency = 0.25
 shader_parameter/NumberOfVertexVariations = 11
-shader_parameter/RandomPrimeSeed = 5359
 shader_parameter/Albedo = Color(1, 1, 1, 1)
 shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.226

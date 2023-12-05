@@ -14,15 +14,16 @@ mouse_filter = 2
 
 [node name="Looker" parent="." instance=ExtResource("1_17vrw")]
 layout_mode = 0
-offset_right = 614.0
-offset_bottom = 431.0
-pivot_offset = Vector2(307, 215.5)
+offset_right = 743.0
+offset_bottom = 558.0
+pivot_offset = Vector2(371.5, 279)
 title = "YOUR GUYS"
-window_width = 614
-window_height = 431
+window_width = 743
+window_height = 558
 
 [node name="SubViewport" type="SubViewport" parent="Looker"]
 own_world_3d = true
+screen_space_aa = 1
 audio_listener_enable_3d = true
 physics_object_picking = true
 size = Vector2i(700, 512)

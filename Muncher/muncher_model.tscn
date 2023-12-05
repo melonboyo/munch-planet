@@ -1,35 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://byqxhfjpv5fey"]
+[gd_scene load_steps=10 format=3 uid="uid://byqxhfjpv5fey"]
 
 [ext_resource type="PackedScene" uid="uid://bofgx4ionr17s" path="res://models/muncher.gltf" id="1_3g22p"]
 [ext_resource type="Script" path="res://Muncher/muncher_model.gd" id="2_yv0yo"]
-[ext_resource type="Texture2D" uid="uid://uyff5plgwxle" path="res://models/textures/FaceTexture.png" id="3_eits6"]
+[ext_resource type="Material" uid="uid://ew4i5g2yrb7v" path="res://Materials/MuncherMaterial.tres" id="3_i5ue1"]
 [ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="3_pvpmu"]
-
-[sub_resource type="Gradient" id="Gradient_j6y4m"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5y2og"]
-frequency = 0.019
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gq7rm"]
-width = 256
-height = 256
-color_ramp = SubResource("Gradient_j6y4m")
-noise = SubResource("FastNoiseLite_5y2og")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rhw1q"]
-render_priority = 0
-shader = ExtResource("3_pvpmu")
-shader_parameter/VertexVariationDisplacement = 0.04
-shader_parameter/VertexVariationFrequency = 0.785
-shader_parameter/NumberOfVertexVariations = 5
-shader_parameter/RandomPrimeSeed = 5393
-shader_parameter/Albedo = Color(0.94902, 0.890196, 0.215686, 1)
-shader_parameter/Roughness = 1.0
-shader_parameter/Specular = 0.152
-shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
-shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
-shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_gq7rm")
-shader_parameter/FaceTexture = ExtResource("3_eits6")
+[ext_resource type="AudioStream" uid="uid://b66twy7o5wbwn" path="res://SFX/Step/step_mid1.ogg" id="5_506rr"]
 
 [sub_resource type="Gradient" id="Gradient_mg6df"]
 
@@ -45,10 +20,9 @@ noise = SubResource("FastNoiseLite_shla8")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l71ty"]
 render_priority = 0
 shader = ExtResource("3_pvpmu")
-shader_parameter/VertexVariationDisplacement = 0.02
-shader_parameter/VertexVariationFrequency = 0.785
+shader_parameter/VertexVariationDisplacement = 0.015
+shader_parameter/VertexVariationFrequency = 0.645
 shader_parameter/NumberOfVertexVariations = 5
-shader_parameter/RandomPrimeSeed = 5393
 shader_parameter/Albedo = Color(0.807843, 0.427451, 0.286275, 1)
 shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.152
@@ -61,41 +35,39 @@ transform = Transform3D(0.713745, 0, 0, 0, 0.713745, 0, 0, 0, 0.713745, 0, 0, 0)
 script = ExtResource("2_yv0yo")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0, 0.317784, 0)
-bones/0/scale = Vector3(0.969302, 1.06157, 0.969302)
+bones/0/position = Vector3(0, -0.102326, 0)
+bones/0/scale = Vector3(1.04437, 0.92728, 1.04437)
 bones/2/rotation = Quaternion(0.707107, -3.09086e-08, 1.37679e-07, 0.707107)
-bones/4/position = Vector3(-0.517756, -0.170996, -0.22588)
-bones/4/rotation = Quaternion(0.646435, 0.220182, -0.657436, -0.318465)
+bones/4/rotation = Quaternion(0.707107, 0, -0.707107, 0)
 bones/4/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.0911258, 0.101585, 0.661499, 0.737425)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(-0.00172173, -0.000193568, -0.00357254, 0.999992)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/position = Vector3(0.483307, -0.368444, 0.0807092)
-bones/8/rotation = Quaternion(0.676992, 0.268642, 0.66592, 0.161444)
+bones/8/rotation = Quaternion(0.707107, 0, 0.707107, 0)
 bones/8/scale = Vector3(1, 1, 1)
 bones/10/rotation = Quaternion(0.0911258, -0.101585, -0.661499, 0.737425)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/rotation = Quaternion(-0.00172173, 0.000193584, 0.00357253, 0.999992)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(0.0152017, -0.0562287, 0.948737, -0.310652)
-bones/12/scale = Vector3(1.00661, 1, 1.00429)
-bones/13/rotation = Quaternion(-0.0295898, 0.00646297, -0.197049, 0.979926)
-bones/13/scale = Vector3(0.989897, 1.02405, 0.988094)
-bones/14/rotation = Quaternion(-0.0224619, 0.00413328, -0.165771, 0.9859)
-bones/14/scale = Vector3(1.00039, 1.00455, 0.997027)
-bones/15/rotation = Quaternion(0.116985, 0.0479593, -0.663453, 0.737458)
-bones/19/rotation = Quaternion(-0.224931, 0.20875, 0.624732, 0.718011)
-bones/23/rotation = Quaternion(0.0589444, 0.217661, 0.909402, 0.349482)
-bones/23/scale = Vector3(1.0088, 1, 1.00464)
-bones/24/rotation = Quaternion(0.0567325, 0.0123937, 0.198848, 0.978308)
-bones/24/scale = Vector3(0.99597, 1.00899, 0.99593)
-bones/25/rotation = Quaternion(0.0435668, 0.00801739, 0.168177, 0.984761)
-bones/25/scale = Vector3(1.00034, 1.00169, 0.998667)
+bones/12/rotation = Quaternion(-0.0281833, 0.101105, 0.929433, -0.353748)
+bones/13/rotation = Quaternion(0.0224239, -0.00488632, -0.225389, 0.973999)
+bones/14/rotation = Quaternion(0.0182591, -0.00335362, -0.200544, 0.979509)
+bones/15/rotation = Quaternion(-0.0617025, -0.0871514, -0.658746, 0.744749)
+bones/19/rotation = Quaternion(-0.0488211, 0.0774797, 0.660205, 0.745482)
+bones/23/rotation = Quaternion(0.024761, 0.0888522, 0.931335, 0.352288)
+bones/24/rotation = Quaternion(0.0172634, 0.00376213, 0.226111, 0.973941)
+bones/25/rotation = Quaternion(0.0140589, 0.00258246, 0.201215, 0.979443)
 
 [node name="Body" parent="Armature/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_rhw1q")
+surface_material_override/0 = ExtResource("3_i5ue1")
 surface_material_override/1 = SubResource("ShaderMaterial_l71ty")
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Idle"
+
+[node name="StepPlayer" type="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource("5_506rr")
+volume_db = -4.5
+max_polyphony = 2
+bus = &"Effects"

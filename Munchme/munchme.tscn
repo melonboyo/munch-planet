@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bx0l5b5fqhk0l"]
 
-[ext_resource type="Script" path="res://Munchme/munchme.gd" id="1_ygrta"]
+[ext_resource type="Script" path="res://Munchme/Munchme.gd" id="1_ygrta"]
 [ext_resource type="Texture2D" uid="uid://b4dick7xt0bw2" path="res://Sprites/catch_text.png" id="2_dgq12"]
 [ext_resource type="Texture2D" uid="uid://8lob40dnypeu" path="res://Sprites/catch_border.png" id="3_ni207"]
 [ext_resource type="PackedScene" uid="uid://cdumv0t8swix3" path="res://Movement/overworld_movement.tscn" id="4_xu18s"]

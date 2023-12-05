@@ -34,7 +34,17 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/shell_fur/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/shell_fur/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
+
+[importer_defaults]
+
+animation_library={
+"animation/fps": 12.0
+}
 
 [input]
 
