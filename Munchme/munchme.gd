@@ -22,7 +22,8 @@ func _ready():
 			catch_munchme.connect(root._on_catch_munchme)
 	elif situation == Constants.Situation.Catch:
 		get_parent().start_minigame.connect(_on_start_minigame)
-		finish_catch.connect(get_parent()._on_munchme_finish_catch)
+		if not finish_catch.is_connected(get_parent()._on_munchme_finish_catch):
+			finish_catch.connect(get_parent()._on_munchme_finish_catch)
 	
 	munchme_specific_ready()
 
@@ -40,14 +41,6 @@ func _physics_process(delta):
 	if freeze:
 		return
 	$OverworldMovement._overworld_physics_process(delta)
-
-
-func _overworld_physics_process(delta):
-	pass
-
-
-func _manage_physics_process(delta):
-	pass
 
 
 func _overworld_process(delta):

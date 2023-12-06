@@ -3,12 +3,20 @@ extends Node3D
 
 var held_munchme: Munchme = null
 var held_position: Vector3 = Vector3.ZERO
+var glow_fade = 0.0
 
 
 func _looker_ready():
 	GameState.munchme_added.connect(_on_munchme_added)
 	for m in GameState.munchmes:
 		send_in_munchme(m, get_random_position())
+
+
+func _process(delta):
+	if held_munchme == null:
+		glow_fade = lerpf(glow_fade, 0.0, delta * 4.0)
+	else:
+		glow_fade = lerpf(glow_fade, 1.0, delta * 4.0)
 
 
 func _physics_process(delta):

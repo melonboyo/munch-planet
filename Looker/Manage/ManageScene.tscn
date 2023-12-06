@@ -1,8 +1,10 @@
-[gd_scene load_steps=57 format=3 uid="uid://dg1b5732ogt5i"]
+[gd_scene load_steps=60 format=3 uid="uid://dg1b5732ogt5i"]
 
 [ext_resource type="Texture2D" uid="uid://bnv51mffvaltj" path="res://Models/textures/tummy-texture.png" id="1_g51i6"]
 [ext_resource type="Environment" uid="uid://ce5g5cyrrhs7p" path="res://Looker/Manage/ManageEnv.tres" id="1_um3nj"]
 [ext_resource type="Script" path="res://Looker/Manage/ManageScene.gd" id="1_uxug5"]
+[ext_resource type="Shader" uid="uid://jpiny8hlebgl" path="res://Shaders/2DFadeIn.tres" id="4_bb68e"]
+[ext_resource type="Texture2D" uid="uid://b67nwdf3d0dyr" path="res://Sprites/glow.png" id="4_vhdkc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_me2ii"]
 size = Vector3(11, 1, 11.5464)
@@ -518,6 +520,12 @@ _data = {
 "swerve": SubResource("Animation_oqswp")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxf6d"]
+shader = ExtResource("4_bb68e")
+shader_parameter/Albedo = Color(0.964706, 1, 0.94902, 1)
+shader_parameter/fade = 1.0
+shader_parameter/Texture = ExtResource("4_vhdkc")
+
 [node name="ManageScene" type="Node3D"]
 script = ExtResource("1_uxug5")
 
@@ -572,7 +580,7 @@ transform = Transform3D(-0.986856, 0.0581774, -0.150771, 0, 0.932953, 0.359997, 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 unique_name_in_owner = true
 transform = Transform3D(1, 7.45058e-09, 2.98023e-08, 7.45058e-09, 1, 0, -1.49012e-08, -5.96046e-08, 1, 0, 0, 6.472)
-fov = 60.0
+fov = 55.0
 
 [node name="Animation" type="AnimationPlayer" parent="CameraPivot"]
 libraries = {
@@ -587,3 +595,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = -435
+theme_override_constants/margin_bottom = 365
+
+[node name="Glow" type="TextureRect" parent="Control/MarginContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_nxf6d")
+layout_mode = 2
+texture = ExtResource("4_vhdkc")
+expand_mode = 1
