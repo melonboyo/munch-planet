@@ -5,18 +5,21 @@ const FADE_IN_START_VOLUME_DB = -40
 
 enum Track {
 	Overworld,
-	ThoughtfulMuncher
+	ThoughtfulMuncher,
+	Battle,
 }
 
 var streams = {
 	Track.Overworld: preload("res://Music/brog.ogg"),
 	Track.ThoughtfulMuncher: preload("res://Music/thoughtful_muncher.ogg"),
+	Track.Battle: preload("res://Music/battle.ogg"),
 }
 
 var volume = 0
 var volumes = {
-	Track.Overworld: -9,
+	Track.Overworld: 0,
 	Track.ThoughtfulMuncher: 0,
+	Track.Battle: 0,
 }
 
 var selected_track = null
@@ -36,8 +39,8 @@ func _ready():
 	add_child(music_player)
 
 
-func play(track: Track, from_position: float = 0.0, fade_in: bool = false):
-	_play(track, from_position, fade_in or from_position > 0)
+func play(track: Track, from_position: float = 0.0, fade_in = null):
+	_play(track, from_position, fade_in or (fade_in == null && from_position > 0))
 
 
 func stop(fade_out: bool = true):
@@ -48,7 +51,7 @@ func switch_to(
 	track: Track, 
 	from_position: float = 0.0, 
 	fade_out: bool = true, 
-	fade_in: bool = false):
+	fade_in = null):
 	_stop(fade_out, track, from_position)
 
 
@@ -75,7 +78,7 @@ func _stop(
 	fade_out: bool = true, 
 	switch_to = null, 
 	switch_to_position: float = 0.0, 
-	switch_to_fade_in: bool = false):
+	switch_to_fade_in = null):
 	if fade_out:
 		var fade_out_tween = create_tween()
 		fade_out_tween.tween_property(music_player, "volume_db", DISABLED_VOLUME_DB, 1.2).from_current()
@@ -91,8 +94,8 @@ func _stop(
 			_on_switch_to_track(switch_to, switch_to_position, switch_to_fade_in)
 
 
-func _on_switch_to_track(track: Track, from_position: float, fade_in: bool):
-	_play(track, from_position, fade_in or from_position > 0)
+func _on_switch_to_track(track: Track, from_position: float, fade_in):
+	_play(track, from_position, fade_in or (fade_in == null && from_position > 0))
 
 
 func _on_stop_music_player():
