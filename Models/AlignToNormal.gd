@@ -14,6 +14,8 @@ extends Node3D
 @export_range(0, 10) var _scale: float = 1.0:
 	set(value):
 		_scale = value
+@export_category("Randomness")
+@export_range(0, 100) var spawn_radius: float = 15.0
 
 
 func _process(delta):
@@ -45,7 +47,8 @@ func align_to_normal():
 		print(up * from_to_rotation(up, Vector3.UP), forward * from_to_rotation(up, Vector3.UP), right * from_to_rotation(up, Vector3.UP))
 		
 		c.global_position = result.position
-		c.global_transform.basis = Basis(right, up, forward).scaled(Vector3.ONE * _scale)
+		c.global_transform.basis = Basis(right, up, forward)
+		c.scale = Vector3.ONE * _scale
 
 
 func from_to_rotation(from, to) -> Quaternion:

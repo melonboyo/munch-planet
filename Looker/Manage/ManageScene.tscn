@@ -1,10 +1,12 @@
-[gd_scene load_steps=60 format=3 uid="uid://dg1b5732ogt5i"]
+[gd_scene load_steps=64 format=3 uid="uid://dg1b5732ogt5i"]
 
 [ext_resource type="Texture2D" uid="uid://bnv51mffvaltj" path="res://Models/textures/tummy-texture.png" id="1_g51i6"]
 [ext_resource type="Environment" uid="uid://ce5g5cyrrhs7p" path="res://Looker/Manage/ManageEnv.tres" id="1_um3nj"]
 [ext_resource type="Script" path="res://Looker/Manage/ManageScene.gd" id="1_uxug5"]
 [ext_resource type="Shader" uid="uid://jpiny8hlebgl" path="res://Shaders/2DFadeIn.tres" id="4_bb68e"]
 [ext_resource type="Texture2D" uid="uid://b67nwdf3d0dyr" path="res://Sprites/glow.png" id="4_vhdkc"]
+[ext_resource type="Texture2D" uid="uid://fypmv6jiwbbk" path="res://Sprites/deploy-button-pressed.png" id="6_bowjn"]
+[ext_resource type="Texture2D" uid="uid://dxny06dda22rt" path="res://Sprites/deploy-button.png" id="6_t2roi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_me2ii"]
 size = Vector3(11, 1, 11.5464)
@@ -523,8 +525,30 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nxf6d"]
 shader = ExtResource("4_bb68e")
 shader_parameter/Albedo = Color(0.964706, 1, 0.94902, 1)
-shader_parameter/fade = 1.0
+shader_parameter/fade = 0.0
 shader_parameter/Texture = ExtResource("4_vhdkc")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m7puf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_bowjn")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_t2roi")
+}],
+"loop": true,
+"name": &"unpressed",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d5sf3"]
+radius = 83.006
 
 [node name="ManageScene" type="Node3D"]
 script = ExtResource("1_uxug5")
@@ -595,6 +619,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -612,3 +637,29 @@ material = SubResource("ShaderMaterial_nxf6d")
 layout_mode = 2
 texture = ExtResource("4_vhdkc")
 expand_mode = 1
+
+[node name="Control" type="Control" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+
+[node name="DeployArea" type="AnimatedSprite2D" parent="Control/MarginContainer/Control"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 2
+position = Vector2(0, 219)
+scale = Vector2(0.65, 0.65)
+sprite_frames = SubResource("SpriteFrames_m7puf")
+animation = &"unpressed"
+
+[node name="DeployArea2D" type="Area2D" parent="Control/MarginContainer/Control/DeployArea"]
+unique_name_in_owner = true
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/MarginContainer/Control/DeployArea/DeployArea2D"]
+shape = SubResource("CircleShape2D_d5sf3")
+
+[connection signal="input_event" from="Control/MarginContainer/Control/DeployArea/DeployArea2D" to="." method="_on_deploy_area_2d_input_event"]
+[connection signal="mouse_entered" from="Control/MarginContainer/Control/DeployArea/DeployArea2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Control/MarginContainer/Control/DeployArea/DeployArea2D" to="." method="_on_area_2d_mouse_exited"]

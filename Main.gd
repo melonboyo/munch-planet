@@ -22,6 +22,7 @@ func _ready():
 	
 	GameState.situation = Constants.Situation.Overworld
 	Music.play(Music.Track.Overworld)
+	GameState.munchme_deployed.connect(_on_munchme_deployed)
 
 
 func _process(delta):
@@ -145,3 +146,18 @@ func click_released():
 	a.button_index = MOUSE_BUTTON_LEFT
 	a.pressed = false
 	Input.parse_input_event(a)
+
+
+func _on_munchme_deployed(resource):
+	var spawn_pos = %Muncher.global_position + %Muncher.global_basis.z * 4.0
+	deploy_munchme(resource, spawn_pos)
+	close_manage()
+
+
+func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
+	var munchme: Munchme = Scenes.munchmes[munchme_resource.munchme_type].instantiate()
+	munchme.resource = munchme_resource
+	munchme.situation = Constants.Situation.Interact
+	munchme.position = pos
+	GameState.deployed_munchme = munchme
+	$Player.add_child(munchme)

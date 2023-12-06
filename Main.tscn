@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
 [ext_resource type="Shader" uid="uid://bg5ar60o2lhuv" path="res://Shaders/Toon3D.tres" id="3_0moh7"]
-[ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/muncher_camera.tscn" id="3_8oj03"]
+[ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/Camera.tscn" id="3_8oj03"]
 [ext_resource type="Script" path="res://addons/shell_fur/shell_fur_manager.gd" id="3_quac8"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
 [ext_resource type="Texture2D" uid="uid://o1fagcyldrts" path="res://addons/shell_fur/noise_patterns/rough.png" id="5_trk6g"]
@@ -86,7 +86,10 @@ albedo_color = Color(0.913725, 0, 0.101961, 1)
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
 
-[node name="Muncher" parent="." instance=ExtResource("2_b0ky1")]
+[node name="Player" type="Node" parent="."]
+
+[node name="Muncher" parent="Player" instance=ExtResource("2_b0ky1")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1308, 89.4636, 0)
 floor_snap_length = 1.0
 
@@ -173,7 +176,7 @@ shape = SubResource("SphereShape3D_13cqd")
 [node name="Trees" type="Node" parent="Planet"]
 
 [node name="Aligner" type="MeshInstance3D" parent="Planet/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.3555, 99.935, -52.9099)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.5564, 100.032, -15.7416)
 mesh = SubResource("SphereMesh_jq1it")
 surface_material_override/0 = SubResource("StandardMaterial3D_baxk6")
 script = ExtResource("7_trsuv")
@@ -181,10 +184,11 @@ y_rotation = 174.316
 _scale = 2.421
 
 [node name="tree2" parent="Planet/Trees/Aligner" instance=ExtResource("7_onigk")]
-transform = Transform3D(2.38965, 0.388247, 0.154628, -0.376535, 2.33052, 1.46633, 0.0951037, -0.528371, 1.92021, 1.41378, -3.25876, 1.72533)
+transform = Transform3D(2.29288, -0.700744, -0.335987, 0.714856, 2.31239, 0.055629, 0.304812, -0.151893, 2.39693, 2.20394, -3.03856, 0.478163)
 
 [node name="CameraPivot" parent="." instance=ExtResource("3_8oj03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 79.9273, 0)
+focus_path = NodePath("../Player/Muncher")
 look_input_deadzone = 0.1
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -195,7 +199,7 @@ shadow_enabled = true
 shadow_blur = 1.99
 directional_shadow_pancake_size = 13.0
 script = ExtResource("4_llbt7")
-player_path = NodePath("../Muncher")
+player_path = NodePath("../Player/Muncher")
 
 [node name="DebugDraw" type="Control" parent="."]
 visible = false

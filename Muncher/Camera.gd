@@ -31,9 +31,11 @@ var gravity_alignment: Quaternion = Quaternion.IDENTITY
 var input: Vector2 = Vector2.ZERO
 var up_axis: Vector3 = Vector3.UP
 
-@onready var focus: Node3D = get_node_or_null(focus_path)
+@onready var player: Node3D = get_node_or_null(focus_path)
 @onready var camera: Camera3D = %Camera3D
 @onready var listener = $AudioListener3D
+
+@onready var focus = player
 
 
 func _ready():
@@ -79,6 +81,16 @@ func _input(event):
 			input.y += event.relative.x * 0.2
 		else:
 			input.y += -event.relative.x * 0.2
+
+
+func _process(delta):
+	if Engine.is_editor_hint():
+		return
+	
+	if GameState.focus_player:
+		focus = player
+	else:
+		focus = GameState.deployed_munchme
 
 
 func _physics_process(delta):

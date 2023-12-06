@@ -4,6 +4,7 @@ extends Node3D
 var held_munchme: Munchme = null
 var held_position: Vector3 = Vector3.ZERO
 var glow_fade = 0.0
+var deploy_area_entered = false
 
 
 func _looker_ready():
@@ -44,10 +45,18 @@ func _input(event):
 			if held_munchme != null:
 				held_munchme.freeze = true
 				held_munchme.play_animation("Dangle")
+				%DeployArea.visible = true
+				%DeployArea2D.monitoring = true
 		elif event.is_released() and held_munchme != null:
+			if deploy_area_entered:
+				GameState.munchme_deployed.emit(held_munchme.resource)
+				return
+			
 			held_munchme.freeze = false
 			held_munchme.play_animation("Idle")
 			held_munchme = null
+			%DeployArea.visible = false
+			%DeployArea2D.monitoring = false
 
 
 func send_in_munchme(munchme_resource: MunchmeResource, pos: Vector3):
@@ -90,3 +99,13 @@ func get_munchme_or_null() -> Munchme:
 	if not result.collider is Munchme:
 		return null
 	return result.collider
+
+
+func _on_area_2d_mouse_entered():
+	deploy_area_entered = true
+	%DeployArea.play("hover")
+
+
+func _on_area_2d_mouse_exited():
+	deploy_area_entered = false
+	%DeployArea.play("unpressed")
