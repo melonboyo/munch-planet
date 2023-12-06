@@ -212,17 +212,16 @@ _data = {
 }
 
 [node name="Goby" instance=ExtResource("1_7eeg5")]
-collision_layer = 2
-collision_mask = 3
+floor_max_angle = 3.14159
 script = ExtResource("2_osfwf")
 resource = SubResource("Resource_hsa0i")
 
-[node name="Model" parent="." index="2" instance=ExtResource("3_o5rs3")]
-transform = Transform3D(0.376657, 0, 0, 0, 0.376657, 0, 0, 0, 0.376657, 0, 0.00391814, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.364462, 0)
 shape = SubResource("CapsuleShape3D_y0bei")
+
+[node name="Model" parent="." index="3" instance=ExtResource("3_o5rs3")]
+transform = Transform3D(0.376657, 0, 0, 0, 0.376657, 0, 0, 0, 0.376657, 0, 0.00391814, 0)
 
 [node name="RPSRoot" type="Node3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.135396, 0, 0)

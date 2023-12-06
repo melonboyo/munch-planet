@@ -25,6 +25,8 @@ func _ready():
 
 
 func _process(delta):
+	if Input.is_action_just_pressed("cheat"):
+		GameState.add_munchme(MunchmeResource.new())
 	if GameState.situation != Constants.Situation.Overworld:
 		pass
 	

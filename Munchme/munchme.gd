@@ -3,6 +3,7 @@ class_name Munchme
 
 @export var resource: MunchmeResource
 @export var situation: Constants.Situation = Constants.Situation.Overworld
+@export var freeze := false
 
 var is_in_area = false
 var can_catch = false
@@ -36,6 +37,8 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	if freeze:
+		return
 	$OverworldMovement._overworld_physics_process(delta)
 
 
@@ -98,3 +101,9 @@ func win_catch():
 
 func lose_catch():
 	finish_catch.emit(false)
+
+
+func play_animation(anim: String):
+	if $Model == null:
+		return
+	$Model.change_animation(anim)

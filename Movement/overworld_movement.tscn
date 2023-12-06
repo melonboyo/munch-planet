@@ -4,3 +4,4 @@
 
 [node name="OverworldMovement" type="Node3D"]
 script = ExtResource("1_6vywc")
+max_floor_angle = 35.0

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcaj1ogqexsb7"]
+
+[ext_resource type="Script" path="res://Movement/FloatMovement.gd" id="1_274k8"]
+
+[node name="FloatMovement" type="Node3D"]
+script = ExtResource("1_274k8")

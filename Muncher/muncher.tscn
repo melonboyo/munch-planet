@@ -1,18 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3m5sa6by34tu"]
+[gd_scene load_steps=7 format=3 uid="uid://c3m5sa6by34tu"]
 
 [ext_resource type="Script" path="res://Muncher/Player.gd" id="1_dnfvd"]
 [ext_resource type="PackedScene" uid="uid://byqxhfjpv5fey" path="res://Muncher/muncher_model.tscn" id="2_4ecyd"]
 [ext_resource type="PackedScene" uid="uid://er4dwtlgxuc5" path="res://Muncher/emoter.tscn" id="3_8mst7"]
 [ext_resource type="PackedScene" uid="uid://cdumv0t8swix3" path="res://Movement/overworld_movement.tscn" id="4_2hhfk"]
+[ext_resource type="PackedScene" uid="uid://bcaj1ogqexsb7" path="res://Movement/float_movement.tscn" id="5_8aopf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wx677"]
 radius = 1.14331
 height = 2.28662
 
 [node name="Muncher" type="CharacterBody3D"]
-collision_layer = 258
-collision_mask = 3
-floor_stop_on_slope = false
+collision_layer = 2
+collision_mask = 15
 floor_max_angle = 1.0472
 floor_snap_length = 0.5
 script = ExtResource("1_dnfvd")
@@ -30,3 +30,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.77667, 0)
 [node name="OverworldMovement" parent="." instance=ExtResource("4_2hhfk")]
 target_path = NodePath("..")
 model_path = NodePath("../Model")
+float_node_path = NodePath("../FloatMovement")
+max_floor_angle = 60.0
+
+[node name="FloatMovement" parent="." instance=ExtResource("5_8aopf")]
+target_path = NodePath("..")
+float_force = 35.0

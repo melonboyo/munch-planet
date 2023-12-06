@@ -1,9 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy1uce0rqfbtl"]
+[gd_scene load_steps=9 format=3 uid="uid://cy1uce0rqfbtl"]
 
 [ext_resource type="Script" path="res://Muncher/Camera.gd" id="1_sofu5"]
+[ext_resource type="Shader" uid="uid://dt35pc76serik" path="res://Shaders/UnderwaterShader.tres" id="2_eelnm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hjwtv"]
 radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_svonv"]
+radius = 0.004
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_62uju"]
+render_priority = 0
+shader = ExtResource("2_eelnm")
+shader_parameter/_DepthGradientShallow = Color(0, 0.482353, 0.862745, 0.74902)
+shader_parameter/_DepthGradientDeep = Color(0.32549, 0.807843, 0.972549, 0.729412)
+shader_parameter/_DepthMaxDistance = 0.012
+shader_parameter/_DepthFactor = 1.185
+shader_parameter/beer_factor = 0.001
+shader_parameter/effect = 0.39
+
+[sub_resource type="QuadMesh" id="QuadMesh_o5ld6"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="QuadMesh" id="QuadMesh_p0m0a"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2q81l"]
+render_priority = 0
+shader = ExtResource("2_eelnm")
+shader_parameter/_DepthGradientShallow = Color(0.325, 0.807, 0.971, 0.725)
+shader_parameter/_DepthGradientDeep = Color(0.086, 0.407, 1, 0.749)
+shader_parameter/_DepthMaxDistance = 0.05
+shader_parameter/_DepthFactor = 1.6
+shader_parameter/beer_factor = 0.004
+shader_parameter/effect = 0.0
 
 [node name="Camera" type="Node3D"]
 script = ExtResource("1_sofu5")
@@ -12,7 +44,6 @@ max_vertical_angle = 86.0
 up_alignment_speed = 10.0
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
-collision_mask = 5
 shape = SubResource("SphereShape3D_hjwtv")
 spring_length = 6.0
 
@@ -20,4 +51,33 @@ spring_length = 6.0
 unique_name_in_owner = true
 fov = 70.0
 
+[node name="Area3D" type="Area3D" parent="SpringArm3D/Camera3D"]
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpringArm3D/Camera3D/Area3D"]
+shape = SubResource("SphereShape3D_svonv")
+
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
+
+[node name="UnderwaterShader" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54653, -2.66747, 3.12407)
+visible = false
+material_override = SubResource("ShaderMaterial_62uju")
+cast_shadow = 0
+extra_cull_margin = 16384.0
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_o5ld6")
+
+[node name="ScreenShader" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54653, -2.66747, 3.12407)
+visible = false
+cast_shadow = 0
+extra_cull_margin = 16384.0
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_p0m0a")
+surface_material_override/0 = SubResource("ShaderMaterial_2q81l")
+
+[connection signal="area_entered" from="SpringArm3D/Camera3D/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="SpringArm3D/Camera3D/Area3D" to="." method="_on_area_3d_area_exited"]

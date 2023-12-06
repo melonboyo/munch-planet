@@ -1,0 +1,63 @@
+[gd_resource type="Shader" format=3 uid="uid://dt35pc76serik"]
+
+[resource]
+code = "shader_type spatial;
+render_mode unshaded, depth_draw_never;
+
+uniform vec4 _DepthGradientShallow: source_color = vec4(0.325, 0.807, 0.971, 0.725);
+uniform vec4 _DepthGradientDeep: source_color = vec4(0.086, 0.407, 1, 0.749);
+uniform float _DepthMaxDistance: hint_range(0, 1) = 0.05;
+uniform float _DepthFactor = 1.6;
+uniform float beer_factor = 0.004;
+uniform float effect = 0.0;
+
+uniform sampler2D depth_texture : source_color, hint_depth_texture, repeat_disable, filter_linear;
+uniform sampler2D screen_texture : source_color, hint_screen_texture, repeat_disable, filter_linear;
+
+varying mat4 CAMERA;
+
+
+void vertex() {
+	POSITION = vec4(VERTEX, 1.0);
+	CAMERA = INV_VIEW_MATRIX;
+}
+
+float getDepthVal(sampler2D depthTex, vec2 depthUV, mat4 invProjMat) {
+	float depth = texture(depthTex, depthUV).r;
+	return depth;
+}
+
+void fragment() {
+	vec2 texelSize = vec2(1.0/VIEWPORT_SIZE.x, 1.0/VIEWPORT_SIZE.y);
+	
+	float depthVal = texture(depth_texture, SCREEN_UV).r;
+	float depth = PROJECTION_MATRIX[3][2] / (depthVal + PROJECTION_MATRIX[2][2]);
+	depth = depth + VERTEX.z;
+	depth = exp(-depth * beer_factor);
+	depth = 1.0 - depth;
+	
+	vec4 n = texture(screen_texture, SCREEN_UV);
+	
+	float waterDepth = clamp(depth / _DepthMaxDistance, 0.0, 1.0) * _DepthFactor;
+	vec4 waterColor = mix(_DepthGradientShallow, _DepthGradientDeep, waterDepth);
+	
+	vec4 color = mix(n, waterColor, effect);
+
+	ALBEDO = color.rgb;
+}
+
+//void fragment() {
+//	vec3 screen_color = textureLod(screen_texture, SCREEN_UV, 0.0).rgb;
+//
+//	float depth = texture(depth_texture, SCREEN_UV).x;
+//	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
+//	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+//	view.xyz /= view.w;
+//	float linear_depth = -view.z;
+//
+//	vec4 world = CAMERA * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+//	vec3 world_position = world.xyz / world.w;
+//
+//	ALBEDO = screen_color;
+//}
+"

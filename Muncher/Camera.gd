@@ -155,3 +155,13 @@ func from_to_rotation(from, to) -> Quaternion:
 		return Quaternion.IDENTITY;
 	else:
 		return Quaternion(axis.normalized(), angle_to)
+
+
+func _on_area_3d_area_entered(area):
+	#$UnderwaterShader.material_override.set_shader_parameter("effect", 0.5)
+	$UnderwaterShader.visible = true
+
+
+func _on_area_3d_area_exited(area):
+	#$UnderwaterShader.material_override.set_shader_parameter("effect", 0.0)
+	$UnderwaterShader.visible = false

@@ -1,12 +1,20 @@
-[gd_scene load_steps=56 format=3 uid="uid://dg1b5732ogt5i"]
+[gd_scene load_steps=57 format=3 uid="uid://dg1b5732ogt5i"]
 
 [ext_resource type="Texture2D" uid="uid://bnv51mffvaltj" path="res://Models/textures/tummy-texture.png" id="1_g51i6"]
 [ext_resource type="Environment" uid="uid://ce5g5cyrrhs7p" path="res://Looker/Manage/ManageEnv.tres" id="1_um3nj"]
 [ext_resource type="Script" path="res://Looker/Manage/ManageScene.gd" id="1_uxug5"]
-[ext_resource type="Shader" path="res://Shaders/ScreenShader.gdshader" id="3_4a2et"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_me2ii"]
+size = Vector3(11, 1, 11.5464)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3xmco"]
 size = Vector3(11, 1, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_42d8b"]
+size = Vector3(22.061, 1, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w4jdp"]
+size = Vector3(21.5493, 1, 11)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_57blw"]
 lightmap_size_hint = Vector2i(22, 22)
@@ -469,6 +477,9 @@ shader_parameter/Specular = 0.814
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 shader_parameter/FaceTexture = ExtResource("1_g51i6")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qrdgl"]
+size = Vector3(11, 1, 23.4155)
+
 [sub_resource type="Animation" id="Animation_l4if5"]
 length = 0.001
 tracks/0/type = "value"
@@ -507,25 +518,6 @@ _data = {
 "swerve": SubResource("Animation_oqswp")
 }
 
-[sub_resource type="QuadMesh" id="QuadMesh_sn4et"]
-flip_faces = true
-size = Vector2(2, 2)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lsjf2"]
-render_priority = 0
-shader = ExtResource("3_4a2et")
-shader_parameter/color_outline_scale = 1.5
-shader_parameter/depth_outline_scale = 0.0
-shader_parameter/depth_threshold = 2.5
-shader_parameter/depth_multiplier = 1000.0
-shader_parameter/edge_threshold = 0.04
-shader_parameter/max_edge_alpha = 0.23
-shader_parameter/edge_alpha_multiplier = 3.0
-shader_parameter/edge_color = Color(0, 0, 0.0117647, 1)
-shader_parameter/depth_use_laplace = true
-shader_parameter/color_use_laplace = false
-shader_parameter/use_bg_texture = false
-
 [node name="ManageScene" type="Node3D"]
 script = ExtResource("1_uxug5")
 
@@ -540,10 +532,23 @@ environment = ExtResource("1_um3nj")
 [node name="HoldCollision" type="StaticBody3D" parent="."]
 collision_layer = 65536
 collision_mask = 0
+input_capture_on_drag = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HoldCollision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.878389, 0)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.74179, 0.763408)
+shape = SubResource("BoxShape3D_me2ii")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="HoldCollision"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.5, 5)
 shape = SubResource("BoxShape3D_3xmco")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="HoldCollision"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 5, 4.5, -5.53052)
+shape = SubResource("BoxShape3D_42d8b")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="HoldCollision"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -5, 4.5, -5.27466)
+shape = SubResource("BoxShape3D_w4jdp")
 
 [node name="Platform" type="MeshInstance3D" parent="."]
 layers = 1025
@@ -554,29 +559,18 @@ surface_material_override/0 = SubResource("ShaderMaterial_stcqx")
 input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_3xmco")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -6.20776)
+shape = SubResource("BoxShape3D_qrdgl")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Platform/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.5, -5)
-shape = SubResource("BoxShape3D_3xmco")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Platform/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.5, 5)
-shape = SubResource("BoxShape3D_3xmco")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Platform/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 5, 4.5, 0)
-shape = SubResource("BoxShape3D_3xmco")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Platform/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -5, 4.5, 0)
 shape = SubResource("BoxShape3D_3xmco")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(-0.986856, 0.0581774, -0.150771, 0, 0.932953, 0.359997, 0.161606, 0.355264, -0.920691, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+unique_name_in_owner = true
 transform = Transform3D(1, 7.45058e-09, 2.98023e-08, 7.45058e-09, 1, 0, -1.49012e-08, -5.96046e-08, 1, 0, 0, 6.472)
 fov = 60.0
 
@@ -586,10 +580,10 @@ libraries = {
 }
 autoplay = "swerve"
 
-[node name="ScreenShader" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54653, -2.66747, 3.12407)
-cast_shadow = 0
-extra_cull_margin = 16384.0
-ignore_occlusion_culling = true
-mesh = SubResource("QuadMesh_sn4et")
-surface_material_override/0 = SubResource("ShaderMaterial_lsjf2")
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=28 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://addons/shell_fur/shell_fur_manager.gd" id="3_quac8"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
 [ext_resource type="Texture2D" uid="uid://o1fagcyldrts" path="res://addons/shell_fur/noise_patterns/rough.png" id="5_trk6g"]
-[ext_resource type="Shader" path="res://Shaders/ScreenShader.gdshader" id="6_gwije"]
 [ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="6_mqxa6"]
 [ext_resource type="PackedScene" uid="uid://bkw6vrtec1tqd" path="res://Models/foliage/tree.glb" id="7_onigk"]
 [ext_resource type="Script" path="res://Models/AlignToNormal.gd" id="7_trsuv"]
@@ -74,7 +73,7 @@ color_ramp = SubResource("Gradient_lodx3")
 noise = SubResource("FastNoiseLite_v5gww")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_13cqd"]
-radius = 85.2949
+radius = 86.0577
 
 [sub_resource type="SphereMesh" id="SphereMesh_jq1it"]
 radius = 0.25
@@ -84,32 +83,19 @@ height = 0.5
 shading_mode = 0
 albedo_color = Color(0.913725, 0, 0.101961, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_fehak"]
-flip_faces = true
-size = Vector2(2, 2)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7s8r"]
-render_priority = 0
-shader = ExtResource("6_gwije")
-shader_parameter/color_outline_scale = 1.5
-shader_parameter/depth_outline_scale = 0.0
-shader_parameter/depth_threshold = 2.5
-shader_parameter/depth_multiplier = 1000.0
-shader_parameter/edge_threshold = 0.04
-shader_parameter/max_edge_alpha = 0.23
-shader_parameter/edge_alpha_multiplier = 3.0
-shader_parameter/edge_color = Color(0, 0, 0.0117647, 1)
-shader_parameter/depth_use_laplace = true
-shader_parameter/color_use_laplace = false
-shader_parameter/use_bg_texture = false
-
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
+
+[node name="Muncher" parent="." instance=ExtResource("2_b0ky1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1308, 89.4636, 0)
+floor_snap_length = 1.0
 
 [node name="Munchmes" type="Node" parent="."]
 
 [node name="Goby" parent="Munchmes" instance=ExtResource("7_xaxar")]
 transform = Transform3D(-0.948107, 0, -0.31795, 0, 1, 0, 0.31795, 0, -0.948107, -12.0219, 89.1345, 9.0817)
+collision_layer = 262145
+collision_mask = 3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_df6u4")
@@ -175,12 +161,13 @@ transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819
 transform = Transform3D(0.993098, -0.14348, -0.00271715, -0.0330921, -0.210479, -0.980531, 0.139638, 0.970541, -0.213047, 0, 0, 0)
 
 [node name="WaterArea" type="Area3D" parent="Planet"]
+unique_name_in_owner = true
 transform = Transform3D(0.993098, -0.14348, -0.00271715, -0.0330921, -0.210479, -0.980531, 0.139638, 0.970541, -0.213047, 0, 0, 0)
-collision_layer = 0
+collision_layer = 32
 collision_mask = 2
-monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/WaterArea"]
+transform = Transform3D(0.281085, -0.959683, -4.65661e-10, 0.959683, 0.281086, 0, -3.72529e-09, 9.31323e-10, 1, 0, 0, 0)
 shape = SubResource("SphereShape3D_13cqd")
 
 [node name="Trees" type="Node" parent="Planet"]
@@ -196,10 +183,6 @@ _scale = 2.421
 [node name="tree2" parent="Planet/Trees/Aligner" instance=ExtResource("7_onigk")]
 transform = Transform3D(2.38965, 0.388247, 0.154628, -0.376535, 2.33052, 1.46633, 0.0951037, -0.528371, 1.92021, 1.41378, -3.25876, 1.72533)
 
-[node name="Muncher" parent="." instance=ExtResource("2_b0ky1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1308, 89.4636, 0)
-floor_snap_length = 1.0
-
 [node name="CameraPivot" parent="." instance=ExtResource("3_8oj03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 79.9273, 0)
 look_input_deadzone = 0.1
@@ -213,14 +196,6 @@ shadow_blur = 1.99
 directional_shadow_pancake_size = 13.0
 script = ExtResource("4_llbt7")
 player_path = NodePath("../Muncher")
-
-[node name="ScreenShader" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54653, -2.66747, 3.12407)
-cast_shadow = 0
-extra_cull_margin = 16384.0
-ignore_occlusion_culling = true
-mesh = SubResource("QuadMesh_fehak")
-surface_material_override/0 = SubResource("ShaderMaterial_y7s8r")
 
 [node name="DebugDraw" type="Control" parent="."]
 visible = false

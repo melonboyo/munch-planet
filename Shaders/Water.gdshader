@@ -6,6 +6,7 @@
 */
 
 shader_type spatial;
+render_mode cull_back;
 
 const float SMOOTHSTEP_AA = 0.01;
 uniform sampler2D surfaceNoise;

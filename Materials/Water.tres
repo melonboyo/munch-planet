@@ -7,7 +7,7 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_56nxt")
-shader_parameter/beer_factor = 0.8
+shader_parameter/beer_factor = 0.35
 shader_parameter/foam_distance = 0.1
 shader_parameter/foam_max_distance = 0.18
 shader_parameter/foam_min_distance = 0.04
@@ -17,7 +17,7 @@ shader_parameter/surface_noise_scroll = Vector3(0.01, 0.005, 0)
 shader_parameter/surface_noise_cutoff = 0.797
 shader_parameter/surface_distortion_amount = 0.45
 shader_parameter/_DepthGradientShallow = Color(0.313726, 0.792157, 0.611765, 0.72549)
-shader_parameter/_DepthGradientDeep = Color(0.184314, 0.282353, 1, 0.74902)
+shader_parameter/_DepthGradientDeep = Color(0, 0.396078, 0.815686, 0.74902)
 shader_parameter/_DepthMaxDistance = 1.0
 shader_parameter/_DepthFactor = 1.0
 shader_parameter/surfaceNoise = ExtResource("3_sv4n6")

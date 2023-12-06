@@ -1,16 +1,24 @@
 extends Node3D
+class_name OverworldMovement
+
 
 @export var is_ai := false
 @export var spherical_gravity := true
 @export_node_path("CharacterBody3D") var target_path
 #@export_node_path("Node3D") var camera_path: NodePath
 @export_node_path("Node3D") var model_path: NodePath
+@export_node_path("Node3D") var float_node_path: NodePath
 @export_range(0.5, 50.0) var walking_speed: float = 10.68
-@export_range(0.5, 50.0) var acceleration: float = 17.0
+@export_range(0.5, 50.0) var sneak_speed: float = 5.0
+@export_range(0.5, 50.0) var air_speed: float = 6.5
+@export_range(0.5, 50.0) var walking_acceleration: float = 17.0
+@export_range(0.5, 50.0) var air_acceleration: float = 14.0
 @export_range(0.5, 50.0) var alignment_speed: float = 8.0
 @export_range(0.0, 1.0) var move_input_deadzone: float = 0.15
 @export_range(0.01, 15.0) var probe_dist = 1.5
 @export_range(0.01, 180.0) var max_floor_angle = 50.0
+@export_range(0.01, 180.0) var max_fall_speed = 40.0
+
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var right_axis: Vector3 = Vector3.RIGHT
@@ -25,6 +33,8 @@ var move_input: Vector2 = Vector2.ZERO:
 		if Vector2.ZERO.distance_to(move_input) < move_input_deadzone * sqrt(2.0):
 			move_input = Vector2.ZERO
 var move_velocity: Vector3 = Vector3.ZERO
+var speed: float
+var acceleration: float
 var gravity_velocity: Vector3 = Vector3.ZERO
 var last_strong_direction: Vector3 = Vector3.FORWARD
 var moving: bool = false
@@ -36,8 +46,9 @@ var height = 1.0
 
 @onready var min_floor_dot = cos(deg_to_rad(max_floor_angle))
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
-@onready var target = get_node(target_path)
-@onready var model = get_node(model_path)
+@onready var target: CharacterBody3D = get_node_or_null(target_path)
+@onready var model = get_node_or_null(model_path)
+@onready var float_node: FloatMovement = get_node_or_null(float_node_path)
 
 var is_active = true
 
@@ -51,8 +62,10 @@ func _ready():
 	target.up_direction = get_up_direction()
 	if target.is_on_floor():
 		floor_normal = target.get_floor_normal()
+		speed = walking_speed
 	else:
 		floor_normal = target.up_direction
+		speed = air_speed
 	
 	if get_parent() is Munchme:
 		if get_parent().situation == Constants.Situation.Interact:
@@ -81,26 +94,40 @@ func _process(delta):
 func _overworld_physics_process(delta):
 	target.up_direction = get_up_direction()
 	
-	if target.is_on_floor():
-		floor_normal = target.get_floor_normal()
-		steps_since_grounded = 0
-		# Stick to floor
-		gravity_velocity = -floor_normal * 2.8
+	if float_node.is_floating():
+		target.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	else:
+		target.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
+	
+	if not target.is_on_floor():
 		floor_normal = target.up_direction
 		steps_since_grounded += 1
 		gravity_velocity += -target.up_direction * gravity * delta
+		speed = air_speed
+		acceleration = air_acceleration
+	else:
+		floor_normal = target.get_floor_normal()
+		steps_since_grounded = 0
+		# Stick to floor
+		gravity_velocity = -target.up_direction * 2.5
+		speed = walking_speed
+		acceleration = walking_acceleration
+	
+	gravity_velocity += float_node.get_float_velocity(delta)
+	
+	if gravity_velocity.length() > max_fall_speed:
+		gravity_velocity = gravity_velocity.normalized() * max_fall_speed
 	
 	if GameState.situation == Constants.Situation.Catch or not is_active:
 		move_input = Vector2.ZERO
 	
 	var x_axis = project_direction_on_plane(right_axis, floor_normal)
 	var z_axis = project_direction_on_plane(forward_axis, floor_normal)
-	var move_input_speed_scaled = move_input * walking_speed
+	var move_input_speed_scaled = move_input * speed
 	var move_input_rotated = x_axis * move_input_speed_scaled.x + z_axis * move_input_speed_scaled.y
 	move_velocity = move_velocity.lerp(move_input_rotated, delta * acceleration)
 	
-	snap_to_floor()
+	if not float_node.is_floating: snap_to_floor()
 	animate()
 	orient_to_direction(last_strong_direction, delta)
 
