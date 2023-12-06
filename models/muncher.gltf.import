@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bofgx4ionr17s"
-path="res://.godot/imported/muncher.gltf-5f1474c4db4c4c494b17300860448781.scn"
+path="res://.godot/imported/muncher.gltf-4a0d4f4cb6bc61e5f4fbff2c16f97c95.scn"
 
 [deps]
 
-source_file="res://models/muncher.gltf"
-dest_files=["res://.godot/imported/muncher.gltf-5f1474c4db4c4c494b17300860448781.scn"]
+source_file="res://Models/muncher.gltf"
+dest_files=["res://.godot/imported/muncher.gltf-4a0d4f4cb6bc61e5f4fbff2c16f97c95.scn"]
 
 [params]
 

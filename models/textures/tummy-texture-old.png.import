@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctje5nmu5xdb0"
-path="res://.godot/imported/tummy-texture-old.png-9cad711d747b92ad4fd5687b896f1019.ctex"
+path="res://.godot/imported/tummy-texture-old.png-58cd3daf0e4a87c23c82866bb355b618.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/textures/tummy-texture-old.png"
-dest_files=["res://.godot/imported/tummy-texture-old.png-9cad711d747b92ad4fd5687b896f1019.ctex"]
+source_file="res://Models/textures/tummy-texture-old.png"
+dest_files=["res://.godot/imported/tummy-texture-old.png-58cd3daf0e4a87c23c82866bb355b618.ctex"]
 
 [params]
 

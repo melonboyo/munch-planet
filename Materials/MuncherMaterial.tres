@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://ew4i5g2yrb7v"]
 
 [ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="1_v3k8p"]
-[ext_resource type="Texture2D" uid="uid://uyff5plgwxle" path="res://models/textures/FaceTexture.png" id="2_dstxy"]
+[ext_resource type="Texture2D" uid="uid://uyff5plgwxle" path="res://Models/textures/FaceTexture.png" id="2_dstxy"]
 
 [sub_resource type="Gradient" id="Gradient_j6y4m"]
 

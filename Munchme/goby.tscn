@@ -212,6 +212,8 @@ _data = {
 }
 
 [node name="Goby" instance=ExtResource("1_7eeg5")]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("2_osfwf")
 resource = SubResource("Resource_hsa0i")
 

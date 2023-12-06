@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://br5p3q67quhms"
-path="res://.godot/imported/goby.glb-2ea00cc1b7c8803a1fd5476643c9e4b2.scn"
+path="res://.godot/imported/goby.glb-84166d6d6cb49697cb313add44a484fe.scn"
 
 [deps]
 
-source_file="res://models/munchmes/goby.glb"
-dest_files=["res://.godot/imported/goby.glb-2ea00cc1b7c8803a1fd5476643c9e4b2.scn"]
+source_file="res://Models/munchmes/goby.glb"
+dest_files=["res://.godot/imported/goby.glb-84166d6d6cb49697cb313add44a484fe.scn"]
 
 [params]
 

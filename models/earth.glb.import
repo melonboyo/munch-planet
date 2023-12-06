@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dofwikg3bucms"
-path="res://.godot/imported/earth.glb-26dd0c382a12c18ca5abd8e9a273d510.scn"
+path="res://.godot/imported/earth.glb-53418d2a2bb7f7f0a97ca12fc1ef89f4.scn"
 
 [deps]
 
-source_file="res://models/earth.glb"
-dest_files=["res://.godot/imported/earth.glb-26dd0c382a12c18ca5abd8e9a273d510.scn"]
+source_file="res://Models/earth.glb"
+dest_files=["res://.godot/imported/earth.glb-53418d2a2bb7f7f0a97ca12fc1ef89f4.scn"]
 
 [params]
 

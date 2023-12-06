@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://fc5oi7u6velf"
-path="res://.godot/imported/rocky.jpg-32b95147557cbbe4540f237e0fff7693.ctex"
+path="res://.godot/imported/rocky.jpg-ca46c0b9a08ec20cb234ae4d3338c520.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/textures/rocky.jpg"
-dest_files=["res://.godot/imported/rocky.jpg-32b95147557cbbe4540f237e0fff7693.ctex"]
+source_file="res://Models/textures/rocky.jpg"
+dest_files=["res://.godot/imported/rocky.jpg-ca46c0b9a08ec20cb234ae4d3338c520.ctex"]
 
 [params]
 

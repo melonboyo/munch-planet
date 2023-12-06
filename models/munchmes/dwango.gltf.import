@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dqxm2xdjytd3v"
-path="res://.godot/imported/dwango.gltf-bf9fbe00dcc8b6b3f821f85c9ca0d0d5.scn"
+path="res://.godot/imported/dwango.gltf-eb6df03c566496155971999bdbe30ffb.scn"
 
 [deps]
 
-source_file="res://models/munchmes/dwango.gltf"
-dest_files=["res://.godot/imported/dwango.gltf-bf9fbe00dcc8b6b3f821f85c9ca0d0d5.scn"]
+source_file="res://Models/munchmes/dwango.gltf"
+dest_files=["res://.godot/imported/dwango.gltf-eb6df03c566496155971999bdbe30ffb.scn"]
 
 [params]
 

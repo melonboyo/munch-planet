@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://0puha086kvgb"]
 
-[ext_resource type="PackedScene" uid="uid://br5p3q67quhms" path="res://models/munchmes/goby.glb" id="1_2ndti"]
+[ext_resource type="PackedScene" uid="uid://br5p3q67quhms" path="res://Models/munchmes/goby.glb" id="1_2ndti"]
 [ext_resource type="Script" path="res://Munchme/munchme_model.gd" id="2_ejjfw"]
 [ext_resource type="Shader" uid="uid://d0nw8jigbutow" path="res://Shaders/MainShader.tres" id="3_eluoc"]
 [ext_resource type="Texture2D" uid="uid://bpqwm7oe4ad1a" path="res://Sprites/Faces/face-1.png" id="4_11gkq"]
@@ -53,11 +53,9 @@ script = ExtResource("2_ejjfw")
 bones/0/rotation = Quaternion(0.425277, 0, 0, 0.905063)
 bones/1/position = Vector3(-0.475977, -0.0722512, 0.225062)
 bones/1/rotation = Quaternion(0.8107, 0.0371745, 0.0348574, 0.58324)
-bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(0.185843, -0.0160989, 0.0176773, 0.982289)
 bones/3/position = Vector3(0.475977, -0.0722512, 0.225062)
 bones/3/rotation = Quaternion(0.8107, -0.0371745, -0.0348574, 0.58324)
-bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(0.185843, 0.0160989, -0.0176773, 0.982289)
 
 [node name="Munchme1" parent="Armature/Skeleton3D" index="0"]

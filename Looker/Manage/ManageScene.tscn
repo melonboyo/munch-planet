@@ -1,6 +1,6 @@
 [gd_scene load_steps=56 format=3 uid="uid://dg1b5732ogt5i"]
 
-[ext_resource type="Texture2D" uid="uid://bnv51mffvaltj" path="res://models/textures/tummy-texture.png" id="1_g51i6"]
+[ext_resource type="Texture2D" uid="uid://bnv51mffvaltj" path="res://Models/textures/tummy-texture.png" id="1_g51i6"]
 [ext_resource type="Environment" uid="uid://ce5g5cyrrhs7p" path="res://Looker/Manage/ManageEnv.tres" id="1_um3nj"]
 [ext_resource type="Script" path="res://Looker/Manage/ManageScene.gd" id="1_uxug5"]
 [ext_resource type="Shader" path="res://Shaders/ScreenShader.gdshader" id="3_4a2et"]

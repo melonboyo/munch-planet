@@ -16,4 +16,5 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	$Model.is_on_floor = is_on_floor()
 	$OverworldMovement._overworld_physics_process(delta)

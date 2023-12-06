@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dy28hi0gdefwy"]
 
 [ext_resource type="Shader" uid="uid://d0nw8jigbutow" path="res://Shaders/MainShader.tres" id="1_rpm0f"]
-[ext_resource type="Texture2D" uid="uid://bymi2v4cleatg" path="res://models/textures/earth-texture.png" id="2_7k8gr"]
+[ext_resource type="Texture2D" uid="uid://bymi2v4cleatg" path="res://Models/textures/earth-texture.png" id="2_7k8gr"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_upbem"]
 frequency = 0.0125

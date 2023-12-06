@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bymi2v4cleatg"
-path.s3tc="res://.godot/imported/earth-texture.png-d3024123816526bd99526a08ca4e4601.s3tc.ctex"
+path.s3tc="res://.godot/imported/earth-texture.png-a729355eaa72341e09bd50dce5f7dc88.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://models/textures/earth-texture.png"
-dest_files=["res://.godot/imported/earth-texture.png-d3024123816526bd99526a08ca4e4601.s3tc.ctex"]
+source_file="res://Models/textures/earth-texture.png"
+dest_files=["res://.godot/imported/earth-texture.png-a729355eaa72341e09bd50dce5f7dc88.s3tc.ctex"]
 
 [params]
 
