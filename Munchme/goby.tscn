@@ -252,5 +252,5 @@ model_path = NodePath("../Model")
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]
 [connection signal="body_exited" from="CatchArea" to="." method="_on_catch_area_body_exited"]
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
-[connection signal="player_choose_hand" from="GobyMinigameUi" to="." method="_on_goby_minigame_ui_player_choose_hand"]
 [connection signal="player_choose_hand" from="GobyMinigameUi" to="." method="_on_player_choose_hand"]
+[connection signal="player_choose_hand" from="GobyMinigameUi" to="." method="_on_goby_minigame_ui_player_choose_hand"]

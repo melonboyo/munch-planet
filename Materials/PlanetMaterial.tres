@@ -1,19 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://dy28hi0gdefwy"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dy28hi0gdefwy"]
 
-[ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="1_mbx0l"]
-
-[sub_resource type="Gradient" id="Gradient_xc70b"]
-offsets = PackedFloat32Array(0, 0.33871, 0.835484, 0.987097)
-colors = PackedColorArray(0.0850857, 0.335655, 0.171772, 1, 0.33764, 0.567186, 0.0905708, 1, 0.335952, 0.512524, 0.0545193, 1, 0.608369, 0.324072, 0.0268924, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_r0ahm"]
-frequency = 0.0405
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5tcpo"]
-width = 1024
-height = 1024
-color_ramp = SubResource("Gradient_xc70b")
-noise = SubResource("FastNoiseLite_r0ahm")
+[ext_resource type="Shader" uid="uid://d0nw8jigbutow" path="res://Shaders/MainShader.tres" id="1_rpm0f"]
+[ext_resource type="Texture2D" uid="uid://bymi2v4cleatg" path="res://models/textures/earth-texture.png" id="2_7k8gr"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_upbem"]
 frequency = 0.0125
@@ -28,14 +16,17 @@ noise = SubResource("FastNoiseLite_upbem")
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_mbx0l")
-shader_parameter/VertexVariationDisplacement = 0.045
+shader = ExtResource("1_rpm0f")
+shader_parameter/VertexVariationDisplacement = 0.05
 shader_parameter/VertexVariationFrequency = 0.25
 shader_parameter/NumberOfVertexVariations = 11
-shader_parameter/Albedo = Color(1, 1, 1, 1)
+shader_parameter/VertexColorBlend = 0.2
+shader_parameter/Albedo = Color(0.152941, 0.0509804, 0.188235, 1)
+shader_parameter/AlbedoInfluence = 0.179
 shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.226
-shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
-shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
+shader_parameter/LightBlendColor = Color(0.317647, 0.235294, 0.117647, 1)
+shader_parameter/LightBlendColor2 = Color(0.407843, 0.133333, 0.0784314, 1)
+shader_parameter/Color2Influence = 0.46
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_wj3yy")
-shader_parameter/FaceTexture = SubResource("NoiseTexture2D_5tcpo")
+shader_parameter/FaceTexture = ExtResource("2_7k8gr")

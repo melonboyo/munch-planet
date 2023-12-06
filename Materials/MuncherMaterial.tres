@@ -21,6 +21,7 @@ shader_parameter/VertexVariationDisplacement = 0.015
 shader_parameter/VertexVariationFrequency = 0.72
 shader_parameter/NumberOfVertexVariations = 5
 shader_parameter/Albedo = Color(0.94902, 0.890196, 0.215686, 1)
+shader_parameter/AlbedoInfluence = 1.0
 shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.152
 shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)

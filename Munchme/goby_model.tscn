@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://br5p3q67quhms" path="res://models/munchmes/goby.glb" id="1_2ndti"]
 [ext_resource type="Script" path="res://Munchme/munchme_model.gd" id="2_ejjfw"]
-[ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="3_3i43o"]
+[ext_resource type="Shader" uid="uid://d0nw8jigbutow" path="res://Shaders/MainShader.tres" id="3_eluoc"]
 [ext_resource type="Texture2D" uid="uid://bpqwm7oe4ad1a" path="res://Sprites/Faces/face-1.png" id="4_11gkq"]
 
 [sub_resource type="Gradient" id="Gradient_j6y4m"]
@@ -14,58 +14,63 @@ frequency = 0.019
 color_ramp = SubResource("Gradient_j6y4m")
 noise = SubResource("FastNoiseLite_5y2og")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e0rxq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7in2j"]
 render_priority = 0
-shader = ExtResource("3_3i43o")
+shader = ExtResource("3_eluoc")
 shader_parameter/VertexVariationDisplacement = 0.04
 shader_parameter/VertexVariationFrequency = 0.785
 shader_parameter/NumberOfVertexVariations = 5
-shader_parameter/RandomPrimeSeed = 5393
+shader_parameter/VertexColorBlend = 0.2
 shader_parameter/Albedo = Color(1, 1, 1, 1)
+shader_parameter/AlbedoInfluence = 1.0
 shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
-shader_parameter/LightBlendColor2 = Color(0.521569, 0.447059, 0.478431, 1)
+shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
+shader_parameter/Color2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ueqdm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_obqel"]
 render_priority = 0
-shader = ExtResource("3_3i43o")
+shader = ExtResource("3_eluoc")
 shader_parameter/VertexVariationDisplacement = 0.04
 shader_parameter/VertexVariationFrequency = 0.785
 shader_parameter/NumberOfVertexVariations = 5
-shader_parameter/RandomPrimeSeed = 5393
-shader_parameter/Albedo = Color(0.517647, 0.639216, 0.678431, 1)
+shader_parameter/VertexColorBlend = 0.2
+shader_parameter/Albedo = Color(0.329412, 0.431373, 0.466667, 1)
+shader_parameter/AlbedoInfluence = 1.0
 shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(1, 0.737255, 0.619608, 1)
-shader_parameter/LightBlendColor2 = Color(0.521569, 0.447059, 0.478431, 1)
+shader_parameter/LightBlendColor2 = Color(0.27451, 0.117647, 0.0588235, 1)
+shader_parameter/Color2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 
 [node name="GobyModel" instance=ExtResource("1_2ndti")]
 script = ExtResource("2_ejjfw")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0, 1.01583, 0)
-bones/0/rotation = Quaternion(-0.000860647, 0, 7.63314e-09, 1)
-bones/1/position = Vector3(-0.570111, -0.085701, -0.032333)
-bones/1/rotation = Quaternion(0.471971, -0.365163, 0.12514, 0.792616)
-bones/2/rotation = Quaternion(-0.0663795, 0.00477386, 0.00148155, 0.997782)
-bones/3/position = Vector3(0.570111, -0.085701, -0.032333)
-bones/3/rotation = Quaternion(0.471971, 0.365163, -0.12514, 0.792616)
-bones/4/rotation = Quaternion(-0.0663795, -0.00477386, -0.00148155, 0.997782)
+bones/0/rotation = Quaternion(0.425277, 0, 0, 0.905063)
+bones/1/position = Vector3(-0.475977, -0.0722512, 0.225062)
+bones/1/rotation = Quaternion(0.8107, 0.0371745, 0.0348574, 0.58324)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(0.185843, -0.0160989, 0.0176773, 0.982289)
+bones/3/position = Vector3(0.475977, -0.0722512, 0.225062)
+bones/3/rotation = Quaternion(0.8107, -0.0371745, -0.0348574, 0.58324)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.185843, 0.0160989, -0.0176773, 0.982289)
 
 [node name="Munchme1" parent="Armature/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_e0rxq")
-surface_material_override/1 = SubResource("ShaderMaterial_ueqdm")
+surface_material_override/0 = SubResource("ShaderMaterial_7in2j")
+surface_material_override/1 = SubResource("ShaderMaterial_obqel")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -1.52663e-08, -1.31389e-11, 1.52663e-08, 0.999999, 0.00172129, -1.31389e-11, -0.00172129, 0.999999, 0, 1.01583, 0)
+transform = Transform3D(1, 0, 0, 0, 0.638279, -0.769805, 0, 0.769805, 0.638279, 0, 0.353744, 0)
 bone_name = "Body"
 bone_idx = 0
 
 [node name="Face" type="Sprite3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
-transform = Transform3D(1, -2.09468e-16, -6.76542e-17, -4.76769e-16, 0.915621, 0.402044, 2.60209e-18, -0.402044, 0.915621, 0, 1.06076, 0.768361)
+transform = Transform3D(1, -2.09468e-16, -6.76542e-17, -4.75609e-16, 0.887784, 0.460262, 3.3347e-17, -0.460262, 0.887784, 9.66557e-19, 1.05418, 0.755678)
 texture = ExtResource("4_11gkq")
 
 [node name="AnimationPlayer" parent="." index="1"]
