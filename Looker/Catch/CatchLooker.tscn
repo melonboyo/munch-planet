@@ -1,36 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp2u2ehfhjmgb"]
+[gd_scene load_steps=3 format=3 uid="uid://dh5q8oah5tg07"]
 
 [ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="1_31cjo"]
 [ext_resource type="PackedScene" uid="uid://ct2kqjitntgre" path="res://Looker/Catch/CatchScene.tscn" id="2_y2bt6"]
 
-[node name="CatchLooker" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Looker" parent="." instance=ExtResource("1_31cjo")]
-layout_mode = 1
-anchors_preset = -1
+[node name="CatchLooker" instance=ExtResource("1_31cjo")]
 offset_right = 910.0
 offset_bottom = 637.0
-grow_horizontal = 2
-grow_vertical = 2
 pivot_offset = Vector2(455, 318.5)
 title = "CATCH HIM!!"
 window_width = 910
 window_height = 637
 can_close = false
 
-[node name="SubViewport" type="SubViewport" parent="Looker"]
+[node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer" index="0"]
 own_world_3d = true
 handle_input_locally = false
 audio_listener_enable_3d = true
+size = Vector2i(898, 599)
+render_target_update_mode = 4
 
-[node name="CatchScene" parent="Looker/SubViewport" instance=ExtResource("2_y2bt6")]
+[node name="CatchScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_y2bt6")]
 unique_name_in_owner = true
+looker_path = NodePath("../../../..")
 
-[connection signal="finish_catch" from="Looker/SubViewport/CatchScene" to="Looker" method="_on_finish_catch"]
+[node name="Title" parent="TopMarginContainer/TopHBoxContainer" index="0"]
+text = "CATCH HIM!!"
+
+[node name="CloseButton" parent="TopMarginContainer/TopHBoxContainer/CloseButtonCenterContainer" index="0"]
+visible = false

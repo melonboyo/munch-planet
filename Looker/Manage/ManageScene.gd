@@ -7,7 +7,7 @@ var glow_fade = 0.0
 var deploy_area_entered = false
 
 
-func _looker_ready():
+func _ready():
 	GameState.munchme_added.connect(_on_munchme_added)
 	for m in GameState.munchmes:
 		send_in_munchme(m, get_random_position())

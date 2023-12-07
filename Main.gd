@@ -104,7 +104,7 @@ func _on_munchme_finish_catch(win: bool):
 func open_manage():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	var manage_ui: Control = manage_looker_scene.instantiate()
-	current_manage_ui = manage_ui.get_node("Looker")
+	current_manage_ui = manage_ui
 	$UI.add_child(manage_ui)
 
 

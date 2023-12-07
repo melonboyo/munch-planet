@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://qxapw0cn0ohj"]
+
+[ext_resource type="PackedScene" uid="uid://du7l6i1a18vbt" path="res://TestTool.tscn" id="1_vxkri"]
+
+[node name="TestTestGuy" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TestTool" parent="." instance=ExtResource("1_vxkri")]
+layout_mode = 1
+
+[node name="Guy" type="Control" parent="TestTool"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[editable path="TestTool"]
