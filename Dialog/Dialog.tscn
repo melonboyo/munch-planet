@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cern5bj24te0f"]
+
+[ext_resource type="Script" path="res://Dialog/Dialog.gd" id="1_j11et"]
+
+[node name="Dialog" type="Node3D"]
+script = ExtResource("1_j11et")
+
+[node name="Label" type="RichTextLabel" parent="."]
+offset_right = 284.0
+offset_bottom = 149.0
+bbcode_enabled = true

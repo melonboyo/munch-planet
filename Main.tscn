@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=18 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/Camera.tscn" id="3_8oj03"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
+[ext_resource type="PackedScene" uid="uid://cern5bj24te0f" path="res://Dialog/Dialog.tscn" id="4_oyebm"]
 [ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="6_mqxa6"]
 [ext_resource type="PackedScene" uid="uid://bkw6vrtec1tqd" path="res://Models/foliage/tree.glb" id="7_onigk"]
 [ext_resource type="Script" path="res://Models/AlignToNormal.gd" id="7_trsuv"]
@@ -61,6 +62,10 @@ camera_path = NodePath("../../CameraPivot")
 transform = Transform3D(-0.948107, 0, -0.31795, 0, 1, 0, 0.31795, 0, -0.948107, -12.0219, 89.1345, 9.0817)
 collision_layer = 262145
 collision_mask = 3
+
+[node name="Dialog" parent="Munchmes/Goby" instance=ExtResource("4_oyebm")]
+dialog_key = "BB"
+number_of_lines = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_df6u4")

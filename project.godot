@@ -157,6 +157,10 @@ switch={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://text.en.translation", "res://text.nb.translation")
+
 [layer_names]
 
 3d_physics/layer_1="Objects"
