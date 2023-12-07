@@ -27,9 +27,9 @@ window_width = 515
 window_height = 392
 
 [node name="SubViewport" type="SubViewport" parent="Looker"]
-own_world_3d = true
 handle_input_locally = false
 audio_listener_enable_3d = true
 
 [node name="DeployScene" parent="Looker/SubViewport" instance=ExtResource("2_3ccn4")]
+unique_name_in_owner = true
 look_input_deadzone = 0.1

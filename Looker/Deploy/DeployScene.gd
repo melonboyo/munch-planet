@@ -3,7 +3,8 @@ extends Camera
 
 func _looker_ready():
 	pass
-
-
-func set_focus(node: Node3D):
-	$Camera.focus = node
+	#var camera_scene := load("res://Muncher/Camera.tscn")
+	#var camera = camera_scene.instantiate()
+	#camera.for_munchme = true
+	#camera.focus = GameState.deployed_munchme
+	#add_child(camera)

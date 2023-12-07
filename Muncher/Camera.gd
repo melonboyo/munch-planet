@@ -2,6 +2,7 @@
 extends Node3D
 class_name Camera
 
+@export var for_munchme := false
 @export_node_path("Node3D") var focus_path
 @export_range(1.0, 360.0) var rotation_speed: float = 90.0
 @export_range(-89.0, 89.0) var min_vertical_angle: float = -45.0
@@ -14,6 +15,8 @@ class_name Camera
 @export_range(1.0, 50.0) var distance_to_focus: float = 6.0:
 	set(value):
 		distance_to_focus = value
+		if $SpringArm3D == null:
+			return
 		$SpringArm3D.spring_length = value
 
 var focus_point: Vector3
@@ -31,16 +34,25 @@ var gravity_alignment: Quaternion = Quaternion.IDENTITY
 var input: Vector2 = Vector2.ZERO
 var up_axis: Vector3 = Vector3.UP
 
-@onready var player: Node3D = get_node_or_null(focus_path)
+var player: Node3D
 @onready var camera: Camera3D = %Camera3D
 @onready var listener = $AudioListener3D
 
-@onready var focus = player
+var focus: Node3D
 
 
 func _ready():
 	if Engine.is_editor_hint():
 		return
+	
+	if focus_path != null:
+		player = get_node_or_null(focus_path)
+	
+	if not for_munchme:
+		focus = player
+	else:
+		focus = GameState.deployed_munchme
+		print(focus, GameState.deployed_munchme)
 	
 	InputMap.action_set_deadzone("look_right", look_input_deadzone)
 	InputMap.action_set_deadzone("look_left", look_input_deadzone)
@@ -52,6 +64,9 @@ func _ready():
 	max_vertical_angle = -max_vertical_angle
 	if max_vertical_angle > min_vertical_angle:
 		max_vertical_angle = min_vertical_angle
+	
+	if focus == null:
+		return
 	
 	# Set initial rotation
 	up_axis = focus.global_position.normalized()
@@ -96,7 +111,6 @@ func _process(delta):
 func _physics_process(delta):
 	if Engine.is_editor_hint():
 		return
-	
 	focus_point = focus.global_position + up_axis * 1.8
 	up_axis = focus_point.normalized()
 	

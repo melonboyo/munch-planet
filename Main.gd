@@ -7,7 +7,7 @@ extends Node3D
 var catch_looker_scene := preload("res://Looker/Catch/CatchLooker.tscn")
 var manage_looker_scene := preload("res://Looker/Manage/ManageLooker.tscn")
 var deploy_looker_scene := preload("res://Looker/Deploy/DeployLooker.tscn")
-var choose_deploy_looker_scene := preload("res://Looker/Deploy/ChooseDeployLooker.tscn")
+#var choose_deploy_looker_scene := preload("res://Looker/Deploy/ChooseDeployLooker.tscn")
 
 var mouse_captured = true
 var munchme_getting_caught: Munchme
@@ -154,6 +154,14 @@ func _on_munchme_deployed(resource):
 	close_manage()
 
 
+#func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
+	#var munchme: Munchme = Scenes.munchmes[munchme_resource.munchme_type].instantiate()
+	#munchme.resource = munchme_resource
+	#munchme.situation = Constants.Situation.Interact
+	#munchme.position = pos
+	#GameState.deployed_munchme = munchme
+	#$Player.add_child(munchme)
+
 func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
 	var munchme: Munchme = Scenes.munchmes[munchme_resource.munchme_type].instantiate()
 	munchme.resource = munchme_resource
@@ -161,3 +169,8 @@ func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
 	munchme.position = pos
 	GameState.deployed_munchme = munchme
 	$Player.add_child(munchme)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	var deploy_ui: Control = deploy_looker_scene.instantiate()
+	#current_deploy_ui = deploy_ui.get_node("Looker")
+	#deploy_ui.get_node("%DeployScene").set_focus(munchme)
+	$UI.add_child(deploy_ui)

@@ -1,11 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpjuviai2qv7m"]
+[gd_scene load_steps=2 format=3 uid="uid://dpjuviai2qv7m"]
 
 [ext_resource type="Script" path="res://Looker/Deploy/DeployScene.gd" id="1_w841p"]
-[ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/Camera.tscn" id="2_rlt4p"]
 
 [node name="DeployScene" type="Node3D"]
 script = ExtResource("1_w841p")
-
-[node name="Camera" parent="." instance=ExtResource("2_rlt4p")]
-focus_path = NodePath("")
-distance_to_focus = 4.0
