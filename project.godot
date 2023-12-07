@@ -40,6 +40,10 @@ enabled=PackedStringArray("res://addons/shell_fur/plugin.cfg")
 
 import/blender/enabled=false
 
+[global]
+
+leftstick_deadzone=0.15
+
 [importer_defaults]
 
 animation_library={

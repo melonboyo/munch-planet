@@ -1,12 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=17 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
-[ext_resource type="Shader" uid="uid://bg5ar60o2lhuv" path="res://Shaders/Toon3D.tres" id="3_0moh7"]
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/Camera.tscn" id="3_8oj03"]
-[ext_resource type="Script" path="res://addons/shell_fur/shell_fur_manager.gd" id="3_quac8"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
-[ext_resource type="Texture2D" uid="uid://o1fagcyldrts" path="res://addons/shell_fur/noise_patterns/rough.png" id="5_trk6g"]
 [ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="6_mqxa6"]
 [ext_resource type="PackedScene" uid="uid://bkw6vrtec1tqd" path="res://Models/foliage/tree.glb" id="7_onigk"]
 [ext_resource type="Script" path="res://Models/AlignToNormal.gd" id="7_trsuv"]
@@ -36,42 +33,6 @@ dof_blur_near_enabled = true
 dof_blur_near_distance = 1.5
 dof_blur_amount = 0.05
 
-[sub_resource type="SphereMesh" id="SphereMesh_7lkah"]
-lightmap_size_hint = Vector2i(316, 159)
-add_uv2 = true
-radius = 10.0
-height = 20.0
-radial_segments = 32
-rings = 16
-
-[sub_resource type="Gradient" id="Gradient_xc70b"]
-colors = PackedColorArray(0.466967, 0.262914, 0.118214, 1, 0.55678, 0.71312, 0.133622, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_r0ahm"]
-frequency = 0.023
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dk4ks"]
-color_ramp = SubResource("Gradient_xc70b")
-noise = SubResource("FastNoiseLite_r0ahm")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f153o"]
-render_priority = 0
-shader = ExtResource("3_0moh7")
-shader_parameter/Albedo = Color(0.25098, 0.254902, 0.145098, 1)
-shader_parameter/AlbedoTextureBlend = 0.818
-shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
-shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
-shader_parameter/AlbedoTexture = SubResource("NoiseTexture2D_dk4ks")
-
-[sub_resource type="Gradient" id="Gradient_lodx3"]
-colors = PackedColorArray(0.0337528, 0.650494, 0.485517, 1, 0.613153, 0.795713, 0.212582, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_v5gww"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k0lwl"]
-color_ramp = SubResource("Gradient_lodx3")
-noise = SubResource("FastNoiseLite_v5gww")
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_13cqd"]
 radius = 86.0577
 
@@ -92,6 +53,7 @@ script = ExtResource("1_12yvb")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1308, 89.4636, 0)
 floor_snap_length = 1.0
+camera_path = NodePath("../../CameraPivot")
 
 [node name="Munchmes" type="Node" parent="."]
 
@@ -112,50 +74,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-
-[node name="SphereMesh2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0.0441132, 212.314, 37.7587)
-visible = false
-mesh = SubResource("SphereMesh_7lkah")
-surface_material_override/0 = SubResource("ShaderMaterial_f153o")
-
-[node name="ShellFur" type="Node3D" parent="SphereMesh2"]
-script = ExtResource("3_quac8")
-shader_type = 0
-custom_shader = null
-layers = 4
-pattern_selector = 2
-pattern_texture = ExtResource("5_trk6g")
-pattern_uv_scale = 3.936
-cast_shadow = false
-mat_transmission = null
-mat_ao = null
-mat_ao_light_affect = null
-mat_roughness = 0.834
-mat_albedo_color = null
-mat_albedo_uv_scale = null
-mat_shape_length = 1.645
-mat_shape_length_rand = 0.0
-mat_shape_density = null
-mat_shape_thickness_base = null
-mat_shape_thickness_tip = 0.24
-mat_shape_thickness_rand = 0.0
-mat_shape_growth = 0.0
-mat_shape_growth_rand = 0.0
-mat_shape_ldtg_uv_scale = null
-mat_albedo_texture = SubResource("NoiseTexture2D_k0lwl")
-mat_shape_ldtg_texture = SubResource("NoiseTexture2D_k0lwl")
-physics_custom_physics_pivot = NodePath("..")
-physics_gravity = 0.0
-physics_spring = 0.0
-physics_damping = 0.33
-physics_wind_strength = 1.62
-physics_wind_speed = 0.0
-physics_wind_scale = 0.55
-physics_wind_angle = 3.86
-styling_blendshape = 0
-lod_LOD0_distance = 10.0
-lod_LOD1_distance = 100.0
 
 [node name="Planet" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0.0441132, 0.180145, -0.0724068)

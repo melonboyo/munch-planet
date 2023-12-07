@@ -40,10 +40,12 @@ shader_parameter/effect = 0.0
 [node name="Camera" type="Node3D"]
 script = ExtResource("1_sofu5")
 focus_path = NodePath("../Muncher")
+min_vertical_angle = -20.0
 max_vertical_angle = 86.0
 up_alignment_speed = 10.0
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
+collision_mask = 11
 shape = SubResource("SphereShape3D_hjwtv")
 spring_length = 6.0
 

@@ -3,6 +3,7 @@ extends Node3D
 class_name Camera
 
 @export var for_munchme := false
+@export var enable := true
 @export_node_path("Node3D") var focus_path
 @export_range(1.0, 360.0) var rotation_speed: float = 90.0
 @export_range(-89.0, 89.0) var min_vertical_angle: float = -45.0
@@ -23,7 +24,7 @@ var focus_point: Vector3
 var orbit_angles: Vector2 = Vector2(0.0, 0.0):
 	set(value):
 		orbit_angles = value
-		orbit_angles.x = clamp(orbit_angles.x, max_vertical_angle, min_vertical_angle)
+		orbit_angles.x = clamp(orbit_angles.x, -max_vertical_angle, -min_vertical_angle)
 		if orbit_angles.y < 0:
 			orbit_angles.y += 360
 		elif orbit_angles.y >= 360:
@@ -44,7 +45,8 @@ var focus: Node3D
 func _ready():
 	if Engine.is_editor_hint():
 		return
-	
+	#if for_munchme and GameState.deployed_munchme_camera == null:
+		#GameState.deployed_munchme_camera = self
 	if focus_path != null:
 		player = get_node_or_null(focus_path)
 	
@@ -52,18 +54,11 @@ func _ready():
 		focus = player
 	else:
 		focus = GameState.deployed_munchme
-		print(focus, GameState.deployed_munchme)
 	
 	InputMap.action_set_deadzone("look_right", look_input_deadzone)
 	InputMap.action_set_deadzone("look_left", look_input_deadzone)
 	InputMap.action_set_deadzone("look_up", look_input_deadzone)
 	InputMap.action_set_deadzone("look_down", look_input_deadzone)
-	
-	# Assert that the max angle isn't smaller than the min angle
-	min_vertical_angle = -min_vertical_angle
-	max_vertical_angle = -max_vertical_angle
-	if max_vertical_angle > min_vertical_angle:
-		max_vertical_angle = min_vertical_angle
 	
 	if focus == null:
 		return
@@ -74,7 +69,7 @@ func _ready():
 	orbit_rotation = Quaternion.from_euler(Vector3(deg_to_rad(orbit_angles.x), deg_to_rad(orbit_angles.y), 0.0))
 	focus_point = focus.global_position + up_axis * 1.8
 	
-	gravity_alignment = from_to_rotation(Vector3.UP, up_axis) * gravity_alignment
+	gravity_alignment = Math.from_to_rotation(Vector3.UP, up_axis) * gravity_alignment
 	var look_rotation: Quaternion = gravity_alignment * orbit_rotation
 	global_transform.basis = Basis(look_rotation)
 	global_position = focus_point
@@ -84,7 +79,7 @@ func _ready():
 
 
 func _input(event):
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or not enable:
 		return
 	
 	if event is InputEventMouseMotion:
@@ -102,14 +97,20 @@ func _process(delta):
 	if Engine.is_editor_hint():
 		return
 	
-	if GameState.focus_player:
-		focus = player
+	if GameState.control_player:
+		if for_munchme:
+			enable = false
+		else:
+			enable = true
 	else:
-		focus = GameState.deployed_munchme
+		if for_munchme:
+			enable = true
+		else:
+			enable = false
 
 
 func _physics_process(delta):
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or focus == null:
 		return
 	focus_point = focus.global_position + up_axis * 1.8
 	up_axis = focus_point.normalized()
@@ -134,7 +135,7 @@ func _physics_process(delta):
 
 
 func look_rotation(delta) -> bool:
-	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
+	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED or not enable:
 		input = Vector2.ZERO
 		return false
 	
@@ -172,15 +173,6 @@ func update_gravity_alignment(delta : float):
 	
 	var new_alignment = new_rotation * gravity_alignment
 	gravity_alignment = gravity_alignment.slerp(new_alignment, up_alignment_speed * delta)
-
-
-func from_to_rotation(from, to) -> Quaternion:
-	var angle_to = from.angle_to(to)
-	var axis = from.cross(to)
-	if axis.is_equal_approx(Vector3.ZERO):
-		return Quaternion.IDENTITY;
-	else:
-		return Quaternion(axis.normalized(), angle_to)
 
 
 func _on_area_3d_area_entered(area):

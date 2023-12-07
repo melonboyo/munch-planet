@@ -14,11 +14,12 @@ var situation: Constants.Situation = Constants.Situation.Overworld:
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 var munchmes: Array[MunchmeResource] = []
+var control_player = true
 var deployed_munchme: Munchme:
 	set(value):
 		deployed_munchme = value
-		focus_player = false
-var focus_player = true
+		control_player = false
+var deployed_munchme_camera: Node3D
 
 
 func change_sitation_to(new_situation: Constants.Situation):
@@ -35,4 +36,4 @@ func _process(delta):
 		return
 	
 	if Input.is_action_just_pressed("switch"):
-		focus_player = not focus_player
+		control_player = not control_player

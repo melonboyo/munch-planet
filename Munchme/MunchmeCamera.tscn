@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnwyvilhehkw5"]
+
+[ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/Camera.tscn" id="1_ljy5y"]
+
+[node name="Camera" instance=ExtResource("1_ljy5y")]
+for_munchme = true
+distance_to_focus = 2.5
+
+[node name="SpringArm3D" parent="." index="0"]
+spring_length = 2.5

@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" path="res://Muncher/OverworldMovement.gd" id="1_6vywc"]
 
-[node name="OverworldMovement" type="Node3D"]
+[node name="OverworldMovement" type="Node"]
 script = ExtResource("1_6vywc")
 max_floor_angle = 35.0
