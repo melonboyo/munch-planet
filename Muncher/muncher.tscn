@@ -35,3 +35,4 @@ target_path = NodePath("..")
 float_force = 35.0
 
 [node name="Emoter" parent="." instance=ExtResource("3_8mst7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51472, 0)
