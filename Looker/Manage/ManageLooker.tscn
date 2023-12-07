@@ -1,19 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlgxw4g1r448"]
+[gd_scene load_steps=3 format=3 uid="uid://dj4crthdbvad4"]
 
 [ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="1_17vrw"]
 [ext_resource type="PackedScene" uid="uid://dg1b5732ogt5i" path="res://Looker/Manage/ManageScene.tscn" id="2_0thvi"]
 
-[node name="ManageLooker" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Looker" parent="." instance=ExtResource("1_17vrw")]
-layout_mode = 0
+[node name="ManageLooker" instance=ExtResource("1_17vrw")]
 offset_right = 800.0
 offset_bottom = 560.0
 pivot_offset = Vector2(400, 280)
@@ -21,11 +11,19 @@ title = "YOUR GUYS"
 window_width = 800
 window_height = 560
 
-[node name="SubViewport" type="SubViewport" parent="Looker"]
+[node name="PlaceholderBackground" parent="ContentMarginContainer" index="0"]
+visible = false
+
+[node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer" index="0"]
 own_world_3d = true
+handle_input_locally = false
 screen_space_aa = 1
 audio_listener_enable_3d = true
 physics_object_picking = true
-size = Vector2i(700, 512)
+size = Vector2i(788, 522)
+render_target_update_mode = 4
 
-[node name="ManageScene" parent="Looker/SubViewport" instance=ExtResource("2_0thvi")]
+[node name="ManageScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_0thvi")]
+
+[node name="Title" parent="TopMarginContainer/TopHBoxContainer" index="0"]
+text = "YOUR GUYS"

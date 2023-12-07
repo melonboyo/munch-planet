@@ -6,6 +6,10 @@ var ui_scenes := {
 }
 
 @export var munchme_resource: MunchmeResource = null
+
+@export_node_path("Looker") var looker_path
+@onready var looker: Looker = get_node(looker_path)
+
 var munchme_added = false
 var munchme: Munchme
 
@@ -13,12 +17,10 @@ signal start_minigame
 signal finish_catch(win: bool)
 
 
-func _looker_ready():
+func _ready():
 	var main_node = find_parent("Main")
 	finish_catch.connect(main_node._on_munchme_finish_catch)
 	
-	if munchme_added:
-		return
 	$Animation.play("enter")
 
 
@@ -39,3 +41,4 @@ func _on_animation_animation_finished(anim_name):
 
 func _on_munchme_finish_catch(win: bool):
 	finish_catch.emit(win)
+	looker.close()

@@ -1,34 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpq3hik347iwm"]
+[gd_scene load_steps=3 format=3 uid="uid://dkve7bmlyjl8e"]
 
 [ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="1_g63g7"]
 [ext_resource type="PackedScene" uid="uid://dpjuviai2qv7m" path="res://Looker/Deploy/DeployScene.tscn" id="2_3ccn4"]
 
-[node name="DeployLooker" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Looker" parent="." instance=ExtResource("1_g63g7")]
-layout_mode = 1
-anchors_preset = -1
-offset_left = -1.0
-offset_top = 1.0
-offset_right = 514.0
-offset_bottom = 393.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="DeployLooker" instance=ExtResource("1_g63g7")]
+offset_right = 515.0
+offset_bottom = 392.0
 pivot_offset = Vector2(257.5, 196)
 title = "GO KILL"
 window_width = 515
 window_height = 392
 
-[node name="SubViewport" type="SubViewport" parent="Looker"]
+[node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer" index="0"]
 handle_input_locally = false
 audio_listener_enable_3d = true
+size = Vector2i(503, 354)
+render_target_update_mode = 4
 
-[node name="DeployScene" parent="Looker/SubViewport" instance=ExtResource("2_3ccn4")]
+[node name="DeployScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_3ccn4")]
 unique_name_in_owner = true
+
+[node name="Title" parent="TopMarginContainer/TopHBoxContainer" index="0"]
+text = "GO KILL"

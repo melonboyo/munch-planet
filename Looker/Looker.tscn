@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://tjvibtamtkfc"]
+[gd_scene load_steps=15 format=3 uid="uid://tjvibtamtkfc"]
 
 [ext_resource type="Script" path="res://Looker/Looker.gd" id="1_ma5x6"]
 [ext_resource type="Texture2D" uid="uid://dw68i5xjuryr5" path="res://Sprites/looker_border.png" id="1_mym4m"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cbrgd510xsrdv" path="res://Sprites/looker_close_button.png" id="3_n7ool"]
 [ext_resource type="Texture2D" uid="uid://ih5s11xjdud0" path="res://Sprites/looker_placeholder_bg.png" id="4_7cfud"]
 [ext_resource type="Texture2D" uid="uid://chh44dm0uj520" path="res://Sprites/looker_placeholder.png" id="5_n8s8f"]
-[ext_resource type="Script" path="res://Looker/LookerSubViewportContainer.gd" id="6_gcktu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dj46p"]
 shader = ExtResource("3_1vd0e")
@@ -202,7 +201,6 @@ texture = ExtResource("5_n8s8f")
 unique_name_in_owner = true
 layout_mode = 2
 stretch = true
-script = ExtResource("6_gcktu")
 
 [node name="ScreenTransition" type="ColorRect" parent="ContentMarginContainer"]
 unique_name_in_owner = true

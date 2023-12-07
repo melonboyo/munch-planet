@@ -1,5 +1,6 @@
 @tool
 extends NinePatchRect
+class_name Looker
 
 var is_dragging_window = false
 var internal_viewport = null
@@ -40,15 +41,25 @@ var prev_mouse_mode = null
 
 
 func _ready():
-	_setup_viewport_from_child()
-	if not Engine.is_editor_hint():
-		scale = Vector2.ZERO
-		$Animation.play("open_1")
-		var looker_viewport = get_looker_viewport()
-		if looker_viewport != null:
-			looker_viewport.queue_free()
-		if spawn_centered:
-			center_to_screen()
+	if Engine.is_editor_hint():
+		return
+	
+	scale = Vector2.ZERO
+	$Animation.play("open_1")
+	if spawn_centered:
+		center_to_screen()
+	
+	_setup_sub_viewport()
+
+
+func _setup_sub_viewport():
+	%SubViewportContainer.set_process_unhandled_key_input(true)
+	%SubViewportContainer.set_process_input(true)
+	%SubViewportContainer.set_process_unhandled_input(true)
+	
+	for child in %SubViewportContainer.get_children():
+		if child is SubViewport:
+			child.handle_input_locally = true
 
 
 func center_to_screen():
@@ -58,35 +69,13 @@ func center_to_screen():
 	)
 
 
-func _setup_viewport_from_child():
-	var looker_viewport = get_looker_viewport()
-	
-	if looker_viewport == null and internal_viewport != null:
-		internal_viewport.queue_free()
-		%PlaceholderBackground.visible = true
-	elif looker_viewport != null and internal_viewport == null:
-		internal_viewport = looker_viewport.duplicate()
-		%SubViewportContainer.add_child(internal_viewport)
-		if internal_viewport.get_children().size() > 0:
-			internal_viewport.get_children()[0]._looker_ready()
-		internal_viewport.handle_input_locally = true
-		%PlaceholderBackground.visible = false
-
-
-func get_looker_viewport():
-	for child in get_children():
-		if child is SubViewport:
-			return child
-	
-	return null
-
-
 func _on_close_button_pressed():
 	close()
 
 
 func close():
-	can_close = false
+	%CloseButton.disabled = true
+	#can_close = false
 	GameState.situation = Constants.Situation.Overworld
 	$Animation.play("close_1")
 
@@ -111,17 +100,6 @@ func _on_top_margin_container_gui_input(event):
 		)
 
 
-func _get_configuration_warnings():
-	_setup_viewport_from_child()
-	
-	if internal_viewport == null:
-		return ["This node needs a SubViewport as a child"]
-
-
-func _on_finish_catch(win: bool):
-	close()
-
-
 func _on_animation_finished(anim_name):
 	if anim_name == "close_1":
-		get_parent().queue_free()
+		queue_free()
