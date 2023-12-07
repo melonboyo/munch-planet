@@ -1,4 +1,4 @@
-extends Camera
+extends Node3D
 
 
 func _looker_ready():
