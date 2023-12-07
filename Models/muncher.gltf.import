@@ -34,7 +34,7 @@ _subresources={
 "Celebrate": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://models/animations/Celebrate.res",
+"save_to_file/path": "res://Models/animations/Celebrate.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -1833,7 +1833,7 @@ _subresources={
 "Idle": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://models/animations/Idle.res",
+"save_to_file/path": "res://Models/animations/Idle.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -3632,7 +3632,7 @@ _subresources={
 "Run": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://models/animations/Run.res",
+"save_to_file/path": "res://Models/animations/Run.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
