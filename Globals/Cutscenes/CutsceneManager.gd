@@ -36,8 +36,7 @@ func play_cutscene(gimme_a_cutscene: Cutscene):
 	cutscene = gimme_a_cutscene
 	current_scene = 0
 	
-	if cutscene.animation_player != null:
-		animation_player = get_node(cutscene.animation_player)
+	_set_animation_player()
 
 	_play_scene(cutscene.scenes[current_scene])
 	cutscene_playing.emit()
@@ -52,13 +51,12 @@ func play_next_scene():
 
 
 func skip_waiting():
-	if is_animation_playing:
-		animation_player.seek(animation_player.current_animation_length)
-		_end_animation()
-	
 	if is_dialogue_playing:
 		%Label.visible_characters = dialogue_text_length
 		_end_dialogue()
+	elif is_animation_playing:
+		animation_player.seek(animation_player.current_animation_length)
+		_end_animation()
 	
 	if is_scene_playing:
 		_handle_scene_finished()
@@ -81,22 +79,39 @@ func _process(delta: float):
 
 
 func _play_scene(scene: CutsceneScene):
-	if scene.animation_player != null:
-		animation_player = get_node(cutscene.animation_player)
-	
-	animation_looping = scene.animation_loop
-
-	if animation_player != null:
+	if animation_player != null and scene.animation_name.length() > 0:
 		_play_animation(animation_player, scene.animation_name)
-
+		
 	if scene.dialogue_translation_key.length() > 0:
 		_play_dialogue(scene.dialogue_translation_key)
-	
+
 	scene_playing.emit()
+
+
+func _get_animation_player() -> AnimationPlayer:
+	for child in cutscene.get_children():
+		if child is AnimationPlayer:
+			return child
+	
+	return null
+
+
+func _set_animation_player():
+	var resolved_player = _get_animation_player()
+	if resolved_player != null:
+		_remove_animation_player()
+		animation_player = resolved_player
+		animation_player.animation_finished.connect(_on_animation_player_animation_finished)
+
+
+func _remove_animation_player():
+	if animation_player != null:
+		animation_player.animation_finished.disconnect(_on_animation_player_animation_finished)
 
 
 func _play_animation(animation_player: AnimationPlayer, animation_name: String = ""):
 	is_animation_playing = true
+	animation_looping = animation_player.get_animation(animation_name).loop_mode != 0
 	animation_player.play(animation_name)
 
 
@@ -132,6 +147,14 @@ func _end_dialogue():
 func _end_cutscene():
 	cutscene_finished.emit()
 	%Label.text = ""
+	
+	_remove_animation_player()
+	if cutscene.end_animation_name.length() > 0:
+		_play_animation(animation_player, cutscene.end_animation_name)
+
+
+func _on_animation_player_animation_finished(animation_name: String):
+	_end_animation()
 
 
 func _update_dialogue(delta: float):

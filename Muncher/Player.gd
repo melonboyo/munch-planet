@@ -10,7 +10,6 @@ class_name Muncher
 @onready var emoter = $Emoter as Emoter
 
 var move_input = Vector3.ZERO
-@onready var cutscene = preload("res://Globals/Cutscenes/TestCutscene/TestCutscene.tres")
 
 
 func _ready():
@@ -24,7 +23,6 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("emote_1"):
 		emoter.play_emote(Constants.Emote.Exclamation)
-		CutsceneManager.play_cutscene(cutscene)
 	if Input.is_action_just_pressed("emote_2"):
 		emoter.play_emote(Constants.Emote.Happy)
 	if Input.is_action_just_pressed("emote_3"):

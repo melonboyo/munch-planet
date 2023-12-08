@@ -32,6 +32,7 @@ func _process(delta):
 		var resource = MunchmeResource.new()
 		resource.resource_local_to_scene = true
 		GameState.add_munchme(resource)
+		$Cutscene.play()
 	if GameState.situation != Constants.Situation.Overworld:
 		pass
 	
