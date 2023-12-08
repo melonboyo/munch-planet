@@ -3,7 +3,6 @@ class_name OverworldMovement
 
 
 @export var spherical_gravity := true
-@export var allow_control := false
 @export_node_path("CharacterBody3D") var target_path: NodePath
 @export_node_path("Node3D") var model_path: NodePath
 @export_node_path("Node3D") var float_node_path: NodePath
@@ -41,8 +40,6 @@ var height = 1.0
 @onready var model = get_node_or_null(model_path)
 @onready var float_node: FloatMovement = get_node_or_null(float_node_path)
 
-var is_active = true
-
 
 func _ready():
 	target.up_direction = get_up_direction()
@@ -52,12 +49,6 @@ func _ready():
 	else:
 		floor_normal = target.up_direction
 		speed = air_speed
-	
-	if get_parent() is Munchme:
-		if get_parent().situation == Constants.Situation.Interact:
-			is_active = true
-		else:
-			is_active = false
 
 
 func get_up_direction():
@@ -97,9 +88,6 @@ func _overworld_physics_process(delta):
 	
 	if gravity_velocity.length() > max_fall_speed:
 		gravity_velocity = gravity_velocity.normalized() * max_fall_speed
-	
-	if GameState.situation == Constants.Situation.Catch or not is_active:
-		move_input = Vector3.ZERO
 	
 	move_velocity = move_velocity.lerp(move_input * speed, delta * acceleration)
 	

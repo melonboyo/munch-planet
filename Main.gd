@@ -15,6 +15,8 @@ var current_manage_ui = null
 
 
 func _ready():
+	GameState.main_window = $UI
+	
 	InputMap.action_set_deadzone("look_right", look_input_deadzone)
 	InputMap.action_set_deadzone("look_left", look_input_deadzone)
 	InputMap.action_set_deadzone("look_up", look_input_deadzone)
@@ -27,7 +29,9 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("cheat"):
-		GameState.add_munchme(MunchmeResource.new())
+		var resource = MunchmeResource.new()
+		resource.resource_local_to_scene = true
+		GameState.add_munchme(resource)
 	if GameState.situation != Constants.Situation.Overworld:
 		pass
 	
@@ -154,23 +158,23 @@ func _on_munchme_deployed(resource):
 	close_manage()
 
 
-#func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
-	#var munchme: Munchme = Scenes.munchmes[munchme_resource.munchme_type].instantiate()
-	#munchme.resource = munchme_resource
-	#munchme.situation = Constants.Situation.Interact
-	#munchme.position = pos
-	#GameState.deployed_munchme = munchme
-	#$Player.add_child(munchme)
-
 func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
+	var deploy_ui: Control = deploy_looker_scene.instantiate()
 	var munchme: Munchme = Scenes.munchmes[munchme_resource.munchme_type].instantiate()
 	munchme.resource = munchme_resource
 	munchme.situation = Constants.Situation.Interact
 	munchme.position = pos
-	GameState.deployed_munchme = munchme
+	munchme.camera = deploy_ui.get_node("%DeployScene").get_camera()
+	#GameState.deployed_munchme = munchme
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	GameState.deploy_munchme(deploy_ui, munchme)
 	$Player.add_child(munchme)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	var deploy_ui: Control = deploy_looker_scene.instantiate()
-	#current_deploy_ui = deploy_ui.get_node("Looker")
-	#deploy_ui.get_node("%DeployScene").set_focus(munchme)
 	$UI.add_child(deploy_ui)
+
+
+func _on_ui_focus_entered():
+	GameState.change_focus_to($UI)
+
+
+func _on_ui_focus_exited():
+	pass

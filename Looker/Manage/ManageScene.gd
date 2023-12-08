@@ -10,7 +10,8 @@ var deploy_area_entered = false
 func _ready():
 	GameState.munchme_added.connect(_on_munchme_added)
 	for m in GameState.munchmes:
-		send_in_munchme(m, get_random_position())
+		if not GameState.is_munchme_deployed(m):
+			send_in_munchme(m, get_random_position())
 
 
 func _process(delta):
@@ -109,3 +110,7 @@ func _on_area_2d_mouse_entered():
 func _on_area_2d_mouse_exited():
 	deploy_area_entered = false
 	%DeployArea.play("unpressed")
+
+
+func close():
+	pass

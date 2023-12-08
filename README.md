@@ -17,6 +17,34 @@ _Gameplay loop_
 - You can team up with other munchers in your quests or battles with other munchers.
 - You can trade munchmees with other munchers.
 
+## GAMEPLAY PROGRESSION
+
+- Click play
+- Cutscene starts
+    - Fade in to wide view of small planet with house
+    - Cut to inside house phone rings
+    - Muncher picks up phone
+    - Dialog says he has been chosen to become an OFFICIAL MUNCHER (or muncher ranger or something)
+    - He leaves in a rocket for the main planet and arrives at the munchers’ guild.
+- Tutorial starts
+    - You meet Gungun, a little guy running the munchers’ guild
+    - He tells you he will show you how munching works.
+    - You go just outside of town where you spot a GOBY (or another easy to catch munchme) and he tells you how to catch it.
+    - You catch it.
+    - He tells you how to open your stomach.
+    - He tells you how to view its stats.
+    - He tells you how to deploy the munchme.
+    - He tells you how to use control it.
+    - He tells you how to retrieve it.
+    - You return to the guild and he bids you farewell and good luck (maybe tells you something about some landmarks or other planets).
+- You are free to roam the planet.
+- Some NPCs are standing around and you can go up and talk to them.
+    - Some just say something funny, or gives some hint about munchmes/locations.
+    - Some are shops?
+    - Some you can interact with using a specific munchme to get a reaction and make something new happen?
+    - Would be cool if some NPCs allow for yes/no choice, for choosing if you want to accept a challenge they have.
+
+
 ## MODES
 ### Overworld MODE
 Mode where you walk around and explore.

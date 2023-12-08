@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://bd8tq62sgagnc"]
 
 [ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="1_77ujt"]
-[ext_resource type="PackedScene" uid="uid://b32kd77nue46d" path="res://Looker/Deploy/ChooseDeployScene.tscn" id="2_tdhgn"]
+[ext_resource type="PackedScene" uid="uid://b32kd77nue46d" path="res://Looker/Deploy/Unused/ChooseDeployScene.tscn" id="2_tdhgn"]
+
 
 [node name="ChooseDeployLooker" type="Control"]
 layout_mode = 3

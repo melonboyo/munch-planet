@@ -7,9 +7,11 @@
 offset_right = 515.0
 offset_bottom = 392.0
 pivot_offset = Vector2(257.5, 196)
+focus_mode = 2
 title = "GO KILL"
 window_width = 515
 window_height = 392
+is_deploy_looker = true
 
 [node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer" index="0"]
 handle_input_locally = false
@@ -19,6 +21,11 @@ render_target_update_mode = 4
 
 [node name="DeployScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_3ccn4")]
 unique_name_in_owner = true
+looker_path = NodePath("../../../..")
 
 [node name="Title" parent="TopMarginContainer/TopHBoxContainer" index="0"]
 text = "GO KILL"
+
+[connection signal="close_looker" from="." to="ContentMarginContainer/SubViewportContainer/SubViewport/DeployScene" method="_on_close_looker"]
+[connection signal="focus_entered" from="." to="ContentMarginContainer/SubViewportContainer/SubViewport/DeployScene" method="_on_deploy_looker_focus_entered"]
+[connection signal="focus_exited" from="." to="ContentMarginContainer/SubViewportContainer/SubViewport/DeployScene" method="_on_deploy_looker_focus_exited"]

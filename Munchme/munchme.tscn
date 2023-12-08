@@ -149,3 +149,6 @@ float_node_path = NodePath("../FloatMovement")
 [node name="FloatMovement" parent="." instance=ExtResource("5_fqq42")]
 target_path = NodePath("..")
 float_force = 0.25
+
+[connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]
+[connection signal="body_exited" from="CatchArea" to="." method="_on_catch_area_body_exited"]

@@ -73,6 +73,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 mouse_filter = 1
 
 [node name="Planet" type="Node3D" parent="."]
@@ -106,6 +107,7 @@ transform = Transform3D(2.29288, -0.700744, -0.335987, 0.714856, 2.31239, 0.0556
 
 [node name="CameraPivot" parent="." instance=ExtResource("3_8oj03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 79.9273, 0)
+for_munchme = false
 focus_path = NodePath("../Player/Muncher")
 look_input_deadzone = 0.1
 
@@ -126,3 +128,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("11_oedib")
+
+[connection signal="focus_entered" from="UI" to="." method="_on_ui_focus_entered"]
+[connection signal="focus_exited" from="UI" to="." method="_on_ui_focus_exited"]
