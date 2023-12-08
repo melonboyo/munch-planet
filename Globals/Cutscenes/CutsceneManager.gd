@@ -1,4 +1,3 @@
-@tool
 extends Control
 
 @export_range(1, 50) var text_cps = 30
