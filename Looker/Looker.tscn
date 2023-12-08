@@ -166,6 +166,7 @@ patch_margin_bottom = 32
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 script = ExtResource("1_ma5x6")
+is_deploy_looker = null
 
 [node name="ContentMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -183,6 +184,7 @@ theme_override_constants/margin_bottom = 6
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_dj46p")
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("4_7cfud")
 
 [node name="PlaceholderCenterContainer" type="CenterContainer" parent="ContentMarginContainer/PlaceholderBackground"]
@@ -200,6 +202,7 @@ texture = ExtResource("5_n8s8f")
 [node name="SubViewportContainer" type="SubViewportContainer" parent="ContentMarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 0
 stretch = true
 
 [node name="ScreenTransition" type="ColorRect" parent="ContentMarginContainer"]
@@ -235,6 +238,7 @@ size_flags_horizontal = 10
 [node name="CloseButton" type="TextureButton" parent="TopMarginContainer/TopHBoxContainer/CloseButtonCenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_n7ool")
 
@@ -243,7 +247,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nwfgo")
 }
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="ContentMarginContainer/SubViewportContainer" to="." method="_on_sub_viewport_container_gui_input"]
 [connection signal="gui_input" from="TopMarginContainer" to="." method="_on_top_margin_container_gui_input"]
 [connection signal="pressed" from="TopMarginContainer/TopHBoxContainer/CloseButtonCenterContainer/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_finished"]

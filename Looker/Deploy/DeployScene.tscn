@@ -7,6 +7,5 @@
 script = ExtResource("1_w841p")
 
 [node name="Camera" parent="." instance=ExtResource("2_8qwqq")]
-for_munchme = true
 focus_path = NodePath("")
-distance_to_focus = 4.0
+distance_to_focus = 2.0

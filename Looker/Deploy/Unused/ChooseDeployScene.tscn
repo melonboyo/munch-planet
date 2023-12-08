@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://b32kd77nue46d"]
 
-[ext_resource type="Script" path="res://Looker/Deploy/ChooseDeployScene.gd" id="1_3l4u4"]
+[ext_resource type="Script" path="res://Looker/Deploy/Unused/ChooseDeployScene.gd" id="1_3l4u4"]
 [ext_resource type="Material" uid="uid://pvbex1u21rer" path="res://Materials/Blobs.tres" id="1_h13gf"]
-[ext_resource type="Script" path="res://Looker/Deploy/DeploySlot.gd" id="2_5ue7q"]
-[ext_resource type="PackedScene" uid="uid://csg0ojcsoq0ek" path="res://Looker/Deploy/DeployableMunchmeScene.tscn" id="2_hraix"]
+[ext_resource type="Script" path="res://Looker/Deploy/Unused/DeploySlot.gd" id="2_5ue7q"]
+[ext_resource type="PackedScene" uid="uid://csg0ojcsoq0ek" path="res://Looker/Deploy/Unused/DeployableMunchmeScene.tscn" id="2_hraix"]
+
 
 [node name="ChooseDeployScene" type="Control"]
 layout_mode = 3

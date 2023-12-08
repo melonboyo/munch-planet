@@ -39,6 +39,7 @@ shader_parameter/effect = 0.0
 
 [node name="Camera" type="Node3D"]
 script = ExtResource("1_sofu5")
+for_munchme = true
 focus_path = NodePath("../Muncher")
 min_vertical_angle = -20.0
 max_vertical_angle = 86.0

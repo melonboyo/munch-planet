@@ -2,6 +2,7 @@ extends Resource
 class_name MunchmeResource
 
 
+@export var id = 0
 @export var name: String = "JIMBLO"
 @export var munchme_type: Constants.Munchme = Constants.Munchme.Goby
 @export var max_health: int = 100

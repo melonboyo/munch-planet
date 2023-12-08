@@ -42,3 +42,7 @@ func _on_animation_animation_finished(anim_name):
 func _on_munchme_finish_catch(win: bool):
 	finish_catch.emit(win)
 	looker.close()
+
+
+func close():
+	pass

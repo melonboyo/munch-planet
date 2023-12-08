@@ -31,20 +31,21 @@ func _ready():
 		if not finish_catch.is_connected(get_parent()._on_munchme_finish_catch):
 			finish_catch.connect(get_parent()._on_munchme_finish_catch)
 	elif situation == Constants.Situation.Interact:
-		if camera == null:
-			camera = GameState.deployed_munchme_camera
+		$OverworldMovement.spherical_gravity = true
 	
 	munchme_specific_ready()
 
 
 func get_move_input() -> Vector3:
+	if camera == null:
+		return Vector3.ZERO
 	var raw_move_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if Vector2.ZERO.distance_to(raw_move_input) > 1.0:
 		raw_move_input = raw_move_input.normalized()
 	if Vector2.ZERO.distance_to(raw_move_input) < ProjectSettings.get_setting("global/leftstick_deadzone") * sqrt(2.0):
 		raw_move_input = Vector2.ZERO
-	var right_axis = Math.project_direction_on_plane(GameState.deployed_munchme_camera.global_transform.basis.x.normalized(), up_direction)
-	var forward_axis = Math.project_direction_on_plane(GameState.deployed_munchme_camera.global_transform.basis.z.normalized(), up_direction)
+	var right_axis = Math.project_direction_on_plane(camera.global_transform.basis.x.normalized(), up_direction)
+	var forward_axis = Math.project_direction_on_plane(camera.global_transform.basis.z.normalized(), up_direction)
 	var x_axis = Math.project_direction_on_plane(right_axis, $OverworldMovement.floor_normal)
 	var z_axis = Math.project_direction_on_plane(forward_axis, $OverworldMovement.floor_normal)
 	return x_axis * raw_move_input.x + z_axis * raw_move_input.y
@@ -55,15 +56,17 @@ func munchme_specific_ready():
 
 
 func _process(delta):
-	if situation == Constants.Situation.Overworld or situation == Constants.Situation.Interact:
+	if situation == Constants.Situation.Overworld:
 		_overworld_process(delta)
 
 
 func _physics_process(delta):
 	if freeze:
 		return
-	if not GameState.control_player and situation == Constants.Situation.Interact and GameState.deployed_munchme_camera != null:
+	if GameState.is_munchme_active(self) and situation == Constants.Situation.Interact:
 		$OverworldMovement.move_input = get_move_input()
+	else:
+		$OverworldMovement.move_input = Vector3.ZERO
 	$OverworldMovement._overworld_physics_process(delta)
 
 

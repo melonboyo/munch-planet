@@ -47,6 +47,8 @@ func get_move_input() -> Vector3:
 
 func _physics_process(delta):
 	$Model.is_on_floor = is_on_floor()
-	if GameState.control_player:
+	if GameState.focus_main and GameState.situation == Constants.Situation.Overworld:
 		$OverworldMovement.move_input = move_input
+	else:
+		$OverworldMovement.move_input = Vector3.ZERO
 	$OverworldMovement._overworld_physics_process(delta)

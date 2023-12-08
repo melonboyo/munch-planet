@@ -53,7 +53,13 @@ func _ready():
 	if not for_munchme:
 		focus = player
 	else:
-		focus = GameState.deployed_munchme
+		focus = GameState.deployed_munchmes[GameState.deployed_munchmes.size()-1]
+	
+	#if for_munchme:
+		#enable = GameState.is_window_active(get_parent().looker)
+	#else:
+		#enable = GameState.focus_main
+	
 	
 	InputMap.action_set_deadzone("look_right", look_input_deadzone)
 	InputMap.action_set_deadzone("look_left", look_input_deadzone)
@@ -67,7 +73,7 @@ func _ready():
 	up_axis = focus.global_position.normalized()
 	rotation_degrees = Vector3(orbit_angles.x, orbit_angles.y, 0.0)
 	orbit_rotation = Quaternion.from_euler(Vector3(deg_to_rad(orbit_angles.x), deg_to_rad(orbit_angles.y), 0.0))
-	focus_point = focus.global_position + up_axis * 1.8
+	focus_point = focus.global_position + up_axis * focus.height
 	
 	gravity_alignment = Math.from_to_rotation(Vector3.UP, up_axis) * gravity_alignment
 	var look_rotation: Quaternion = gravity_alignment * orbit_rotation
@@ -78,41 +84,20 @@ func _ready():
 	listener.global_position = focus.global_position
 
 
-func _input(event):
-	if Engine.is_editor_hint() or not enable:
-		return
-	
-	if event is InputEventMouseMotion:
-		if not invert_look_x:
-			input.x += event.relative.y * 0.2
-		else:
-			input.x += -event.relative.y * 0.2
-		if not invert_look_y:
-			input.y += event.relative.x * 0.2
-		else:
-			input.y += -event.relative.x * 0.2
-
-
 func _process(delta):
 	if Engine.is_editor_hint():
 		return
 	
-	if GameState.control_player:
-		if for_munchme:
-			enable = false
-		else:
-			enable = true
-	else:
-		if for_munchme:
-			enable = true
-		else:
-			enable = false
+	if not for_munchme:
+		enable = GameState.focus_main
 
 
 func _physics_process(delta):
+	if for_munchme and not Engine.is_editor_hint():
+		pass
 	if Engine.is_editor_hint() or focus == null:
 		return
-	focus_point = focus.global_position + up_axis * 1.8
+	focus_point = focus.global_position + up_axis * focus.height
 	up_axis = focus_point.normalized()
 	
 	# Update gravity alignment
@@ -135,19 +120,16 @@ func _physics_process(delta):
 
 
 func look_rotation(delta) -> bool:
-	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED or not enable:
+	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
+		input = Vector2.ZERO
+		return false
+	
+	if not enable:
 		input = Vector2.ZERO
 		return false
 	
 	# Get look input right analogue stick
-	if not invert_look_x:
-		input.y += (Input.get_action_strength("look_right") - Input.get_action_strength("look_left")) * 5.0
-	else:
-		input.y += -(Input.get_action_strength("look_right") - Input.get_action_strength("look_left")) * 5.0
-	if not invert_look_y:
-		input.x += (Input.get_action_strength("look_down") - Input.get_action_strength("look_up")) * 5.0
-	else:
-		input.x += -(Input.get_action_strength("look_down") - Input.get_action_strength("look_up")) * 5.0
+	input = MouseInput.input
 	
 	# Add the input to the orbit angles if larger than e
 	var e = 0.001
