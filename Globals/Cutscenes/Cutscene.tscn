@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Globals/Cutscenes/Cutscene.gd" id="1_l257k"]
 
-[node name="Cutscene" type="Node3D"]
+[node name="Cutscene" type="Node"]
 script = ExtResource("1_l257k")
 
 [node name="CutsceneAnimation" type="AnimationPlayer" parent="."]
