@@ -23,6 +23,7 @@ Music="*res://Globals/Music.gd"
 Scenes="*res://Globals/Scenes.gd"
 GameState="*res://Globals/GameState.gd"
 Lookup="*res://Globals/Lookup.gd"
+CutsceneManager="*res://Globals/Cutscenes/CutsceneManager.tscn"
 
 [display]
 

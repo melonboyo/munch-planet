@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://8d6nvd2swe1g"]
+
+[ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneManager.gd" id="1_q7cik"]
+
+[node name="CutsceneManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q7cik")
+
+[node name="Label" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+texture_filter = 4
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 52
+theme_override_font_sizes/bold_font_size = 52
+bbcode_enabled = true
+scroll_following = true
+visible_characters_behavior = 1
