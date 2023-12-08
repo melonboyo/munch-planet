@@ -56,37 +56,6 @@ script = ExtResource("11_nrph8")
 animation_name = "goby_talk_2"
 dialogue_translation_key = "MEAN_MUNCHMEE_2"
 
-[sub_resource type="Animation" id="Animation_a1l12"]
-resource_name = "goby_talk_1"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Munchmes/Goby:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -2.81803, 0), Vector3(-0.872665, -2.81871, 0), Vector3(0, -2.81803, 0), Vector3(-0.872665, -2.81871, 0), Vector3(0, -2.81803, 0), Vector3(-0.872665, -2.81871, 0), Vector3(0, -2.81803, 0), Vector3(-0.872665, -2.81871, 0), Vector3(0, -2.81803, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_31iee"]
-resource_name = "goby_talk_2"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Munchmes/Goby:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-8.67684, 89.4631, 10.1738), Vector3(-17.0233, 88.4802, 1.85849)]
-}
-
 [sub_resource type="Animation" id="Animation_11x68"]
 length = 0.001
 tracks/0/type = "value"
@@ -126,6 +95,37 @@ tracks/2/keys = {
 "values": [Vector3(1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_a1l12"]
+resource_name = "goby_talk_1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Munchmes/Goby:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -2.81803, 0), Vector3(-0.872665, -2.81871, 0), Vector3(0, -2.81803, 0), Vector3(-0.872665, -2.81871, 0), Vector3(0, -2.81803, 0), Vector3(-0.872665, -2.81871, 0), Vector3(0, -2.81803, 0), Vector3(-0.872665, -2.81871, 0), Vector3(0, -2.81803, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_31iee"]
+resource_name = "goby_talk_2"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Munchmes/Goby:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-8.67684, 89.4631, 10.1738), Vector3(-17.0233, 88.4802, 1.85849)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u42vu"]
 _data = {
 "RESET": SubResource("Animation_11x68"),
@@ -147,7 +147,7 @@ camera_path = NodePath("../../CameraPivot")
 [node name="Munchmes" type="Node" parent="."]
 
 [node name="Goby" parent="Munchmes" instance=ExtResource("7_xaxar")]
-transform = Transform3D(-0.948107, 0, -0.31795, 0, 1, 0, 0.31795, 0, -0.948107, -8.67684, 89.4631, 10.1738)
+transform = Transform3D(-0.948109, 0, -0.317946, 0, 1, 0, 0.317946, 0, -0.948109, -8.67684, 89.4631, 10.1738)
 collision_layer = 262145
 collision_mask = 3
 
