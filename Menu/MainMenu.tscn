@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl6rlbluelsaw"]
+
+[ext_resource type="Script" path="res://Menu/MainMenu.gd" id="1_60vhr"]
+[ext_resource type="PackedScene" uid="uid://imceply230pp" path="res://Menu/MainMenu3D.tscn" id="1_yrw6m"]
+[ext_resource type="Texture2D" uid="uid://dc6wlonqrocbt" path="res://Sprites/rps-button-scissors.png" id="2_hphi5"]
+[ext_resource type="Texture2D" uid="uid://cytsv1vjralcs" path="res://Sprites/rps-button-pressed-scissors.png" id="3_nw0vd"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_60vhr")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="MainMenu3d" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_yrw6m")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 825
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="TextureButton" parent="MarginContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("2_hphi5")
+texture_pressed = ExtResource("3_nw0vd")
+
+[connection signal="button_up" from="MarginContainer/CenterContainer/StartButton" to="." method="_on_start_button_button_up"]

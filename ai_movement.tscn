@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dco60ny2ql34u"]
+
+[ext_resource type="Script" path="res://Munchme/AiMovement.gd" id="1_yt6j2"]
+
+[node name="AiMovement" type="Node"]
+script = ExtResource("1_yt6j2")
+target_path = NodePath("..")

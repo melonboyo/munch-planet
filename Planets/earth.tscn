@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dofwikg3bucms" path="res://Models/earth.glb" id="1_rcr66"]
 [ext_resource type="Texture2D" uid="uid://bg3ymobja86l8" path="res://Models/earth_earth-texture.png" id="2_7hfa7"]
+[ext_resource type="Shader" uid="uid://co8hpsryde4lk" path="res://Shaders/EarthShader.tres" id="2_cjcod"]
 [ext_resource type="Material" uid="uid://i7osp2htj2cn" path="res://Materials/Water.tres" id="3_6a3y0"]
-[ext_resource type="Shader" uid="uid://co8hpsryde4lk" path="res://Shaders/EarthShader.tres" id="3_8mxty"]
 [ext_resource type="Material" uid="uid://63m6v13ibuth" path="res://Materials/UnderwaterSurface.tres" id="4_556qu"]
 [ext_resource type="PackedScene" uid="uid://ckhytfotl50qm" path="res://Planets/Buildings/guild.tscn" id="6_fly2l"]
 
@@ -20,7 +20,7 @@ noise = SubResource("FastNoiseLite_upbem")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70www"]
 render_priority = 0
-shader = ExtResource("3_8mxty")
+shader = ExtResource("2_cjcod")
 shader_parameter/VertexVariationDisplacement = 0.05
 shader_parameter/VertexVariationFrequency = 0.25
 shader_parameter/NumberOfVertexVariations = 11
@@ -30,7 +30,7 @@ shader_parameter/TextureDarkness = 0.605
 shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.485
 shader_parameter/LightBlendColor = Color(0.317647, 0.235294, 0.117647, 1)
-shader_parameter/LightBlendColor2 = Color(0.407843, 0.133333, 0.0784314, 1)
+shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_wj3yy")
 shader_parameter/FaceTexture = ExtResource("2_7hfa7")
 
@@ -81,7 +81,6 @@ surface_material_override/0 = SubResource("ShaderMaterial_70www")
 metadata/_edit_group_ = true
 
 [node name="StaticBody3D" parent="Planet" index="0"]
-visible = false
 collision_layer = 17
 
 [node name="Water" parent="." index="1"]
@@ -94,3 +93,9 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("4_556qu")
 
 [node name="guild" parent="." index="3" instance=ExtResource("6_fly2l")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="guild" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.96603, 111.454, -10.6978)
+light_size = 0.03
+shadow_enabled = true
+omni_range = 10.501

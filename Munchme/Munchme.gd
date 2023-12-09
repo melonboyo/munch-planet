@@ -8,6 +8,7 @@ class_name Munchme
 @export_range(0.0, 1.0) var move_input_deadzone: float = 0.15
 @export_range(0.0, 10.0) var height: float = 0.75
 
+
 var is_in_area = false
 var can_catch = false
 var in_catch_mode = false
@@ -67,6 +68,7 @@ func _physics_process(delta):
 		$OverworldMovement.move_input = get_move_input()
 	else:
 		$OverworldMovement.move_input = Vector3.ZERO
+	$OverworldMovement.move_input = $AiMovement.get_move_direction()
 	$OverworldMovement._overworld_physics_process(delta)
 
 
@@ -127,3 +129,7 @@ func play_animation(anim: String):
 	if $Model == null:
 		return
 	$Model.change_animation(anim)
+
+
+func set_follow_points(_points: Array[Vector3]):
+	$AiMovement.set_follow_points(_points)

@@ -23,12 +23,13 @@ extends Node3D
 	set(value):
 		models = value
 @export_category("Randomness")
-@export_range(0, 100) var spawn_radius: float = 15.0:
+@export_range(0, 200) var spawn_radius: float = 15.0:
 	set(value):
 		spawn_radius = value
 @export_range(0, 1.0) var scale_variation: float = 0.5:
 	set(value):
 		scale_variation = value
+
 
 func spawn_foliage():
 	if not Engine.is_editor_hint() or models.is_empty():

@@ -67,6 +67,3 @@ bone_idx = 0
 [node name="Face" type="Sprite3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
 transform = Transform3D(1, -2.09468e-16, -6.76542e-17, -4.75609e-16, 0.887784, 0.460262, 3.3347e-17, -0.460262, 0.887784, 9.66557e-19, 1.05418, 0.755678)
 texture = ExtResource("4_11gkq")
-
-[node name="AnimationPlayer" parent="." index="1"]
-autoplay = "Idle"
