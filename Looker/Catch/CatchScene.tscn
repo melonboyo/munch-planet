@@ -40,7 +40,9 @@ shader_parameter/AlbedoInfluence = 1.0
 shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
+shader_parameter/LightBlendColorInfluence = 0.15
 shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
+shader_parameter/LightBlendColor2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 shader_parameter/FaceTexture = SubResource("NoiseTexture2D_k1xsw")
 

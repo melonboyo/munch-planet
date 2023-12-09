@@ -52,3 +52,7 @@ func _physics_process(delta):
 	else:
 		$OverworldMovement.move_input = Vector3.ZERO
 	$OverworldMovement._overworld_physics_process(delta)
+
+
+func get_move_input_to_point():
+	pass

@@ -1,33 +1,58 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=22 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
+[ext_resource type="Texture2D" uid="uid://ios8c7bseiai" path="res://Sprites/Skybox/main-skybox.png" id="2_hhsoy"]
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/Camera.tscn" id="3_8oj03"]
+[ext_resource type="Script" path="res://Environment.gd" id="3_ligat"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
 [ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="6_mqxa6"]
-[ext_resource type="PackedScene" uid="uid://bkw6vrtec1tqd" path="res://Models/foliage/tree.glb" id="7_onigk"]
-[ext_resource type="Script" path="res://Models/AlignToNormal.gd" id="7_trsuv"]
+[ext_resource type="PackedScene" uid="uid://ct1kbjcajv4bf" path="res://FoliageSpawner.tscn" id="7_fo20x"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/goby.tscn" id="7_xaxar"]
+[ext_resource type="PackedScene" uid="uid://cxj2ntd0fik8o" path="res://Planets/Foliage/pine.tscn" id="8_tgumm"]
+[ext_resource type="PackedScene" uid="uid://baojnxfndut28" path="res://Planets/Foliage/pine_crooked.tscn" id="9_ypadn"]
+[ext_resource type="PackedScene" uid="uid://l6va2dvew0wq" path="res://Planets/Foliage/pine_high.tscn" id="10_ov2uq"]
+[ext_resource type="PackedScene" uid="uid://bc6nk2ng2b4pc" path="res://Planets/Foliage/pine_high_crooked.tscn" id="11_e2esg"]
 [ext_resource type="Script" path="res://DebugDraw.gd" id="11_oedib"]
+[ext_resource type="PackedScene" uid="uid://dao72127cctuc" path="res://Planets/Foliage/tree_high_round.tscn" id="12_yu150"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m8ocr"]
-sky_top_color = Color(0.772549, 0.988235, 0.976471, 1)
-sky_horizon_color = Color(0.764706, 0.772549, 0.784314, 1)
-sky_energy_multiplier = 0.95
+[sub_resource type="Shader" id="Shader_y2onu"]
+code = "
+// NOTE: Shader automatically converted from Godot Engine 4.2.stable's PanoramaSkyMaterial.
+
+shader_type sky;
+
+uniform sampler2D source_panorama : filter_linear, source_color, hint_default_black;
+
+void sky() {
+	     
+	COLOR = texture(source_panorama, SKY_COORDS).rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cuys3"]
+shader = SubResource("Shader_y2onu")
+shader_parameter/source_panorama = ExtResource("2_hhsoy")
 
 [sub_resource type="Sky" id="Sky_2iofh"]
-sky_material = SubResource("ProceduralSkyMaterial_m8ocr")
+sky_material = SubResource("ShaderMaterial_cuys3")
 
 [sub_resource type="Environment" id="Environment_df6u4"]
 background_mode = 2
 background_color = Color(0.564706, 0.929412, 0.941176, 1)
 sky = SubResource("Sky_2iofh")
+ambient_light_source = 3
+ambient_light_color = Color(0.960784, 0.568627, 0.364706, 1)
+ambient_light_sky_contribution = 0.64
+reflected_light_source = 2
 tonemap_white = 0.6
+ssao_enabled = true
+ssao_power = 1.21838
+ssao_horizon = 1.0
+glow_normalized = true
 adjustment_enabled = true
-adjustment_brightness = 1.05
-adjustment_saturation = 1.1
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1rtsb"]
+auto_exposure_scale = 0.5
 dof_blur_far_distance = 100.0
 dof_blur_near_enabled = true
 dof_blur_near_distance = 1.5
@@ -36,45 +61,30 @@ dof_blur_amount = 0.05
 [sub_resource type="SphereShape3D" id="SphereShape3D_13cqd"]
 radius = 86.0577
 
-[sub_resource type="SphereMesh" id="SphereMesh_jq1it"]
-radius = 0.25
-height = 0.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baxk6"]
-shading_mode = 0
-albedo_color = Color(0.913725, 0, 0.101961, 1)
-
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
-
-[node name="Player" type="Node" parent="."]
-
-[node name="Muncher" parent="Player" instance=ExtResource("2_b0ky1")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1308, 89.4636, 0)
-floor_snap_length = 1.0
-camera_path = NodePath("../../CameraPivot")
-
-[node name="Munchmes" type="Node" parent="."]
-
-[node name="Goby" parent="Munchmes" instance=ExtResource("7_xaxar")]
-transform = Transform3D(-0.948107, 0, -0.31795, 0, 1, 0, 0.31795, 0, -0.948107, -12.0219, 89.1345, 9.0817)
-collision_layer = 262145
-collision_mask = 3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_df6u4")
 camera_attributes = SubResource("CameraAttributesPractical_1rtsb")
+script = ExtResource("3_ligat")
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 2
-mouse_filter = 1
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.927315, -1.63604e-08, 0.374283, -0.374283, -4.05342e-08, 0.927315, 0, -1, -4.37114e-08, 0, 115.061, 0)
+layers = 2
+light_color = Color(1, 1, 0.964706, 1)
+light_energy = 1.39
+shadow_enabled = true
+shadow_blur = 1.99
+directional_shadow_pancake_size = 13.0
+script = ExtResource("4_llbt7")
+player_path = NodePath("../Player/Muncher")
+
+[node name="CameraPivot" parent="." instance=ExtResource("3_8oj03")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 79.9273, 0)
+for_munchme = false
+focus_path = NodePath("../Player/Muncher")
+look_input_deadzone = 0.1
 
 [node name="Planet" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0.0441132, 0.180145, -0.0724068)
@@ -94,32 +104,361 @@ shape = SubResource("SphereShape3D_13cqd")
 
 [node name="Trees" type="Node" parent="Planet"]
 
-[node name="Aligner" type="MeshInstance3D" parent="Planet/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.5564, 100.032, -15.7416)
-mesh = SubResource("SphereMesh_jq1it")
-surface_material_override/0 = SubResource("StandardMaterial3D_baxk6")
-script = ExtResource("7_trsuv")
-y_rotation = 174.316
-_scale = 2.421
+[node name="FoliageSpawner" parent="Planet/Trees" instance=ExtResource("7_fo20x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.4691, 86.0745, 43.6275)
+spawn = false
+amount = 150
+ray_dist = 81.589
+_scale = 5.84
+models = Array[PackedScene]([ExtResource("8_tgumm"), ExtResource("9_ypadn"), ExtResource("10_ov2uq"), ExtResource("11_e2esg"), ExtResource("12_yu150")])
+spawn_radius = 66.522
+scale_variation = 0.228
 
-[node name="tree2" parent="Planet/Trees/Aligner" instance=ExtResource("7_onigk")]
-transform = Transform3D(2.29288, -0.700744, -0.335987, 0.714856, 2.31239, 0.055629, 0.304812, -0.151893, 2.39693, 2.20394, -3.03856, 0.478163)
+[node name="1" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(0.957161, 4.77163, 4.13141, -0.234642, 4.20266, -4.79955, -6.30729, 0.56777, 0.805513, -4.82777, -0.0988464, -42.7642)
 
-[node name="CameraPivot" parent="." instance=ExtResource("3_8oj03")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 79.9273, 0)
-for_munchme = false
-focus_path = NodePath("../Player/Muncher")
-look_input_deadzone = 0.1
+[node name="2" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(4.55421, 2.04864, 1.60703, 0.253668, 2.87331, -4.38179, -2.59136, 3.88168, 2.39536, -39.0703, -9.63365, 17.2086)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 103.56, 0)
-layers = 2
-light_color = Color(0.960784, 0.960784, 0.960784, 1)
-shadow_enabled = true
-shadow_blur = 1.99
-directional_shadow_pancake_size = 13.0
-script = ExtResource("4_llbt7")
-player_path = NodePath("../Player/Muncher")
+[node name="3" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-3.72884, 3.78633, -1.06101, -0.429152, 1.06162, 5.29671, 3.9087, 3.72867, -0.430644, -17.3614, -33.8733, 13.4553)
+
+[node name="4" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-3.53599, 4.75142, 0.471454, 4.64953, 3.29296, 1.68515, 1.08632, 1.37183, -5.67798, -10.1721, 4.93205, -34.1204)
+
+[node name="5" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(-2.74097, 2.8665, 3.35736, 3.49141, 3.82601, -0.416223, -2.70162, 2.03627, -3.94417, -10.8595, -8.2442, -11.3716)
+
+[node name="6" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-1.43392, 4.35183, 2.92073, 4.98366, 2.06949, -0.636789, -1.62239, 2.51077, -4.53751, -10.1361, -15.5173, -4.00237)
+
+[node name="7" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(5.38248, 2.31787, 0.828984, -1.87283, 5.14936, -2.23773, -1.59757, 1.77269, 5.41629, -18.7221, 8.27099, -24.2636)
+
+[node name="8" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-5.07631, 2.44121, 3.17494, 3.68114, 4.86326, 2.1463, -1.57764, 3.49254, -5.20786, -21.9686, -9.36023, 3.51376)
+
+[node name="10" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(-0.937022, 5.92593, 2.07058, 5.49384, 1.78695, -2.62801, -3.03672, 1.40432, -5.39335, 5.18107, -19.5519, -39.4384)
+
+[node name="11" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(3.59591, 4.72687, 0.808694, 1.52294, -0.167144, -5.79488, -4.5473, 3.68193, -1.30127, -7.4281, -43.1491, 3.45762)
+
+[node name="13" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-0.516778, 5.12434, -2.03779, -5.49058, -0.287016, 0.670645, 0.514863, 2.08261, 5.10649, 0.0338058, -46.6233, -11.9966)
+
+[node name="15" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(3.01877, 4.15147, 1.39261, -1.62031, 2.63046, -4.32923, -4.068, 2.03298, 2.75779, -5.53207, -8.50623, -20.3443)
+
+[node name="16" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(4.14469, 4.88576, 0.0581361, -4.07874, 3.50156, -3.48646, -2.69034, 2.2183, 5.37529, -11.9006, 3.86034, -27.6443)
+
+[node name="17" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(1.49777, 4.0766, 3.06075, 3.60235, 1.41079, -3.64182, -3.60692, 3.1018, -2.36624, -14.8342, -32.7591, 9.72637)
+
+[node name="18" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(1.94538, 4.80887, 1.69964, 3.5028, 0.0625684, -4.18629, -3.70734, 2.58252, -3.06346, -3.04008, -34.6359, -5.24859)
+
+[node name="19" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-0.618821, 4.51503, -3.9404, -1.4203, 3.73798, 4.50615, 5.82194, 1.39182, 0.680478, -24.3178, 12.1061, -21.7808)
+
+[node name="20" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(-4.05084, 3.53886, -1.61996, 2.41619, 4.11965, 2.95764, 3.0512, 1.43599, -4.49279, -22.4492, 8.46509, -18.7713)
+
+[node name="21" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-4.15813, 2.27745, 3.42342, 4.0149, 3.29944, 2.68158, -0.887208, 4.25717, -3.90972, -40.9584, 0.828781, 11.3411)
+
+[node name="22" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-2.50644, 3.24238, 4.78268, 5.73917, 2.00156, 1.65076, -0.670081, 5.01498, -3.75103, -28.4067, -22.2752, 20.1205)
+
+[node name="23" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-4.27411, 1.07042, 3.34793, 2.52189, 4.60546, 1.74707, -2.44837, 2.87514, -4.04494, -38.7558, 4.31229, 5.85535)
+
+[node name="24" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(-0.8708, 5.15526, 1.86303, 5.03285, 0.00442751, 2.34015, 2.1721, 2.05649, -4.67533, 4.25545, -41.7426, -20.5889)
+
+[node name="25" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(0.768315, 4.00927, 3.79219, 4.90126, 1.2639, -2.32927, -2.53626, 3.65699, -3.35247, -19.6742, -27.8326, 13.8036)
+
+[node name="26" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-4.24963, 2.69441, 1.41144, 2.77779, 2.44975, 3.687, 1.23929, 3.74837, -3.42422, -13.8446, -22.0178, 5.87211)
+
+[node name="28" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-3.12019, 4.05375, 1.43434, 4.27457, 2.73152, 1.57882, 0.467217, 2.08128, -4.86578, -7.6351, -22.7647, -1.17931)
+
+[node name="29" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(1.01129, 4.53618, -3.8296, -3.43146, 3.61671, 3.37786, 4.84436, 1.61491, 3.19213, -24.1135, 12.8035, -24.1312)
+
+[node name="30" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-2.68722, 4.88637, 3.29185, 5.76781, 2.92004, 0.373937, -1.20222, 3.0872, -5.56399, -21.1588, 1.15124, -6.03593)
+
+[node name="31" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(4.9228, 1.32301, 1.87124, -0.150252, 4.61062, -2.86452, -2.28677, 2.54514, 4.21649, -33.9798, 7.0171, -0.869869)
+
+[node name="32" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(5.22856, 1.71295, -1.08427, -2.01465, 4.72461, -2.25099, 0.225918, 2.48829, 5.02047, -32.5698, 8.81515, -5.00651)
+
+[node name="33" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-1.22766, 4.81793, 1.70553, 3.78728, -0.320234, 3.63076, 3.43188, 2.07688, -3.39665, -0.0976334, -42.2604, -10.672)
+
+[node name="34" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(3.84077, 3.79903, 0.45668, -3.12835, 3.49027, -2.72473, -2.20331, 1.66677, 4.66476, -19.0259, 13.4073, -34.6037)
+
+[node name="35" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(4.61353, 2.80262, 3.01068, -0.592404, 4.92965, -3.68118, -4.07038, 2.45914, 3.94819, -33.1643, 13.313, -11.3675)
+
+[node name="36" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(3.545, 4.85812, -1.11225, -4.43354, 2.45061, -3.4269, -2.27643, 2.7926, 4.94213, -12.021, -13.5175, -2.37635)
+
+[node name="37" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(2.4847, 4.41441, 3.01326, 3.11971, 1.50032, -4.77043, -4.33984, 3.6059, -1.70404, -33.2637, 20.138, -18.8484)
+
+[node name="38" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(-0.0292978, 4.07717, 4.51255, 5.83634, 1.28756, -1.12544, -1.70984, 4.32507, -3.91887, -22.8394, -25.9942, 16.3949)
+
+[node name="39" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(1.3909, 5.35442, -2.2129, -5.7917, 1.34456, -0.386968, 0.15162, 2.24136, 5.51857, 4.07777, -28.7239, -26.9083)
+
+[node name="41" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(-2.70776, 3.44326, -3.26842, -0.459189, 3.55508, 4.12567, 4.72523, 2.31861, -1.47202, -22.3746, 14.319, -30.5592)
+
+[node name="43" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-1.38604, 4.61207, -3.69199, -3.27606, 2.55573, 4.42254, 4.91625, 3.00336, 1.90617, -14.3841, -14.4495, 2.14531)
+
+[node name="44" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(2.47219, 4.63919, 1.00962, -1.70229, 1.92873, -4.69418, -4.43211, 1.84691, 2.3661, 0.671249, -11.8641, -31.3435)
+
+[node name="45" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(3.57436, 3.15291, -4.34284, -4.1884, 4.90123, 0.111051, 3.35535, 2.75939, 4.76493, -15.6572, -10.6203, -1.1047)
+
+[node name="46" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(3.93969, 4.02798, 2.29064, 3.87827, -1.22089, -4.52341, -2.53587, 4.39063, -3.35925, -18.1973, -43.8181, 13.2344)
+
+[node name="47" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-0.356357, 4.26527, -3.56832, -5.13305, 1.12334, 1.85537, 2.13946, 3.40559, 3.85709, -16.2781, -17.6819, 6.5112)
+
+[node name="48" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(-4.52098, 2.07207, -2.08443, 0.256344, 4.08771, 3.50749, 2.92791, 2.8416, -3.52566, -36.4232, 11.352, -5.70673)
+
+[node name="49" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(-3.21636, 2.77954, -3.2248, -1.81363, 2.76202, 4.18953, 3.85174, 3.62155, -0.720158, -33.3731, -10.0491, 13.8944)
+
+[node name="50" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-2.5859, 3.95897, 3.31742, 4.73573, 0.336231, 3.2902, 2.06194, 4.19275, -3.3963, -10.5752, -48.2193, 5.76291)
+
+[node name="51" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(-0.7184, 4.82759, -3.9883, -5.60713, 1.29133, 2.57307, 2.78786, 3.84123, 4.14741, -18.4625, -22.4668, 10.3417)
+
+[node name="52" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-2.52512, 2.79017, -3.99206, -4.79467, -2.21438, 1.4851, -0.856025, 4.17245, 3.45771, -10.5901, -44.6528, 5.8162)
+
+[node name="53" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-1.19261, 4.01976, -3.44913, -3.56072, 2.00893, 3.57249, 3.92125, 3.0468, 2.19501, -25.9028, -8.37479, 6.25785)
+
+[node name="54" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(0.160367, 2.72857, -4.89464, -3.49161, 3.87861, 2.04777, 4.38307, 2.98992, 1.81037, -27.2171, 2.86396, -1.82442)
+
+[node name="56" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(1.28274, 3.96256, -4.11634, -3.39685, 3.92117, 2.71615, 4.5943, 1.7928, 3.15751, -15.3689, 6.45485, -25.9627)
+
+[node name="59" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-2.25503, 4.66808, -1.75812, 0.970603, 2.30318, 4.87037, 4.89284, 1.69456, -1.77643, -5.89132, -20.3428, -9.38476)
+
+[node name="61" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(3.77713, 3.77859, 0.747573, -3.05285, 3.57517, -2.64605, -2.34877, 1.42958, 4.64143, -15.6223, 10.0896, -33.075)
+
+[node name="62" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(-0.498231, 4.17696, 3.60826, 5.34403, 1.27166, -0.734176, -1.38126, 3.41331, -4.142, -17.6468, -29.7164, 12.1053)
+
+[node name="63" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(-1.52535, 5.69838, 2.00019, 5.85969, 1.89576, -0.932272, -1.46163, 1.65334, -5.82487, 5.07204, -22.9788, -34.3236)
+
+[node name="64" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(1.69131, 4.58672, -2.61131, -5.09588, 0.705047, -2.06212, -1.37438, 3.03024, 4.43239, -8.19684, -39.7251, 4.35547)
+
+[node name="66" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(1.46576, 6.10223, -0.2681, -5.21254, 1.10591, -3.32626, -3.18411, 0.998637, 5.32182, 3.18941, -26.3683, -24.8003)
+
+[node name="67" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-3.18597, 4.30839, 2.44462, 3.17569, -0.454291, 4.93938, 3.80176, 3.99002, -2.0773, -11.3217, -40.5683, 7.94286)
+
+[node name="68" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(-3.18724, 3.63706, 3.03345, 4.25864, 3.80075, -0.0825004, -2.0722, 2.21689, -4.83528, -9.58266, -8.95837, -12.0328)
+
+[node name="69" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-1.76351, 5.22077, -0.156927, 2.62776, 1.02996, 4.73551, 4.51397, 1.44006, -2.81803, 2.7605, -33.9326, -20.0292)
+
+[node name="70" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(-4.02868, 3.58059, -1.54669, 0.444347, 2.63048, 4.93217, 3.87497, 3.42098, -2.17362, -11.7775, -21.4875, 3.77178)
+
+[node name="71" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-3.06447, 2.96807, 4.04405, 4.68408, 3.38911, 1.06208, -1.79531, 3.77614, -4.13187, -32.1548, -14.5854, 16.252)
+
+[node name="74" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(-3.04224, 3.16406, 3.21607, 3.95574, 3.73595, 0.0664071, -2.16944, 2.37509, -4.38886, -17.5672, -7.54527, -4.80307)
+
+[node name="75" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(4.47506, 3.28229, 0.352, -2.90666, 4.19895, -2.20082, -1.56481, 1.58709, 5.0947, -13.3061, 5.60455, -28.3597)
+
+[node name="76" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(0.545079, 3.59474, 4.06731, 2.75924, 3.33677, -3.31886, -4.67459, 2.38874, -1.48474, -12.6926, -11.4904, -3.64749)
+
+[node name="77" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(1.97517, 3.90906, 4.30207, -0.280548, 4.60246, -4.05321, -5.80601, 1.10745, 1.65939, -13.6766, 6.6125, -30.6377)
+
+[node name="78" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-2.64081, 5.08719, -1.7455, -0.961712, 1.46657, 5.72926, 5.29163, 2.80532, 0.170151, 0.956566, -18.9528, -25.3455)
+
+[node name="83" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(4.8958, 3.81958, 0.354131, -3.49754, 4.68062, -2.13132, -1.57539, 1.47854, 5.83228, -9.11414, 5.63036, -38.8831)
+
+[node name="84" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(-1.16605, 5.33993, 0.787176, 5.36485, 1.23521, -0.432257, -0.59407, 0.673478, -5.44864, 4.06988, -22.8881, -31.0635)
+
+[node name="85" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(0.706037, 5.68772, -2.57867, -6.09291, 0.0581959, -1.53987, -1.36971, 2.67295, 5.52063, -1.37124, -33.8736, -8.58449)
+
+[node name="87" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-1.39098, 5.66189, 2.56247, 6.17819, 1.54423, -0.0583317, -0.673201, 2.47315, -5.82996, 5.18945, -36.3041, -25.1534)
+
+[node name="88" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-1.75355, 3.30797, 4.59951, 4.9461, 3.24197, -0.445942, -2.76303, 3.70406, -3.71736, -26.1427, -12.0037, 9.70252)
+
+[node name="89" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(2.14939, 5.67407, -1.49898, -3.79379, 0.125411, -4.96521, -4.47763, 2.61746, 3.48735, 1.68836, -40.6878, -14.433)
+
+[node name="92" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(-3.48251, 4.72781, -1.91894, 1.31184, 3.07483, 5.19489, 4.93088, 2.52104, -2.73736, -12.7064, -1.08208, -19.3885)
+
+[node name="93" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(-0.242351, 3.44121, 4.91621, 3.67709, 3.97348, -2.60006, -4.74237, 2.90506, -2.26724, -29.9054, 5.26132, -1.05089)
+
+[node name="95" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(1.34028, 5.84438, 0.925073, -0.936545, 1.14608, -5.88373, -5.84255, 1.15698, 1.15536, 3.7581, -21.0174, -31.4553)
+
+[node name="96" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-0.215496, 3.82508, 4.60593, 5.64524, 1.66501, -1.11862, -1.99427, 4.29986, -3.6642, -10.4814, -28.2801, 5.06608)
+
+[node name="98" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(-2.25084, 4.78902, 3.13367, 5.71943, 2.00378, 1.04587, -0.206591, 3.29712, -5.18721, -8.54212, -24.5014, 2.12812)
+
+[node name="101" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-2.71242, 5.50306, -0.897578, -2.66171, -0.400867, 5.5858, 4.89945, 2.82882, 2.53766, -26.2547, -34.1742, 19.6195)
+
+[node name="103" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(4.02512, 2.42738, 3.36049, 1.30656, 3.7024, -4.23932, -3.93421, 3.71305, 2.03026, -22.766, -13.9946, 9.60691)
+
+[node name="104" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(-1.29885, 3.8815, -5.00188, -1.45125, 4.78757, 4.09205, 6.16269, 1.94549, -0.0905615, -25.0165, 13.5713, -23.7028)
+
+[node name="105" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(-1.91601, 5.73809, -1.44422, -4.15878, -0.226089, 4.61908, 4.20903, 2.38867, 3.90651, -2.01392, -43.436, -6.34665)
+
+[node name="106" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-2.32374, 4.32822, 1.72817, 3.87741, 0.724085, 3.40018, 2.58568, 2.80394, -3.54571, -6.10586, -34.6335, 0.0708656)
+
+[node name="109" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(2.42292, 4.43048, 1.48053, -0.928176, 2.09119, -4.73889, -4.57817, 1.9208, 1.74431, -12.9107, 2.02544, -22.7494)
+
+[node name="111" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(-0.522105, 3.17855, -5.19496, -2.01801, 4.82917, 3.15755, 5.74616, 1.98478, 0.636889, -6.69328, -6.07324, -22.9203)
+
+[node name="113" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(2.71076, 1.6562, -4.20002, -1.78035, 4.89409, 0.78083, 4.14892, 1.018, 3.07921, -4.29802, -3.89877, -32.6895)
+
+[node name="114" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(5.55829, 2.76048, -1.46201, -3.02466, 4.01051, -3.92677, -0.780495, 4.11678, 4.80576, -41.0923, 12.5059, -4.3333)
+
+[node name="117" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(2.47758, 4.3545, -2.76098, -4.39254, 3.38668, 1.39967, 2.70005, 1.51386, 4.81051, -2.41637, -4.71941, -34.1322)
+
+[node name="118" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(-1.0677, 3.07682, 4.54029, 3.69361, 3.82272, -1.72195, -4.05442, 2.67227, -2.76436, -14.5771, -6.53426, -9.32239)
+
+[node name="121" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(2.41031, 3.1969, 4.49115, 0.938328, 4.59222, -3.77242, -5.43232, 2.21167, 1.3411, -26.1059, 10.9702, -15.4043)
+
+[node name="123" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(4.44436, 3.6672, -0.766718, -2.1989, 1.59015, -5.14051, -3.03332, 4.22038, 2.60305, -24.2547, -21.6356, 16.3482)
+
+[node name="124" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(3.40082, 4.04535, 3.20599, 1.66435, 2.77482, -5.26679, -4.88602, 3.76089, 0.437408, -37.8984, 17.4537, -11.6351)
+
+[node name="125" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(-4.4156, 4.11645, -2.34044, 0.249211, 3.39769, 5.50581, 4.72871, 3.66481, -2.47563, -11.5101, -20.813, 2.9482)
+
+[node name="127" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(-2.62235, 4.46146, 1.11379, 4.58367, 2.6386, 0.222654, -0.367517, 1.07472, -5.17028, -0.345444, -8.7887, -32.8469)
+
+[node name="128" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-0.357974, 3.10013, 4.31339, 2.00234, 4.08301, -2.76837, -4.92004, 1.43613, -1.4405, -17.5869, 12.696, -36.0024)
+
+[node name="129" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-1.6096, 3.08037, 3.8956, 3.87317, 3.3418, -1.04213, -3.10852, 2.56882, -3.31563, -20.9167, -7.67883, -0.0309143)
+
+[node name="131" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(-2.75112, 4.79212, -2.01978, 2.06922, 3.10505, 4.54857, 4.77098, 1.41662, -3.13743, -5.34531, -23.4407, -5.87045)
+
+[node name="133" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(4.70144, 2.18844, -0.139753, -1.81071, 3.68766, -3.16778, -1.23699, 2.91963, 4.10584, -38.166, 9.44595, -1.94368)
+
+[node name="135" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(-0.955279, 5.20178, -1.67205, -1.97926, 1.25269, 5.02793, 5.09281, 1.46256, 1.64042, 2.3302, -26.5284, -21.0557)
+
+[node name="136" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-4.60901, 3.50434, -1.26921, 2.46707, 4.38149, 3.13853, 2.79372, 1.91218, -4.86549, -23.7126, 16.0418, -31.8244)
+
+[node name="137" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(4.09864, 3.68141, -1.79097, -4.05167, 3.28436, -2.52114, -0.586769, 3.03635, 4.89852, -35.7287, 15.9599, -12.9719)
+
+[node name="138" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("11_e2esg")]
+transform = Transform3D(3.96337, 4.19827, -2.40269, -4.82655, 3.63817, -1.60461, 0.320595, 2.8714, 5.54607, -10.7148, -11.1825, -7.07346)
+
+[node name="139" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(3.88946, 5.08898, 0.368792, -3.56058, 3.03925, -4.38712, -3.65458, 2.45497, 4.66678, -14.3348, 2.9454, -20.588)
+
+[node name="142" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-2.48531, 5.22587, 2.34042, 5.72574, 2.2931, 0.960002, -0.0560671, 2.52904, -5.70656, -6.21413, -14.0154, -13.7091)
+
+[node name="145" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(0.960255, 5.03922, -0.913276, -4.63071, 0.457495, -2.34458, -2.1873, 1.24373, 4.56276, 2.19689, -31.465, -19.0139)
+
+[node name="146" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("12_yu150")]
+transform = Transform3D(0.541124, 4.94959, -3.46077, -1.44048, 3.48012, 4.75204, 5.86518, 0.398063, 1.48639, -15.4511, 11.8656, -39.7016)
+
+[node name="147" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("10_ov2uq")]
+transform = Transform3D(-1.46383, 2.67664, -4.40211, -1.0473, 4.3262, 2.97874, 5.04441, 1.67492, -0.659006, -4.32043, -4.91808, -29.6977)
+
+[node name="148" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("8_tgumm")]
+transform = Transform3D(-2.81327, 5.75914, -0.0917765, 2.95695, 1.53172, 5.47731, 4.94293, 2.36152, -3.32885, 2.16717, -18.1548, -28.6874)
+
+[node name="150" type="Node3D" parent="Planet/Trees/FoliageSpawner" instance=ExtResource("9_ypadn")]
+transform = Transform3D(-5.14034, 3.6191, 0.186116, 3.27366, 4.4989, 2.93235, 1.55424, 2.49352, -5.56078, -19.4648, 3.94472, -12.3194)
+
+[node name="Player" type="Node" parent="."]
+
+[node name="Muncher" parent="Player" instance=ExtResource("2_b0ky1")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1308, 89.4636, 0)
+floor_snap_length = 1.0
+camera_path = NodePath("../../CameraPivot")
+
+[node name="Munchmes" type="Node" parent="."]
+
+[node name="Goby" parent="Munchmes" instance=ExtResource("7_xaxar")]
+transform = Transform3D(-0.948107, 0, -0.31795, 0, 1, 0, 0.31795, 0, -0.948107, -12.0219, 89.1345, 9.0817)
+collision_layer = 262145
+collision_mask = 3
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+mouse_filter = 1
 
 [node name="DebugDraw" type="Control" parent="."]
 visible = false

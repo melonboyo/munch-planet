@@ -22,13 +22,15 @@ render_priority = 0
 shader = ExtResource("3_pvpmu")
 shader_parameter/VertexVariationDisplacement = 0.015
 shader_parameter/VertexVariationFrequency = 0.645
-shader_parameter/NumberOfVertexVariations = 5
-shader_parameter/Albedo = Color(0.807843, 0.427451, 0.286275, 1)
+shader_parameter/NumberOfVertexVariations = 7
+shader_parameter/Albedo = Color(0.984314, 0.47451, 0.478431, 1)
 shader_parameter/AlbedoInfluence = 1.0
 shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.152
 shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
-shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
+shader_parameter/LightBlendColorInfluence = 0.85
+shader_parameter/LightBlendColor2 = Color(0.67451, 0.129412, 0.360784, 1)
+shader_parameter/LightBlendColor2Influence = 0.812
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_y832r")
 
 [node name="MuncherModel" instance=ExtResource("1_3g22p")]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct1kbjcajv4bf"]
+
+[ext_resource type="Script" path="res://FoliageSpawner.gd" id="1_52dwj"]
+[ext_resource type="PackedScene" uid="uid://cxj2ntd0fik8o" path="res://Planets/Foliage/pine.tscn" id="2_mduls"]
+
+[node name="FoliageSpawner" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.6132, 99.0917, 33.5586)
+script = ExtResource("1_52dwj")
+spawn = null
+amount = 300
+ray_dist = 300.0
+_scale = 4.888
+models = Array[PackedScene]([ExtResource("2_mduls")])
+spawn_radius = 53.619
+scale_variation = 0.626

@@ -14,7 +14,6 @@ config/name="MUNCH WORLD"
 config/tags=PackedStringArray("bigmode", "gamejam", "gofrog")
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-run/max_fps=60
 config/icon="res://sketches/munch-icon.png"
 
 [autoload]
@@ -32,10 +31,6 @@ window/size/viewport_height=1080
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/shell_fur/plugin.cfg")
 
 [filesystem]
 
@@ -158,6 +153,7 @@ cheat={
 3d_physics/layer_2="Muncher"
 3d_physics/layer_3="CameraIgnore"
 3d_physics/layer_4="Munchme"
+3d_physics/layer_5="Planet"
 3d_physics/layer_17="ManageHold"
 
 [physics]
