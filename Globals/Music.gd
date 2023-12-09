@@ -7,12 +7,14 @@ enum Track {
 	Overworld,
 	ThoughtfulMuncher,
 	Battle,
+	Catch,
 }
 
 var streams = {
 	Track.Overworld: preload("res://Music/brog.ogg"),
 	Track.ThoughtfulMuncher: preload("res://Music/thoughtful_muncher.ogg"),
 	Track.Battle: preload("res://Music/battle.ogg"),
+	Track.Catch: preload("res://Music/catchy_music.ogg"),
 }
 
 var volume = 0
@@ -20,6 +22,7 @@ var volumes = {
 	Track.Overworld: 0,
 	Track.ThoughtfulMuncher: 0,
 	Track.Battle: 0,
+	Track.Catch: 0,
 }
 
 var selected_track = null
