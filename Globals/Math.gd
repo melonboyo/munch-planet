@@ -13,3 +13,18 @@ static func from_to_rotation(from, to) -> Quaternion:
 		return Quaternion.IDENTITY;
 	else:
 		return Quaternion(axis.normalized(), angle_to)
+
+
+static func position_to_position_on_surface(pos: Vector3, up: Vector3, node: Node3D) -> Vector3:
+	var space_state = node.get_world_3d().direct_space_state
+	var ray_query = PhysicsRayQueryParameters3D.create(
+		pos + up*20.0, pos - up*200.0, pow(2, 5-1)
+	)
+	ray_query.hit_back_faces = true
+	ray_query.hit_from_inside = true
+	
+	var result = space_state.intersect_ray(ray_query)
+	if !result:
+		return Vector3.ZERO
+	
+	return result.position

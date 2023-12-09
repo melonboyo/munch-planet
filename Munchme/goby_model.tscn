@@ -50,26 +50,20 @@ shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 script = ExtResource("2_ejjfw")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/rotation = Quaternion(0.425277, 0, 0, 0.905063)
-bones/1/position = Vector3(-0.475977, -0.0722512, 0.225062)
-bones/1/rotation = Quaternion(0.8107, 0.0371745, 0.0348574, 0.58324)
-bones/2/rotation = Quaternion(0.185843, -0.0160989, 0.0176773, 0.982289)
-bones/3/position = Vector3(0.475977, -0.0722512, 0.225062)
-bones/3/rotation = Quaternion(0.8107, -0.0371745, -0.0348574, 0.58324)
-bones/4/rotation = Quaternion(0.185843, 0.0160989, -0.0176773, 0.982289)
+bones/1/rotation = Quaternion(0.719963, -0.0518009, 0.0496883, 0.690291)
+bones/2/rotation = Quaternion(0.0440124, -0.00631536, -0.000542125, 0.999011)
+bones/3/rotation = Quaternion(0.719963, 0.0518009, -0.0496883, 0.690291)
+bones/4/rotation = Quaternion(0.0440124, 0.00631536, 0.000542125, 0.999011)
 
 [node name="Munchme1" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_7in2j")
 surface_material_override/1 = SubResource("ShaderMaterial_obqel")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.638279, -0.769805, 0, 0.769805, 0.638279, 0, 0.353744, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.353744, 0)
 bone_name = "Body"
 bone_idx = 0
 
 [node name="Face" type="Sprite3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
 transform = Transform3D(1, -2.09468e-16, -6.76542e-17, -4.75609e-16, 0.887784, 0.460262, 3.3347e-17, -0.460262, 0.887784, 9.66557e-19, 1.05418, 0.755678)
 texture = ExtResource("4_11gkq")
-
-[node name="AnimationPlayer" parent="." index="1"]
-autoplay = "IdleHappy"

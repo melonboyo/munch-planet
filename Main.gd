@@ -25,6 +25,11 @@ func _ready():
 	GameState.situation = Constants.Situation.Overworld
 	Music.play(Music.Track.Overworld)
 	GameState.munchme_deployed.connect(_on_munchme_deployed)
+	
+	var points: Array[Vector3] = []
+	for p in $FollowPoints.get_children():
+		points.append(p.global_position)
+	%Goby.set_follow_points(points)
 
 
 func _process(delta):
