@@ -61,7 +61,7 @@ dof_blur_near_distance = 1.5
 dof_blur_amount = 0.05
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_13cqd"]
-radius = 86.0577
+radius = 100.35
 
 [sub_resource type="Resource" id="Resource_or7ah"]
 script = ExtResource("11_nrph8")
@@ -157,7 +157,7 @@ script = ExtResource("1_12yvb")
 
 [node name="Muncher" parent="Player" instance=ExtResource("2_b0ky1")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1308, 89.4636, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.343, 91.2372, 44.0544)
 floor_snap_length = 1.0
 camera_path = NodePath("../../CameraPivot")
 
@@ -191,19 +191,19 @@ focus_path = NodePath("../Player/Muncher")
 look_input_deadzone = 0.1
 
 [node name="Planet" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0.0441132, 0.180145, -0.0724068)
+transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0, 0, 0)
 
 [node name="Earth" parent="Planet" instance=ExtResource("6_mqxa6")]
-transform = Transform3D(0.993098, -0.14348, -0.00271715, -0.0330921, -0.210479, -0.980531, 0.139638, 0.970541, -0.213047, 0, 0, 0)
+transform = Transform3D(0.98972, -0.142992, -0.00270788, -0.0329795, -0.209763, -0.977196, 0.139163, 0.96724, -0.212322, 0, 0, 0)
 
 [node name="WaterArea" type="Area3D" parent="Planet"]
 unique_name_in_owner = true
-transform = Transform3D(0.993098, -0.14348, -0.00271715, -0.0330921, -0.210479, -0.980531, 0.139638, 0.970541, -0.213047, 0, 0, 0)
+transform = Transform3D(0.98972, -0.142992, -0.00270788, -0.0329795, -0.209763, -0.977196, 0.139163, 0.96724, -0.212322, 0, 0, 0)
 collision_layer = 32
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/WaterArea"]
-transform = Transform3D(0.281085, -0.959683, -4.65661e-10, 0.959683, 0.281086, 0, -3.72529e-09, 9.31323e-10, 1, 0, 0, 0)
+transform = Transform3D(-0.0148178, -0.999891, -4.65661e-10, 0.99989, -0.0148169, 0, -2.6077e-08, -9.31323e-10, 1, 0, 0, 0)
 shape = SubResource("SphereShape3D_13cqd")
 
 [node name="Trees" type="Node" parent="Planet"]

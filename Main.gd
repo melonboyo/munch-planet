@@ -59,16 +59,19 @@ func _process(delta):
 	
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		var stick_input = Input.get_vector("look_left", "look_right", "look_up", "look_down")
-		var pow_length = pow(stick_input.length(), 6.2) * 0.9 + 0.1
+		
+		var pow_length = pow(stick_input.length(), 5.0) * 0.95 + 0.05
 		var speed_mult = 1.0
 		var speed_up_strength = Input.get_action_strength("speed_up_cursor")
 		if speed_up_strength > 0.9:
-			speed_mult = 2.8
+			speed_mult = 2.3
 		elif speed_up_strength > 0.1:
-			speed_mult = 1.5
-		stick_input = (pow_length / stick_input.length()) * stick_input * cursor_sensitivty * 30.0 * speed_mult
+			speed_mult = 1.4
+		speed_mult *= ProjectSettings.get_setting("global/mouse_sensitivity") * 13.0
+		stick_input = (pow_length / stick_input.length()) * stick_input * cursor_sensitivty * speed_mult
 		if stick_input.length() > 0.0:
-			call_deferred("move_mouse", stick_input)
+			#call_deferred("move_mouse", stick_input)
+			move_mouse(stick_input)
 		
 	if Input.is_action_just_pressed("click"):
 		call_deferred("click")
@@ -129,7 +132,6 @@ func retrieve_munchme():
 
 
 func move_mouse(relative: Vector2):
-	get_viewport().update_mouse_cursor_state()
 	get_viewport().warp_mouse(get_viewport().get_mouse_position() + relative - Vector2(-1,-1))
 	#var a = InputEventMouseMotion.new()
 	#a.relative = relative

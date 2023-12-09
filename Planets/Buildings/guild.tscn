@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckhytfotl50qm"]
+
+[ext_resource type="PackedScene" uid="uid://dkfcc32y461yt" path="res://Models/guild.glb" id="1_8qsdr"]
+
+[node name="guild" instance=ExtResource("1_8qsdr")]

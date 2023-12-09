@@ -12,8 +12,9 @@ signal scene_finished
 var cutscene: Cutscene
 var current_scene = 0
 var total_scenes: int:
-	get: return cutscene.scenes.size()
+	get: return cutscene.scenes.size() if cutscene != null else 0
 
+var is_cutscene_playing = false
 var is_scene_playing: bool:
 	get: return is_animation_playing or is_dialogue_playing
 
@@ -39,6 +40,7 @@ func play_cutscene(gimme_a_cutscene: Cutscene):
 	_set_animation_player()
 
 	_play_scene(cutscene.scenes[current_scene])
+	is_cutscene_playing = true
 	cutscene_playing.emit()
 
 
@@ -63,7 +65,7 @@ func skip_waiting():
 
 
 func _process(delta: float):
-	if Engine.is_editor_hint():
+	if not is_cutscene_playing:
 		return
 	
 	# Handle dialogue
@@ -145,6 +147,7 @@ func _end_dialogue():
 
 
 func _end_cutscene():
+	is_cutscene_playing = false
 	cutscene_finished.emit()
 	%Label.text = ""
 	
