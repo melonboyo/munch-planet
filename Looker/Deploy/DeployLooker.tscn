@@ -12,6 +12,8 @@ title = "GO KILL"
 window_width = 515
 window_height = 392
 is_deploy_looker = true
+looker_z_index = 10
+music_track = 2
 
 [node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer" index="0"]
 handle_input_locally = false

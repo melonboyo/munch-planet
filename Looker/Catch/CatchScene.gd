@@ -20,6 +20,7 @@ signal finish_catch(win: bool)
 func _ready():
 	var main_node = find_parent("Main")
 	finish_catch.connect(main_node._on_munchme_finish_catch)
+	looker.music_track = munchme.resource.catch_track
 	
 	$Animation.play("enter")
 

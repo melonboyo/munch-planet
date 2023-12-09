@@ -167,6 +167,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 script = ExtResource("1_ma5x6")
 is_deploy_looker = null
+looker_z_index = null
 
 [node name="ContentMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -246,6 +247,8 @@ texture_normal = ExtResource("3_n7ool")
 libraries = {
 "": SubResource("AnimationLibrary_nwfgo")
 }
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="gui_input" from="ContentMarginContainer/SubViewportContainer" to="." method="_on_sub_viewport_container_gui_input"]
 [connection signal="gui_input" from="TopMarginContainer" to="." method="_on_top_margin_container_gui_input"]

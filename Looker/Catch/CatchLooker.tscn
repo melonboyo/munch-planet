@@ -11,6 +11,8 @@ title = "CATCH HIM!!"
 window_width = 910
 window_height = 637
 can_close = false
+looker_z_index = 20
+music_track = 3
 
 [node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer" index="0"]
 own_world_3d = true
