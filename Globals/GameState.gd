@@ -20,6 +20,8 @@ var active_window: int = -1
 var main_window: Control
 var focus_main = true
 var last_used_id = 10
+var open_lookers: Array[Looker] = []
+var looker_music_map := {}
 
 
 func change_sitation_to(new_situation: Constants.Situation):
@@ -107,3 +109,37 @@ func is_munchme_deployed(resource: MunchmeResource) -> bool:
 		if m.resource.id == resource.id:
 			res = true
 	return res
+
+
+func add_looker(looker: Looker):
+	if looker.looker_z_index > 0:
+		# Start a new song if the looker is prioritised
+		var highest_looker_z_index = get_highest_looker_z_index()
+		if looker.looker_z_index > highest_looker_z_index:
+			var previous_track = Music.play(looker.music_track)
+			print(previous_track.position)
+			looker_music_map[looker.looker_z_index] = previous_track
+	
+	open_lookers.push_back(looker)
+
+
+func remove_looker(looker: Looker):
+	open_lookers.erase(looker)
+	
+	# Return to the previous song if this looker was prioritised
+	var highest_looker_z_index = get_highest_looker_z_index()
+	if looker.looker_z_index > 0:
+		if looker.looker_z_index > highest_looker_z_index:
+			var previous_track = looker_music_map[looker.looker_z_index]
+			looker_music_map.erase(looker.looker_z_index)
+			if previous_track == null:
+				Music.stop()
+			else:
+				Music.play(previous_track.track, previous_track.position)
+
+
+func get_highest_looker_z_index():
+	var highest_z_index := 0
+	for looker in open_lookers:
+		highest_z_index = max(looker.looker_z_index, highest_z_index)
+	return highest_z_index

@@ -97,7 +97,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-8.67684, 89.4631, 10.1738)]
+"values": [Vector3(-25.4182, 88.3743, 47.7768)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -164,7 +164,7 @@ camera_path = NodePath("../../CameraPivot")
 [node name="Munchmes" type="Node" parent="."]
 
 [node name="Goby" parent="Munchmes" instance=ExtResource("7_xaxar")]
-transform = Transform3D(-0.948109, 0, -0.317946, 0, 1, 0, 0.317946, 0, -0.948109, -8.67684, 89.4631, 10.1738)
+transform = Transform3D(-0.948109, 0, -0.317946, 0, 1, 0, 0.317946, 0, -0.948109, -25.4182, 88.3743, 47.7768)
 collision_layer = 262145
 collision_mask = 3
 

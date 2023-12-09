@@ -41,6 +41,8 @@ var prev_mouse_mode = null
 
 @export var spawn_centered: bool = true
 @export var is_deploy_looker = false
+@export var looker_z_index := 0
+@export var music_track: Music.Track
 
 
 func _ready():
@@ -53,7 +55,11 @@ func _ready():
 		center_to_screen()
 	
 	_setup_sub_viewport()
-
+	
+	GameState.add_looker(self)
+	
+	grab_focus()
+	
 
 func _setup_sub_viewport():
 	%SubViewportContainer.set_process_unhandled_key_input(true)
@@ -106,6 +112,7 @@ func _on_animation_finished(anim_name):
 	if anim_name == "close_1":
 		close_looker.emit()
 		queue_free()
+		GameState.remove_looker(self)
 
 
 func _on_sub_viewport_container_gui_input(event):

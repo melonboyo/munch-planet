@@ -3,6 +3,9 @@ extends Node
 const DISABLED_VOLUME_DB = -80
 const FADE_IN_START_VOLUME_DB = -40
 
+signal playing(track: Track)
+signal stopping(track: Track, at_position: float)
+
 enum Track {
 	Overworld,
 	ThoughtfulMuncher,
@@ -27,9 +30,9 @@ var volumes = {
 
 var selected_track = null
 var music_player: AudioStreamPlayer
-var position:
+var position: float:
 	get:
-		return floori(music_player.get_playback_position() * 1000)
+		return music_player.get_playback_position()
 var is_playing:
 	get:
 		return music_player.playing
@@ -43,11 +46,13 @@ func _ready():
 
 
 func play(track: Track, from_position: float = 0.0, fade_in = null):
-	_play(track, from_position, fade_in or (fade_in == null && from_position > 0))
+	return _play(track, from_position, fade_in or (fade_in == null && from_position > 0))
 
 
 func stop(fade_out: bool = true):
+	var previous_track = get_playing_track()
 	_stop(fade_out, false)
+	return previous_track
 
 
 func switch_to(
@@ -55,12 +60,27 @@ func switch_to(
 	from_position: float = 0.0, 
 	fade_out: bool = true, 
 	fade_in = null):
+	var previous_track = get_playing_track()
 	_stop(fade_out, track, from_position)
+	return previous_track
+
+
+func get_playing_track() -> PlayingTrack:
+	if selected_track != null:
+		var playing_track = PlayingTrack.new()
+		playing_track.track = selected_track
+		playing_track.position = position
+		
+		return playing_track
+	
+	return null
 
 
 func _play(track: Track, from_position: float = 0.0, fade_in: bool = false):
 	if streams[track] == null:
 		return
+	
+	var previous_track = get_playing_track()
 	
 	selected_track = track
 	music_player.stream = streams[track]
@@ -75,6 +95,9 @@ func _play(track: Track, from_position: float = 0.0, fade_in: bool = false):
 		music_player.volume_db = track_volume
 	
 	music_player.play(from_position)
+	playing.emit(track)
+	
+	return previous_track
 
 
 func _stop(
@@ -92,14 +115,18 @@ func _stop(
 			fade_out_tween.finished.connect(_on_stop_music_player)
 	else:
 		music_player.volume_db = DISABLED_VOLUME_DB
-		music_player.stop()
 		if switch_to != null:
 			_on_switch_to_track(switch_to, switch_to_position, switch_to_fade_in)
+		else:
+			stopping.emit(selected_track, position)
+			music_player.stop()
 
 
 func _on_switch_to_track(track: Track, from_position: float, fade_in):
+	stopping.emit(selected_track, position)
 	_play(track, from_position, fade_in or (fade_in == null && from_position > 0))
 
 
 func _on_stop_music_player():
+	stopping.emit(selected_track, position)
 	music_player.stop()
