@@ -58,7 +58,7 @@ func _ready():
 	
 	GameState.add_looker(self)
 	
-	grab_focus()
+	#grab_focus()
 	
 
 func _setup_sub_viewport():
