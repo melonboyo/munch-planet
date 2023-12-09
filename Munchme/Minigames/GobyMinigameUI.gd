@@ -25,6 +25,7 @@ func _on_scissors_button_button_down():
 func enable():
 	%RockButton.button_pressed = false
 	%RockButton.mouse_filter = MOUSE_FILTER_STOP
+	print(%RockButton.mouse_filter)
 	%PaperButton.button_pressed = false
 	%PaperButton.mouse_filter = MOUSE_FILTER_STOP
 	%ScissorsButton.button_pressed = false

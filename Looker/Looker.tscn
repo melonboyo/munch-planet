@@ -167,7 +167,6 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 script = ExtResource("1_ma5x6")
 is_deploy_looker = null
-looker_z_index = null
 
 [node name="ContentMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

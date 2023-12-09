@@ -17,6 +17,7 @@ enum Emote {
 
 enum Munchme {
 	Goby,
+	Solidude,
 }
 
 enum Mood {

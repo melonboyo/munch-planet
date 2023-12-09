@@ -117,7 +117,6 @@ func add_looker(looker: Looker):
 		var highest_looker_z_index = get_highest_looker_z_index()
 		if looker.looker_z_index > highest_looker_z_index:
 			var previous_track = Music.play(looker.music_track)
-			print(previous_track.position)
 			looker_music_map[looker.looker_z_index] = previous_track
 	
 	open_lookers.push_back(looker)

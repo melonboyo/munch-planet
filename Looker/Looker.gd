@@ -119,4 +119,5 @@ func _on_sub_viewport_container_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		if is_deploy_looker:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		grab_focus()
+		if focus_mode != FOCUS_NONE:
+			grab_focus()
