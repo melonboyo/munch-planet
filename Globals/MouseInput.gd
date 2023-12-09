@@ -18,6 +18,7 @@ func _input(event):
 			input.y += event.relative.x * 0.2
 		else:
 			input.y += -event.relative.x * 0.2
+		input *= ProjectSettings.get_setting("global/mouse_sensitivity")
 
 
 func _process(delta):
@@ -25,10 +26,11 @@ func _process(delta):
 		#return
 	input = Vector2.ZERO
 	if not invert_look_x:
-		input.y += (Input.get_action_strength("look_right") - Input.get_action_strength("look_left")) * 5.0
+		input.y += (Input.get_action_strength("look_right") - Input.get_action_strength("look_left")) * 3.0
 	else:
-		input.y += -(Input.get_action_strength("look_right") - Input.get_action_strength("look_left")) * 5.0
+		input.y += -(Input.get_action_strength("look_right") - Input.get_action_strength("look_left")) * 3.0
 	if not invert_look_y:
-		input.x += (Input.get_action_strength("look_down") - Input.get_action_strength("look_up")) * 5.0
+		input.x += (Input.get_action_strength("look_down") - Input.get_action_strength("look_up")) * 3.0
 	else:
-		input.x += -(Input.get_action_strength("look_down") - Input.get_action_strength("look_up")) * 5.0
+		input.x += -(Input.get_action_strength("look_down") - Input.get_action_strength("look_up")) * 3.0
+	input *= ProjectSettings.get_setting("global/mouse_sensitivity")

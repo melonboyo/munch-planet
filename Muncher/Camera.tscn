@@ -51,7 +51,7 @@ spring_length = 6.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 unique_name_in_owner = true
-fov = 70.0
+fov = 80.0
 
 [node name="Area3D" type="Area3D" parent="SpringArm3D/Camera3D"]
 collision_layer = 0

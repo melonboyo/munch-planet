@@ -6,7 +6,7 @@ class_name FloatMovement
 @export var float_force := 1.0
 
 @onready var target: Node3D = get_node(target_path)
-const water_height = 86.058
+@export var water_height := 100.35
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
