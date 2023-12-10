@@ -2,7 +2,7 @@ extends Munchme
 class_name Solidude
 
 
-const REQUIRED_PUNCHES = 100
+const REQUIRED_PUNCHES = 20
 
 var times_punched = 0
 
@@ -40,5 +40,6 @@ func goby_win():
 func player_win():
 	$SolidudeMinigame.disable()
 	$SolidudeMinigame.visible = false
-	await get_tree().create_timer(0.7).timeout
+	$Animation.play("death")
+	await get_tree().create_timer(3).timeout
 	win_catch()
