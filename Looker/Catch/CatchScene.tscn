@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ct2kqjitntgre"]
+[gd_scene load_steps=20 format=3 uid="uid://ct2kqjitntgre"]
 
 [ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="1_blmnl"]
 [ext_resource type="Script" path="res://Looker/Catch/CatchScene.gd" id="1_u7ylu"]
@@ -99,6 +99,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [75.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CameraPivot/Path/PathFollow/Camera3D:h_offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CameraPivot/Path/PathFollow/Camera3D:v_offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_xegas"]
 resource_name = "enter"
@@ -129,10 +153,40 @@ tracks/1/keys = {
 "values": [75.0, 75.0, 92.0, 75.0, 80.0, 75.0]
 }
 
+[sub_resource type="Animation" id="Animation_2b1gj"]
+resource_name = "shake"
+length = 0.200002
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivot/Path/PathFollow/Camera3D:h_offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.05, 0.0, -0.05, 0.05, -0.05, 0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraPivot/Path/PathFollow/Camera3D:v_offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.05, -0.05, 0.05, -0.05, -0.05, 0.05, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3maul"]
 _data = {
 "RESET": SubResource("Animation_4g5vu"),
-"enter": SubResource("Animation_xegas")
+"enter": SubResource("Animation_xegas"),
+"shake": SubResource("Animation_2b1gj")
 }
 
 [node name="CatchScene" type="Node3D"]
@@ -159,10 +213,12 @@ transform = Transform3D(2.36192, 0, 0, 0, 2.36192, 0, 0, 0, 2.36192, -2.931, 0.8
 curve = SubResource("Curve3D_0828f")
 
 [node name="PathFollow" type="PathFollow3D" parent="CameraPivot/Path"]
-transform = Transform3D(-0.680846, -0.0700157, -0.728941, 0.456993, 0.737099, -0.49766, 0.572179, -0.672026, -0.469903, -0.364094, -0.0164032, -0.0642864)
+transform = Transform3D(0.967983, -0.121944, 0.218914, 0.0566011, 0.957363, 0.282998, -0.244105, -0.261577, 0.933709, 1.19093, 0.152133, -0.82483)
+progress = 2.14371
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/Path/PathFollow"]
-transform = Transform3D(0.951057, 0, -0.309017, 0, 1, 0, 0.309017, 0, 0.951057, 0, 0, 0)
+unique_name_in_owner = true
+transform = Transform3D(0.402705, -5.40167e-08, -0.13085, 6.1933e-08, 0.423419, 0, 0.130847, -7.45058e-09, 0.402696, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.940591, -0.197824, -0.275961, -0.339542, 0.548007, 0.76446, 4.01391e-07, 0.812745, -0.58262, 1.94224, 1.90524, 1.78926)

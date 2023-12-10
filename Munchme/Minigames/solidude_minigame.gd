@@ -24,14 +24,14 @@ func _on_punch_area_gui_input(event):
 
 
 func enable():
-	#previous_mouse_mode = Input.mouse_mode
-	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	previous_mouse_mode = Input.mouse_mode
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	$Fist.visible = true
 	%PunchArea.mouse_filter = MOUSE_FILTER_STOP
 
 
 func disable():
-	#Input.mouse_mode = previous_mouse_mode
+	Input.mouse_mode = previous_mouse_mode
 	$Fist.visible = false
 	%PunchArea.mouse_filter = MOUSE_FILTER_IGNORE
 

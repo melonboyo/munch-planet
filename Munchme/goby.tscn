@@ -18,6 +18,7 @@ munchme_type = 0
 max_health = 100
 mood = 1
 catch_track = 3
+roam_track = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y0bei"]
 radius = 0.334128

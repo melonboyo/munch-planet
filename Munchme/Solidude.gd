@@ -21,8 +21,11 @@ func start_minigame():
 
 
 func _on_solidude_minigame_punched():
+	get_parent().rotate_camera_randomly()
+	get_parent().shake_camera()
+	$Animation.play("punched")
+	$PunchedAudioPlayer.play()
 	times_punched += 1
-	print(times_punched)
 	if times_punched >= REQUIRED_PUNCHES:
 		player_win()
 
