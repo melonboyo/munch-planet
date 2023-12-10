@@ -8,6 +8,7 @@ extends Node3D
 func _ready():
 	$Camera.for_munchme = true
 	GameState.focus_main = false
+	# GET MUNCHME
 
 
 func get_camera() -> Node3D:

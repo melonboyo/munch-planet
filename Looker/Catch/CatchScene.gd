@@ -35,6 +35,15 @@ func add_munchme():
 	munchme_added = true
 
 
+func rotate_camera_randomly():
+	var sign = 1 if %Camera3D.rotation.z > 0 else -1
+	%Camera3D.rotation.z = deg_to_rad(randi_range(1, 5)) / 2 * -sign
+
+
+func shake_camera():
+	$Animation.play("shake")
+
+
 func _on_animation_animation_finished(anim_name):
 	if anim_name == "enter":
 		start_minigame.emit()

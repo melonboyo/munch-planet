@@ -18,6 +18,7 @@ munchme_type = 0
 max_health = 100
 mood = 1
 catch_track = 3
+roam_track = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y0bei"]
 radius = 0.334128
@@ -254,4 +255,3 @@ model_path = NodePath("../Model")
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
 [connection signal="player_choose_hand" from="GobyMinigameUi" to="." method="_on_player_choose_hand"]
-[connection signal="player_choose_hand" from="GobyMinigameUi" to="." method="_on_goby_minigame_ui_player_choose_hand"]

@@ -167,7 +167,9 @@ func _on_munchme_deployed(resource):
 
 
 func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
-	var deploy_ui: Control = deploy_looker_scene.instantiate()
+	var deploy_ui: Looker = deploy_looker_scene.instantiate()
+	deploy_ui.music_track = munchme_resource.roam_track
+	
 	var munchme: Munchme = Scenes.munchmes[munchme_resource.munchme_type].instantiate()
 	munchme.resource = munchme_resource
 	munchme.situation = Constants.Situation.Interact

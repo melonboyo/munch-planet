@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=31 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
 [ext_resource type="Texture2D" uid="uid://ios8c7bseiai" path="res://Sprites/Skybox/main-skybox.png" id="2_hhsoy"]
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/Camera.tscn" id="3_8oj03"]
 [ext_resource type="Script" path="res://Environment.gd" id="3_ligat"]
+[ext_resource type="PackedScene" uid="uid://cuw7r31kr73x" path="res://Munchme/solidude.tscn" id="4_8dymd"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
 [ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="6_mqxa6"]
 [ext_resource type="PackedScene" uid="uid://ct1kbjcajv4bf" path="res://FoliageSpawner.tscn" id="7_fo20x"]
@@ -200,6 +201,9 @@ unique_name_in_owner = true
 transform = Transform3D(-0.948109, 0, -0.317946, 0, 1, 0, 0.317946, 0, -0.948109, 3.24406, 105.199, 11.3674)
 collision_layer = 262145
 collision_mask = 15
+
+[node name="Solidude" parent="Munchmes" instance=ExtResource("4_8dymd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2644, 86.2134, 45.6933)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_df6u4")
