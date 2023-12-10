@@ -108,6 +108,8 @@ func animate():
 		var idle = "Idle"
 		if get_parent() is Munchme:
 			idle += Lookup.moods[get_parent().resource.mood]
+			if not model.has_animation(idle):
+				idle = "Idle"
 		model.change_animation(idle)
 		model.set_animation_speed_scale(1.0)
 

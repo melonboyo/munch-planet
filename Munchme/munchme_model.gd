@@ -39,3 +39,7 @@ func play_step_sound():
 	var i = randi_range(0, step_sounds.size()-1)
 	$StepPlayer.stream = step_sounds[i]
 	$StepPlayer.play()
+
+
+func has_animation(anim: String) -> bool:
+	return $AnimationPlayer.has_animation(anim)

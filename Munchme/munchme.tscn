@@ -143,6 +143,7 @@ libraries = {
 autoplay = "pulsate"
 
 [node name="OverworldMovement" parent="." instance=ExtResource("4_xu18s")]
+spherical_gravity = false
 target_path = NodePath("..")
 float_node_path = NodePath("../FloatMovement")
 

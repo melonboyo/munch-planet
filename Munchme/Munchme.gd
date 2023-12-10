@@ -33,6 +33,7 @@ func _ready():
 			finish_catch.connect(get_parent()._on_munchme_finish_catch)
 	elif situation == Constants.Situation.Interact:
 		$OverworldMovement.spherical_gravity = true
+		player_controlled = true
 	
 	munchme_specific_ready()
 
@@ -68,7 +69,8 @@ func _physics_process(delta):
 		$OverworldMovement.move_input = get_move_input()
 	else:
 		$OverworldMovement.move_input = Vector3.ZERO
-	$OverworldMovement.move_input = $AiMovement.get_move_direction()
+	if not player_controlled:
+		$OverworldMovement.move_input = $AiMovement.get_move_direction()
 	$OverworldMovement._overworld_physics_process(delta)
 
 
