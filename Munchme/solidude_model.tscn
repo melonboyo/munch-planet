@@ -1,5 +1,4 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxvcr50hyn1yv"]
-[gd_scene load_steps=5 format=3 uid="uid://dxvcr50hyn1yv"]
 
 [ext_resource type="PackedScene" uid="uid://b7ntv02hq0r7c" path="res://Models/munchmes/solidude.glb" id="1_231tq"]
 [ext_resource type="Script" path="res://Munchme/munchme_model.gd" id="2_7h2m3"]
