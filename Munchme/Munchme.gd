@@ -79,6 +79,7 @@ func _overworld_process(delta):
 		$CatchArea.monitoring = false
 		return
 	$CatchArea.monitoring = true
+	NodePath()
 	if is_in_area and player != null:
 		var direction = player.global_transform.basis.z
 		var direction_towards_me = (global_position - player.global_position).normalized()

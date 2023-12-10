@@ -200,10 +200,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.6574, 133.578, -50.6246)
 unique_name_in_owner = true
 transform = Transform3D(-0.948109, 0, -0.317946, 0, 1, 0, 0.317946, 0, -0.948109, 3.24406, 105.199, 11.3674)
 collision_layer = 262145
-collision_mask = 15
 
 [node name="Solidude" parent="Munchmes" instance=ExtResource("4_8dymd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2644, 86.2134, 45.6933)
+collision_mask = 7
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_df6u4")

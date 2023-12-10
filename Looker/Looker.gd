@@ -58,8 +58,9 @@ func _ready():
 	
 	GameState.add_looker(self)
 	
-	#grab_focus()
-	
+	if is_deploy_looker:
+		grab_focus()
+
 
 func _setup_sub_viewport():
 	%SubViewportContainer.set_process_unhandled_key_input(true)

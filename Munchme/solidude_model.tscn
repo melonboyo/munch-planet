@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxvcr50hyn1yv"]
+[gd_scene load_steps=5 format=3 uid="uid://dxvcr50hyn1yv"]
 
 [ext_resource type="PackedScene" uid="uid://b7ntv02hq0r7c" path="res://Models/munchmes/solidude.glb" id="1_231tq"]
+[ext_resource type="Script" path="res://Munchme/munchme_model.gd" id="2_1v8r8"]
 [ext_resource type="Texture2D" uid="uid://gtxdnbyi1oyg" path="res://Models/textures/solitude-texture.png" id="2_l0sja"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqgi1"]
@@ -9,6 +10,7 @@ metallic_specular = 0.18
 roughness = 0.9
 
 [node name="solidude" instance=ExtResource("1_231tq")]
+script = ExtResource("2_1v8r8")
 
 [node name="Solidude" parent="Face/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_cqgi1")
