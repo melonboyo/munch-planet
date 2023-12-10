@@ -4,7 +4,7 @@ class_name OverworldMovement
 
 @export var spherical_gravity := true
 @export_node_path("CharacterBody3D") var target_path: NodePath
-@export_node_path("Node3D") var model_path: NodePath
+@export_node_path("Node3D") var model_path: NodePath = "../Model"
 @export_node_path("Node3D") var float_node_path: NodePath
 @export_range(0.5, 50.0) var walking_speed: float = 10.68
 @export_range(0.5, 50.0) var sneak_speed: float = 5.0
