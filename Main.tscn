@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Environment.gd" id="3_ligat"]
 [ext_resource type="PackedScene" uid="uid://cuw7r31kr73x" path="res://Munchme/solidude.tscn" id="4_8dymd"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
+[ext_resource type="PackedScene" uid="uid://csd8neh0mqxfc" path="res://Munchme/snake.tscn" id="5_hrlel"]
 [ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="6_mqxa6"]
 [ext_resource type="PackedScene" uid="uid://ct1kbjcajv4bf" path="res://FoliageSpawner.tscn" id="7_fo20x"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/goby.tscn" id="7_xaxar"]
@@ -222,6 +223,18 @@ collision_layer = 262145
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2644, 86.2134, 45.6933)
 collision_mask = 7
 floor_max_angle = 0.785398
+
+[node name="Snake" parent="Munchmes" instance=ExtResource("5_hrlel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.866, 91.5853, 44.2517)
+
+[node name="Snake2" parent="Munchmes" instance=ExtResource("5_hrlel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5862, 94.9421, 39.6956)
+
+[node name="Snake3" parent="Munchmes" instance=ExtResource("5_hrlel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.866, 95.1749, 36.2685)
+
+[node name="Snake4" parent="Munchmes" instance=ExtResource("5_hrlel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6908, 91.5853, 44.2517)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bkwgg")

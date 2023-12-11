@@ -9,5 +9,6 @@ class_name MunchmeResource
 @export var mood: Constants.Mood = Constants.Mood.Happy
 @export var catch_track: Music.Track = Music.Track.Catch
 @export var roam_track: Music.Track = Music.Track.Battle
+@export var catch_looker_size: Vector2 = Vector2(910, 647)
 
 var health = max_health

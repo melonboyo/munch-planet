@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0eql0bobew1"]
+
+[ext_resource type="Texture2D" uid="uid://cvny8srce304e" path="res://Sprites/snake/snake1.png" id="1_ljwj6"]
+[ext_resource type="Texture2D" uid="uid://dfa2m3w60eyu5" path="res://Sprites/snake/snake2.png" id="2_4noqw"]
+[ext_resource type="Texture2D" uid="uid://sn2r2g5jqha3" path="res://Sprites/snake/snake3.png" id="3_gmtte"]
+[ext_resource type="Texture2D" uid="uid://mvpfoerhrib" path="res://Sprites/snake/snake4.png" id="4_deejw"]
+[ext_resource type="Texture2D" uid="uid://drdeq6lty3gsf" path="res://Sprites/snake/snake5.png" id="5_6w8ds"]
+[ext_resource type="Texture2D" uid="uid://bw3aspwrfsval" path="res://Sprites/snake/snake6.png" id="6_yuoxu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrm8j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ljwj6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4noqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gmtte")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_deejw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6w8ds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yuoxu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxulw"]
+size = Vector2(32, 15.4912)
+
+[node name="SnakeFalling" type="AnimatedSprite2D"]
+position = Vector2(154, 215)
+sprite_frames = SubResource("SpriteFrames_xrm8j")
+autoplay = "default"
+frame_progress = 0.12571
+
+[node name="CatchArea" type="Area2D" parent="."]
+
+[node name="CatchShape" type="CollisionShape2D" parent="CatchArea"]
+position = Vector2(-4.43, -16.74)
+rotation = 0.195477
+shape = SubResource("RectangleShape2D_oxulw")

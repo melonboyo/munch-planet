@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdwym87s0llip"]
+
+[ext_resource type="Script" path="res://Munchme/Minigames/snake_minigame.gd" id="1_dne0g"]
+[ext_resource type="PackedScene" uid="uid://b33jl6a0742pm" path="res://Munchme/Minigames/Snake/snake_hand.tscn" id="2_bhwrv"]
+[ext_resource type="PackedScene" uid="uid://d0eql0bobew1" path="res://Munchme/Minigames/Snake/snake_falling.tscn" id="3_wmdod"]
+
+[node name="SnakeMinigame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_dne0g")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 481.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="SnakeHandLeft" parent="CenterContainer/HBoxContainer" instance=ExtResource("2_bhwrv")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SnakeHandMiddle" parent="CenterContainer/HBoxContainer" instance=ExtResource("2_bhwrv")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SnakeHandRight" parent="CenterContainer/HBoxContainer" instance=ExtResource("2_bhwrv")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SnakeFalling" parent="." instance=ExtResource("3_wmdod")]
+visible = false
+
+[connection signal="button_down" from="CenterContainer/HBoxContainer/SnakeHandLeft" to="." method="_on_snake_hand_left_button_down"]
+[connection signal="button_down" from="CenterContainer/HBoxContainer/SnakeHandMiddle" to="." method="_on_snake_hand_middle_button_down"]
+[connection signal="button_down" from="CenterContainer/HBoxContainer/SnakeHandRight" to="." method="_on_snake_hand_right_button_down"]
