@@ -1,13 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://x8jg67cxv075"]
+[gd_scene load_steps=23 format=3 uid="uid://x8jg67cxv075"]
 
 [ext_resource type="PackedScene" uid="uid://pan5xy8tws8l" path="res://Models/phone_handle.glb" id="1_sjr47"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_5ttva"]
+[ext_resource type="Script" path="res://Assets/phone_handle.gd" id="2_e6xhc"]
 [ext_resource type="Texture2D" uid="uid://bre2yew4aq0ru" path="res://Sprites/Faces/awake-0.png" id="3_hg1d8"]
 [ext_resource type="Texture2D" uid="uid://bsvoma3bw2nn8" path="res://Sprites/Faces/sleep-0.png" id="3_n5qda"]
 [ext_resource type="Texture2D" uid="uid://bbnqeigr3nknv" path="res://Sprites/Faces/sleep-1.png" id="4_2dvw6"]
 [ext_resource type="Texture2D" uid="uid://dp60d15l4yoec" path="res://Sprites/Faces/awake-1.png" id="4_gwrji"]
 [ext_resource type="Texture2D" uid="uid://cikwubsgda1rc" path="res://Sprites/Faces/sleep-2.png" id="5_6dhat"]
 [ext_resource type="Texture2D" uid="uid://ccnfgq0m0lpvc" path="res://Sprites/Faces/awake-2.png" id="5_nunn7"]
+[ext_resource type="Texture2D" uid="uid://df8dmv65ipif4" path="res://Sprites/Faces/yap-0.png" id="10_31xjh"]
+[ext_resource type="Texture2D" uid="uid://cwb1qcoqn7dbs" path="res://Sprites/Faces/yap-1.png" id="11_cvime"]
+[ext_resource type="Texture2D" uid="uid://bfv6qodomix22" path="res://Sprites/Faces/yap-2.png" id="12_dxo2d"]
+[ext_resource type="Texture2D" uid="uid://by8idcldfllx" path="res://Sprites/Faces/yap-3.png" id="13_8og2j"]
 
 [sub_resource type="Gradient" id="Gradient_j6y4m"]
 
@@ -93,19 +98,130 @@ animations = [{
 "loop": true,
 "name": &"sleep",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_31xjh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cvime")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dxo2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8og2j")
+}],
+"loop": true,
+"name": &"yapping",
+"speed": 16.0
 }]
 
+[sub_resource type="Animation" id="Animation_1n6yn"]
+resource_name = "ring"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhoneHandle:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.037, 0.233794, -0.0706764), Vector3(-0.0793331, 0.270143, -0.0289595), Vector3(-0.0793331, 0.450558, -0.0289595), Vector3(-0.0793331, 0.18056, 0.022673), Vector3(-0.0793331, 0.375471, -0.110785), Vector3(-0.0793331, 0.450558, -0.0289595), Vector3(-0.0793331, 0.270143, -0.0289595), Vector3(-0.0793331, 0.375471, -0.110785), Vector3(0.037, 0.233794, -0.0706764), Vector3(-0.0793331, 0.270143, -0.0289595), Vector3(-0.0793331, 0.450558, -0.0289595), Vector3(-0.0793331, 0.375471, -0.110785), Vector3(-0.0793331, 0.450558, -0.0289595), Vector3(-0.0793331, 0.270143, -0.0289595), Vector3(-0.0793331, 0.18056, 0.022673), Vector3(0.037, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhoneHandle:rotation")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.206821, -0.107757, 0), Vector3(0.194183, 0.330075, -0.0430272), Vector3(-0.0948327, 0.0921486, -0.0698696), Vector3(0.223426, 0.215105, -0.101533), Vector3(-0.190638, -0.365399, 0.0560677), Vector3(-0.0948327, 0.0921486, -0.0698696), Vector3(0.194183, 0.330075, -0.0430272), Vector3(-0.190638, -0.365399, 0.0560677), Vector3(-0.206821, -0.107757, 0), Vector3(0.194183, 0.330075, -0.0430272), Vector3(-0.0948327, 0.0921486, -0.0698696), Vector3(-0.190638, -0.365399, 0.0560677), Vector3(-0.0948327, 0.0921486, -0.0698696), Vector3(0.194183, 0.330075, -0.0430272), Vector3(0.223426, 0.215105, -0.101533), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhoneHandle:scale")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.25, 1.25, 1.25), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f2g4n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhoneHandle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.037, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhoneHandle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhoneHandle:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0x8yl"]
+_data = {
+"RESET": SubResource("Animation_f2g4n"),
+"ring": SubResource("Animation_1n6yn")
+}
+
 [node name="phone_handle" instance=ExtResource("1_sjr47")]
+script = ExtResource("2_e6xhc")
 
 [node name="PhoneHandle" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_hw1kq")
 surface_material_override/1 = SubResource("ShaderMaterial_u0jq2")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="1"]
-transform = Transform3D(-3.78552e-08, -0.5, -0.866025, -2.18557e-08, 0.866025, -0.5, 1, 0, -4.37114e-08, 0.17065, 0.0392492, 0.000338793)
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="PhoneHandle" index="0"]
+transform = Transform3D(-3.78552e-08, -0.5, -0.866025, -2.18557e-08, 0.866025, -0.5, 1, 0, -4.37114e-08, 0.13365, 0.0392492, 0.000338793)
 pixel_size = 0.006
 sprite_frames = SubResource("SpriteFrames_gdnwb")
-animation = &"awake"
+animation = &"sleep"
 autoplay = "sleep"
-frame_progress = 0.604879
+frame_progress = 0.903402
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_0x8yl")
+}
+speed_scale = 1.162
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="." index="2"]

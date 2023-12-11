@@ -5,5 +5,5 @@ class_name Cutscene
 @export var end_animation_name: String = "" 
 
 
-func play():
-	CutsceneManager.play_cutscene(self)
+func play(from_scene: int = 0, from_seconds: float = 0.0):
+	CutsceneManager.play_cutscene(self, from_scene, from_seconds)

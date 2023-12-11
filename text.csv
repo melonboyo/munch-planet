@@ -1,14 +1,3 @@
-keys,en,nb
-TEST_MUNCHMEE_1,"I will now proceed to speak","Nå skal jeg til å snakke"
-TEST_MUNCHMEE_2,"Hello! I am Munchmee!","Hei! Jeg er Munchmee!"
-TEST_MUNCHMEE_3,"I am a Munchmee!","Jeg er en Munchmee!"
-TEST_MUNCHMEE_4,"You can munch me! And I will munch you! Munch munch munch!","Du kan spise meg! Og jeg vil spise deg! Spis spis spis!"
-TEST_MUNCHMEE_5,"Please do not munch me! I am a Munchmee!","Vær så snill ikke spis meg! Jeg er en Munchmee!"
-TEST_MUNCHMEE_6,"I am a Munchmee! I am a Munchmee! I am a Munchmee!","Jeg er en Munchmee! Jeg er en Munchmee! Jeg er en Munchmee!"
-TEST_MUNCHMEE_7,"There are no rules! Munch me! Munch me! Munch me!","Det er ingen regler! Spis meg! Spis meg! Spis meg!"
-TEST_MUNCHMEE_8,"Hee hee hee! I am a Munchmee! You are a Munchmee! We are all Munchmees!","Hee hee hee! Jeg er en Munchmee! Du er en Munchmee! Vi er alle Munchmees!"
-
-MEAN_MUNCHMEE_1,"I hate you!","Jeg hater deg!"
-MEAN_MUNCHMEE_2,"If you don't stop munching me, I will munch you!","Hvis du ikke slutter å spise meg, vil jeg spise deg!"
-
-BB_1,"I have the highest form of [b]Face![/b]","Jeg har den høyeste formen for [b]Fjes![/b]"
+keys,en
+INTRO_1,"YOU HAVE WON!!!"
+INTRO_2,"GO AWAY"

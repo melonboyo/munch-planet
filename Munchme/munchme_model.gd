@@ -23,7 +23,7 @@ func interpolation_change(anim: AnimationPlayer):
 			anim_track.track_set_interpolation_type(i, 0) # change interpolation mode for every track
 
 
-func change_animation(anim: String):
+func play_animation(anim: String):
 	if anim == $AnimationPlayer.current_animation:
 		return
 	$AnimationPlayer.play(anim)

@@ -1,6 +1,7 @@
 extends Node
 
 @export_node_path("CharacterBody3D") var target_path: NodePath
+@export_range(0.001, 2.0) var ok_distance = 0.3
 var follow_point: Vector3
 var points: Array[Vector3] = []
 var has_reached_end = true
@@ -13,7 +14,7 @@ func _process(delta):
 	
 	var dist_to_point = target.global_position.distance_to(follow_point)
 	
-	if dist_to_point > 0.5:
+	if dist_to_point > ok_distance:
 		return
 	
 	if points.size() > 0:

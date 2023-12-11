@@ -14,9 +14,8 @@ var current_scene = 0
 var total_scenes: int:
 	get: return cutscene.scenes.size() if cutscene != null else 0
 
-var is_cutscene_playing = false
-var is_scene_playing: bool:
-	get: return is_animation_playing or is_dialogue_playing
+var is_cutscene_playing := false
+var is_scene_playing := false
 
 # Animations
 signal animation_finished
@@ -33,13 +32,13 @@ var dialogue_text_length := 0
 var time_since_character := 0.0
 
 
-func play_cutscene(gimme_a_cutscene: Cutscene):
+func play_cutscene(gimme_a_cutscene: Cutscene, from_scene: int = 0, from_seconds: float = 0.0):
 	cutscene = gimme_a_cutscene
-	current_scene = 0
+	current_scene = from_scene
 	
 	_set_animation_player()
 
-	_play_scene(cutscene.scenes[current_scene])
+	_play_scene(cutscene.scenes[current_scene], from_seconds)
 	is_cutscene_playing = true
 	cutscene_playing.emit()
 
@@ -80,13 +79,14 @@ func _process(delta: float):
 			play_next_scene()
 
 
-func _play_scene(scene: CutsceneScene):
+func _play_scene(scene: CutsceneScene, from_seconds: float = 0.0):
 	if animation_player != null and scene.animation_name.length() > 0:
-		_play_animation(animation_player, scene.animation_name)
+		_play_animation(animation_player, scene.animation_name, from_seconds)
 		
 	if scene.dialogue_translation_key.length() > 0:
 		_play_dialogue(scene.dialogue_translation_key)
-
+	
+	is_scene_playing = true
 	scene_playing.emit()
 
 
@@ -111,10 +111,12 @@ func _remove_animation_player():
 		animation_player.animation_finished.disconnect(_on_animation_player_animation_finished)
 
 
-func _play_animation(animation_player: AnimationPlayer, animation_name: String = ""):
+func _play_animation(animation_player: AnimationPlayer, animation_name: String = "", from_seconds: float = 0.0):
 	is_animation_playing = true
 	animation_looping = animation_player.get_animation(animation_name).loop_mode != 0
 	animation_player.play(animation_name)
+	if from_seconds > 0.0:
+		animation_player.seek(from_seconds)
 
 
 func _play_dialogue(dialogue_translation_key: String):
@@ -130,6 +132,8 @@ func _play_dialogue(dialogue_translation_key: String):
 
 func _handle_scene_finished():
 	if is_scene_playing and not is_animation_playing and not is_dialogue_playing:
+		if cutscene.scenes[current_scene].dialogue_translation_key.length() == 0:
+			play_next_scene()
 		is_scene_playing = false
 		scene_finished.emit()
 

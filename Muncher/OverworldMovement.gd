@@ -3,6 +3,7 @@ class_name OverworldMovement
 
 
 @export var spherical_gravity := true
+@export var is_animating := true
 @export_node_path("CharacterBody3D") var target_path: NodePath
 @export_node_path("Node3D") var model_path: NodePath = "../Model"
 @export_node_path("Node3D") var float_node_path: NodePath
@@ -108,7 +109,8 @@ func _overworld_physics_process(delta):
 	if gravity_velocity.length() > max_fall_speed:
 		gravity_velocity = gravity_velocity.normalized() * max_fall_speed
 	
-	move_velocity = move_velocity.lerp(move_input * speed, delta * acceleration)
+	if not target.sitting:
+		move_velocity = move_velocity.lerp(move_input * speed, delta * acceleration)
 	gravity_velocity = gravity_velocity.project(target.up_direction)
 	
 	if not float_node.is_floating(): snap_to_floor()
@@ -121,8 +123,13 @@ func _overworld_physics_process(delta):
 
 
 func animate():
+	if not is_animating:
+		return
+	if target is Muncher and target.sitting:
+		model.play_animation("Sit")
+		return
 	if move_velocity.length() > 0.05:
-		model.change_animation("Run")
+		model.play_animation("Run")
 		model.set_animation_speed_scale(move_velocity.length() * 0.12)
 		last_strong_direction = move_velocity.normalized()
 	else:
@@ -131,7 +138,7 @@ func animate():
 			idle += Lookup.moods[get_parent().resource.mood]
 			if not model.has_animation(idle):
 				idle = "Idle"
-		model.change_animation(idle)
+		model.play_animation(idle)
 		model.set_animation_speed_scale(1.0)
 
 

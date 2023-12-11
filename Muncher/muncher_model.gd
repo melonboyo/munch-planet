@@ -27,10 +27,16 @@ func interpolation_change(anim: AnimationPlayer):
 #		print(anim_track_1.track_get_interpolation_type(i))
 
 
-func change_animation(anim: String):
+func play_animation(anim: String):
 	if anim == $AnimationPlayer.current_animation:
 		return
 	$AnimationPlayer.play(anim)
+
+
+func play_animation_backwards(anim: String):
+	if anim == $AnimationPlayer.current_animation:
+		return
+	$AnimationPlayer.play_backwards(anim)
 
 
 func set_animation_speed_scale(value: float):
@@ -45,13 +51,9 @@ func play_step_sound():
 	$StepPlayer.play()
 
 
-func grab(item: Node3D, left: bool = true):
-	if left:
-		%HandAttachment.bone_name = "WingEnd.L"
-		%HandAttachment.bone_idx = 14
+func grab_phone(yes: bool = true):
+	%HandAttachment.visible = yes
+	if yes:
+		%phone_handle.pick_up()
 	else:
-		%HandAttachment.bone_name = "WingEnd.R"
-		%HandAttachment.bone_idx = 17
-	
-	item.reparent(%HandAttachment)
-	item.position = Vector3.ZERO
+		%phone_handle.put_down()

@@ -5,6 +5,7 @@ class_name Muncher
 @export_node_path("Node3D") var camera_path: NodePath
 @export_range(0.0, 1.0) var move_input_deadzone: float = 0.15
 @export_range(0.0, 10.0) var height: float = 1.8
+@export var player_controlled: bool = true
 
 @onready var camera: Node3D = get_node_or_null(camera_path)
 @onready var emoter = $Emoter as Emoter
@@ -47,18 +48,40 @@ func get_move_input() -> Vector3:
 
 
 func _physics_process(delta):
+	#print($AiMovement.has_reached_end)
 	$Model.is_on_floor = is_on_floor()
 	if GameState.focus_main and GameState.situation == Constants.Situation.Overworld and not GameState.during_intro:
 		$OverworldMovement.move_input = move_input
 	else:
 		$OverworldMovement.move_input = Vector3.ZERO
+	if not player_controlled:
+		$OverworldMovement.move_input = $AiMovement.get_move_direction()
+		#print($OverworldMovement.move_input)
 	$OverworldMovement._overworld_physics_process(delta)
 	#print(velocity, ", ", is_on_floor(), ", ")
 
 
-func get_move_input_to_point():
-	pass
+func set_follow_points(_points: Array[Vector3]):
+	$AiMovement.set_follow_points(_points)
+
+
+func walk_to_phone():
+	set_follow_points([Vector3(-2.05, 9.98, 1.67)])
 
 
 func sit(yes = true):
 	sitting = yes
+
+
+func grab_phone(yes: bool = true):
+	if yes:
+		$Model.play_animation("PickUpPhone")
+	else:
+		$Model.play_animation_backwards("PickUpPhone")
+	$Model.set_animation_speed_scale(1.0)
+	#await get_tree().create_timer(0.05).timeout
+	$Model.grab_phone(yes)
+
+
+func set_is_movement_animating(yes: bool):
+	$OverworldMovement.is_animating = yes

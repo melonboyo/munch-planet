@@ -26,11 +26,11 @@ func _overworld_physics_process(delta):
 	snap_to_floor()
 	
 	if move_input_speed_scaled.length() > 0.2:
-		model.change_animation("Run")
+		model.play_animation("Run")
 		model.set_animation_speed_scale(move_velocity.length() * 0.12)
 		last_strong_direction = move_velocity.normalized()
 	else:
-		model.change_animation("Idle")
+		model.play_animation("Idle")
 		model.set_animation_speed_scale(1.0)
 
 	target.velocity = move_velocity + gravity_velocity

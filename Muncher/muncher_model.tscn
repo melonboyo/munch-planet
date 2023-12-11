@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://byqxhfjpv5fey"]
+[gd_scene load_steps=6 format=3 uid="uid://byqxhfjpv5fey"]
 
 [ext_resource type="PackedScene" uid="uid://bofgx4ionr17s" path="res://Models/muncher.gltf" id="1_3g22p"]
 [ext_resource type="Script" path="res://Muncher/muncher_model.gd" id="2_yv0yo"]
 [ext_resource type="Material" uid="uid://belqhdabt8ref" path="res://Materials/MuncherTestMaterial.tres" id="3_fk1ay"]
 [ext_resource type="AudioStream" uid="uid://b66twy7o5wbwn" path="res://SFX/Step/step_mid1.ogg" id="5_506rr"]
+[ext_resource type="PackedScene" uid="uid://x8jg67cxv075" path="res://Assets/phone_handle.tscn" id="5_spqmb"]
 
 [node name="MuncherModel" instance=ExtResource("1_3g22p")]
 script = ExtResource("2_yv0yo")
@@ -15,8 +16,8 @@ max_polyphony = 2
 bus = &"Effects"
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0, 1.49649, 0)
-bones/0/scale = Vector3(0.974186, 1.05284, 0.974186)
+bones/0/position = Vector3(0, 1.51937, 0)
+bones/0/scale = Vector3(0.944091, 1.10667, 0.944091)
 bones/2/rotation = Quaternion(0.707107, -3.09086e-08, 1.37679e-07, 0.707107)
 bones/4/position = Vector3(-0.399912, -0.00800619, -0.301737)
 bones/4/rotation = Quaternion(0.602478, 0.288018, -0.616868, -0.416581)
@@ -32,7 +33,6 @@ bones/12/rotation = Quaternion(0.195224, -0.255569, 0.887838, -0.329114)
 bones/13/rotation = Quaternion(-2.10095e-07, 1.35752e-07, -0.21259, 0.977142)
 bones/14/rotation = Quaternion(-1.62248e-07, -4.95851e-08, -0.180326, 0.983607)
 bones/15/rotation = Quaternion(0.0397657, 0.491802, 0.800563, 0.340072)
-bones/16/rotation = Quaternion(-2.10095e-07, -1.35752e-07, 0.21259, 0.977142)
 bones/17/rotation = Quaternion(-1.62248e-07, 4.95852e-08, 0.180326, 0.983607)
 
 [node name="Body" parent="Armature/Skeleton3D" index="0"]
@@ -40,6 +40,11 @@ surface_material_override/0 = ExtResource("3_fk1ay")
 
 [node name="HandAttachment" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
 unique_name_in_owner = true
-transform = Transform3D(-0.874447, 0.184185, 0.387888, 0.218653, -0.647883, 0.800569, 0.378745, 0.745477, 0.499855, -0.937885, 1.84326, 0.614502)
+transform = Transform3D(-0.847433, 0.178494, 0.375905, 0.229833, -0.681009, 0.841501, 0.367045, 0.722447, 0.484413, -0.908911, 1.88387, 0.595518)
+visible = false
 bone_name = "WingEnd.R"
 bone_idx = 17
+
+[node name="phone_handle" parent="Armature/Skeleton3D/HandAttachment" index="0" instance=ExtResource("5_spqmb")]
+unique_name_in_owner = true
+transform = Transform3D(0.00540531, 0.6016, -0.40795, 0.324439, -0.367065, -0.537008, -0.65045, -0.178089, -0.271245, -0.109, 0.389, 0)

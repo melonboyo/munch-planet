@@ -130,7 +130,7 @@ func lose_catch():
 func play_animation(anim: String):
 	if $Model == null:
 		return
-	$Model.change_animation(anim)
+	$Model.play_animation(anim)
 
 
 func set_follow_points(_points: Array[Vector3]):
