@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=35 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]

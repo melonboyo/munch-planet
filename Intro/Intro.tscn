@@ -295,7 +295,7 @@ transform = Transform3D(2.36192, 0, 0, 0, 2.36192, 0, 0, 0, 2.36192, -2.931, 0.8
 curve = SubResource("Curve3D_yxy00")
 
 [node name="PathFollow" type="PathFollow3D" parent="CameraPivot/Path"]
-transform = Transform3D(0.999899, 0, 0, 0, 0.999919, 0, 0, 0, 0.999924, -50.6521, -7.56199, -49.5916)
+transform = Transform3D(0.999899, 0, 0, 0, 0.999919, 0, 0, 0, 0.999924, -50.652, -7.562, -49.5916)
 progress = 3.33521
 rotation_mode = 0
 loop = false
