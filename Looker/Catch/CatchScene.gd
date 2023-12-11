@@ -21,6 +21,8 @@ func _ready():
 	var main_node = find_parent("Main")
 	finish_catch.connect(main_node._on_munchme_finish_catch)
 	looker.music_track = munchme.resource.catch_track
+	looker.window_width = munchme.resource.catch_looker_size.x
+	looker.window_height = munchme.resource.catch_looker_size.y
 	
 	$Animation.play("enter")
 
@@ -41,7 +43,10 @@ func rotate_camera_randomly():
 
 
 func shake_camera():
-	$Animation.play("shake")
+	if $Animation.is_playing():
+		$Animation.seek(0)
+	else:
+		$Animation.play("shake")
 
 
 func _on_animation_animation_finished(anim_name):

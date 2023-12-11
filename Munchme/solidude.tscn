@@ -17,6 +17,7 @@ max_health = 100
 mood = 1
 catch_track = 3
 roam_track = 1
+catch_looker_size = Vector2(910, 647)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_opjby"]
 radius = 0.46621

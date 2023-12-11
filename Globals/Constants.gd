@@ -18,6 +18,7 @@ enum Emote {
 enum Munchme {
 	Goby,
 	Solidude,
+	Snake,
 }
 
 enum Mood {
@@ -32,4 +33,10 @@ enum Hand {
 	Paper,
 	Scissors,
 	None
+}
+
+enum SnakeHand {
+	Left,
+	Middle,
+	Right,
 }
