@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=34 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -18,8 +18,18 @@
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="11_nrph8"]
 [ext_resource type="Script" path="res://DebugDraw.gd" id="11_oedib"]
 [ext_resource type="PackedScene" uid="uid://dao72127cctuc" path="res://Planets/Foliage/tree_high_round.tscn" id="12_yu150"]
+[ext_resource type="LightmapGIData" uid="uid://cdi4e4o3k42oi" path="res://MiscResources/Main.lmbake" id="19_80l5t"]
 
-[sub_resource type="Shader" id="Shader_bjxy6"]
+[sub_resource type="Gradient" id="Gradient_g5qbp"]
+offsets = PackedFloat32Array(0, 0.345361, 1)
+colors = PackedColorArray(0.150988, 0.119537, 0.0897483, 1, 0.281626, 0.183907, 0.16937, 1, 0.987646, 0.870591, 0.885756, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nt0xa"]
+gradient = SubResource("Gradient_g5qbp")
+width = 128
+height = 128
+
+[sub_resource type="Shader" id="Shader_ixlyj"]
 code = "
 // NOTE: Shader automatically converted from Godot Engine 4.2.stable's PanoramaSkyMaterial.
 
@@ -33,26 +43,28 @@ void sky() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cuys3"]
-shader = SubResource("Shader_bjxy6")
+shader = SubResource("Shader_ixlyj")
 shader_parameter/source_panorama = ExtResource("2_hhsoy")
 
-[sub_resource type="Sky" id="Sky_hjdba"]
+[sub_resource type="Sky" id="Sky_mjs0p"]
 sky_material = SubResource("ShaderMaterial_cuys3")
 
-[sub_resource type="Environment" id="Environment_df6u4"]
+[sub_resource type="Environment" id="Environment_bkwgg"]
 background_mode = 2
 background_color = Color(0.564706, 0.929412, 0.941176, 1)
-sky = SubResource("Sky_hjdba")
+sky = SubResource("Sky_mjs0p")
 ambient_light_source = 3
-ambient_light_color = Color(0.960784, 0.568627, 0.364706, 1)
-ambient_light_sky_contribution = 0.64
+ambient_light_color = Color(0.921569, 0.811765, 0.784314, 1)
+ambient_light_sky_contribution = 0.78
+ambient_light_energy = 0.7
 reflected_light_source = 2
-tonemap_white = 0.6
 ssao_enabled = true
 ssao_power = 1.21838
 ssao_horizon = 1.0
 glow_normalized = true
-adjustment_enabled = true
+adjustment_brightness = 1.12
+adjustment_saturation = 1.23
+adjustment_color_correction = SubResource("GradientTexture2D_nt0xa")
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1rtsb"]
 auto_exposure_scale = 0.5
@@ -158,8 +170,8 @@ script = ExtResource("1_12yvb")
 
 [node name="Muncher" parent="Player" instance=ExtResource("2_b0ky1")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.343, 91.2372, 44.0544)
-floor_snap_length = 1.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.9722, 98.7497, 16.2338)
+wall_min_slide_angle = 1.8867
 camera_path = NodePath("../../CameraPivot")
 
 [node name="FollowPoints" type="Node" parent="."]
@@ -201,25 +213,31 @@ unique_name_in_owner = true
 transform = Transform3D(-0.948109, 0, -0.317946, 0, 1, 0, 0.317946, 0, -0.948109, 3.24406, 105.199, 11.3674)
 collision_layer = 262145
 
+[node name="Goby2" parent="Munchmes" instance=ExtResource("7_xaxar")]
+unique_name_in_owner = true
+transform = Transform3D(-0.915803, -0.245389, -0.317946, -0.258819, 0.965926, 0, 0.307112, 0.0822905, -0.948109, 4.33285, 104.164, 17.3307)
+collision_layer = 262145
+
 [node name="Solidude" parent="Munchmes" instance=ExtResource("4_8dymd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2644, 86.2134, 45.6933)
 collision_mask = 7
+floor_max_angle = 0.785398
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_df6u4")
+environment = SubResource("Environment_bkwgg")
 camera_attributes = SubResource("CameraAttributesPractical_1rtsb")
 script = ExtResource("3_ligat")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.927315, -1.63604e-08, 0.374283, -0.374283, -4.05342e-08, 0.927315, 0, -1, -4.37114e-08, 0, 115.061, 0)
-layers = 2
-light_color = Color(1, 1, 0.964706, 1)
-light_energy = 0.8
+transform = Transform3D(0.927315, -1.63604e-08, 0.374283, -0.374283, -4.05342e-08, 0.927315, 0, -1, -4.37114e-08, 9.90192, 139.594, -1.15642e-06)
+light_color = Color(0.984314, 0.776471, 0.403922, 1)
+light_energy = 0.76
 shadow_enabled = true
-shadow_blur = 1.99
-directional_shadow_pancake_size = 13.0
+shadow_blur = 3.36
+directional_shadow_max_distance = 150.0
 script = ExtResource("4_llbt7")
 player_path = NodePath("../Player/Muncher")
+follow_player = false
 
 [node name="CameraPivot" parent="." instance=ExtResource("3_8oj03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 79.9273, 0)
@@ -237,7 +255,8 @@ transform = Transform3D(0.98972, -0.142992, -0.00270788, -0.0329795, -0.209763, 
 unique_name_in_owner = true
 transform = Transform3D(0.98972, -0.142992, -0.00270788, -0.0329795, -0.209763, -0.977196, 0.139163, 0.96724, -0.212322, 0, 0, 0)
 collision_layer = 32
-collision_mask = 2
+collision_mask = 0
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/WaterArea"]
 transform = Transform3D(-0.0148178, -0.999891, -4.65661e-10, 0.99989, -0.0148169, 0, -2.6077e-08, -9.31323e-10, 1, 0, 0, 0)
@@ -968,6 +987,51 @@ scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_or7ah"), SubResou
 libraries = {
 "": SubResource("AnimationLibrary_u42vu")
 }
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+visible = false
+quality = 2
+bounces = 6
+light_data = ExtResource("19_80l5t")
+
+[node name="LightmapProbe" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3671, 104.69, 25.4294)
+
+[node name="LightmapProbe2" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.7826, 92.7237, 33.5484)
+
+[node name="LightmapProbe3" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.0968, 96.0897, 10.8247)
+
+[node name="LightmapProbe4" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.8868, 109.658, -7.3914)
+
+[node name="LightmapProbe5" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.88676, 98.2955, 51.6086)
+
+[node name="LightmapProbe6" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.2354, 98.2955, 85.8721)
+
+[node name="LightmapProbe7" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.1846, 74.269, 102.948)
+
+[node name="LightmapProbe8" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.782, 74.269, 43.2052)
+
+[node name="LightmapProbe9" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.605, 74.269, -45.6364)
+
+[node name="LightmapProbe10" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.456, 74.269, -103.15)
+
+[node name="LightmapProbe11" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8628, 118.481, -78.1541)
+
+[node name="LightmapProbe12" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5392, 92.879, -58.4374)
+
+[node name="LightmapProbe13" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.384, 92.879, 1.74851)
 
 [connection signal="focus_entered" from="UI" to="." method="_on_ui_focus_entered"]
 [connection signal="focus_exited" from="UI" to="." method="_on_ui_focus_exited"]

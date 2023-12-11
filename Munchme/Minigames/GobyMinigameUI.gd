@@ -40,3 +40,8 @@ func disable():
 
 func play_animation(anim):
 	$Animation.play(anim)
+
+
+func _on_area_2d_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		print(event)

@@ -1,0 +1,38 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://belqhdabt8ref"]
+
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="1_tc6qy"]
+[ext_resource type="Texture2D" uid="uid://ec0frs8s2vdp" path="res://Models/textures/muncher-texture.png" id="2_qony2"]
+
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xqq30"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_31tp3")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tc6qy")
+shader_parameter/albedo = Color(1, 0.960784, 0.984314, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.079
+shader_parameter/specular_tint = 0.302
+shader_parameter/sheen = 0.106
+shader_parameter/sheen_tint = 0.963
+shader_parameter/subsurface = 0.0
+shader_parameter/shadow_cutoff = 0.0740001
+shader_parameter/shadow_cutoff_smoothness = 0.0
+shader_parameter/wobble_displacement = 0.558
+shader_parameter/wobble_frequency = 3.052
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/albedo_texture = ExtResource("2_qony2")
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_xqq30")

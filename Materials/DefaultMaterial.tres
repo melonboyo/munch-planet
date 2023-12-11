@@ -26,6 +26,4 @@ shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(0.960784, 0.776471, 0.34902, 1)
 shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/LightBlendColor2 = Color(0.14902, 0.0784314, 0.00392157, 1)
-shader_parameter/LightBlendColor2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")

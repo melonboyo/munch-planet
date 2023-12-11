@@ -13,6 +13,7 @@ var situation: Constants.Situation = Constants.Situation.Overworld:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+var during_intro = true
 var munchmes: Array[MunchmeResource] = []
 var deployed_munchmes: Array[Munchme]
 var munchme_windows: Array[Control] = []
@@ -22,6 +23,48 @@ var focus_main = true
 var last_used_id = 10
 var open_lookers: Array[Looker] = []
 var looker_music_map := {}
+var water_height = 0.0
+var look_input_deadzone: float = 0.0
+var cursor_sensitivty: float = 0.5
+
+
+func _ready():
+	InputMap.action_set_deadzone("look_right", look_input_deadzone)
+	InputMap.action_set_deadzone("look_left", look_input_deadzone)
+	InputMap.action_set_deadzone("look_up", look_input_deadzone)
+	InputMap.action_set_deadzone("look_right", look_input_deadzone)
+
+
+func _process(delta):
+	if (
+		Input.is_action_just_pressed("cancel") and 
+		GameState.situation != Constants.Situation.Catch
+	):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		var stick_input = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+		
+		var pow_length = pow(stick_input.length(), 5.0) * 0.95 + 0.05
+		var speed_mult = 1.0
+		var speed_up_strength = Input.get_action_strength("speed_up_cursor")
+		if speed_up_strength > 0.9:
+			speed_mult = 2.3
+		elif speed_up_strength > 0.1:
+			speed_mult = 1.4
+		speed_mult *= ProjectSettings.get_setting("global/mouse_sensitivity") * 13.0
+		stick_input = (pow_length / stick_input.length()) * stick_input * cursor_sensitivty * speed_mult
+		if stick_input.length() > 0.0:
+			#call_deferred("move_mouse", stick_input)
+			move_mouse(stick_input)
+		
+	if Input.is_action_just_pressed("click"):
+		call_deferred("click")
+	elif Input.is_action_just_released("click"):
+		call_deferred("click_released")
 
 
 func change_sitation_to(new_situation: Constants.Situation):
@@ -142,3 +185,27 @@ func get_highest_looker_z_index():
 	for looker in open_lookers:
 		highest_z_index = max(looker.looker_z_index, highest_z_index)
 	return highest_z_index
+
+
+func move_mouse(relative: Vector2):
+	get_viewport().warp_mouse(get_viewport().get_mouse_position() + relative - Vector2(-1,-1))
+	#var a = InputEventMouseMotion.new()
+	#a.relative = relative
+	#Input.parse_input_event(a)
+
+
+func click():
+	var a = InputEventMouseButton.new()
+	a.position = get_viewport().get_mouse_position() * (get_viewport().size as Vector2 / get_viewport().get_visible_rect().size as Vector2)
+	a.button_index = MOUSE_BUTTON_LEFT
+	a.pressed = true
+	a.button_mask = MOUSE_BUTTON_MASK_LEFT
+	Input.parse_input_event(a)
+
+
+func click_released():
+	var a = InputEventMouseButton.new()
+	a.position = get_viewport().get_mouse_position() * (get_viewport().size as Vector2 / get_viewport().get_visible_rect().size as Vector2)
+	a.button_index = MOUSE_BUTTON_LEFT
+	a.pressed = false
+	Input.parse_input_event(a)

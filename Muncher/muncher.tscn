@@ -7,13 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://bcaj1ogqexsb7" path="res://Movement/float_movement.tscn" id="5_8aopf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wx677"]
-radius = 1.14331
+radius = 1.04752
 height = 2.28662
 
 [node name="Muncher" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 15
-floor_max_angle = 1.0472
+floor_max_angle = 0.959931
 floor_snap_length = 0.5
 script = ExtResource("1_dnfvd")
 
@@ -26,9 +26,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00804305, 0)
 
 [node name="OverworldMovement" parent="." instance=ExtResource("4_2hhfk")]
 target_path = NodePath("..")
-model_path = NodePath("../Model")
 float_node_path = NodePath("../FloatMovement")
-max_floor_angle = 60.0
 
 [node name="FloatMovement" parent="." instance=ExtResource("5_8aopf")]
 target_path = NodePath("..")

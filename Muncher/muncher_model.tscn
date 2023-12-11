@@ -1,75 +1,45 @@
-[gd_scene load_steps=10 format=3 uid="uid://byqxhfjpv5fey"]
+[gd_scene load_steps=5 format=3 uid="uid://byqxhfjpv5fey"]
 
 [ext_resource type="PackedScene" uid="uid://bofgx4ionr17s" path="res://Models/muncher.gltf" id="1_3g22p"]
 [ext_resource type="Script" path="res://Muncher/muncher_model.gd" id="2_yv0yo"]
-[ext_resource type="Material" uid="uid://ew4i5g2yrb7v" path="res://Materials/MuncherMaterial.tres" id="3_i5ue1"]
-[ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="3_pvpmu"]
+[ext_resource type="Material" uid="uid://belqhdabt8ref" path="res://Materials/MuncherTestMaterial.tres" id="3_fk1ay"]
 [ext_resource type="AudioStream" uid="uid://b66twy7o5wbwn" path="res://SFX/Step/step_mid1.ogg" id="5_506rr"]
-
-[sub_resource type="Gradient" id="Gradient_mg6df"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_shla8"]
-frequency = 0.019
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y832r"]
-width = 256
-height = 256
-color_ramp = SubResource("Gradient_mg6df")
-noise = SubResource("FastNoiseLite_shla8")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l71ty"]
-render_priority = 0
-shader = ExtResource("3_pvpmu")
-shader_parameter/VertexVariationDisplacement = 0.015
-shader_parameter/VertexVariationFrequency = 0.645
-shader_parameter/NumberOfVertexVariations = 7
-shader_parameter/Albedo = Color(0.984314, 0.47451, 0.478431, 1)
-shader_parameter/AlbedoInfluence = 1.0
-shader_parameter/Roughness = 1.0
-shader_parameter/Specular = 0.152
-shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
-shader_parameter/LightBlendColorInfluence = 0.85
-shader_parameter/LightBlendColor2 = Color(0.67451, 0.129412, 0.360784, 1)
-shader_parameter/LightBlendColor2Influence = 0.812
-shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_y832r")
 
 [node name="MuncherModel" instance=ExtResource("1_3g22p")]
 script = ExtResource("2_yv0yo")
 
-[node name="Skeleton3D" parent="Armature" index="0"]
-bones/2/rotation = Quaternion(0.707107, -3.09086e-08, 1.37679e-07, 0.707107)
-bones/4/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(0.0911259, 0.101585, 0.661499, 0.737425)
-bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.00172187, -0.000193567, -0.00357253, 0.999992)
-bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.707107, 0, 0.707107, 0)
-bones/10/rotation = Quaternion(0.0911259, -0.101586, -0.661499, 0.737425)
-bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.00172187, 0.000193583, 0.00357253, 0.999992)
-bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(3.63694e-07, 1.03789e-07, 0.964036, -0.265772)
-bones/13/rotation = Quaternion(-2.00144e-07, 8.65038e-08, -0.21259, 0.977142)
-bones/14/rotation = Quaternion(-1.66664e-07, -7.01434e-08, -0.180326, 0.983607)
-bones/15/rotation = Quaternion(2.26189e-07, 5.76012e-08, -0.707107, 0.707107)
-bones/17/rotation = Quaternion(1.40891e-23, 2.38419e-07, -1.6295e-22, 1)
-bones/18/rotation = Quaternion(1.40942e-23, -2.38419e-07, -4.19406e-22, 1)
-bones/19/rotation = Quaternion(5.76012e-08, -2.26189e-07, 0.707107, 0.707107)
-bones/21/rotation = Quaternion(1.41004e-23, -2.38419e-07, 1.00998e-21, 1)
-bones/22/rotation = Quaternion(1.41168e-23, 2.38419e-07, -1.27466e-21, 1)
-bones/23/rotation = Quaternion(-5.93538e-07, 4.04244e-08, 0.964036, 0.265772)
-bones/24/rotation = Quaternion(-2.00144e-07, -8.65038e-08, 0.21259, 0.977142)
-bones/25/rotation = Quaternion(-1.66664e-07, 7.01434e-08, 0.180326, 0.983607)
-
-[node name="Body" parent="Armature/Skeleton3D" index="0"]
-surface_material_override/0 = ExtResource("3_i5ue1")
-surface_material_override/1 = SubResource("ShaderMaterial_l71ty")
-
-[node name="AnimationPlayer" parent="." index="1"]
-autoplay = "Idle"
-
-[node name="StepPlayer" type="AudioStreamPlayer" parent="." index="2"]
+[node name="StepPlayer" type="AudioStreamPlayer" parent="." index="0"]
 stream = ExtResource("5_506rr")
-volume_db = -4.5
+volume_db = -6.0
 max_polyphony = 2
 bus = &"Effects"
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0, 1.49649, 0)
+bones/0/scale = Vector3(0.974186, 1.05284, 0.974186)
+bones/2/rotation = Quaternion(0.707107, -3.09086e-08, 1.37679e-07, 0.707107)
+bones/4/position = Vector3(-0.399912, -0.00800619, -0.301737)
+bones/4/rotation = Quaternion(0.602478, 0.288018, -0.616868, -0.416581)
+bones/4/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.00172186, -0.000193394, -0.00357253, 0.999992)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/position = Vector3(0.353894, -0.271762, 0.107814)
+bones/8/rotation = Quaternion(0.651209, 0.354075, 0.636616, 0.212786)
+bones/10/rotation = Quaternion(0.0911258, -0.101586, -0.661499, 0.737425)
+bones/11/rotation = Quaternion(-0.00172188, 0.000193411, 0.00357254, 0.999992)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(0.195224, -0.255569, 0.887838, -0.329114)
+bones/13/rotation = Quaternion(-2.10095e-07, 1.35752e-07, -0.21259, 0.977142)
+bones/14/rotation = Quaternion(-1.62248e-07, -4.95851e-08, -0.180326, 0.983607)
+bones/15/rotation = Quaternion(0.0397657, 0.491802, 0.800563, 0.340072)
+bones/16/rotation = Quaternion(-2.10095e-07, -1.35752e-07, 0.21259, 0.977142)
+bones/17/rotation = Quaternion(-1.62248e-07, 4.95852e-08, 0.180326, 0.983607)
+
+[node name="Body" parent="Armature/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("3_fk1ay")
+
+[node name="HandAttachment" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+unique_name_in_owner = true
+transform = Transform3D(-0.874447, 0.184185, 0.387888, 0.218653, -0.647883, 0.800569, 0.378745, 0.745477, 0.499855, -0.937885, 1.84326, 0.614502)
+bone_name = "WingEnd.R"
+bone_idx = 17

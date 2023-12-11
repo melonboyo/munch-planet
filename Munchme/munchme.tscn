@@ -101,6 +101,7 @@ _data = {
 [node name="Munchme" type="CharacterBody3D"]
 collision_layer = 8
 collision_mask = 15
+floor_max_angle = 0.959931
 script = ExtResource("1_ygrta")
 
 [node name="CatchArea" type="Area3D" parent="."]
@@ -146,6 +147,7 @@ autoplay = "pulsate"
 spherical_gravity = false
 target_path = NodePath("..")
 float_node_path = NodePath("../FloatMovement")
+max_floor_angle = 55.0
 
 [node name="FloatMovement" parent="." instance=ExtResource("5_fqq42")]
 target_path = NodePath("..")

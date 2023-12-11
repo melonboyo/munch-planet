@@ -43,3 +43,15 @@ func play_step_sound():
 	var i = randi_range(0, step_sounds.size()-1)
 	$StepPlayer.stream = step_sounds[i]
 	$StepPlayer.play()
+
+
+func grab(item: Node3D, left: bool = true):
+	if left:
+		%HandAttachment.bone_name = "WingEnd.L"
+		%HandAttachment.bone_idx = 14
+	else:
+		%HandAttachment.bone_name = "WingEnd.R"
+		%HandAttachment.bone_idx = 17
+	
+	item.reparent(%HandAttachment)
+	item.position = Vector3.ZERO

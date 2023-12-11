@@ -41,8 +41,6 @@ shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
 shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
-shader_parameter/LightBlendColor2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 shader_parameter/FaceTexture = SubResource("NoiseTexture2D_k1xsw")
 
@@ -206,15 +204,14 @@ shape = SubResource("BoxShape3D_sniqy")
 environment = SubResource("Environment_x3oj8")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 
 [node name="Path" type="Path3D" parent="CameraPivot"]
 transform = Transform3D(2.36192, 0, 0, 0, 2.36192, 0, 0, 0, 2.36192, -2.931, 0.835557, 3.50799)
 curve = SubResource("Curve3D_0828f")
 
 [node name="PathFollow" type="PathFollow3D" parent="CameraPivot/Path"]
-transform = Transform3D(0.967983, -0.121944, 0.218914, 0.0566011, 0.957363, 0.282998, -0.244105, -0.261577, 0.933709, 1.19093, 0.152133, -0.82483)
-progress = 2.14371
+transform = Transform3D(-0.680845, -0.0700157, -0.728939, 0.456993, 0.737099, -0.497659, 0.572179, -0.672027, -0.469902, -0.364094, -0.0164032, -0.0642864)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/Path/PathFollow"]
 unique_name_in_owner = true

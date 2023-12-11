@@ -30,6 +30,9 @@ uniform vec4 _DepthGradientDeep: source_color = vec4(0.086, 0.407, 1, 0.749);
 uniform float _DepthMaxDistance: hint_range(0, 1) = 1.0;
 uniform float _DepthFactor = 1.0;
 
+uniform float specular_power = 0.9;
+uniform float specular_strength = 0.9;
+
 varying vec2 noiseUV;
 varying vec2 distortUV;
 varying vec3 viewNormal;
@@ -48,7 +51,7 @@ void vertex() {
 	distortUV = UV;
 }
 
-void fragment(){
+void fragment() {
 	// https://www.youtube.com/watch?v=Jq3he9Lbj7M
 	float depthVal = texture(DEPTH_TEXTURE, SCREEN_UV).r;
 	float depth = PROJECTION_MATRIX[3][2] / (depthVal + PROJECTION_MATRIX[2][2]);
@@ -87,4 +90,12 @@ void fragment(){
 	
     ALBEDO = color.rgb;
 	ALPHA = color.a;
+}
+
+void light() {
+    DIFFUSE_LIGHT += max(dot(NORMAL, LIGHT),0.0) * ATTENUATION * ALBEDO * LIGHT_COLOR;
+    vec3 H = normalize(VIEW + LIGHT);
+    float NdotH = max(0, dot(NORMAL, H));
+    float specular = pow(NdotH, specular_power) * specular_strength * ATTENUATION;
+    SPECULAR_LIGHT += specular*LIGHT_COLOR;
 }

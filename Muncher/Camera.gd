@@ -12,6 +12,7 @@ class_name Camera
 @export_range(1.0, 100) var mouse_sensitivity: float = 20.0
 @export var invert_look_y: bool = false
 @export var invert_look_x: bool = false
+@export var stay: bool = false
 @export_range(0.0, 1.0) var look_input_deadzone: float = 0.0
 @export_range(1.0, 50.0) var distance_to_focus: float = 6.0:
 	set(value):
@@ -59,7 +60,6 @@ func _ready():
 		#enable = GameState.is_window_active(get_parent().looker)
 	#else:
 		#enable = GameState.focus_main
-	
 	
 	InputMap.action_set_deadzone("look_right", look_input_deadzone)
 	InputMap.action_set_deadzone("look_left", look_input_deadzone)
@@ -159,9 +159,15 @@ func update_gravity_alignment(delta : float):
 
 func _on_area_3d_area_entered(area):
 	#$UnderwaterShader.material_override.set_shader_parameter("effect", 0.5)
-	$UnderwaterShader.visible = true
+	#$UnderwaterShader.visible = true
+	pass
 
 
 func _on_area_3d_area_exited(area):
 	#$UnderwaterShader.material_override.set_shader_parameter("effect", 0.0)
-	$UnderwaterShader.visible = false
+	#$UnderwaterShader.visible = false
+	pass
+
+
+func set_current(value: bool):
+	%Camera3D.current = value

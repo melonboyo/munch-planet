@@ -1,10 +1,36 @@
-[gd_scene load_steps=75 format=3 uid="uid://ckhytfotl50qm"]
+[gd_scene load_steps=76 format=3 uid="uid://ckhytfotl50qm"]
 
 [ext_resource type="PackedScene" uid="uid://dkfcc32y461yt" path="res://Models/guild.glb" id="1_8qsdr"]
 [ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="2_8jb4f"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_g7l5p"]
 [ext_resource type="Texture2D" uid="uid://uyff5plgwxle" path="res://Models/textures/FaceTexture.png" id="3_eycaj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0nvi5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlrce"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_0nvi5")
+shader = ExtResource("2_g7l5p")
+shader_parameter/albedo = Color(0.933333, 0.796078, 0.52549, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.8
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.3
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.5
+shader_parameter/sheen_tint = 0.5
+shader_parameter/subsurface = 0.0
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 1.0
+shader_parameter/wobble_displacement = 0.05
+shader_parameter/wobble_frequency = 0.5
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1hq8"]
+size = Vector3(3.45224, 0.813721, 3.14215)
 
 [sub_resource type="Gradient" id="Gradient_j6y4m"]
 
@@ -14,26 +40,6 @@ frequency = 0.019
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8yt8x"]
 color_ramp = SubResource("Gradient_j6y4m")
 noise = SubResource("FastNoiseLite_5y2og")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlrce"]
-render_priority = 0
-next_pass = SubResource("ShaderMaterial_0nvi5")
-shader = ExtResource("2_8jb4f")
-shader_parameter/VertexVariationDisplacement = 0.006
-shader_parameter/VertexVariationFrequency = 0.785
-shader_parameter/NumberOfVertexVariations = 9
-shader_parameter/Albedo = Color(0.929412, 0.752941, 0.517647, 1)
-shader_parameter/AlbedoInfluence = 1.0
-shader_parameter/Roughness = 1.0
-shader_parameter/Specular = 0.174
-shader_parameter/LightBlendColor = Color(0.960784, 0.776471, 0.34902, 1)
-shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/LightBlendColor2 = Color(0.14902, 0.0784314, 0.00392157, 1)
-shader_parameter/LightBlendColor2Influence = 1.0
-shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_w1hq8"]
-size = Vector3(3.45224, 0.813721, 3.14215)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rab3h"]
 render_priority = 0
@@ -48,8 +54,6 @@ shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(0.960784, 0.776471, 0.34902, 1)
 shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/LightBlendColor2 = Color(0.14902, 0.0784314, 0.00392157, 1)
-shader_parameter/LightBlendColor2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_djq21"]
@@ -65,8 +69,6 @@ shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(0.960784, 0.776471, 0.34902, 1)
 shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/LightBlendColor2 = Color(0.14902, 0.0784314, 0.00392157, 1)
-shader_parameter/LightBlendColor2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 shader_parameter/FaceTexture = ExtResource("3_eycaj")
 
@@ -83,8 +85,6 @@ shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(0.960784, 0.776471, 0.34902, 1)
 shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/LightBlendColor2 = Color(0.14902, 0.0784314, 0.00392157, 1)
-shader_parameter/LightBlendColor2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_kwne2"]
@@ -731,8 +731,6 @@ shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(0.960784, 0.776471, 0.34902, 1)
 shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/LightBlendColor2 = Color(0.14902, 0.0784314, 0.00392157, 1)
-shader_parameter/LightBlendColor2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8jyuu"]
@@ -748,8 +746,6 @@ shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(0.960784, 0.776471, 0.34902, 1)
 shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/LightBlendColor2 = Color(0.14902, 0.0784314, 0.00392157, 1)
-shader_parameter/LightBlendColor2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i78ql"]
@@ -765,8 +761,6 @@ shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(0.960784, 0.776471, 0.34902, 1)
 shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/LightBlendColor2 = Color(0.14902, 0.0784314, 0.00392157, 1)
-shader_parameter/LightBlendColor2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j7lk6"]
@@ -782,8 +776,6 @@ shader_parameter/Roughness = 1.0
 shader_parameter/Specular = 0.174
 shader_parameter/LightBlendColor = Color(0.960784, 0.776471, 0.34902, 1)
 shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/LightBlendColor2 = Color(0.14902, 0.0784314, 0.00392157, 1)
-shader_parameter/LightBlendColor2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 
 [node name="guild" instance=ExtResource("1_8qsdr")]

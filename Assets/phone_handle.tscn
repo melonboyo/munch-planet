@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=3 uid="uid://x8jg67cxv075"]
+
+[ext_resource type="PackedScene" uid="uid://pan5xy8tws8l" path="res://Models/phone_handle.glb" id="1_sjr47"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_5ttva"]
+[ext_resource type="Texture2D" uid="uid://bre2yew4aq0ru" path="res://Sprites/Faces/awake-0.png" id="3_hg1d8"]
+[ext_resource type="Texture2D" uid="uid://bsvoma3bw2nn8" path="res://Sprites/Faces/sleep-0.png" id="3_n5qda"]
+[ext_resource type="Texture2D" uid="uid://bbnqeigr3nknv" path="res://Sprites/Faces/sleep-1.png" id="4_2dvw6"]
+[ext_resource type="Texture2D" uid="uid://dp60d15l4yoec" path="res://Sprites/Faces/awake-1.png" id="4_gwrji"]
+[ext_resource type="Texture2D" uid="uid://cikwubsgda1rc" path="res://Sprites/Faces/sleep-2.png" id="5_6dhat"]
+[ext_resource type="Texture2D" uid="uid://ccnfgq0m0lpvc" path="res://Sprites/Faces/awake-2.png" id="5_nunn7"]
+
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxvyt"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_31tp3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hw1kq"]
+render_priority = 0
+shader = ExtResource("2_5ttva")
+shader_parameter/albedo = Color(0.85098, 0.396078, 0.301961, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.809
+shader_parameter/metallic = 0.056
+shader_parameter/specularity = 0.735
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.338
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.069
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.0
+shader_parameter/wobble_displacement = 0.181
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0jq2"]
+render_priority = 0
+shader = ExtResource("2_5ttva")
+shader_parameter/albedo = Color(0.988235, 0.972549, 0.929412, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.966
+shader_parameter/metallic = 0.024
+shader_parameter/specularity = 0.36
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.338
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.034
+shader_parameter/shadow_cutoff = 0.593
+shader_parameter/shadow_cutoff_smoothness = 0.213
+shader_parameter/wobble_displacement = 0.125
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = false
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdnwb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hg1d8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gwrji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nunn7")
+}],
+"loop": true,
+"name": &"awake",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_n5qda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2dvw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6dhat")
+}],
+"loop": true,
+"name": &"sleep",
+"speed": 7.0
+}]
+
+[node name="phone_handle" instance=ExtResource("1_sjr47")]
+
+[node name="PhoneHandle" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_hw1kq")
+surface_material_override/1 = SubResource("ShaderMaterial_u0jq2")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="1"]
+transform = Transform3D(-3.78552e-08, -0.5, -0.866025, -2.18557e-08, 0.866025, -0.5, 1, 0, -4.37114e-08, 0.17065, 0.0392492, 0.000338793)
+pixel_size = 0.006
+sprite_frames = SubResource("SpriteFrames_gdnwb")
+animation = &"awake"
+autoplay = "sleep"
+frame_progress = 0.604879

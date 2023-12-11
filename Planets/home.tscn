@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://1wvwl1nbhxni"]
+
+[ext_resource type="PackedScene" uid="uid://ducywyf7armk" path="res://Models/home.glb" id="1_mcteo"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_muhhs"]
+
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xqq30"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_31tp3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdqwd"]
+render_priority = 0
+shader = ExtResource("2_muhhs")
+shader_parameter/albedo = Color(0.796078, 0.847059, 0.537255, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.0
+shader_parameter/specular_tint = 0.506
+shader_parameter/sheen = 0.273
+shader_parameter/sheen_tint = 0.963
+shader_parameter/subsurface = 0.0
+shader_parameter/shadow_cutoff = 0.0740001
+shader_parameter/shadow_cutoff_smoothness = 0.5
+shader_parameter/wobble_displacement = 3.0
+shader_parameter/wobble_frequency = 3.595
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_xqq30")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dnfka"]
+friction = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gccuk"]
+size = Vector3(27.2271, 6.47363, 27.113)
+
+[node name="home" instance=ExtResource("1_mcteo")]
+
+[node name="HomePlanet" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_bdqwd")
+
+[node name="StaticBody3D" parent="HomePlanet" index="0"]
+collision_layer = 17
+collision_mask = 10
+
+[node name="Floor" parent="." index="1"]
+transform = Transform3D(-0.261154, -8.50949e-08, 0, 8.50949e-08, -0.261154, 0, 0, 0, 0.261154, 3.02213, 10.0463, -3.03127)
+
+[node name="StaticBody3D" parent="Floor/DoorWall" index="0"]
+collision_layer = 5
+collision_mask = 11
+physics_material_override = SubResource("PhysicsMaterial_dnfka")
+
+[node name="StaticBody3D" parent="Floor/Wall" index="0"]
+collision_layer = 5
+collision_mask = 11
+physics_material_override = SubResource("PhysicsMaterial_dnfka")
+
+[node name="StaticBody3D" parent="Floor/Wall_001" index="0"]
+transform = Transform3D(1, 0, 5.42101e-20, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 5
+collision_mask = 11
+physics_material_override = SubResource("PhysicsMaterial_dnfka")
+
+[node name="StaticBody3D" parent="Floor/WindowWall" index="0"]
+collision_layer = 5
+collision_mask = 11
+physics_material_override = SubResource("PhysicsMaterial_dnfka")
+
+[node name="StaticBody3D" parent="Floor" index="5"]
+collision_layer = 5
+collision_mask = 11
+physics_material_override = SubResource("PhysicsMaterial_dnfka")
+
+[node name="CollisionShape3D" parent="Floor/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0301, 3.26319, 12.026)
+shape = SubResource("BoxShape3D_gccuk")

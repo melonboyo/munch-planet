@@ -11,6 +11,8 @@
 frequency = 0.019
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8yt8x"]
+width = 256
+height = 256
 color_ramp = SubResource("Gradient_j6y4m")
 noise = SubResource("FastNoiseLite_5y2og")
 
@@ -35,7 +37,7 @@ render_priority = 0
 shader = ExtResource("3_eluoc")
 shader_parameter/VertexVariationDisplacement = 0.04
 shader_parameter/VertexVariationFrequency = 0.785
-shader_parameter/NumberOfVertexVariations = 5
+shader_parameter/NumberOfVertexVariations = 7
 shader_parameter/VertexColorBlend = 0.2
 shader_parameter/Albedo = Color(0.329412, 0.431373, 0.466667, 1)
 shader_parameter/AlbedoInfluence = 1.0

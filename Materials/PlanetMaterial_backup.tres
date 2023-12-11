@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://b4cew4g6o0lw3"]
+
+[ext_resource type="Shader" uid="uid://co8hpsryde4lk" path="res://Shaders/EarthShader.tres" id="1_8sgjh"]
+[ext_resource type="Texture2D" uid="uid://bg3ymobja86l8" path="res://Models/earth_earth-texture.png" id="2_5jyox"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_upbem"]
+frequency = 0.0125
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wj3yy"]
+width = 128
+height = 256
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.325
+noise = SubResource("FastNoiseLite_upbem")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8sgjh")
+shader_parameter/VertexVariationDisplacement = 0.05
+shader_parameter/VertexVariationFrequency = 0.25
+shader_parameter/NumberOfVertexVariations = 11
+shader_parameter/Albedo = Color(0.152941, 0.0509804, 0.188235, 1)
+shader_parameter/AlbedoInfluence = 0.0
+shader_parameter/TextureDarkness = 0.605
+shader_parameter/Roughness = 1.0
+shader_parameter/Specular = 0.485
+shader_parameter/LightBlendColor = Color(0.317647, 0.235294, 0.117647, 1)
+shader_parameter/LightBlendColor2 = Color(0.381338, 0.121407, 0.069228, 1)
+shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_wj3yy")
+shader_parameter/FaceTexture = ExtResource("2_5jyox")

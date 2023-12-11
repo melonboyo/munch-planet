@@ -1,13 +1,10 @@
 extends Node3D
+class_name Main
 
-
-@export_range(0.0, 1.0) var look_input_deadzone: float = 0.0
-@export_range(0.0, 1.0) var cursor_sensitivty: float = 0.5
 
 var catch_looker_scene := preload("res://Looker/Catch/CatchLooker.tscn")
 var manage_looker_scene := preload("res://Looker/Manage/ManageLooker.tscn")
 var deploy_looker_scene := preload("res://Looker/Deploy/DeployLooker.tscn")
-#var choose_deploy_looker_scene := preload("res://Looker/Deploy/ChooseDeployLooker.tscn")
 
 var mouse_captured = true
 var munchme_getting_caught: Munchme
@@ -16,11 +13,12 @@ var current_manage_ui = null
 
 func _ready():
 	GameState.main_window = $UI
-	
-	InputMap.action_set_deadzone("look_right", look_input_deadzone)
-	InputMap.action_set_deadzone("look_left", look_input_deadzone)
-	InputMap.action_set_deadzone("look_up", look_input_deadzone)
-	InputMap.action_set_deadzone("look_right", look_input_deadzone)
+	planet_specific_ready()
+
+
+func planet_specific_ready():
+	GameState.water_height = 100.35
+	GameState.during_intro = false
 	
 	GameState.situation = Constants.Situation.Overworld
 	Music.play(Music.Track.Overworld)
@@ -30,6 +28,16 @@ func _ready():
 	for p in $FollowPoints.get_children():
 		points.append(p.global_position)
 	%Goby.set_follow_points(points)
+
+
+func _unhandled_input(event):
+	if (event is InputEventMouseButton 
+		and event.get_button_index() == MOUSE_BUTTON_LEFT
+		and event.is_pressed() 
+		and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED
+		and GameState.situation != Constants.Situation.Catch
+	):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _process(delta):
@@ -42,15 +50,6 @@ func _process(delta):
 		pass
 	
 	if (
-		Input.is_action_just_pressed("cancel") and 
-		GameState.situation != Constants.Situation.Catch
-	):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	if (
 		Input.is_action_just_pressed("open_manage") and 
 		#GameState.situation == Constants.Situation.Overworld and 
 		current_manage_ui == null
@@ -61,37 +60,6 @@ func _process(delta):
 		current_manage_ui != null
 	):
 		close_manage()
-	
-	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-		var stick_input = Input.get_vector("look_left", "look_right", "look_up", "look_down")
-		
-		var pow_length = pow(stick_input.length(), 5.0) * 0.95 + 0.05
-		var speed_mult = 1.0
-		var speed_up_strength = Input.get_action_strength("speed_up_cursor")
-		if speed_up_strength > 0.9:
-			speed_mult = 2.3
-		elif speed_up_strength > 0.1:
-			speed_mult = 1.4
-		speed_mult *= ProjectSettings.get_setting("global/mouse_sensitivity") * 13.0
-		stick_input = (pow_length / stick_input.length()) * stick_input * cursor_sensitivty * speed_mult
-		if stick_input.length() > 0.0:
-			#call_deferred("move_mouse", stick_input)
-			move_mouse(stick_input)
-		
-	if Input.is_action_just_pressed("click"):
-		call_deferred("click")
-	elif Input.is_action_just_released("click"):
-		call_deferred("click_released")
-
-
-func _unhandled_input(event):
-	if (event is InputEventMouseButton 
-		and event.get_button_index() == MOUSE_BUTTON_LEFT
-		and event.is_pressed() 
-		and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED
-		and GameState.situation != Constants.Situation.Catch
-	):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _on_catch_munchme(munchme: Munchme):
@@ -136,32 +104,9 @@ func retrieve_munchme():
 	pass
 
 
-func move_mouse(relative: Vector2):
-	get_viewport().warp_mouse(get_viewport().get_mouse_position() + relative - Vector2(-1,-1))
-	#var a = InputEventMouseMotion.new()
-	#a.relative = relative
-	#Input.parse_input_event(a)
-
-
-func click():
-	var a = InputEventMouseButton.new()
-	a.position = get_viewport().get_mouse_position() * (get_viewport().size as Vector2 / get_viewport().get_visible_rect().size as Vector2)
-	a.button_index = MOUSE_BUTTON_LEFT
-	a.pressed = true
-	a.button_mask = MOUSE_BUTTON_MASK_LEFT
-	Input.parse_input_event(a)
-
-
-func click_released():
-	var a = InputEventMouseButton.new()
-	a.position = get_viewport().get_mouse_position() * (get_viewport().size as Vector2 / get_viewport().get_visible_rect().size as Vector2)
-	a.button_index = MOUSE_BUTTON_LEFT
-	a.pressed = false
-	Input.parse_input_event(a)
-
-
 func _on_munchme_deployed(resource):
 	var spawn_pos = %Muncher.global_position + %Muncher.global_basis.z * 4.0
+	spawn_pos = Math.position_to_position_on_surface(spawn_pos, spawn_pos.normalized(), self)
 	deploy_munchme(resource, spawn_pos)
 	close_manage()
 

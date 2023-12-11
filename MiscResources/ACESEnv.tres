@@ -1,0 +1,53 @@
+[gd_resource type="Environment" load_steps=7 format=3 uid="uid://bx5s2xs7wdd5u"]
+
+[ext_resource type="Texture2D" uid="uid://ios8c7bseiai" path="res://Sprites/Skybox/main-skybox.png" id="1_cqcn5"]
+
+[sub_resource type="Gradient" id="Gradient_g5qbp"]
+offsets = PackedFloat32Array(0, 0.345361, 1)
+colors = PackedColorArray(0.150988, 0.119537, 0.0897483, 1, 0.281626, 0.183907, 0.16937, 1, 0.987646, 0.870591, 0.885756, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ict2w"]
+gradient = SubResource("Gradient_g5qbp")
+width = 128
+height = 128
+
+[sub_resource type="Shader" id="Shader_bjxy6"]
+code = "
+// NOTE: Shader automatically converted from Godot Engine 4.2.stable's PanoramaSkyMaterial.
+
+shader_type sky;
+
+uniform sampler2D source_panorama : filter_linear, source_color, hint_default_black;
+
+void sky() {
+	     
+	COLOR = texture(source_panorama, SKY_COORDS).rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cuys3"]
+shader = SubResource("Shader_bjxy6")
+shader_parameter/source_panorama = ExtResource("1_cqcn5")
+
+[sub_resource type="Sky" id="Sky_hjdba"]
+sky_material = SubResource("ShaderMaterial_cuys3")
+
+[resource]
+background_mode = 2
+background_color = Color(0.564706, 0.929412, 0.941176, 1)
+sky = SubResource("Sky_hjdba")
+ambient_light_source = 3
+ambient_light_color = Color(0.921569, 0.811765, 0.784314, 1)
+ambient_light_sky_contribution = 0.82
+ambient_light_energy = 0.7
+reflected_light_source = 2
+tonemap_mode = 3
+tonemap_exposure = 0.5
+ssao_enabled = true
+ssao_power = 1.21838
+ssao_horizon = 1.0
+glow_normalized = true
+adjustment_enabled = true
+adjustment_brightness = 1.12
+adjustment_contrast = 1.03
+adjustment_saturation = 1.15
+adjustment_color_correction = SubResource("GradientTexture2D_ict2w")

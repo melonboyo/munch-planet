@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://lqlx5wf2cmjj"]
+
+[ext_resource type="PackedScene" uid="uid://cpq7egk350ids" path="res://Models/phone.glb" id="1_5n3u5"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_no1ej"]
+[ext_resource type="Texture2D" uid="uid://b8mw8fm7kg7ut" path="res://Sprites/Faces/phone-0.png" id="3_ef34l"]
+[ext_resource type="Texture2D" uid="uid://jigufdkwnf6j" path="res://Sprites/Faces/phone-1.png" id="4_hf6nc"]
+[ext_resource type="Texture2D" uid="uid://dc8x22br1udnx" path="res://Sprites/Faces/phone-2.png" id="5_yloft"]
+
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxvyt"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_31tp3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkj2a"]
+render_priority = 0
+shader = ExtResource("2_no1ej")
+shader_parameter/albedo = Color(0.878431, 0.498039, 0.407843, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.809
+shader_parameter/metallic = 0.056
+shader_parameter/specularity = 0.735
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.338
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.069
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.0
+shader_parameter/wobble_displacement = 0.125
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = false
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4kvs"]
+render_priority = 0
+shader = ExtResource("2_no1ej")
+shader_parameter/albedo = Color(0.988235, 0.941176, 0.929412, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.67
+shader_parameter/metallic = 0.2
+shader_parameter/specularity = 0.939
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.338
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.034
+shader_parameter/shadow_cutoff = 0.593
+shader_parameter/shadow_cutoff_smoothness = 0.213
+shader_parameter/wobble_displacement = 0.125
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = false
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8o20"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ef34l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hf6nc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yloft")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="phone" instance=ExtResource("1_5n3u5")]
+
+[node name="Phone" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_pkj2a")
+surface_material_override/1 = SubResource("ShaderMaterial_n4kvs")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="1"]
+transform = Transform3D(-3.78552e-08, 0.476929, 0.878942, 2.18557e-08, 0.878942, -0.476929, -1, 1.15567e-09, -4.36961e-08, -0.348746, 0.0411248, 0.000104182)
+pixel_size = 0.004
+sprite_frames = SubResource("SpriteFrames_h8o20")
+autoplay = "default"
+frame_progress = 0.0530635

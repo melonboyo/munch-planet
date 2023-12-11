@@ -5,7 +5,8 @@ enum Situation {
 	Overworld,
 	Catch,
 	Manage,
-	Interact
+	Interact,
+	Intro,
 }
 
 enum Emote {

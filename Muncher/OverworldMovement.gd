@@ -13,7 +13,6 @@ class_name OverworldMovement
 @export_range(0.5, 50.0) var air_acceleration: float = 14.0
 @export_range(0.5, 50.0) var alignment_speed: float = 8.0
 @export_range(0.01, 15.0) var probe_dist = 1.5
-@export_range(0.01, 180.0) var max_floor_angle = 50.0
 @export_range(0.01, 180.0) var max_fall_speed = 40.0
 
 
@@ -35,13 +34,15 @@ var snapped = false
 var steps_since_grounded = 0
 var height = 1.0
 
-@onready var min_floor_dot = cos(deg_to_rad(max_floor_angle))
 @onready var target: CharacterBody3D = get_node_or_null(target_path)
+@onready var min_floor_dot = cos(deg_to_rad(target.floor_max_angle))
 @onready var model = get_node_or_null(model_path)
 @onready var float_node: FloatMovement = get_node_or_null(float_node_path)
+@onready var last_position: Vector3 = target.global_position
 
 
 func _ready():
+	last_strong_direction = target.global_basis.z
 	target.up_direction = get_up_direction()
 	if target.is_on_floor():
 		floor_normal = target.get_floor_normal()
@@ -62,41 +63,61 @@ func set_move_input(value):
 	move_input = value
 
 
+func is_stuck() -> bool:
+	var space_state = target.get_world_3d().direct_space_state
+	var ray_query = PhysicsRayQueryParameters3D.create(
+		target.global_transform.origin, target.global_transform.origin - target.up_direction * (0.5 * height + probe_dist), 1
+	)
+	var result = space_state.intersect_ray(ray_query)
+	if !result:
+		return false
+	if gravity_velocity.length() > 8.0 and last_position.distance_to(target.global_position) < 0.002:
+		target.global_position = result.position
+		return true
+	return false
+
+
 func _overworld_physics_process(delta):
 	target.up_direction = get_up_direction()
 	
-	if float_node.is_floating():
-		target.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
-	else:
-		target.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
+	#if float_node.is_floating():
+		#target.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
+	#else:
+		#target.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 	
-	if not target.is_on_floor():
+	#floor_normal = target.get_floor_normal()
+	if target.is_on_floor() and not float_node.is_floating():
+		if target.is_on_floor():
+			floor_normal = target.get_floor_normal()
+		else:
+			floor_normal = target.up_direction
+		steps_since_grounded = 0
+		# Stick to floor
+		gravity_velocity = -target.up_direction * 1.5
+		speed = walking_speed
+		acceleration = walking_acceleration
+	else:
 		floor_normal = target.up_direction
 		steps_since_grounded += 1
 		gravity_velocity += -target.up_direction * gravity * delta
 		speed = air_speed
 		acceleration = air_acceleration
-	else:
-		floor_normal = target.get_floor_normal()
-		steps_since_grounded = 0
-		# Stick to floor
-		gravity_velocity = -target.up_direction * 2.5
-		speed = walking_speed
-		acceleration = walking_acceleration
-	
-	gravity_velocity += float_node.get_float_velocity(delta)
+		
+	gravity_velocity += float_node.get_float_velocity(delta, target.velocity)
 	
 	if gravity_velocity.length() > max_fall_speed:
 		gravity_velocity = gravity_velocity.normalized() * max_fall_speed
 	
 	move_velocity = move_velocity.lerp(move_input * speed, delta * acceleration)
+	gravity_velocity = gravity_velocity.project(target.up_direction)
 	
-	if not float_node.is_floating: snap_to_floor()
+	if not float_node.is_floating(): snap_to_floor()
 	animate()
 	orient_to_direction(last_strong_direction, delta)
 
 	target.velocity = move_velocity + gravity_velocity
 	target.move_and_slide()
+	last_position = target.global_position
 
 
 func animate():
@@ -139,6 +160,49 @@ func snap_to_floor() -> bool:
 	floor_normal = result.normal
 	steps_since_grounded = 0
 	var dot = move_velocity.dot(floor_normal)
+	#$target.global_position = result.position
 	if dot > 0.0:
-		move_velocity = (move_velocity - floor_normal * dot).normalized() * walking_speed
+		move_velocity = move_velocity.length() * Math.project_direction_on_plane(move_velocity, floor_normal)
 	return true
+
+
+func _is_on_floor() -> bool:
+	var col_count = target.get_slide_collision_count()
+	
+	if col_count == 0:
+		return false
+	
+	var floor_normal = Vector3.ZERO
+	
+	for i in range(col_count):
+		var col: KinematicCollision3D = target.get_slide_collision(i)
+		if col.get_normal().angle_to(target.up_direction) > target.floor_max_angle:
+			continue
+		floor_normal += col.get_normal()
+		floor_normal = floor_normal.normalized()
+	
+	if floor_normal.is_equal_approx(Vector3.ZERO):
+		return false
+	else:
+		return true
+	
+
+func _get_floor_normal() -> Vector3:
+	var col_count = target.get_slide_collision_count()
+	
+	if col_count == 0:
+		return target.up_direction
+	
+	var floor_normal = Vector3.ZERO
+	
+	for i in range(col_count):
+		var col: KinematicCollision3D = target.get_slide_collision(i)
+		if col.get_normal().angle_to(target.up_direction) > target.floor_max_angle:
+			continue
+		floor_normal += col.get_normal()
+		floor_normal = floor_normal.normalized()
+	
+	if floor_normal.is_equal_approx(Vector3.ZERO):
+		return target.up_direction
+	
+	return floor_normal
