@@ -33,6 +33,31 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 
+[file_customization]
+
+folder_colors={
+"res://Assets/": "green",
+"res://Globals/": "red",
+"res://Interaction/": "purple",
+"res://Intro/": "orange",
+"res://Looker/": "purple",
+"res://Materials/": "green",
+"res://Menu/": "purple",
+"res://MiscResources/": "green",
+"res://Models/": "green",
+"res://Movement/": "purple",
+"res://Muncher/": "yellow",
+"res://Munchme/": "yellow",
+"res://Music/": "green",
+"res://Planets/": "orange",
+"res://SFX/": "green",
+"res://Shaders/": "green",
+"res://Sprites/": "green",
+"res://Tutorial/": "orange",
+"res://addons/": "gray",
+"res://sketches/": "gray"
+}
+
 [filesystem]
 
 import/blender/enabled=false

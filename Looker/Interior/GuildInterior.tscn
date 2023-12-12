@@ -1,9 +1,70 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsypmflr8lvqx"]
+[gd_scene load_steps=9 format=3 uid="uid://bsypmflr8lvqx"]
 
 [ext_resource type="PackedScene" uid="uid://bdwqty2p0ap2u" path="res://Models/guild_interior.glb" id="1_ao05j"]
-[ext_resource type="Material" uid="uid://be83a65vy13cq" path="res://Materials/MainMaterial.tres" id="2_cnd41"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="3_bsoyd"]
+[ext_resource type="Texture2D" uid="uid://cm675kd46gr0u" path="res://Models/textures/interior-texture.png" id="3_i5mrv"]
+
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxvyt"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_31tp3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tki0n"]
+render_priority = 0
+shader = ExtResource("3_bsoyd")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.0
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.0
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.668
+shader_parameter/wobble_displacement = 0.114
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = false
+shader_parameter/albedo_texture = ExtResource("3_i5mrv")
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pxt8t"]
+render_priority = 0
+shader = ExtResource("3_bsoyd")
+shader_parameter/albedo = Color(0.513726, 0.807843, 0.803922, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.0
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.0
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.668
+shader_parameter/wobble_displacement = 0.0
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = false
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
 
 [node name="guild_interior" instance=ExtResource("1_ao05j")]
 
 [node name="Plane" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_cnd41")
+surface_material_override/0 = SubResource("ShaderMaterial_tki0n")
+
+[node name="Cube_001" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0438821, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_pxt8t")

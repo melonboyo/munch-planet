@@ -24,10 +24,12 @@ func planet_specific_ready():
 	if not skip_rocket_cutscene:
 		$RocketReturnCutscene.play()
 		%Muncher.player_controlled = false
+		$Overlay/OverlayAnimation.play("RESET")
 	else:
 		play_overworld_music()
-	
-	$Overlay/OverlayAnimation.play("RESET")
+		%Muncher.player_controlled = true
+		
+		%OverlayAnimation.play("fade_in")
 	
 	GameState.water_height = 100.35
 	GameState.during_intro = false

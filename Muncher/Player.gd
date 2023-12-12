@@ -6,6 +6,7 @@ class_name Muncher
 @export_range(0.0, 1.0) var move_input_deadzone: float = 0.15
 @export_range(0.0, 10.0) var height: float = 1.8
 @export var player_controlled: bool = true
+#@export var is_inside
 
 @onready var camera: Node3D = get_node_or_null(camera_path)
 @onready var emoter = $Emoter as Emoter

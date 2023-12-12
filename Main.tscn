@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=68 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -68,7 +68,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.0392157, 0.0313726, 0.0235294, 0)]
+"values": [Color(0.0392157, 0.0313726, 0.0235294, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_wx7rx"]
@@ -100,6 +100,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_n8chs"]
 resource_name = "fade_in"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -107,7 +108,7 @@ tracks/0/path = NodePath("BlackScreen:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.0392157, 0.0313726, 0.0235294, 1), Color(0.0392157, 0.0313726, 0.0235294, 0)]
@@ -115,6 +116,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_jixxg"]
 resource_name = "fade_out"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -122,7 +124,7 @@ tracks/0/path = NodePath("BlackScreen:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.0392157, 0.0313726, 0.0235294, 0), Color(0.0392157, 0.0313726, 0.0235294, 1)]
@@ -241,6 +243,9 @@ dof_blur_amount = 0.05
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_13cqd"]
 radius = 100.35
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v17nd"]
+size = Vector3(13.131, 27.0709, 14.834)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1aoni"]
 top_radius = 1.42
@@ -792,7 +797,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.0392157, 0.0313726, 0.0235294, 0)
+color = Color(0.0392157, 0.0313726, 0.0235294, 1)
 
 [node name="OverlayAnimation" type="AnimationPlayer" parent="Overlay"]
 unique_name_in_owner = true
@@ -1620,9 +1625,16 @@ transform = Transform3D(-3.75647, 3.07981, -2.53659, -2.07094, 1.47285, 4.85515,
 transform = Transform3D(0.183434, -0.0393746, -0.276424, -0.275965, -0.0758781, -0.172321, -0.0424732, 0.322956, -0.074188, -21.4803, -13.0011, 99.8031)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Planet/guild"]
-transform = Transform3D(3.36919, -4.22875e-08, 1.3113e-06, -7.10543e-15, 3.36919, -4.22875e-08, 1.07288e-06, -1.59872e-14, 3.36919, 38.6177, 19.705, 3.8147e-06)
+transform = Transform3D(1, 2.10894e-15, -3.18439e-07, -2.10894e-15, 1, 1.05447e-15, 3.18439e-07, -1.05447e-15, 1, 38.6177, 19.705, 3.8147e-06)
 light_energy = 1.39
 omni_range = 7.64558
+
+[node name="EnterGuildArea" type="Area3D" parent="Planet/guild"]
+transform = Transform3D(1, -1.67638e-08, -2.98023e-08, -1.86265e-09, 1, -7.45058e-09, -2.98023e-08, 1.30385e-08, 1, 52.67, 3.05176e-05, -9.53674e-07)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/guild/EnterGuildArea"]
+transform = Transform3D(1, -1.88127e-07, -5.96046e-08, -7.45058e-09, 1, 5.58794e-09, -5.96046e-08, 2.79397e-08, 1, -34.3749, 8.34732, -1.43596)
+shape = SubResource("BoxShape3D_v17nd")
 
 [node name="RocketPlatform" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.533267, 0.0464981, 1.17245, 0.0530296, 1.2875, -0.0269409, -1.17218, 0.0370932, -0.534612, 20.1387, 104.194, 16.6353)

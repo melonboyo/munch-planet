@@ -6,12 +6,8 @@ extends Node3D
 
 
 func _ready():
-	$Camera.for_munchme = false
+	#$Camera.for_munchme = false
 	GameState.focus_main = false
-
-
-func get_camera() -> Node3D:
-	return $Camera
 
 
 func _on_deploy_looker_focus_entered():
@@ -24,5 +20,9 @@ func _on_deploy_looker_focus_exited():
 	$Camera.enable = false
 
 
-func _on_close_looker():
-	GameState.retrieve_munchme_from_looker(looker)
+#func _on_close_looker():
+	#GameState.retrieve_munchme_from_looker(looker)
+
+
+func walk_in():
+	$Muncher.set_follow_points([$WalkHere.global_position] as Array[Vector3])
