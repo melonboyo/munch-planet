@@ -109,7 +109,8 @@ func _overworld_physics_process(delta):
 	if gravity_velocity.length() > max_fall_speed:
 		gravity_velocity = gravity_velocity.normalized() * max_fall_speed
 	
-	if not target.sitting:
+	
+	if target is Muncher and not target.sitting:
 		move_velocity = move_velocity.lerp(move_input * speed, delta * acceleration)
 	gravity_velocity = gravity_velocity.project(target.up_direction)
 	
