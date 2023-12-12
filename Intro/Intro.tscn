@@ -486,7 +486,6 @@ _data = {
 
 [node name="Intro" type="Node3D"]
 script = ExtResource("1_08500")
-play_from_scene = 3
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
