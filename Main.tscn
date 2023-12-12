@@ -69,7 +69,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.0392157, 0.0313726, 0.0235294, 1)]
+"values": [Color(0.0392157, 0.0313726, 0.0235294, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_wx7rx"]
@@ -762,7 +762,6 @@ _data = {
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
-skip_rocket_cutscene = true
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -813,7 +812,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.0392157, 0.0313726, 0.0235294, 1)
+color = Color(0.0392157, 0.0313726, 0.0235294, 0)
 
 [node name="OverlayAnimation" type="AnimationPlayer" parent="Overlay"]
 unique_name_in_owner = true
