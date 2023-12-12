@@ -130,7 +130,7 @@ func retrieve_munchme():
 
 
 func _on_munchme_deployed(resource):
-	var spawn_pos = %Muncher.global_position + %Muncher.global_basis.z * 4.0
+	var spawn_pos = %Muncher.global_position + %Muncher.global_basis.z * 2.5
 	spawn_pos = Math.position_to_position_on_surface(spawn_pos, spawn_pos.normalized(), self)
 	deploy_munchme(resource, spawn_pos)
 	close_manage()
@@ -145,6 +145,7 @@ func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
 	munchme.situation = Constants.Situation.Interact
 	munchme.position = pos
 	munchme.camera = deploy_ui.get_node("%DeployScene").get_camera()
+	munchme.player_controlled = true
 	#GameState.deployed_munchme = munchme
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	GameState.deploy_munchme(deploy_ui, munchme)

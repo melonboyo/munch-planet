@@ -688,6 +688,21 @@ script = ExtResource("11_nrph8")
 animation_name = "Return_1"
 dialogue_translation_key = ""
 
+[sub_resource type="Animation" id="Animation_hiseh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Muncher:player_controlled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_jgwt7"]
 resource_name = "Return_1"
 length = 1.5
@@ -718,21 +733,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_hiseh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%Muncher:player_controlled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_csvc7"]
 _data = {
 "RESET": SubResource("Animation_hiseh"),
@@ -740,8 +740,8 @@ _data = {
 }
 
 [node name="Main" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_12yvb")
+skip_rocket_cutscene = true
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -1650,7 +1650,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988, 0.998136, -0.0250779, -0.999581, -0.0144419, -0.0261015, 0.132022, -0.98487)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.370543, 0.556379, 0.393851, 0.000997949, 0.448719, -0.632951, -0.681673, -0.301782, -0.215018, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.370546, 0.556378, 0.393848, 0.000998089, 0.448717, -0.632952, -0.681671, -0.301786, -0.215019, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket")
