@@ -24,16 +24,16 @@ var last_used_id = 10
 var open_lookers: Array[Looker] = []
 var looker_music_map := {}
 var water_height = 0.0
-var look_input_deadzone: float = 1.0
 var cursor_sensitivty: float = 0.5
 var tutorial_cleared = false
 
 
 func _ready():
-	InputMap.action_set_deadzone("look_right", look_input_deadzone)
-	InputMap.action_set_deadzone("look_left", look_input_deadzone)
-	InputMap.action_set_deadzone("look_up", look_input_deadzone)
-	InputMap.action_set_deadzone("look_right", look_input_deadzone)
+	var deadzone = ProjectSettings.get_setting("global/control_stick_deadzone")
+	InputMap.action_set_deadzone("look_right", deadzone)
+	InputMap.action_set_deadzone("look_left", deadzone)
+	InputMap.action_set_deadzone("look_up", deadzone)
+	InputMap.action_set_deadzone("look_right", deadzone)
 
 
 func _process(delta):
@@ -48,6 +48,10 @@ func _process(delta):
 	
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		var stick_input = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+		if Vector2.ZERO.distance_to(stick_input) > 1.0:
+			stick_input = stick_input.normalized()
+		if Vector2.ZERO.distance_to(stick_input) < ProjectSettings.get_setting("global/control_stick_deadzone") * sqrt(2.0):
+			stick_input = Vector2.ZERO
 		
 		var pow_length = pow(stick_input.length(), 5.0) * 0.95 + 0.05
 		var speed_mult = 1.0
@@ -227,7 +231,7 @@ func get_open_looker_with_highest_z_index():
 
 
 func move_mouse(relative: Vector2):
-	get_viewport().warp_mouse(get_viewport().get_mouse_position() + relative - Vector2(-1,-1))
+	get_viewport().warp_mouse(get_viewport().get_mouse_position() + relative)
 	#var a = InputEventMouseMotion.new()
 	#a.relative = relative
 	#Input.parse_input_event(a)
