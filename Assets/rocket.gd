@@ -9,6 +9,10 @@ var move_input
 signal rocket_go
 
 
+func _ready():
+	$Animation.play("RESET")
+
+
 func _process(delta):
 	if is_entering:
 		%GoText.visible = false
@@ -48,4 +52,16 @@ func open_window():
 
 
 func close_window():
+	$Animation.play("CloseWindow")
+
+
+func start_rocket():
+	$Animation.play("StartShip")
+
+
+func land_rocket():
+	$Animation.play("LandShip")
+
+
+func reset():
 	$Animation.play("RESET")

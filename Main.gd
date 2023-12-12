@@ -41,6 +41,10 @@ func planet_specific_ready():
 	%Goby.set_follow_points(points)
 
 
+func play_overworld_music():
+	Music.play(Music.Track.Overworld)
+
+
 func _unhandled_input(event):
 	if (event is InputEventMouseButton 
 		and event.get_button_index() == MOUSE_BUTTON_LEFT
@@ -168,3 +172,10 @@ func remove_black_bars():
 
 func add_black_bars():
 	%OverlayAnimation.play("add_bars")
+
+
+func _on_cutscene_animation_finished(anim_name):
+	if anim_name == "Rocket_Return_1":
+		#if not GameState.tutorial_cleared:
+			#$TutorialStartCutscene.play()
+		pass

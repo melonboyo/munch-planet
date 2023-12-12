@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1vvcdxj6qhm7"]
+
+[ext_resource type="PackedScene" uid="uid://clv7k6si40n4g" path="res://Models/tutorial_man.glb" id="1_isruj"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_iv6j1"]
+[ext_resource type="Texture2D" uid="uid://ks2xnrmraktq" path="res://Munchme/Faces/face1.png" id="3_p7if2"]
+
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxvyt"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_31tp3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_txy7o"]
+render_priority = 0
+shader = ExtResource("2_iv6j1")
+shader_parameter/albedo = Color(0.917647, 0.282353, 0.282353, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.809
+shader_parameter/metallic = 0.056
+shader_parameter/specularity = 0.735
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.338
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.236
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.299
+shader_parameter/wobble_displacement = 0.399
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = false
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xjskb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_p7if2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="tutorial_man_model" instance=ExtResource("1_isruj")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/rotation = Quaternion(-0.0107579, 0.998809, 0.0473509, -0.00476165)
+bones/1/rotation = Quaternion(0, -0.175338, 0, 0.984508)
+bones/2/rotation = Quaternion(-0.0378833, 0.368012, 0.0150081, 0.928928)
+bones/2/scale = Vector3(1.26597, 1.26597, 1.26597)
+bones/3/rotation = Quaternion(-0.0188799, -0.0405048, -0.11312, 0.992576)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.00149069, 0.065505, 0.0708025, 0.995336)
+bones/5/rotation = Quaternion(0.0660693, -0.0330432, 0.238658, 0.96829)
+bones/6/rotation = Quaternion(0.163757, -0.148006, -0.11068, 0.969035)
+bones/7/position = Vector3(0.843249, 0.409904, -0.322224)
+bones/7/rotation = Quaternion(-0.393646, 0.244329, -0.791038, 0.399506)
+bones/7/scale = Vector3(0.897881, 1.2404, 0.897881)
+bones/8/position = Vector3(1.16275, 0.00196791, -0.831657)
+bones/8/rotation = Quaternion(-9.62508e-08, -1.52575e-07, -0.527359, 0.849643)
+bones/9/position = Vector3(-0.741963, 0.462218, 0.124505)
+bones/9/rotation = Quaternion(0.499152, 0.309815, 0.272721, 0.761896)
+bones/9/scale = Vector3(0.73435, 1.85436, 0.73435)
+bones/10/position = Vector3(-0.857417, 0.845622, 1.13433)
+bones/10/rotation = Quaternion(-1.30275e-07, 9.93624e-08, 0.527359, 0.849643)
+bones/11/position = Vector3(0.532492, -0.0282023, 0.0144451)
+bones/11/rotation = Quaternion(-0.0593161, 0.243487, 0.777858, -0.576309)
+bones/11/scale = Vector3(0.716181, 1.94965, 0.71618)
+bones/12/position = Vector3(1.69583, -0.319359, 0.613973)
+bones/12/rotation = Quaternion(-0.00269187, 0.0101527, 0.967874, -0.251217)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/position = Vector3(-0.532492, -0.0282023, 0.014445)
+bones/13/rotation = Quaternion(-0.0111511, -0.0649754, 0.954235, -0.291702)
+bones/13/scale = Vector3(0.869898, 1.32149, 0.869897)
+bones/14/position = Vector3(-0.0252635, -0.774638, -0.0923327)
+bones/14/scale = Vector3(1, 1, 1)
+
+[node name="Body" parent="Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_txy7o")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(-0.941889, -0.0210392, 0.335264, 0.0120288, 0.995284, 0.0962518, -0.335708, 0.0946914, -0.937195, -0.0104867, -0.00129503, 0.0471978)
+bone_name = "Torso"
+bone_idx = 1
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.99488, 0.101056, 0, -0.101056, 0.99488, 0, 0.248, -0.556)
+pixel_size = 0.0321
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_xjskb")
+
+[node name="AnimationPlayer" parent="." index="1"]
+speed_scale = 0.304

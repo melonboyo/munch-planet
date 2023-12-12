@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdwym87s0llip"]
 
-[ext_resource type="Script" path="res://Munchme/Minigames/snake_minigame.gd" id="1_dne0g"]
-[ext_resource type="PackedScene" uid="uid://b33jl6a0742pm" path="res://Munchme/Minigames/Snake/snake_hand.tscn" id="2_bhwrv"]
-[ext_resource type="PackedScene" uid="uid://d0eql0bobew1" path="res://Munchme/Minigames/Snake/snake_falling.tscn" id="3_wmdod"]
+[ext_resource type="Script" path="res://Munchme/Snake/snake_minigame.gd" id="1_dne0g"]
+[ext_resource type="PackedScene" uid="uid://b33jl6a0742pm" path="res://Munchme/Snake/snake_hand.tscn" id="2_bhwrv"]
+[ext_resource type="PackedScene" uid="uid://d0eql0bobew1" path="res://Munchme/Snake/snake_falling.tscn" id="3_wmdod"]
+
 
 [node name="SnakeMinigame" type="Control"]
 layout_mode = 3

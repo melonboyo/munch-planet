@@ -3,10 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_i02uy"]
 [ext_resource type="Script" path="res://Munchme/Solidude.gd" id="2_3t40v"]
 [ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="3_ek83g"]
-[ext_resource type="PackedScene" uid="uid://dxvcr50hyn1yv" path="res://Munchme/solidude_model.tscn" id="4_h5uhp"]
-[ext_resource type="PackedScene" uid="uid://bjn2rcatd3p5i" path="res://Munchme/Minigames/solidude_minigame.tscn" id="4_q1idu"]
+[ext_resource type="PackedScene" uid="uid://dxvcr50hyn1yv" path="res://Munchme/Solidude/solidude_model.tscn" id="4_h5uhp"]
+[ext_resource type="PackedScene" uid="uid://bjn2rcatd3p5i" path="res://Munchme/Solidude/solidude_minigame.tscn" id="4_q1idu"]
 [ext_resource type="PackedScene" uid="uid://c4ys6xwwbmvsm" path="res://Sprites/solidude/SolidudeDies.tscn" id="5_fe33d"]
 [ext_resource type="AudioStream" uid="uid://u6y8nr44jq3d" path="res://SFX/Minigames/punch.ogg" id="6_e51nt"]
+
 
 [sub_resource type="Resource" id="Resource_3mgou"]
 script = ExtResource("3_ek83g")

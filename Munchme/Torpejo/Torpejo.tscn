@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://rkcx1xfq1g7m"]
+
+[ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_c3uk6"]
+
+[node name="Torpejo" instance=ExtResource("1_c3uk6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
