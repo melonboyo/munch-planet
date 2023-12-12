@@ -63,7 +63,7 @@ func _process(delta):
 		GameState.add_munchme(resource)
 		$Cutscene.play()
 	
-	if Input.is_action_just_pressed("settings"):
+	if not CutsceneManager.is_cutscene_playing and Input.is_action_just_pressed("settings"):
 		open_settings()
 	
 	if GameState.situation != Constants.Situation.Overworld:
@@ -83,10 +83,9 @@ func _process(delta):
 
 
 func open_settings():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
 	for child in $UI.get_children():
 		if child.name == "SettingsLooker":
+			child.close()
 			return
 	
 	var settings_looker = settings_looker_scene.instantiate()

@@ -947,8 +947,11 @@ bus = &"Effects"
 
 [node name="RocketPlayer" type="AudioStreamPlayer3D" parent="Root"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+unit_size = 77.15
 panning_strength = 0.2
 bus = &"Effects"
+attenuation_filter_db = 0.0
+doppler_tracking = 2
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {

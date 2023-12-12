@@ -10,6 +10,9 @@ var main_scene = preload("res://Main.tscn")
 
 func planet_specific_ready():
 	GameState.during_intro = play_intro
+	if not play_intro:
+		play_postlude()
+	
 	GameState.water_height = 0.0
 	if GameState.during_intro:
 		%Muncher.player_controlled = false
@@ -28,6 +31,10 @@ func stop_intro_music():
 
 func play_postlude():
 	Music.play(Music.Track.Postlude)
+
+
+func stop_postlude():
+	Music.stop()
 
 
 func _on_cutscene_animation_animation_finished(anim_name):
