@@ -89,3 +89,7 @@ func grab_phone(yes: bool = true):
 
 func set_is_movement_animating(yes: bool):
 	$OverworldMovement.is_animating = yes
+
+
+func rotate_towards(pos: Vector3):
+	$OverworldMovement.last_strong_direction = (pos - global_position).normalized()

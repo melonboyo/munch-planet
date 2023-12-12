@@ -15,7 +15,7 @@ height = 2.28662
 collision_layer = 2
 collision_mask = 15
 floor_max_angle = 0.959931
-floor_snap_length = 0.5
+floor_snap_length = 0.2
 script = ExtResource("1_dnfvd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

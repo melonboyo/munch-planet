@@ -91,7 +91,7 @@ func _overworld_process(delta):
 	
 	$CatchText.visible = can_catch
 	
-	if Input.is_action_just_pressed("interact") and can_catch:
+	if Input.is_action_just_pressed("interact") and can_catch and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		attempt_catch()
 
 

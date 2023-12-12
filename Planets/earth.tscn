@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2vyal2h88f5e"]
+[gd_scene load_steps=11 format=3 uid="uid://d2vyal2h88f5e"]
 
 [ext_resource type="PackedScene" uid="uid://dofwikg3bucms" path="res://Models/earth.glb" id="1_rcr66"]
 [ext_resource type="Texture2D" uid="uid://bg3ymobja86l8" path="res://Models/earth_earth-texture.png" id="2_7hfa7"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_qhse1"]
 [ext_resource type="Material" uid="uid://i7osp2htj2cn" path="res://Materials/Water.tres" id="3_6a3y0"]
 [ext_resource type="Material" uid="uid://63m6v13ibuth" path="res://Materials/UnderwaterSurface.tres" id="4_556qu"]
-[ext_resource type="PackedScene" uid="uid://ckhytfotl50qm" path="res://Planets/Buildings/guild.tscn" id="6_fly2l"]
 [ext_resource type="PackedScene" uid="uid://ct1kbjcajv4bf" path="res://FoliageSpawner.tscn" id="7_dhbis"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vtji1"]
@@ -89,14 +88,6 @@ mesh = SubResource("ArrayMesh_pvxid")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("4_556qu")
 
-[node name="guild" parent="." index="3" instance=ExtResource("6_fly2l")]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="guild" index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.96603, 103.679, -10.6978)
-light_size = 0.03
-shadow_enabled = true
-omni_range = 7.17843
-
-[node name="FoliageSpawner" parent="." index="4" instance=ExtResource("7_dhbis")]
+[node name="FoliageSpawner" parent="." index="3" instance=ExtResource("7_dhbis")]
 spawn = false
 models = Array[PackedScene]([null, null, null])

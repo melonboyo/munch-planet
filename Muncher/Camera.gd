@@ -124,7 +124,7 @@ func look_rotation(delta) -> bool:
 		input = Vector2.ZERO
 		return false
 	
-	if not enable:
+	if not enable or not camera.current:
 		input = Vector2.ZERO
 		return false
 	
@@ -170,4 +170,4 @@ func _on_area_3d_area_exited(area):
 
 
 func set_current(value: bool):
-	%Camera3D.current = value
+	camera.current = value

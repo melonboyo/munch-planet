@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=36 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -19,18 +19,19 @@
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="11_nrph8"]
 [ext_resource type="Script" path="res://DebugDraw.gd" id="11_oedib"]
 [ext_resource type="PackedScene" uid="uid://dao72127cctuc" path="res://Planets/Foliage/tree_high_round.tscn" id="12_yu150"]
+[ext_resource type="PackedScene" uid="uid://ckhytfotl50qm" path="res://Planets/Buildings/guild.tscn" id="17_b2ff7"]
 [ext_resource type="LightmapGIData" uid="uid://cdi4e4o3k42oi" path="res://MiscResources/Main.lmbake" id="19_80l5t"]
 
-[sub_resource type="Gradient" id="Gradient_g5qbp"]
+[sub_resource type="Gradient" id="Gradient_7abcu"]
 offsets = PackedFloat32Array(0, 0.345361, 1)
 colors = PackedColorArray(0.150988, 0.119537, 0.0897483, 1, 0.281626, 0.183907, 0.16937, 1, 0.987646, 0.870591, 0.885756, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nt0xa"]
-gradient = SubResource("Gradient_g5qbp")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ict2w"]
+gradient = SubResource("Gradient_7abcu")
 width = 128
 height = 128
 
-[sub_resource type="Shader" id="Shader_ixlyj"]
+[sub_resource type="Shader" id="Shader_bjxy6"]
 code = "
 // NOTE: Shader automatically converted from Godot Engine 4.2.stable's PanoramaSkyMaterial.
 
@@ -43,29 +44,45 @@ void sky() {
 	COLOR = texture(source_panorama, SKY_COORDS).rgb;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cuys3"]
-shader = SubResource("Shader_ixlyj")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjbsd"]
+shader = SubResource("Shader_bjxy6")
 shader_parameter/source_panorama = ExtResource("2_hhsoy")
 
-[sub_resource type="Sky" id="Sky_mjs0p"]
-sky_material = SubResource("ShaderMaterial_cuys3")
+[sub_resource type="Sky" id="Sky_hjdba"]
+sky_material = SubResource("ShaderMaterial_wjbsd")
 
-[sub_resource type="Environment" id="Environment_bkwgg"]
+[sub_resource type="Environment" id="Environment_cpnc6"]
 background_mode = 2
 background_color = Color(0.564706, 0.929412, 0.941176, 1)
-sky = SubResource("Sky_mjs0p")
+sky = SubResource("Sky_hjdba")
 ambient_light_source = 3
 ambient_light_color = Color(0.921569, 0.811765, 0.784314, 1)
-ambient_light_sky_contribution = 0.78
-ambient_light_energy = 0.7
+ambient_light_sky_contribution = 0.76
+ambient_light_energy = 0.8
 reflected_light_source = 2
 ssao_enabled = true
 ssao_power = 1.21838
 ssao_horizon = 1.0
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 0.76
+sdfgi_cascades = 6
+sdfgi_energy = 1.035
+sdfgi_probe_bias = 3.0
+glow_enabled = true
 glow_normalized = true
+fog_light_color = Color(0.627451, 0.752941, 0.733333, 1)
+fog_light_energy = 1.05
+fog_density = 0.002
+volumetric_fog_enabled = true
+volumetric_fog_density = 1.4315
+volumetric_fog_albedo = Color(0.678431, 0.996078, 1, 1)
+volumetric_fog_emission = Color(0.737255, 0.866667, 0.85098, 1)
+volumetric_fog_emission_energy = 0.9
+volumetric_fog_length = 0.15
 adjustment_brightness = 1.12
 adjustment_saturation = 1.23
-adjustment_color_correction = SubResource("GradientTexture2D_nt0xa")
+adjustment_color_correction = SubResource("GradientTexture2D_ict2w")
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1rtsb"]
 auto_exposure_scale = 0.5
@@ -237,7 +254,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.866, 95.1749, 36.2685)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6908, 91.5853, 44.2517)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_bkwgg")
+environment = SubResource("Environment_cpnc6")
 camera_attributes = SubResource("CameraAttributesPractical_1rtsb")
 script = ExtResource("3_ligat")
 
@@ -263,6 +280,15 @@ transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819
 
 [node name="Earth" parent="Planet" instance=ExtResource("6_mqxa6")]
 transform = Transform3D(0.98972, -0.142992, -0.00270788, -0.0329795, -0.209763, -0.977196, 0.139163, 0.96724, -0.212322, 0, 0, 0)
+
+[node name="guild" parent="Planet/Earth" instance=ExtResource("17_b2ff7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Planet/Earth/guild"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.96603, 103.679, -10.6978)
+light_size = 0.03
+shadow_enabled = true
+omni_range = 7.17843
 
 [node name="WaterArea" type="Area3D" parent="Planet"]
 unique_name_in_owner = true

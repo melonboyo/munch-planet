@@ -36,6 +36,7 @@ func _unhandled_input(event):
 		and event.is_pressed() 
 		and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED
 		and GameState.situation != Constants.Situation.Catch
+		and not GameState.during_intro
 	):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
