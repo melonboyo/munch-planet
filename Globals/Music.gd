@@ -142,3 +142,4 @@ func _on_switch_to_track(track: Track, from_position: float, fade_in):
 func _on_stop_music_player():
 	stopping.emit(selected_track, position)
 	music_player.stop()
+

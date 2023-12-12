@@ -2,9 +2,14 @@ extends Control
 
 const CAN_SKIP_ANIMATIONS := false
 
-@export_range(1, 50) var text_cps = 30
+var text_speed_cps_map = {
+	Constants.TextSpeed.Slow: 10,
+	Constants.TextSpeed.Normal: 30,
+	Constants.TextSpeed.Fast: 50,
+}
+
 var character_wait_time: float:
-	get: return 1.0 / text_cps
+	get: return 1.0 / text_speed_cps_map[Settings.text_speed]
 
 signal cutscene_playing
 signal cutscene_finished

@@ -46,6 +46,9 @@ var prev_mouse_mode = null
 
 
 func _ready():
+	if %SubViewportContainer.get_child_count() > 0:
+		%PlaceholderBackground.visible = false
+		
 	if Engine.is_editor_hint():
 		return
 	

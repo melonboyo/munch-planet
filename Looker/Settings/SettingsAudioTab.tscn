@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://vyiolgahgouw"]
+
+[ext_resource type="Script" path="res://Looker/Settings/SettingsAudioTab.gd" id="1_di2f8"]
+
+[node name="AudioTab" type="VBoxContainer"]
+visible = false
+script = ExtResource("1_di2f8")
+
+[node name="MasterVolumeLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Master volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 9.0
+
+[node name="MusicVolumeLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Music volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 9.0
+
+[node name="EffectsVolumeLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Effects volume
+"
+
+[node name="EffectsVolumeSlider" type="HSlider" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 9.0
+
+[node name="EffectsPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+bus = &"Effects"
+
+[connection signal="value_changed" from="MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="drag_ended" from="EffectsVolumeSlider" to="." method="_on_effects_volume_slider_drag_ended"]
+[connection signal="drag_started" from="EffectsVolumeSlider" to="." method="_on_effects_volume_slider_drag_started"]
+[connection signal="value_changed" from="EffectsVolumeSlider" to="." method="_on_effects_volume_slider_value_changed"]

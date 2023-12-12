@@ -24,6 +24,7 @@ GameState="*res://Globals/GameState.gd"
 Lookup="*res://Globals/Lookup.gd"
 CutsceneManager="*res://Globals/Cutscenes/CutsceneManager.tscn"
 MouseInput="*res://Globals/MouseInput.gd"
+Settings="*res://Globals/Settings.gd"
 
 [display]
 

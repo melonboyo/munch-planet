@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=62 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -25,6 +25,7 @@
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="22_ui3dp"]
 [ext_resource type="PackedScene" uid="uid://reb1ntdr4vvv" path="res://Assets/rocket.tscn" id="23_5lo66"]
 [ext_resource type="AudioStream" uid="uid://dhtfeqs3hcfw8" path="res://Music/rocket_piano.ogg" id="25_07esk"]
+[ext_resource type="AudioStream" uid="uid://521ccmfxr2r5" path="res://SFX/Intro/rocket_landing.ogg" id="25_scv7q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dgl50"]
 shader = ExtResource("2_ww73t")
@@ -588,7 +589,7 @@ tracks/8/keys = {
 tracks/9/type = "audio"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../RocketLandingPlayer")
+tracks/9/path = NodePath("../RocketLandingMusicPlayer")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -655,6 +656,21 @@ tracks/13/keys = {
 "method": &"play_overworld_music"
 }]
 }
+tracks/14/type = "audio"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../RocketLandingPlayer")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("25_scv7q")
+}],
+"times": PackedFloat32Array(9.2)
+}
+tracks/14/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yxoxu"]
 _data = {
@@ -1579,7 +1595,7 @@ transform = Transform3D(0.423775, 0.758064, -0.495733, -0.760309, 0.00025329, -0
 curve = SubResource("Curve3D_g8sv8")
 
 [node name="RocketPathFollow" type="PathFollow3D" parent="RocketPlatform/RocketPath"]
-transform = Transform3D(0.574252, 0.0122627, 0.818785, 0.468992, 0.814547, -0.341408, -0.670854, 0.579944, 0.462204, -65.3334, 17.4243, -42.0676)
+transform = Transform3D(0.573094, 0.0294025, 0.81918, 0.393556, 0.866632, -0.306696, -0.718645, 0.498046, 0.485309, -52.4797, 12.326, -34.635)
 progress = 64.3
 rotation_mode = 4
 loop = false
@@ -1589,7 +1605,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988, 0.998136, -0.0250779, -0.999581, -0.0144419, -0.0261015, 0.132022, -0.98487)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.760068, 0.0090602, 0.155539, -0.143373, 0.262488, -0.715906, -0.0609797, -0.730069, -0.255468, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(0.0614961, 0.111535, 0.765347, 0.0955685, 0.760782, -0.118549, -0.767508, 0.103669, 0.0465603, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket")
@@ -1657,9 +1673,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5392, 92.879, -58.4374)
 [node name="LightmapProbe13" type="LightmapProbe" parent="LightmapGI"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.384, 92.879, 1.74851)
 
-[node name="RocketLandingPlayer" type="AudioStreamPlayer" parent="."]
+[node name="RocketLandingMusicPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = 3.0
 bus = &"Music"
+
+[node name="RocketLandingPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 3.0
+bus = &"Effects"
 
 [node name="RocketReturnCutscene" parent="." instance=ExtResource("10_01ks1")]
 scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_dmdrs")])

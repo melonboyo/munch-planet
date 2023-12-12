@@ -988,7 +988,7 @@ transform = Transform3D(0.423775, 0.758064, -0.495733, -0.760309, 0.00025329, -0
 curve = SubResource("Curve3D_e16gn")
 
 [node name="RocketPathFollow" type="PathFollow3D" parent="home/RocketPlatform/RocketPath"]
-transform = Transform3D(0.592563, 0.0317632, 0.805036, 0, 0.999255, -0.0394391, -0.805469, 0.0233674, 0.592244, 0, 0, 0)
+transform = Transform3D(0.592565, 0.0317633, 0.805047, 0, 0.999259, -0.0394396, -0.805472, 0.0233675, 0.592253, 0, 0, 0)
 rotation_mode = 4
 loop = false
 

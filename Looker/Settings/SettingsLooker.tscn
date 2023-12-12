@@ -4,14 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://dspbvg6r8sxo4" path="res://Looker/Settings/SettingsScene.tscn" id="2_mfmqj"]
 
 [node name="SettingsLooker" instance=ExtResource("1_xnlt0")]
-offset_right = 317.0
-offset_bottom = 354.0
-pivot_offset = Vector2(158.5, 177)
+offset_right = 193.0
+offset_bottom = 266.0
+pivot_offset = Vector2(96.5, 133)
 title = "Settings"
-window_width = 317
-window_height = 354
-looker_z_index = 30
+window_width = 193
+window_height = 266
+looker_z_index = 5
 music_track = 1
+
+[node name="PlaceholderBackground" parent="ContentMarginContainer" index="0"]
+visible = false
 
 [node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer" index="0"]
 own_world_3d = true
@@ -19,7 +22,7 @@ handle_input_locally = false
 screen_space_aa = 1
 audio_listener_enable_3d = true
 physics_object_picking = true
-size = Vector2i(305, 316)
+size = Vector2i(181, 228)
 render_target_update_mode = 4
 
 [node name="SettingsScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_mfmqj")]

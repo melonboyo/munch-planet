@@ -155,13 +155,26 @@ func is_munchme_deployed(resource: MunchmeResource) -> bool:
 	return res
 
 
+func play_looker_music(looker: Looker):
+	var previous_track = Music.play(looker.music_track)
+	looker_music_map[looker.looker_z_index] = previous_track
+
+
 func add_looker(looker: Looker):
 	if looker.looker_z_index > 0:
-		# Start a new song if the looker is prioritised
 		var highest_looker_z_index = get_highest_looker_z_index()
 		if looker.looker_z_index > highest_looker_z_index:
-			var previous_track = Music.play(looker.music_track)
-			looker_music_map[looker.looker_z_index] = previous_track
+			# Start a new song if the looker is prioritised
+			play_looker_music(looker)
+		elif looker.looker_z_index != highest_looker_z_index:
+			# Otherwise, steal the higher looker's song
+			var closest_looker_z_index = get_looker_z_index_above(looker.looker_z_index)
+			var their_previous_track = looker_music_map[closest_looker_z_index]
+			looker_music_map[looker.looker_z_index] = their_previous_track
+			
+			var our_track = PlayingTrack.new()
+			our_track.track = looker.music_track
+			looker_music_map[closest_looker_z_index] = our_track
 	
 	open_lookers.push_back(looker)
 
@@ -169,16 +182,21 @@ func add_looker(looker: Looker):
 func remove_looker(looker: Looker):
 	open_lookers.erase(looker)
 	
-	# Return to the previous song if this looker was prioritised
 	var highest_looker_z_index = get_highest_looker_z_index()
 	if looker.looker_z_index > 0:
-		if looker.looker_z_index > highest_looker_z_index:
+		if looker.looker_z_index > highest_looker_z_index and looker.looker_z_index in looker_music_map:
+			# Return to the previous song if this looker was prioritised
 			var previous_track = looker_music_map[looker.looker_z_index]
 			looker_music_map.erase(looker.looker_z_index)
 			if previous_track == null:
 				Music.stop()
 			else:
-				Music.play(previous_track.track, previous_track.position)
+				Music.play(previous_track.track, previous_track.position, false)
+		elif looker.looker_z_index != highest_looker_z_index:
+			# Otherwise, give them back their song
+			var closest_looker_z_index = get_looker_z_index_above(looker.looker_z_index)
+			looker_music_map[closest_looker_z_index] = looker_music_map[looker.looker_z_index]
+			looker_music_map.erase(looker.looker_z_index)
 
 
 func get_highest_looker_z_index():
@@ -186,6 +204,26 @@ func get_highest_looker_z_index():
 	for looker in open_lookers:
 		highest_z_index = max(looker.looker_z_index, highest_z_index)
 	return highest_z_index
+
+
+func get_looker_z_index_above(looker_index: int = 0):
+	var closest_looker_z_index := 999999
+	for looker in open_lookers:
+		if looker.looker_z_index < looker_index:
+			continue
+		
+		if looker.looker_z_index < closest_looker_z_index:
+			closest_looker_z_index = looker.looker_z_index
+
+	return closest_looker_z_index
+
+func get_open_looker_with_highest_z_index():
+	var highest_looker = null
+	for looker in open_lookers:
+		if highest_looker == null or looker.looker_z_index > highest_looker.looker_z_index:
+			highest_looker = looker
+	
+	return highest_looker
 
 
 func move_mouse(relative: Vector2):

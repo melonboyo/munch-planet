@@ -41,3 +41,15 @@ enum SnakeHand {
 	Middle,
 	Right,
 }
+
+enum TextSpeed {
+	Slow,
+	Normal,
+	Fast,
+}
+
+enum Graphics {
+	Low,
+	Medium,
+	High,
+}
