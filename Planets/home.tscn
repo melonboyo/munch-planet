@@ -55,24 +55,24 @@ collision_mask = 10
 transform = Transform3D(-0.261154, -8.50949e-08, 0, 8.50949e-08, -0.261154, 0, 0, 0, 0.261154, 3.02213, 10.0463, -3.03127)
 
 [node name="StaticBody3D" parent="Floor/DoorWall" index="0"]
-collision_layer = 5
-collision_mask = 11
+collision_layer = 4
+collision_mask = 15
 physics_material_override = SubResource("PhysicsMaterial_dnfka")
 
 [node name="StaticBody3D" parent="Floor/Wall" index="0"]
-collision_layer = 5
-collision_mask = 11
+collision_layer = 4
+collision_mask = 15
 physics_material_override = SubResource("PhysicsMaterial_dnfka")
 
 [node name="StaticBody3D" parent="Floor/Wall_001" index="0"]
 transform = Transform3D(1, 0, 5.42101e-20, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-collision_layer = 5
-collision_mask = 11
+collision_layer = 4
+collision_mask = 15
 physics_material_override = SubResource("PhysicsMaterial_dnfka")
 
 [node name="StaticBody3D" parent="Floor/WindowWall" index="0"]
-collision_layer = 5
-collision_mask = 11
+collision_layer = 4
+collision_mask = 15
 physics_material_override = SubResource("PhysicsMaterial_dnfka")
 
 [node name="StaticBody3D" parent="Floor" index="5"]

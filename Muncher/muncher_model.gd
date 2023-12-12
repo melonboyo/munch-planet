@@ -57,3 +57,4 @@ func grab_phone(yes: bool = true):
 		%phone_handle.pick_up()
 	else:
 		%phone_handle.put_down()
+	$PhonePlayer.play()

@@ -146,8 +146,7 @@ dialogue_translation_key = ""
 
 [sub_resource type="Animation" id="Animation_gvsls"]
 resource_name = "Intro_1"
-length = 25.5
-step = 0.05
+length = 34.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -155,7 +154,7 @@ tracks/0/path = NodePath("../Cameras/CameraPivot/Path/PathFollow:progress_ratio"
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 15),
+"times": PackedFloat32Array(0, 25.96),
 "transitions": PackedFloat32Array(-2.14355, 1),
 "update": 0,
 "values": [0.0, 1.0]
@@ -163,7 +162,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Overlay/ColorRect:material:shader_parameter/circle_size")
+tracks/1/path = NodePath("../Overlay/CircleTransition:material:shader_parameter/circle_size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -179,10 +178,10 @@ tracks/2/path = NodePath("../home/phone/PhoneCamera:current")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(15.3),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(26.26, 31.96),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -191,7 +190,7 @@ tracks/3/path = NodePath("%CutsceneFocus:current")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 15.3),
+"times": PackedFloat32Array(0, 26.26),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -203,7 +202,7 @@ tracks/4/path = NodePath("../home/phone/PhoneCamera:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(15.3, 17.4),
+"times": PackedFloat32Array(26.26, 28.36),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [Vector3(-2.08532, 0.839138, -2.38419e-07), Vector3(-1.70752, 0.687111, 0)]
@@ -215,7 +214,7 @@ tracks/5/path = NodePath("%Muncher")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 22.8, 23.5, 24.1, 24.2),
+"times": PackedFloat32Array(0, 32.4, 33.46, 34.06, 34.16),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": [true],
@@ -241,12 +240,9 @@ tracks/6/path = NodePath("../home/phone_handle")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(18, 20.2, 22.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(28.96, 30.98),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [],
-"method": &"ring"
-}, {
 "args": [],
 "method": &"ring"
 }, {
@@ -261,7 +257,7 @@ tracks/7/path = NodePath("../home/HomeWideCamera:current")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 20.9),
+"times": PackedFloat32Array(0, 31.96),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -273,75 +269,248 @@ tracks/8/path = NodePath("../home/phone_handle:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(24.25),
+"times": PackedFloat32Array(34.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("..")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(28.96, 34.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"stop_intro_music"
+}, {
+"args": [],
+"method": &"play_postlude"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_3qykd"]
 resource_name = "Intro_2"
-length = 12.0
-tracks/0/type = "value"
+length = 4.5
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../home/phone/PhoneCamera:current")
+tracks/0/path = NodePath("../Player/Muncher")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"times": PackedFloat32Array(0, 0.8, 2.7, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [false],
+"method": &"set_is_movement_animating"
+}, {
+"args": [false],
+"method": &"grab_phone"
+}, {
+"args": [true],
+"method": &"set_is_movement_animating"
+}, {
+"args": [],
+"method": &"walk_outside"
+}]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Player/Muncher")
+tracks/1/path = NodePath("../home/phone_handle")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.8),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"grab_phone"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../home/phone_handle")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "values": []
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../home/HomeWideCamera:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../home/HomeWideCamera:current")
+tracks/3/path = NodePath("../home/phone_handle:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.6, 2.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false, true]
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../home/phone_handle:visible")
+tracks/4/path = NodePath("../Cameras/Camera/SpringArm3D/Camera3D:current")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.9),
+"times": PackedFloat32Array(0, 3.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Cameras/Camera:enable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4.5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%Muncher:player_controlled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_oflk8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Cameras/CameraPivot/Path/PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Overlay/CircleTransition:material:shader_parameter/circle_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.05]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../home/phone/PhoneCamera:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%CutsceneFocus:current")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../home/phone/PhoneCamera:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.08532, 0.839138, -2.38419e-07)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../home/HomeWideCamera:current")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../home/phone_handle:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Cameras/Camera/SpringArm3D/Camera3D:current")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Cameras/Camera:enable")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%Muncher:player_controlled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_oflk8"]
@@ -442,26 +611,6 @@ _data = {
 script = ExtResource("1_08500")
 play_from_scene = 3
 
-[node name="Overlay" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="Overlay"]
-material = SubResource("ShaderMaterial_tgy13")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.0392157, 0.0313726, 0.0235294, 1)
-
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -471,6 +620,50 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("8_w771g")
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BlackBarTop" type="ColorRect" parent="Overlay"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -988.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0392157, 0.0313726, 0.0235294, 1)
+
+[node name="BlackBarBottom" type="ColorRect" parent="Overlay"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 988.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0392157, 0.0313726, 0.0235294, 1)
+
+[node name="CircleTransition" type="ColorRect" parent="Overlay"]
+material = SubResource("ShaderMaterial_tgy13")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0392157, 0.0313726, 0.0235294, 1)
 
 [node name="Player" type="Node" parent="."]
 
@@ -537,8 +730,13 @@ omni_range = 6.76
 
 [node name="FollowPoints" type="Node" parent="."]
 
-[node name="Node3D" type="Node3D" parent="FollowPoints"]
+[node name="Phone" type="Node3D" parent="FollowPoints"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05028, 9.98413, 1.6653)
+
+[node name="Outside" type="Node3D" parent="FollowPoints"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9642, 9.98413, 1.6653)
 
 [node name="Cameras" type="Node" parent="."]
 
@@ -557,13 +755,15 @@ tilt_enabled = false
 
 [node name="CutsceneFocus" type="Camera3D" parent="Cameras/CameraPivot/Path/PathFollow"]
 unique_name_in_owner = true
-transform = Transform3D(-0.25067, -0.0085455, -0.341148, 7.88679e-10, 0.423286, -0.010603, 0.341247, -0.00627697, -0.250585, 0, 0, 0)
+transform = Transform3D(-0.27541, -0.0428959, -0.318747, -3.15471e-09, 0.419636, -0.0564731, 0.321613, -0.0367317, -0.272943, 0, 0, 0)
 script = ExtResource("14_66j6k")
 focus_path = NodePath("../../../../../Player/Muncher")
 
 [node name="Camera" parent="Cameras" instance=ExtResource("5_wehd3")]
 for_munchme = false
+enable = false
 focus_path = NodePath("../../Player/Muncher")
+orbit_angles = Vector2(-10, 90)
 
 [node name="Cutscene" parent="." instance=ExtResource("9_jt0ki")]
 scenes = Array[ExtResource("17_td0oi")]([SubResource("Resource_anfb4"), SubResource("Resource_qlwfi"), SubResource("Resource_rpr1d"), SubResource("Resource_owxms")])
@@ -572,7 +772,8 @@ scenes = Array[ExtResource("17_td0oi")]([SubResource("Resource_anfb4"), SubResou
 libraries = {
 "": SubResource("AnimationLibrary_02v8l")
 }
-speed_scale = 1.889
+
+[connection signal="animation_finished" from="Cutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
 
 [editable path="Cameras/Camera"]
 [editable path="Cutscene"]

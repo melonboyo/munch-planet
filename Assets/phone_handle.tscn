@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://x8jg67cxv075"]
+[gd_scene load_steps=24 format=3 uid="uid://x8jg67cxv075"]
 
 [ext_resource type="PackedScene" uid="uid://pan5xy8tws8l" path="res://Models/phone_handle.glb" id="1_sjr47"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_5ttva"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cwb1qcoqn7dbs" path="res://Sprites/Faces/yap-1.png" id="11_cvime"]
 [ext_resource type="Texture2D" uid="uid://bfv6qodomix22" path="res://Sprites/Faces/yap-2.png" id="12_dxo2d"]
 [ext_resource type="Texture2D" uid="uid://by8idcldfllx" path="res://Sprites/Faces/yap-3.png" id="13_8og2j"]
+[ext_resource type="AudioStream" uid="uid://dspkvs0wlyij2" path="res://SFX/Intro/ring_1.ogg" id="14_vqtup"]
 
 [sub_resource type="Gradient" id="Gradient_j6y4m"]
 
@@ -117,6 +118,45 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="Animation" id="Animation_f2g4n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhoneHandle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.037, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhoneHandle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhoneHandle:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_1n6yn"]
 resource_name = "ring"
 length = 1.5
@@ -157,45 +197,6 @@ tracks/2/keys = {
 "values": [Vector3(1.25, 1.25, 1.25), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_f2g4n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PhoneHandle:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.037, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PhoneHandle:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PhoneHandle:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0x8yl"]
 _data = {
 "RESET": SubResource("Animation_f2g4n"),
@@ -225,3 +226,6 @@ libraries = {
 speed_scale = 1.162
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource("14_vqtup")
+volume_db = -7.07
+bus = &"Effects"

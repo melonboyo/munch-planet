@@ -22,7 +22,7 @@ class_name Camera
 		$SpringArm3D.spring_length = value
 
 var focus_point: Vector3
-var orbit_angles: Vector2 = Vector2(0.0, 0.0):
+@export var orbit_angles: Vector2 = Vector2(0.0, 0.0):
 	set(value):
 		orbit_angles = value
 		orbit_angles.x = clamp(orbit_angles.x, -max_vertical_angle, -min_vertical_angle)

@@ -82,8 +82,9 @@ func _process(delta: float):
 func _play_scene(scene: CutsceneScene, from_seconds: float = 0.0):
 	if animation_player != null and scene.animation_name.length() > 0:
 		_play_animation(animation_player, scene.animation_name, from_seconds)
-		
+	
 	%Label.visible_characters = 0
+	
 	if scene.dialogue_translation_key.length() > 0:
 		_play_dialogue(scene.dialogue_translation_key)
 	
