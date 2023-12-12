@@ -11,6 +11,8 @@ enum Track {
 	ThoughtfulMuncher,
 	Battle,
 	Catch,
+	Intro,
+	Postlude,
 }
 
 var streams = {
@@ -18,6 +20,8 @@ var streams = {
 	Track.ThoughtfulMuncher: preload("res://Music/thoughtful_muncher.ogg"),
 	Track.Battle: preload("res://Music/battle.ogg"),
 	Track.Catch: preload("res://Music/catchy_music.ogg"),
+	Track.Intro: preload("res://Music/intro.ogg"),
+	Track.Postlude: preload("res://Music/postlude.ogg"),
 }
 
 var volume = 0
@@ -26,6 +30,8 @@ var volumes = {
 	Track.ThoughtfulMuncher: 0,
 	Track.Battle: 0,
 	Track.Catch: 0,
+	Track.Intro: 0,
+	Track.Postlude: 0,
 }
 
 var selected_track = null
@@ -51,7 +57,7 @@ func play(track: Track, from_position: float = 0.0, fade_in = null):
 
 func stop(fade_out: bool = true):
 	var previous_track = get_playing_track()
-	_stop(fade_out, false)
+	_stop(fade_out)
 	return previous_track
 
 

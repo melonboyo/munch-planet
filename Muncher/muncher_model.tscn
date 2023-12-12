@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://byqxhfjpv5fey"]
+[gd_scene load_steps=7 format=3 uid="uid://byqxhfjpv5fey"]
 
 [ext_resource type="PackedScene" uid="uid://bofgx4ionr17s" path="res://Models/muncher.gltf" id="1_3g22p"]
 [ext_resource type="Script" path="res://Muncher/muncher_model.gd" id="2_yv0yo"]
 [ext_resource type="Material" uid="uid://belqhdabt8ref" path="res://Materials/MuncherTestMaterial.tres" id="3_fk1ay"]
+[ext_resource type="AudioStream" uid="uid://ynmw4iy81ky3" path="res://SFX/Intro/gun_cock.ogg" id="4_or0ar"]
 [ext_resource type="AudioStream" uid="uid://b66twy7o5wbwn" path="res://SFX/Step/step_mid1.ogg" id="5_506rr"]
 [ext_resource type="PackedScene" uid="uid://x8jg67cxv075" path="res://Assets/phone_handle.tscn" id="5_spqmb"]
 
@@ -13,6 +14,11 @@ script = ExtResource("2_yv0yo")
 stream = ExtResource("5_506rr")
 volume_db = -6.0
 max_polyphony = 2
+bus = &"Effects"
+
+[node name="PhonePlayer" type="AudioStreamPlayer" parent="." index="1"]
+stream = ExtResource("4_or0ar")
+volume_db = -5.0
 bus = &"Effects"
 
 [node name="Skeleton3D" parent="Armature" index="0"]
@@ -40,7 +46,7 @@ surface_material_override/0 = ExtResource("3_fk1ay")
 
 [node name="HandAttachment" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
 unique_name_in_owner = true
-transform = Transform3D(-0.847433, 0.178494, 0.375905, 0.229833, -0.681009, 0.841501, 0.367045, 0.722447, 0.484413, -0.908911, 1.88387, 0.595518)
+transform = Transform3D(-0.847433, 0.178495, 0.375905, 0.229833, -0.681008, 0.8415, 0.367045, 0.722447, 0.484413, -0.908911, 1.88387, 0.595518)
 visible = false
 bone_name = "WingEnd.R"
 bone_idx = 17

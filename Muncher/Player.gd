@@ -69,6 +69,10 @@ func walk_to_phone():
 	set_follow_points([Vector3(-2.05, 9.98, 1.67)])
 
 
+func walk_outside():
+	set_follow_points([Vector3(3.964, 9.984, 1.665)])
+
+
 func sit(yes = true):
 	sitting = yes
 
@@ -79,7 +83,7 @@ func grab_phone(yes: bool = true):
 	else:
 		$Model.play_animation_backwards("PickUpPhone")
 	$Model.set_animation_speed_scale(1.0)
-	#await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(0.05).timeout
 	$Model.grab_phone(yes)
 
 
