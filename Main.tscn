@@ -28,7 +28,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dgl50"]
 shader = ExtResource("2_ww73t")
-shader_parameter/circle_size = 0.0
+shader_parameter/circle_size = 1.05
 shader_parameter/screen_width = 1920.0
 shader_parameter/screen_height = 1080.0
 
@@ -447,7 +447,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [1.05]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -679,6 +679,7 @@ _data = {
 [node name="Main" type="Node3D"]
 transform = Transform3D(0.973507, -0.222218, 0.0538836, 0.211321, 0.964367, 0.159184, -0.0873371, -0.14358, 0.985777, 0, 0, 0)
 script = ExtResource("1_12yvb")
+skip_rocket_cutscene = true
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -1579,7 +1580,7 @@ transform = Transform3D(0.423775, 0.758064, -0.495733, -0.760309, 0.00025329, -0
 curve = SubResource("Curve3D_g8sv8")
 
 [node name="RocketPathFollow" type="PathFollow3D" parent="RocketPlatform/RocketPath"]
-transform = Transform3D(0.574252, 0.0122627, 0.818785, 0.468992, 0.814547, -0.341408, -0.670854, 0.579944, 0.462204, -65.3334, 17.4243, -42.0676)
+transform = Transform3D(0.573091, 0.0294026, 0.819163, 0.393554, 0.866635, -0.306689, -0.718642, 0.498048, 0.485299, -52.4797, 12.326, -34.635)
 progress = 64.3
 rotation_mode = 4
 loop = false
