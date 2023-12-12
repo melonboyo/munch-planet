@@ -14,7 +14,7 @@ func planet_specific_ready():
 	if GameState.during_intro:
 		%Muncher.player_controlled = false
 		$Cutscene.play(play_from_scene, play_from_seconds)
-		
+	
 	GameState.situation = Constants.Situation.Overworld
 
 
@@ -56,7 +56,3 @@ func walk_to_rocket():
 
 func set_focus_to_rocket():
 	%RocketCamera.focus = %Rocket
-
-
-func remove_black_bars():
-	%OverlayAnimation.play("remove_bars")
