@@ -147,7 +147,6 @@ autoplay = "pulsate"
 spherical_gravity = false
 target_path = NodePath("..")
 float_node_path = NodePath("../FloatMovement")
-max_floor_angle = 55.0
 
 [node name="FloatMovement" parent="." instance=ExtResource("5_fqq42")]
 target_path = NodePath("..")

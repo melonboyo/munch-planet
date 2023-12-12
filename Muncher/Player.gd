@@ -50,10 +50,11 @@ func get_move_input() -> Vector3:
 func _physics_process(delta):
 	#print($AiMovement.has_reached_end)
 	$Model.is_on_floor = is_on_floor()
-	if GameState.focus_main and GameState.situation == Constants.Situation.Overworld and not GameState.during_intro:
+	if GameState.focus_main and GameState.situation == Constants.Situation.Overworld and player_controlled:
 		$OverworldMovement.move_input = move_input
 	else:
 		$OverworldMovement.move_input = Vector3.ZERO
+	
 	if not player_controlled:
 		$OverworldMovement.move_input = $AiMovement.get_move_direction()
 		#print($OverworldMovement.move_input)
@@ -89,3 +90,7 @@ func grab_phone(yes: bool = true):
 
 func set_is_movement_animating(yes: bool):
 	$OverworldMovement.is_animating = yes
+
+
+func rotate_towards(pos: Vector3):
+	$OverworldMovement.last_strong_direction = (pos - global_position).normalized()

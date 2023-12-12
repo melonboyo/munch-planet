@@ -17,11 +17,14 @@ func _ready():
 
 
 func planet_specific_ready():
+	$RocketReturnCutscene.play()
+	$Overlay/OverlayAnimation.play("RESET")
+	
 	GameState.water_height = 100.35
 	GameState.during_intro = false
 	
 	GameState.situation = Constants.Situation.Overworld
-	Music.play(Music.Track.Overworld)
+	#Music.play(Music.Track.Overworld)
 	GameState.munchme_deployed.connect(_on_munchme_deployed)
 	
 	var points: Array[Vector3] = []
@@ -36,6 +39,7 @@ func _unhandled_input(event):
 		and event.is_pressed() 
 		and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED
 		and GameState.situation != Constants.Situation.Catch
+		#and not GameState.during_intro
 	):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 

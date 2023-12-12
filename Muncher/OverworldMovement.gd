@@ -30,6 +30,7 @@ var gravity_velocity: Vector3 = Vector3.ZERO
 var last_strong_direction: Vector3 = Vector3.FORWARD
 var moving: bool = false
 var floor_normal: Vector3 = Vector3.UP
+var last_floor_normal: Vector3 = Vector3.UP
 
 var snapped = false
 var steps_since_grounded = 0
@@ -87,23 +88,23 @@ func _overworld_physics_process(delta):
 		#target.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 	
 	#floor_normal = target.get_floor_normal()
+	var new_floor_normal := target.up_direction
 	if target.is_on_floor() and not float_node.is_floating():
 		if target.is_on_floor():
-			floor_normal = target.get_floor_normal()
-		else:
-			floor_normal = target.up_direction
+			new_floor_normal = target.get_floor_normal()
 		steps_since_grounded = 0
 		# Stick to floor
-		gravity_velocity = -target.up_direction * 1.5
+		gravity_velocity = -new_floor_normal * 2.0
+		#gravity_velocity = Vector3()
 		speed = walking_speed
 		acceleration = walking_acceleration
 	else:
-		floor_normal = target.up_direction
 		steps_since_grounded += 1
 		gravity_velocity += -target.up_direction * gravity * delta
 		speed = air_speed
 		acceleration = air_acceleration
-		
+	
+	floor_normal = last_floor_normal.move_toward(new_floor_normal, 8.0 * delta).normalized()
 	gravity_velocity += float_node.get_float_velocity(delta, target.velocity)
 	
 	if gravity_velocity.length() > max_fall_speed:
@@ -121,6 +122,7 @@ func _overworld_physics_process(delta):
 	target.velocity = move_velocity + gravity_velocity
 	target.move_and_slide()
 	last_position = target.global_position
+	last_floor_normal = floor_normal
 
 
 func animate():
@@ -174,6 +176,7 @@ func snap_to_floor() -> bool:
 	return true
 
 
+#region Unused
 func _is_on_floor() -> bool:
 	var col_count = target.get_slide_collision_count()
 	
@@ -214,3 +217,4 @@ func _get_floor_normal() -> Vector3:
 		return target.up_direction
 	
 	return floor_normal
+#endregion
