@@ -170,6 +170,7 @@ locale/translations=PackedStringArray("res://text.en.translation")
 3d_physics/layer_3="CameraIgnore"
 3d_physics/layer_4="Munchme"
 3d_physics/layer_5="Planet"
+3d_physics/layer_7="AreaForMuncher"
 3d_physics/layer_17="ManageHold"
 
 [physics]

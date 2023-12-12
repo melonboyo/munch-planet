@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsypmflr8lvqx"]
+
+[ext_resource type="PackedScene" uid="uid://bdwqty2p0ap2u" path="res://Models/guild_interior.glb" id="1_ao05j"]
+[ext_resource type="Material" uid="uid://be83a65vy13cq" path="res://Materials/MainMaterial.tres" id="2_cnd41"]
+
+[node name="guild_interior" instance=ExtResource("1_ao05j")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_cnd41")

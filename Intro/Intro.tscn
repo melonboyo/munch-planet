@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bofbjnkj2gsl2"]
+[gd_scene load_steps=51 format=3 uid="uid://bofbjnkj2gsl2"]
 
 [ext_resource type="Script" path="res://Intro/Intro.gd" id="1_08500"]
 [ext_resource type="Texture2D" uid="uid://ios8c7bseiai" path="res://Sprites/Skybox/main-skybox.png" id="1_njc2r"]
@@ -16,9 +16,8 @@
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="13_snone"]
 [ext_resource type="Script" path="res://Intro/CutsceneCamera.gd" id="14_66j6k"]
 [ext_resource type="AudioStream" uid="uid://dwcb6bmhw8lt1" path="res://SFX/Intro/rocket transition.ogg" id="17_eumm4"]
-[ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="17_ii5yy"]
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="17_td0oi"]
-[ext_resource type="Script" path="res://Planets/EarthSpin.gd" id="18_rxyhq"]
+[ext_resource type="PackedScene" uid="uid://8vopdyigqvqi" path="res://Planets/earth_far_away.tscn" id="20_76a5h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tgy13"]
 shader = ExtResource("2_0pxcx")
@@ -899,7 +898,6 @@ _data = {
 
 [node name="Intro" type="Node3D"]
 script = ExtResource("1_08500")
-play_intro = false
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -1075,7 +1073,7 @@ orbit_angles = Vector2(-10, 90)
 
 [node name="RocketCamera" type="Camera3D" parent="Cameras"]
 unique_name_in_owner = true
-transform = Transform3D(-0.973779, 0.0162534, 0.226914, -1.86265e-09, 0.997445, -0.0714448, -0.227496, -0.0695715, -0.971291, 11.2006, 6.93473, -7.50577)
+transform = Transform3D(-0.617657, 0.177877, 0.766068, -7.45058e-09, 0.974086, -0.226177, -0.786448, -0.1397, -0.601651, 11.2006, 6.93473, -7.50577)
 script = ExtResource("14_66j6k")
 focus_path = NodePath("../../Player/Muncher")
 in_editor = true
@@ -1100,11 +1098,14 @@ libraries = {
 }
 
 [node name="EarthPivot" type="Node3D" parent="."]
-transform = Transform3D(-0.291332, -0.479313, 0.315035, 0.543588, -0.343478, -0.0199, 0.183028, 0.257186, 0.560553, 431.919, 215.479, -1811.62)
+transform = Transform3D(-0.452857, -0.745059, 0.489702, 0.856071, -0.516831, 0.00532537, 0.249126, 0.421632, 0.871873, 431.919, 277.243, -1432.32)
 
-[node name="Earth" parent="EarthPivot" instance=ExtResource("17_ii5yy")]
-transform = Transform3D(1, 0, 1.49012e-08, 7.45058e-08, 1, 0, -1.49012e-08, 0, 1, 175.489, 246.591, 537.463)
-script = ExtResource("18_rxyhq")
+[node name="EarthFarAway" parent="EarthPivot" instance=ExtResource("20_76a5h")]
+transform = Transform3D(0.643, -8.19564e-08, 1.49012e-08, 5.21541e-08, 0.643, 2.98023e-08, 0, -1.49012e-08, 0.643, 6.3287, 10.7113, 22.1505)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="EarthPivot/EarthFarAway"]
+transform = Transform3D(1.55521, 1.19209e-07, -2.98023e-08, 1.49012e-08, 1.55521, -6.55651e-07, 0, 5.96046e-07, 1.55521, -9.97968, 88.2205, 28.5597)
+omni_range = 57.8457
 
 [connection signal="rocket_go" from="home/RocketPlatform/RocketPath/RocketPathFollow/Rocket" to="." method="_on_rocket_go"]
 [connection signal="animation_finished" from="Cutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]

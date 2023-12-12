@@ -34,11 +34,6 @@ func planet_specific_ready():
 	
 	GameState.situation = Constants.Situation.Overworld
 	GameState.munchme_deployed.connect(_on_munchme_deployed)
-	
-	var points: Array[Vector3] = []
-	for p in $FollowPoints.get_children():
-		points.append(p.global_position)
-	%Goby.set_follow_points(points)
 
 
 func play_overworld_music():
@@ -178,3 +173,12 @@ func _on_cutscene_animation_finished(anim_name):
 		#if not GameState.tutorial_cleared:
 			#$TutorialStartCutscene.play()
 		pass
+
+
+func _on_tutorial_area_body_entered(body):
+	$ReturnToTutorialCutscene.play()
+
+
+func force_player_to_center():
+	var point = %Muncher.global_position + ($FollowPoints/Center.global_position - %Muncher.global_position).normalized() * 10.0
+	%Muncher.set_follow_points([point] as Array[Vector3])

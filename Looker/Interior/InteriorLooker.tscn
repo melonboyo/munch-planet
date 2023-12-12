@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlom5v20vkvt"]
+
+[ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="1_06m1g"]
+[ext_resource type="PackedScene" uid="uid://fjx7o5aysy0p" path="res://Looker/Interior/InteriorScene.tscn" id="2_mkit5"]
+
+[node name="Looker" instance=ExtResource("1_06m1g")]
+offset_right = 1524.0
+offset_bottom = 952.0
+pivot_offset = Vector2(698, 476)
+window_width = 1524
+window_height = 952
+
+[node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer" index="0"]
+own_world_3d = true
+handle_input_locally = false
+screen_space_aa = 1
+audio_listener_enable_3d = true
+physics_object_picking = true
+size = Vector2i(1512, 914)
+render_target_update_mode = 4
+
+[node name="InteriorScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_mkit5")]

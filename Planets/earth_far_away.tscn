@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://8vopdyigqvqi"]
+
+[ext_resource type="PackedScene" uid="uid://dofwikg3bucms" path="res://Models/earth.glb" id="1_x88wr"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_ys6ff"]
+[ext_resource type="Texture2D" uid="uid://bg3ymobja86l8" path="res://Models/earth_earth-texture.png" id="3_bsosn"]
+[ext_resource type="PackedScene" uid="uid://ckhytfotl50qm" path="res://Planets/Buildings/guild.tscn" id="4_vbene"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opfcm"]
+render_priority = 0
+shader = ExtResource("2_ys6ff")
+shader_parameter/albedo = Color(0.909804, 0.909804, 0.909804, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.883
+shader_parameter/metallic = 0.033
+shader_parameter/specularity = 0.069
+shader_parameter/specular_tint = 0.506
+shader_parameter/sheen = 0.676
+shader_parameter/sheen_tint = 0.963
+shader_parameter/subsurface = 0.695
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.055
+shader_parameter/wobble_displacement = 0.05
+shader_parameter/wobble_frequency = 0.5
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/albedo_texture = ExtResource("3_bsosn")
+
+[sub_resource type="SphereMesh" id="SphereMesh_us7qf"]
+radius = 100.0
+height = 200.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfwrr"]
+albedo_color = Color(0.223529, 0.639216, 1, 1)
+metallic_specular = 1.0
+roughness = 0.0
+
+[node name="EarthFarAway" instance=ExtResource("1_x88wr")]
+transform = Transform3D(1, 0, 0, 0, 0.979339, 0.202223, 0, -0.202223, 0.979339, 0, 0, 0)
+
+[node name="Planet" parent="." index="0"]
+transform = Transform3D(0.858886, -0.140036, -0.492651, -0.0489139, 0.935071, -0.35107, 0.509826, 0.325627, 0.79627, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_opfcm")
+
+[node name="StaticBody3D" parent="Planet" index="0"]
+visible = false
+
+[node name="Water" parent="." index="1"]
+visible = false
+
+[node name="guild" parent="." index="2" instance=ExtResource("4_vbene")]
+transform = Transform3D(0.45633, -0.0661657, -0.224348, -0.00462379, 0.489191, -0.15368, 0.233855, 0.138784, 0.434738, -38.2455, 98.513, 24.3845)
+
+[node name="WaterReal" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(0.991031, 0, 0, 0, 0.991031, -4.47035e-08, 0, 4.47035e-08, 0.991031, 0, 0, 0)
+mesh = SubResource("SphereMesh_us7qf")
+surface_material_override/0 = SubResource("StandardMaterial3D_bfwrr")

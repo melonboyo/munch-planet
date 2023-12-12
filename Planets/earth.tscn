@@ -72,6 +72,7 @@ shadow_mesh = SubResource("ArrayMesh_muahq")
 [node name="Earth" instance=ExtResource("1_rcr66")]
 
 [node name="Planet" parent="." index="0"]
+transform = Transform3D(0.858886, -0.140036, -0.492651, -0.0489139, 0.935071, -0.35107, 0.509826, 0.325627, 0.79627, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_vtji1")
 metadata/_edit_group_ = true
 

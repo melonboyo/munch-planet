@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://fjx7o5aysy0p"]
+
+[ext_resource type="Environment" uid="uid://ce5g5cyrrhs7p" path="res://Looker/Manage/ManageEnv.tres" id="2_86l1s"]
+[ext_resource type="PackedScene" uid="uid://bsypmflr8lvqx" path="res://Looker/Interior/GuildInterior.tscn" id="2_rauf5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xc683"]
+size = Vector3(68.3452, 4, 55.7164)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m8hip"]
+size = Vector3(30.3542, 4, 55.7164)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wxaie"]
+size = Vector3(8.70869, 25.7267, 5.12534)
+
+[node name="InteriorScene" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.763537, 0.645764, 0, -0.645764, 0.763537, 0, 30.62, 20.987)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, -1.74391e-07, 4.00479e-08, 6.45239e-09, 0.258819, 0.965926, -1.78814e-07, -0.965926, 0.258819, 0, 25.0352, 1.15744)
+light_energy = 1.8
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_86l1s")
+
+[node name="guild_interior" parent="." instance=ExtResource("2_rauf5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Entrance" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23.8346)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.713028, -2, -19.5862)
+shape = SubResource("BoxShape3D_xc683")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Entrance"]
+transform = Transform3D(0.961813, -0.273707, 1.19641e-08, 0, -4.37114e-08, -1, 0.273707, 0.961813, -4.20422e-08, -21.0252, -2, -13.4269)
+shape = SubResource("BoxShape3D_m8hip")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Entrance"]
+transform = Transform3D(0.961741, 0.273959, -1.19751e-08, 0, -4.37114e-08, -1, -0.273959, 0.961741, -4.2039e-08, 21.025, -2, -13.427)
+shape = SubResource("BoxShape3D_m8hip")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98387, 13.085, -8.92636)
+shape = SubResource("BoxShape3D_wxaie")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.984, 13.085, -8.926)
+shape = SubResource("BoxShape3D_wxaie")
