@@ -5,7 +5,6 @@ uniform sampler2D NORMAL_TEXTURE: hint_normal_roughness_texture, filter_linear;
 
 uniform float outline_threshold = 0.2;
 uniform vec3 outline_color: source_color = vec3(0.043, 0.282, 0.467);
-
 const mat3 sobel_y = mat3(
 	vec3(1.0, 0.0, -1.0),
 	vec3(2.0, 0.0, -2.0),

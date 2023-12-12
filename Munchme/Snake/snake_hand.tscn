@@ -1,10 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://b33jl6a0742pm"]
 
 [ext_resource type="Texture2D" uid="uid://buuw5qskft8fl" path="res://Sprites/snake/grab_hand3.png" id="1_cqwov"]
-[ext_resource type="Script" path="res://Munchme/Minigames/Snake/snake_hand.gd" id="1_uifhv"]
+[ext_resource type="Script" path="res://Munchme/Snake/snake_hand.gd" id="1_uifhv"]
 [ext_resource type="Texture2D" uid="uid://cq0csrqecyye4" path="res://Sprites/snake/grab_hand1.png" id="2_xiclo"]
 [ext_resource type="Texture2D" uid="uid://b4dwaxc6y854c" path="res://Sprites/snake/grab_hand2.png" id="3_hgv8c"]
 [ext_resource type="Texture2D" uid="uid://bjk8tcprnaveh" path="res://Sprites/snake/grab_hand4.png" id="4_ogj5m"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gb8ap"]
 size = Vector2(216.5, 26)

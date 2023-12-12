@@ -26,6 +26,7 @@ var looker_music_map := {}
 var water_height = 0.0
 var look_input_deadzone: float = 0.0
 var cursor_sensitivty: float = 0.5
+var tutorial_cleared = false
 
 
 func _ready():
