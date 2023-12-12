@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://dspbvg6r8sxo4"]
+
+[ext_resource type="Script" path="res://Looker/Settings/SettingsScene.gd" id="1_unp4l"]
+[ext_resource type="Texture2D" uid="uid://dqgy48nm5bhkx" path="res://Sprites/Settings/audio1.png" id="2_ls726"]
+[ext_resource type="Texture2D" uid="uid://83jhuptninmi" path="res://Sprites/Settings/general1.png" id="2_rsac4"]
+[ext_resource type="Texture2D" uid="uid://c4h7e341vd615" path="res://Sprites/Settings/audio2.png" id="3_s1q2h"]
+[ext_resource type="Texture2D" uid="uid://p3vyetkbxael" path="res://Sprites/Settings/general2.png" id="3_tgk2f"]
+[ext_resource type="Texture2D" uid="uid://djndc8sl4ys31" path="res://Sprites/Settings/general3.png" id="4_fqxui"]
+[ext_resource type="Texture2D" uid="uid://cwtupnxeq5f40" path="res://Sprites/Settings/audio3.png" id="4_kug1x"]
+
+[node name="SettingsScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_unp4l")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 116.0
+offset_bottom = 373.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+
+[node name="Tabs" type="VFlowContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TabButtons" type="HBoxContainer" parent="MarginContainer/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GeneralTabButton" type="TextureButton" parent="MarginContainer/Tabs/TabButtons"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("2_rsac4")
+texture_pressed = ExtResource("3_tgk2f")
+texture_hover = ExtResource("4_fqxui")
+
+[node name="AudioTabButton" type="TextureButton" parent="MarginContainer/Tabs/TabButtons"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("2_ls726")
+texture_pressed = ExtResource("3_s1q2h")
+texture_hover = ExtResource("4_kug1x")
+
+[node name="GeneralTab" type="VBoxContainer" parent="MarginContainer/Tabs"]
+layout_mode = 2
+
+[node name="TextSpeedLabel" type="Label" parent="MarginContainer/Tabs/GeneralTab"]
+layout_mode = 2
+text = "Text speed"
+
+[node name="TextSpeedSlider" type="HSlider" parent="MarginContainer/Tabs/GeneralTab"]
+layout_mode = 2
+max_value = 2.0
+
+[node name="AudioTab" type="VBoxContainer" parent="MarginContainer/Tabs"]
+visible = false
+layout_mode = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/Tabs/AudioTab"]
+layout_mode = 2
+text = "Master volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/Tabs/AudioTab"]
+layout_mode = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/Tabs/AudioTab"]
+layout_mode = 2
+text = "Music volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/Tabs/AudioTab"]
+layout_mode = 2
+
+[node name="EffectsVolumeLabel" type="Label" parent="MarginContainer/Tabs/AudioTab"]
+layout_mode = 2
+text = "Effects volume
+"
+
+[node name="EffectsVolumeSlider" type="HSlider" parent="MarginContainer/Tabs/AudioTab"]
+layout_mode = 2

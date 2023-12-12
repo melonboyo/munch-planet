@@ -754,7 +754,6 @@ unique_name_in_owner = true
 transform = Transform3D(-0.0501459, 0.161398, -0.985613, -0.140531, 0.975897, 0.166956, 0.988805, 0.146882, -0.0262554, 19.0219, 104.505, 12.5638)
 wall_min_slide_angle = 1.8867
 camera_path = NodePath("../../MainCamera")
-player_controlled = false
 
 [node name="FollowPoints" type="Node3D" parent="."]
 
@@ -1580,7 +1579,7 @@ transform = Transform3D(0.423775, 0.758064, -0.495733, -0.760309, 0.00025329, -0
 curve = SubResource("Curve3D_g8sv8")
 
 [node name="RocketPathFollow" type="PathFollow3D" parent="RocketPlatform/RocketPath"]
-transform = Transform3D(0.573091, 0.0294026, 0.819163, 0.393554, 0.866635, -0.306689, -0.718642, 0.498048, 0.485299, -52.4797, 12.326, -34.635)
+transform = Transform3D(0.574252, 0.0122627, 0.818785, 0.468992, 0.814547, -0.341408, -0.670854, 0.579944, 0.462204, -65.3334, 17.4243, -42.0676)
 progress = 64.3
 rotation_mode = 4
 loop = false
