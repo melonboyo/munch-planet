@@ -246,6 +246,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BlackBarTop" type="ColorRect" parent="Overlay"]
+layout_mode = 0
 offset_top = -96.0
 offset_right = 1920.0
 offset_bottom = -4.0
@@ -255,6 +256,7 @@ mouse_filter = 2
 color = Color(0.0392157, 0.0313726, 0.0235294, 1)
 
 [node name="BlackBarBottom" type="ColorRect" parent="Overlay"]
+layout_mode = 0
 offset_top = 1084.0
 offset_right = 1920.0
 offset_bottom = 1176.0

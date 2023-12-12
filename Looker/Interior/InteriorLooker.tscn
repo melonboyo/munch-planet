@@ -10,13 +10,16 @@ pivot_offset = Vector2(762, 476)
 window_width = 1524
 window_height = 952
 
+[node name="PlaceholderBackground" parent="ContentMarginContainer" index="0"]
+visible = false
+
 [node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer" index="0"]
 own_world_3d = true
 handle_input_locally = false
 screen_space_aa = 1
 audio_listener_enable_3d = true
 physics_object_picking = true
-size = Vector2i(1512, 914)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="InteriorScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_mkit5")]
