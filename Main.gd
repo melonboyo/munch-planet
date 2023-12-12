@@ -137,3 +137,11 @@ func _on_ui_focus_entered():
 
 func _on_ui_focus_exited():
 	pass
+
+
+func remove_black_bars():
+	%OverlayAnimation.play("remove_bars")
+
+
+func add_black_bars():
+	%OverlayAnimation.play("add_bars")

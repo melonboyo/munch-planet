@@ -1465,7 +1465,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988, 0.998136, -0.0250779, -0.999581, -0.0144419, -0.0261015, 0.132022, -0.98487)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.0354285, 0.459081, 0.624473, 0.0768466, 0.624125, -0.454466, -0.771248, 0.0410984, -0.0739709, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.370587, 0.556349, 0.39385, 0.000962086, 0.448719, -0.632951, -0.681649, -0.301837, -0.215018, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket")
