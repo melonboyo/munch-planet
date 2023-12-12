@@ -9,6 +9,7 @@ var catch_looker_scene := preload("res://Looker/Catch/CatchLooker.tscn")
 var manage_looker_scene := preload("res://Looker/Manage/ManageLooker.tscn")
 var deploy_looker_scene := preload("res://Looker/Deploy/DeployLooker.tscn")
 var settings_looker_scene := preload("res://Looker/Settings/SettingsLooker.tscn")
+var guild_interior_looker_scene := preload("res://Looker/Interior/InteriorLooker.tscn")
 
 var mouse_captured = true
 var munchme_getting_caught: Munchme
@@ -185,3 +186,14 @@ func _on_tutorial_area_body_entered(body):
 func force_player_to_center():
 	var point = %Muncher.global_position + ($FollowPoints/Center.global_position - %Muncher.global_position).normalized() * 10.0
 	%Muncher.set_follow_points([point] as Array[Vector3])
+
+
+func _on_enter_guild_area_entered(body):
+	%OverlayAnimation.play("fade_out")
+	%Muncher.play_controlled = false
+	open_guild_interior_looker()
+
+
+func open_guild_interior_looker():
+	var interior_ui: Looker = guild_interior_looker_scene.instantiate()
+	Music.stop()

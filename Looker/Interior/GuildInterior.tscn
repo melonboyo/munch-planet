@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsypmflr8lvqx"]
+[gd_scene load_steps=10 format=3 uid="uid://bsypmflr8lvqx"]
 
 [ext_resource type="PackedScene" uid="uid://bdwqty2p0ap2u" path="res://Models/guild_interior.glb" id="1_ao05j"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="3_bsoyd"]
 [ext_resource type="Texture2D" uid="uid://cm675kd46gr0u" path="res://Models/textures/interior-texture.png" id="3_i5mrv"]
+[ext_resource type="PackedScene" uid="uid://bjpggebnjfqtd" path="res://Assets/guild_table.tscn" id="4_8rhwm"]
 
 [sub_resource type="Gradient" id="Gradient_j6y4m"]
 
@@ -41,7 +42,7 @@ shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pxt8t"]
 render_priority = 0
 shader = ExtResource("3_bsoyd")
-shader_parameter/albedo = Color(0.513726, 0.807843, 0.803922, 1)
+shader_parameter/albedo = Color(0.352941, 0.670588, 0.701961, 1)
 shader_parameter/albedo_uv_scale = Vector2(1, 1)
 shader_parameter/use_normal_texture = false
 shader_parameter/normal_depth = 1.0
@@ -68,3 +69,6 @@ surface_material_override/0 = SubResource("ShaderMaterial_tki0n")
 [node name="Cube_001" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0438821, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_pxt8t")
+
+[node name="GuildTable" parent="." index="4" instance=ExtResource("4_8rhwm")]
+transform = Transform3D(2.54893, 0, -2.54893, 0, 3.60473, 0, 2.54893, 0, 2.54893, 3.8363, 1.94267, 0)

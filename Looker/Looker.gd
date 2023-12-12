@@ -41,6 +41,7 @@ var prev_mouse_mode = null
 
 @export var spawn_centered: bool = true
 @export var is_deploy_looker = false
+@export var is_interior_looker = false
 @export var looker_z_index := 0
 @export var music_track: Music.Track
 

@@ -12,7 +12,6 @@ func _ready():
 
 func _on_deploy_looker_focus_entered():
 	GameState.focus_main = false
-	GameState.change_focus_to(looker)
 	$Camera.enable = true
 
 

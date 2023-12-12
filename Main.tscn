@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=70 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://reb1ntdr4vvv" path="res://Assets/rocket.tscn" id="23_5lo66"]
 [ext_resource type="AudioStream" uid="uid://dhtfeqs3hcfw8" path="res://Music/rocket_piano.ogg" id="25_07esk"]
 [ext_resource type="AudioStream" uid="uid://521ccmfxr2r5" path="res://SFX/Intro/rocket_landing.ogg" id="25_scv7q"]
+[ext_resource type="Script" path="res://Tutorial/TutorialMusic.gd" id="27_a1eme"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dgl50"]
 shader = ExtResource("2_ww73t")
@@ -1645,10 +1646,13 @@ light_energy = 1.39
 omni_range = 7.64558
 
 [node name="EnterGuildArea" type="Area3D" parent="Planet/guild"]
-transform = Transform3D(1, -1.67638e-08, -2.98023e-08, -1.86265e-09, 1, -7.45058e-09, -2.98023e-08, 1.30385e-08, 1, 52.67, 3.05176e-05, -9.53674e-07)
+transform = Transform3D(1, -5.58794e-08, -5.96046e-08, -1.67638e-08, 0.999999, -6.51926e-08, -5.96046e-08, 5.58794e-08, 1, 14.15, 2.52338, -1.81198e-05)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/guild/EnterGuildArea"]
-transform = Transform3D(1, -1.88127e-07, -5.96046e-08, -7.45058e-09, 1, 5.58794e-09, -5.96046e-08, 2.79397e-08, 1, -34.3749, 8.34732, -1.43596)
+transform = Transform3D(1, -1.88127e-07, -5.96046e-08, -7.45058e-09, 1, 5.58794e-09, -5.96046e-08, 2.79397e-08, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_v17nd")
 
 [node name="RocketPlatform" type="MeshInstance3D" parent="."]
@@ -1777,9 +1781,13 @@ libraries = {
 "": SubResource("AnimationLibrary_csvc7")
 }
 
+[node name="TutorialMusic" type="Node" parent="."]
+script = ExtResource("27_a1eme")
+
 [connection signal="focus_entered" from="UI" to="." method="_on_ui_focus_entered"]
 [connection signal="focus_exited" from="UI" to="." method="_on_ui_focus_exited"]
 [connection signal="body_entered" from="TutorialArea" to="." method="_on_tutorial_area_body_entered"]
+[connection signal="body_entered" from="Planet/guild/EnterGuildArea" to="." method="_on_enter_guild_area_entered"]
 [connection signal="animation_finished" from="RocketReturnCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_finished"]
 
 [editable path="MainCamera"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://fjx7o5aysy0p"]
+[gd_scene load_steps=24 format=3 uid="uid://fjx7o5aysy0p"]
 
 [ext_resource type="Script" path="res://Looker/Interior/InteriorScene.gd" id="1_t0r3o"]
 [ext_resource type="Shader" path="res://Shaders/CircleTransition.gdshader" id="2_b8815"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="3_qqkfk"]
 [ext_resource type="PackedScene" uid="uid://c2eraey620ohp" path="res://Globals/Cutscenes/Cutscene.tscn" id="4_6lna5"]
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="5_pjo6k"]
+[ext_resource type="PackedScene" uid="uid://rkcx1xfq1g7m" path="res://Munchme/Torpejo/Torpejo.tscn" id="7_4qmg4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4mjtv"]
 shader = ExtResource("2_b8815")
@@ -238,6 +239,7 @@ _data = {
 script = ExtResource("1_t0r3o")
 
 [node name="Overlay" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -294,13 +296,13 @@ libraries = {
 }
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.763537, 0.645764, 0, -0.645764, 0.763537, 0, 30.62, 20.987)
+transform = Transform3D(1, 0, 0, 0, 0.763537, 0.645764, 0, -0.645764, 0.763537, 0, 19.77, 14.917)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_m1dnc")
 
 [node name="guild_interior" parent="." instance=ExtResource("2_rauf5")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-3.41121e-08, 0, 0.780393, 0, 0.780393, 0, -0.780393, 0, -3.41121e-08, 0, 0, 0)
 
 [node name="Entrance" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23.8346)
@@ -310,19 +312,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.713028, -2, -19.5862)
 shape = SubResource("BoxShape3D_xc683")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Entrance"]
-transform = Transform3D(0.961813, -0.273707, 1.19641e-08, 0, -4.37114e-08, -1, 0.273707, 0.961813, -4.20422e-08, -21.0252, -2, -13.4269)
+transform = Transform3D(0.961813, -0.273707, 1.19641e-08, 0, -4.37114e-08, -1, 0.273707, 0.961813, -4.20422e-08, -19.8582, -2, -16.2888)
 shape = SubResource("BoxShape3D_m8hip")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Entrance"]
-transform = Transform3D(0.961741, 0.273959, -1.19751e-08, 0, -4.37114e-08, -1, -0.273959, 0.961741, -4.2039e-08, 21.025, -2, -13.427)
+transform = Transform3D(0.961741, 0.273959, -1.19751e-08, 0, -4.37114e-08, -1, -0.273959, 0.961741, -4.2039e-08, 19.6449, -2, -16.1205)
 shape = SubResource("BoxShape3D_m8hip")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Entrance"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98387, 13.085, -8.92636)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.90624, 13.085, -11.4184)
 shape = SubResource("BoxShape3D_wxaie")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Entrance"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.984, 13.085, -8.926)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.90637, 13.085, -11.418)
 shape = SubResource("BoxShape3D_wxaie")
 
 [node name="Muncher" parent="." instance=ExtResource("3_qqkfk")]
@@ -333,34 +335,41 @@ player_controlled = false
 [node name="OverworldMovement" parent="Muncher" index="2"]
 spherical_gravity = false
 
+[node name="Torpejo" parent="." instance=ExtResource("7_4qmg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.99013, -4.76358)
+
 [node name="WalkHere" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.800776, 3.73964)
 
-[node name="Cutscene" parent="." instance=ExtResource("4_6lna5")]
-scenes = Array[ExtResource("5_pjo6k")]([SubResource("Resource_ekjhd")])
-
-[node name="CutsceneAnimation" parent="Cutscene" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_4cd3y")
-}
-
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6125, 9.92586, 3.13167)
-light_energy = 4.343
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.19388, 9.92586, 3.13167)
+light_color = Color(1, 0.898039, 0.862745, 1)
+light_energy = 4.048
 shadow_enabled = true
-omni_range = 24.377
+omni_range = 21.221
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.194, 9.926, 3.132)
+light_color = Color(0.803922, 1, 1, 1)
+light_energy = 4.048
+shadow_enabled = true
+omni_range = 21.221
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.7453, 20.7721)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.7453, 18.5844)
+light_color = Color(0.894118, 1, 0.831373, 1)
 light_energy = 3.835
 shadow_enabled = true
 omni_range = 20.0233
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6129, 9.92599, 3.13187)
-light_energy = 4.343
-shadow_enabled = true
-omni_range = 24.377
+[node name="TutorialCutscene" parent="." instance=ExtResource("4_6lna5")]
+scenes = Array[ExtResource("5_pjo6k")]([SubResource("Resource_ekjhd")])
+
+[node name="CutsceneAnimation" parent="TutorialCutscene" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_4cd3y")
+}
 
 [editable path="Muncher"]
-[editable path="Cutscene"]
+[editable path="Torpejo"]
+[editable path="TutorialCutscene"]

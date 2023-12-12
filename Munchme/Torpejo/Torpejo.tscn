@@ -1,7 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://rkcx1xfq1g7m"]
+[gd_scene load_steps=6 format=3 uid="uid://rkcx1xfq1g7m"]
 
 [ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_c3uk6"]
+[ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="2_rk87o"]
+[ext_resource type="PackedScene" uid="uid://bnwdm2ywoilrc" path="res://Munchme/Torpejo/torpejo_model.tscn" id="2_ymbe0"]
+
+[sub_resource type="Resource" id="Resource_dq5km"]
+script = ExtResource("2_rk87o")
+id = 121
+name = "Torpejo"
+munchme_type = 3
+max_health = 100
+mood = 1
+catch_track = 3
+roam_track = 2
+catch_looker_size = Vector2(910, 647)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1fjlo"]
+radius = 0.831939
+height = 3.89119
 
 [node name="Torpejo" instance=ExtResource("1_c3uk6")]
+resource = SubResource("Resource_dq5km")
+height = 3.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95372, 0)
+shape = SubResource("CapsuleShape3D_1fjlo")
+
+[node name="Model" parent="." index="1" instance=ExtResource("2_ymbe0")]
+transform = Transform3D(0.923405, 0, 0, 0, 0.923405, 0, 0, 0, 0.923405, 0, 2.78143, 0)

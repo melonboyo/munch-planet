@@ -20,6 +20,7 @@ enum Munchme {
 	Goby,
 	Solidude,
 	Snake,
+	Torpejo,
 }
 
 enum Mood {
