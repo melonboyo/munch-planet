@@ -8,13 +8,21 @@ extends Control
 
 
 func _ready():
-	_handle_tab(0)
+	_view_tab(0)
 	
 	for i in range(tabs.size()):
-		tab_buttons[i].pressed.connect(_handle_tab.bind(i))
+		tab_buttons[i].pressed.connect(_view_tab.bind(i))
 
 
-func _handle_tab(index: int):
+func _view_tab(index: int):
 	for i in range(tabs.size()):
 		tabs[i].visible = i == index
 		tab_buttons[i].button_pressed = i == index
+
+
+func _on_text_speed_slider_focus_entered():
+	_view_tab(0)
+
+
+func _on_master_volume_slider_focus_entered():
+	_view_tab(1)

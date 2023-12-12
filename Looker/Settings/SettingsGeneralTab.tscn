@@ -12,6 +12,7 @@ text = "Text speed"
 [node name="TextSpeedSlider" type="HSlider" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../GraphicsSlider")
 max_value = 2.0
 
 [node name="GraphicsLabel" type="Label" parent="."]
@@ -23,7 +24,16 @@ metadata/_edit_group_ = true
 [node name="GraphicsSlider" type="HSlider" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../TextSpeedSlider")
+focus_neighbor_bottom = NodePath("../FullscreenCheckBox")
 max_value = 2.0
+
+[node name="FullscreenCheckBox" type="CheckBox" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../GraphicsSlider")
+text = "Fullscreen"
 
 [connection signal="value_changed" from="TextSpeedSlider" to="." method="_on_text_speed_slider_value_changed"]
 [connection signal="value_changed" from="GraphicsSlider" to="." method="_on_graphics_slider_value_changed"]
+[connection signal="toggled" from="FullscreenCheckBox" to="." method="_on_fullscreen_check_box_toggled"]

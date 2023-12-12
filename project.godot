@@ -65,10 +65,10 @@ import/blender/enabled=false
 
 [global]
 
-leftstick_deadzone=0.15
 mouse_sensitivity=1.5
 invert_look_x=false
 invert_look_y=false
+control_stick_deadzone=0.15
 
 [importer_defaults]
 

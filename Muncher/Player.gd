@@ -16,7 +16,7 @@ var move_input = Vector3.ZERO
 
 
 func _ready():
-	var deadzone = ProjectSettings.get_setting("global/leftstick_deadzone")
+	var deadzone = ProjectSettings.get_setting("global/control_stick_deadzone")
 	InputMap.action_set_deadzone("move_right", deadzone)
 	InputMap.action_set_deadzone("move_left", deadzone)
 	InputMap.action_set_deadzone("move_up", deadzone)
@@ -39,7 +39,7 @@ func get_move_input() -> Vector3:
 	var raw_move_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if Vector2.ZERO.distance_to(raw_move_input) > 1.0:
 		raw_move_input = raw_move_input.normalized()
-	if Vector2.ZERO.distance_to(raw_move_input) < ProjectSettings.get_setting("global/leftstick_deadzone") * sqrt(2.0):
+	if Vector2.ZERO.distance_to(raw_move_input) < ProjectSettings.get_setting("global/control_stick_deadzone") * sqrt(2.0):
 		raw_move_input = Vector2.ZERO
 	var right_axis = Math.project_direction_on_plane(camera.global_transform.basis.x.normalized(), up_direction)
 	var forward_axis = Math.project_direction_on_plane(camera.global_transform.basis.z.normalized(), up_direction)
