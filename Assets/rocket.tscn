@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://reb1ntdr4vvv"]
+[gd_scene load_steps=3 format=3 uid="uid://reb1ntdr4vvv"]
 
 [ext_resource type="PackedScene" uid="uid://4cdy6ow0bfav" path="res://Models/rocket.glb" id="1_eeopi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_macgm"]
+radius = 2.70641
 
 [node name="Rocket" instance=ExtResource("1_eeopi")]
 
 [node name="Icosphere_Flame_0" parent="Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere" index="0"]
 visible = false
+
+[node name="EnterRocketArea" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnterRocketArea" index="0"]
+shape = SubResource("SphereShape3D_macgm")
