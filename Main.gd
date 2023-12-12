@@ -24,21 +24,18 @@ func planet_specific_ready():
 	if not skip_rocket_cutscene:
 		$RocketReturnCutscene.play()
 		%Muncher.player_controlled = false
+		$Overlay/OverlayAnimation.play("RESET")
 	else:
 		play_overworld_music()
-	
-	$Overlay/OverlayAnimation.play("RESET")
+		%Muncher.player_controlled = true
+		
+		%OverlayAnimation.play("fade_in")
 	
 	GameState.water_height = 100.35
 	GameState.during_intro = false
 	
 	GameState.situation = Constants.Situation.Overworld
 	GameState.munchme_deployed.connect(_on_munchme_deployed)
-	
-	var points: Array[Vector3] = []
-	for p in $FollowPoints.get_children():
-		points.append(p.global_position)
-	%Goby.set_follow_points(points)
 
 
 func play_overworld_music():
@@ -135,7 +132,7 @@ func retrieve_munchme():
 
 
 func _on_munchme_deployed(resource):
-	var spawn_pos = %Muncher.global_position + %Muncher.global_basis.z * 4.0
+	var spawn_pos = %Muncher.global_position + %Muncher.global_basis.z * 2.5
 	spawn_pos = Math.position_to_position_on_surface(spawn_pos, spawn_pos.normalized(), self)
 	deploy_munchme(resource, spawn_pos)
 	close_manage()
@@ -150,6 +147,7 @@ func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
 	munchme.situation = Constants.Situation.Interact
 	munchme.position = pos
 	munchme.camera = deploy_ui.get_node("%DeployScene").get_camera()
+	munchme.player_controlled = true
 	#GameState.deployed_munchme = munchme
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	GameState.deploy_munchme(deploy_ui, munchme)
@@ -178,3 +176,12 @@ func _on_cutscene_animation_finished(anim_name):
 		#if not GameState.tutorial_cleared:
 			#$TutorialStartCutscene.play()
 		pass
+
+
+func _on_tutorial_area_body_entered(body):
+	$ReturnToTutorialCutscene.play()
+
+
+func force_player_to_center():
+	var point = %Muncher.global_position + ($FollowPoints/Center.global_position - %Muncher.global_position).normalized() * 10.0
+	%Muncher.set_follow_points([point] as Array[Vector3])

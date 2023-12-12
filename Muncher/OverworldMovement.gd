@@ -110,9 +110,9 @@ func _overworld_physics_process(delta):
 	if gravity_velocity.length() > max_fall_speed:
 		gravity_velocity = gravity_velocity.normalized() * max_fall_speed
 	
-	
-	if target is Muncher and not target.sitting:
-		move_velocity = move_velocity.lerp(move_input * speed, delta * acceleration)
+	move_velocity = move_velocity.lerp(move_input * speed, delta * acceleration)
+	if target is Muncher and target.sitting:
+		move_velocity = Vector3.ZERO
 	gravity_velocity = gravity_velocity.project(target.up_direction)
 	
 	if not float_node.is_floating(): snap_to_floor()

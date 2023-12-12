@@ -1,0 +1,364 @@
+[gd_scene load_steps=23 format=3 uid="uid://fjx7o5aysy0p"]
+
+[ext_resource type="Script" path="res://Looker/Interior/InteriorScene.gd" id="1_t0r3o"]
+[ext_resource type="Shader" path="res://Shaders/CircleTransition.gdshader" id="2_b8815"]
+[ext_resource type="PackedScene" uid="uid://bsypmflr8lvqx" path="res://Looker/Interior/GuildInterior.tscn" id="2_rauf5"]
+[ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="3_qqkfk"]
+[ext_resource type="PackedScene" uid="uid://c2eraey620ohp" path="res://Globals/Cutscenes/Cutscene.tscn" id="4_6lna5"]
+[ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="5_pjo6k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4mjtv"]
+shader = ExtResource("2_b8815")
+shader_parameter/circle_size = 1.05
+shader_parameter/screen_width = 1920.0
+shader_parameter/screen_height = 1080.0
+
+[sub_resource type="Animation" id="Animation_gy018"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackBarBottom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1084)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackBarTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -96)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlackScreen:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0392157, 0.0313726, 0.0235294, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wx7rx"]
+resource_name = "add_bars"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackBarBottom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 1084), Vector2(0, 988)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackBarTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, -98), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n8chs"]
+resource_name = "fade_in"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0392157, 0.0313726, 0.0235294, 1), Color(0.0392157, 0.0313726, 0.0235294, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jixxg"]
+resource_name = "fade_out"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0392157, 0.0313726, 0.0235294, 0), Color(0.0392157, 0.0313726, 0.0235294, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j7q6d"]
+resource_name = "remove_bars"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackBarBottom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 988), Vector2(0, 1084)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackBarTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -98)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2t4p0"]
+_data = {
+"RESET": SubResource("Animation_gy018"),
+"add_bars": SubResource("Animation_wx7rx"),
+"fade_in": SubResource("Animation_n8chs"),
+"fade_out": SubResource("Animation_jixxg"),
+"remove_bars": SubResource("Animation_j7q6d")
+}
+
+[sub_resource type="Gradient" id="Gradient_7abcu"]
+offsets = PackedFloat32Array(0, 0.345361, 1)
+colors = PackedColorArray(0.150988, 0.119537, 0.0897483, 1, 0.281626, 0.183907, 0.16937, 1, 0.987646, 0.870591, 0.885756, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ict2w"]
+gradient = SubResource("Gradient_7abcu")
+width = 128
+height = 128
+
+[sub_resource type="Environment" id="Environment_m1dnc"]
+background_mode = 2
+background_color = Color(0.564706, 0.929412, 0.941176, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.921569, 0.811765, 0.784314, 1)
+ambient_light_sky_contribution = 0.76
+ambient_light_energy = 0.8
+reflected_light_source = 2
+ssao_enabled = true
+ssao_power = 1.21838
+ssao_horizon = 1.0
+sdfgi_enabled = true
+sdfgi_bounce_feedback = 0.66
+sdfgi_cascades = 6
+sdfgi_min_cell_size = 2.0
+sdfgi_energy = 1.035
+sdfgi_probe_bias = 1.8
+glow_enabled = true
+glow_normalized = true
+fog_light_color = Color(0.627451, 0.752941, 0.733333, 1)
+fog_light_energy = 1.05
+fog_density = 0.002
+volumetric_fog_enabled = true
+volumetric_fog_density = 1.4315
+volumetric_fog_albedo = Color(0.12549, 0.0666667, 0.0823529, 1)
+volumetric_fog_emission_energy = 0.9
+volumetric_fog_length = 0.15
+adjustment_brightness = 1.12
+adjustment_saturation = 1.23
+adjustment_color_correction = SubResource("GradientTexture2D_ict2w")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xc683"]
+size = Vector3(68.3452, 4, 55.7164)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m8hip"]
+size = Vector3(30.3542, 4, 55.7164)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wxaie"]
+size = Vector3(8.70869, 25.7267, 5.12534)
+
+[sub_resource type="Resource" id="Resource_ekjhd"]
+script = ExtResource("5_pjo6k")
+animation_name = "Tutorial_1"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_e8ddq"]
+resource_name = "Tutorial_1"
+length = 2.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"walk_in"
+}]
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%OverlayAnimation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("fade_in"),
+"times": PackedFloat32Array(0.2695)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4cd3y"]
+_data = {
+"Tutorial_1": SubResource("Animation_e8ddq")
+}
+
+[node name="InteriorScene" type="Node3D"]
+script = ExtResource("1_t0r3o")
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlackBarTop" type="ColorRect" parent="Overlay"]
+offset_top = -96.0
+offset_right = 1920.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0392157, 0.0313726, 0.0235294, 1)
+
+[node name="BlackBarBottom" type="ColorRect" parent="Overlay"]
+offset_top = 1084.0
+offset_right = 1920.0
+offset_bottom = 1176.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 92)
+mouse_filter = 2
+color = Color(0.0392157, 0.0313726, 0.0235294, 1)
+
+[node name="CircleTransition" type="ColorRect" parent="Overlay"]
+material = SubResource("ShaderMaterial_4mjtv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0392157, 0.0313726, 0.0235294, 1)
+
+[node name="BlackScreen" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0392157, 0.0313726, 0.0235294, 1)
+
+[node name="OverlayAnimation" type="AnimationPlayer" parent="Overlay"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_2t4p0")
+}
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.763537, 0.645764, 0, -0.645764, 0.763537, 0, 30.62, 20.987)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_m1dnc")
+
+[node name="guild_interior" parent="." instance=ExtResource("2_rauf5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Entrance" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23.8346)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.713028, -2, -19.5862)
+shape = SubResource("BoxShape3D_xc683")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Entrance"]
+transform = Transform3D(0.961813, -0.273707, 1.19641e-08, 0, -4.37114e-08, -1, 0.273707, 0.961813, -4.20422e-08, -21.0252, -2, -13.4269)
+shape = SubResource("BoxShape3D_m8hip")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Entrance"]
+transform = Transform3D(0.961741, 0.273959, -1.19751e-08, 0, -4.37114e-08, -1, -0.273959, 0.961741, -4.2039e-08, 21.025, -2, -13.427)
+shape = SubResource("BoxShape3D_m8hip")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98387, 13.085, -8.92636)
+shape = SubResource("BoxShape3D_wxaie")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.984, 13.085, -8.926)
+shape = SubResource("BoxShape3D_wxaie")
+
+[node name="Muncher" parent="." instance=ExtResource("3_qqkfk")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 17.1117)
+camera_path = NodePath("../Camera3D")
+player_controlled = false
+
+[node name="OverworldMovement" parent="Muncher" index="2"]
+spherical_gravity = false
+
+[node name="WalkHere" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.800776, 3.73964)
+
+[node name="Cutscene" parent="." instance=ExtResource("4_6lna5")]
+scenes = Array[ExtResource("5_pjo6k")]([SubResource("Resource_ekjhd")])
+
+[node name="CutsceneAnimation" parent="Cutscene" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_4cd3y")
+}
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6125, 9.92586, 3.13167)
+light_energy = 4.343
+shadow_enabled = true
+omni_range = 24.377
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.7453, 20.7721)
+light_energy = 3.835
+shadow_enabled = true
+omni_range = 20.0233
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6129, 9.92599, 3.13187)
+light_energy = 4.343
+shadow_enabled = true
+omni_range = 24.377
+
+[editable path="Muncher"]
+[editable path="Cutscene"]

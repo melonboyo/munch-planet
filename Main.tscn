@@ -1,4 +1,5 @@
-[gd_scene load_steps=62 format=3 uid="uid://cgni33flxl26p"]
+
+[gd_scene load_steps=68 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -29,7 +30,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dgl50"]
 shader = ExtResource("2_ww73t")
-shader_parameter/circle_size = 0.0
+shader_parameter/circle_size = 1.05
 shader_parameter/screen_width = 1920.0
 shader_parameter/screen_height = 1080.0
 
@@ -69,7 +70,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.0392157, 0.0313726, 0.0235294, 0)]
+"values": [Color(0.0392157, 0.0313726, 0.0235294, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_wx7rx"]
@@ -101,6 +102,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_n8chs"]
 resource_name = "fade_in"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -108,7 +110,7 @@ tracks/0/path = NodePath("BlackScreen:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.0392157, 0.0313726, 0.0235294, 1), Color(0.0392157, 0.0313726, 0.0235294, 0)]
@@ -116,6 +118,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_jixxg"]
 resource_name = "fade_out"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -123,7 +126,7 @@ tracks/0/path = NodePath("BlackScreen:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.0392157, 0.0313726, 0.0235294, 0), Color(0.0392157, 0.0313726, 0.0235294, 1)]
@@ -164,6 +167,12 @@ _data = {
 "fade_out": SubResource("Animation_jixxg"),
 "remove_bars": SubResource("Animation_j7q6d")
 }
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_povic"]
+size = Vector3(26.0291, 81.8575, 165.737)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3yl1q"]
+size = Vector3(26.0291, 112.871, 128.462)
 
 [sub_resource type="Gradient" id="Gradient_7abcu"]
 offsets = PackedFloat32Array(0, 0.345361, 1)
@@ -207,10 +216,11 @@ ssao_enabled = true
 ssao_power = 1.21838
 ssao_horizon = 1.0
 sdfgi_enabled = true
-sdfgi_bounce_feedback = 0.76
-sdfgi_min_cell_size = 1.0
+sdfgi_bounce_feedback = 0.66
+sdfgi_cascades = 6
+sdfgi_min_cell_size = 2.0
 sdfgi_energy = 1.035
-sdfgi_probe_bias = 3.0
+sdfgi_probe_bias = 1.8
 glow_enabled = true
 glow_normalized = true
 fog_light_color = Color(0.627451, 0.752941, 0.733333, 1)
@@ -235,6 +245,9 @@ dof_blur_amount = 0.05
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_13cqd"]
 radius = 100.35
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v17nd"]
+size = Vector3(13.131, 27.0709, 14.834)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1aoni"]
 top_radius = 1.42
@@ -448,7 +461,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [1.05]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -692,9 +705,65 @@ _data = {
 "Tutorial_1": SubResource("Animation_sgl3q")
 }
 
+[sub_resource type="Resource" id="Resource_4s4g3"]
+script = ExtResource("11_nrph8")
+animation_name = "Return_1"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_hiseh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Muncher:player_controlled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jgwt7"]
+resource_name = "Return_1"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Muncher:player_controlled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"force_player_to_center"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_csvc7"]
+_data = {
+"RESET": SubResource("Animation_hiseh"),
+"Return_1": SubResource("Animation_jgwt7")
+}
+
 [node name="Main" type="Node3D"]
-transform = Transform3D(0.973507, -0.222218, 0.0538836, 0.211321, 0.964367, 0.159184, -0.0873371, -0.14358, 0.985777, 0, 0, 0)
 script = ExtResource("1_12yvb")
+skip_rocket_cutscene = true
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -745,7 +814,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.0392157, 0.0313726, 0.0235294, 0)
+color = Color(0.0392157, 0.0313726, 0.0235294, 1)
 
 [node name="OverlayAnimation" type="AnimationPlayer" parent="Overlay"]
 unique_name_in_owner = true
@@ -763,6 +832,31 @@ grow_vertical = 2
 focus_mode = 2
 mouse_filter = 1
 
+[node name="TutorialArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialArea"]
+transform = Transform3D(0.760478, -0.346068, 0.549483, 0.414204, 0.910188, -1.49012e-08, -0.500123, 0.227595, 0.835513, -62.9244, 96.3546, 46.2354)
+shape = SubResource("BoxShape3D_povic")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TutorialArea"]
+transform = Transform3D(0.521688, -0.170604, -0.835915, -0.014943, 0.977835, -0.208895, 0.853014, 0.121468, 0.507579, -54.0006, 112.037, -40.2168)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="TutorialArea"]
+transform = Transform3D(0.279558, -0.170604, -0.944863, -0.0701757, 0.977835, -0.197322, 0.957568, 0.121468, 0.261394, 21.9731, 109.907, 83.6344)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="TutorialArea"]
+transform = Transform3D(0.897219, -0.170604, -0.407314, 0.103201, 0.977836, -0.182235, 0.429374, 0.121468, 0.894938, 48.373, 118.197, 53.9756)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="TutorialArea"]
+transform = Transform3D(0.632302, 0.208072, 0.746277, -0.29011, 0.956776, -0.0209581, -0.718363, -0.203249, 0.665327, 24.7499, 113.675, -36.3139)
+shape = SubResource("BoxShape3D_3yl1q")
+
 [node name="Player" type="Node3D" parent="."]
 
 [node name="Muncher" parent="Player" instance=ExtResource("2_b0ky1")]
@@ -773,35 +867,8 @@ camera_path = NodePath("../../MainCamera")
 
 [node name="FollowPoints" type="Node3D" parent="."]
 
-[node name="Node3D" type="Node3D" parent="FollowPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 105.636, 0)
-
-[node name="Node3D2" type="Node3D" parent="FollowPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.2138, 105.636, 13.7375)
-
-[node name="Node3D3" type="Node3D" parent="FollowPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1901, 105.636, 36.1495)
-
-[node name="Node3D4" type="Node3D" parent="FollowPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7856, 105.636, 39.7225)
-
-[node name="Node3D5" type="Node3D" parent="FollowPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8033, 105.636, 35.2507)
-
-[node name="Node3D6" type="Node3D" parent="FollowPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.133, 109.788, 4.142)
-
-[node name="Node3D7" type="Node3D" parent="FollowPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4096, 106.017, -18.9003)
-
-[node name="Node3D8" type="Node3D" parent="FollowPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.53616, 129.336, -54.4668)
-
-[node name="Node3D9" type="Node3D" parent="FollowPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.6574, 133.578, -50.6246)
-
-[node name="Node3D10" type="Node3D" parent="FollowPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.6574, 133.578, -50.6246)
+[node name="Center" type="Node3D" parent="FollowPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4938, 100.612, 19.4683)
 
 [node name="Munchmes" type="Node3D" parent="."]
 
@@ -859,14 +926,6 @@ transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819
 
 [node name="Earth" parent="Planet" instance=ExtResource("6_mqxa6")]
 transform = Transform3D(0.98972, -0.142992, -0.00270788, -0.0329795, -0.209763, -0.977196, 0.139163, 0.96724, -0.212322, 0, 0, 0)
-
-[node name="guild" parent="Planet/Earth" instance=ExtResource("17_b2ff7")]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Planet/Earth/guild"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.96603, 103.679, -10.6978)
-light_size = 0.03
-shadow_enabled = true
-omni_range = 7.17843
 
 [node name="WaterArea" type="Area3D" parent="Planet"]
 unique_name_in_owner = true
@@ -1579,6 +1638,21 @@ transform = Transform3D(1.39549, 0.754034, -3.7073, -2.9695, 2.66665, -0.5754, 2
 [node name="143" parent="Planet/Trees/FoliageSpawner2" instance=ExtResource("8_tgumm")]
 transform = Transform3D(-3.75647, 3.07981, -2.53659, -2.07094, 1.47285, 4.85515, 3.41038, 4.28673, 0.154266, 22.9962, 7.10697, -31.4609)
 
+[node name="guild" parent="Planet" instance=ExtResource("17_b2ff7")]
+transform = Transform3D(0.183434, -0.0393746, -0.276424, -0.275965, -0.0758781, -0.172321, -0.0424732, 0.322956, -0.074188, -21.4803, -13.0011, 99.8031)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Planet/guild"]
+transform = Transform3D(1, 2.10894e-15, -3.18439e-07, -2.10894e-15, 1, 1.05447e-15, 3.18439e-07, -1.05447e-15, 1, 38.6177, 19.705, 3.8147e-06)
+light_energy = 1.39
+omni_range = 7.64558
+
+[node name="EnterGuildArea" type="Area3D" parent="Planet/guild"]
+transform = Transform3D(1, -1.67638e-08, -2.98023e-08, -1.86265e-09, 1, -7.45058e-09, -2.98023e-08, 1.30385e-08, 1, 52.67, 3.05176e-05, -9.53674e-07)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/guild/EnterGuildArea"]
+transform = Transform3D(1, -1.88127e-07, -5.96046e-08, -7.45058e-09, 1, 5.58794e-09, -5.96046e-08, 2.79397e-08, 1, -34.3749, 8.34732, -1.43596)
+shape = SubResource("BoxShape3D_v17nd")
+
 [node name="RocketPlatform" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.533267, 0.0464981, 1.17245, 0.0530296, 1.2875, -0.0269409, -1.17218, 0.0370932, -0.534612, 20.1387, 104.194, 16.6353)
 mesh = SubResource("CylinderMesh_1aoni")
@@ -1595,7 +1669,7 @@ transform = Transform3D(0.423775, 0.758064, -0.495733, -0.760309, 0.00025329, -0
 curve = SubResource("Curve3D_g8sv8")
 
 [node name="RocketPathFollow" type="PathFollow3D" parent="RocketPlatform/RocketPath"]
-transform = Transform3D(0.573094, 0.0294025, 0.81918, 0.393556, 0.866632, -0.306696, -0.718645, 0.498046, 0.485309, -52.4797, 12.326, -34.635)
+transform = Transform3D(0.573091, 0.0294026, 0.819163, 0.393554, 0.866635, -0.306689, -0.718642, 0.498048, 0.485299, -52.4797, 12.326, -34.635)
 progress = 64.3
 rotation_mode = 4
 loop = false
@@ -1605,7 +1679,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988, 0.998136, -0.0250779, -0.999581, -0.0144419, -0.0261015, 0.132022, -0.98487)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(0.0614961, 0.111535, 0.765347, 0.0955685, 0.760782, -0.118549, -0.767508, 0.103669, 0.0465603, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.370546, 0.556378, 0.393848, 0.000998089, 0.448717, -0.632952, -0.681671, -0.301786, -0.215019, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket")
@@ -1697,11 +1771,21 @@ libraries = {
 "": SubResource("AnimationLibrary_5whae")
 }
 
+[node name="ReturnToTutorialCutscene" parent="." instance=ExtResource("10_01ks1")]
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_4s4g3")])
+
+[node name="CutsceneAnimation" parent="ReturnToTutorialCutscene" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_csvc7")
+}
+
 [connection signal="focus_entered" from="UI" to="." method="_on_ui_focus_entered"]
 [connection signal="focus_exited" from="UI" to="." method="_on_ui_focus_exited"]
+[connection signal="body_entered" from="TutorialArea" to="." method="_on_tutorial_area_body_entered"]
 [connection signal="animation_finished" from="RocketReturnCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_finished"]
 
 [editable path="MainCamera"]
 [editable path="Cutscene"]
 [editable path="RocketReturnCutscene"]
 [editable path="TutorialStartCutscene"]
+[editable path="ReturnToTutorialCutscene"]

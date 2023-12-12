@@ -30,7 +30,7 @@ var streams = {
 
 var volume = 0
 var volumes = {
-	Track.Overworld: 0,
+	Track.Overworld: -5,
 	Track.ThoughtfulMuncher: 0,
 	Track.Battle: 0,
 	Track.Catch: 0,
