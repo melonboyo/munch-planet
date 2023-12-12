@@ -98,33 +98,6 @@ tracks/1/keys = {
 "values": [Vector2(0, -98), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_j7q6d"]
-resource_name = "remove_bars"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BlackBarBottom:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(0, 988), Vector2(0, 1084)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BlackBarTop:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -98)]
-}
-
 [sub_resource type="Animation" id="Animation_n8chs"]
 resource_name = "fade_in"
 tracks/0/type = "value"
@@ -153,6 +126,33 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.0392157, 0.0313726, 0.0235294, 0), Color(0.0392157, 0.0313726, 0.0235294, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j7q6d"]
+resource_name = "remove_bars"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackBarBottom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 988), Vector2(0, 1084)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackBarTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -98)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2t4p0"]
@@ -1590,7 +1590,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988, 0.998136, -0.0250779, -0.999581, -0.0144419, -0.0261015, 0.132022, -0.98487)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.0354266, 0.459088, 0.624468, 0.076847, 0.62412, -0.454472, -0.771248, 0.0410991, -0.07397, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.370587, 0.556349, 0.39385, 0.000962086, 0.448719, -0.632951, -0.681649, -0.301837, -0.215018, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket")
@@ -1659,7 +1659,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5392, 92.879, -58.4374)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.384, 92.879, 1.74851)
 
 [node name="RocketLandingPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = 3.0
+volume_db = 6.0
 bus = &"Music"
 
 [node name="RocketReturnCutscene" parent="." instance=ExtResource("10_01ks1")]
