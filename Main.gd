@@ -25,7 +25,7 @@ func planet_specific_ready():
 		$RocketReturnCutscene.play()
 		%Muncher.player_controlled = false
 	else:
-		Music.play(Music.Track.Overworld)
+		play_overworld_music()
 	
 	$Overlay/OverlayAnimation.play("RESET")
 	

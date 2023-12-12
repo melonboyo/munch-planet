@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Assets/rocket.gd" id="1_l3elb"]
 [ext_resource type="Texture2D" uid="uid://c4k1ylk1f483h" path="res://Sprites/go_text.png" id="1_x7cbv"]
 [ext_resource type="Texture2D" uid="uid://buf67kls8306j" path="res://Sprites/go_border.png" id="2_wya8t"]
-[ext_resource type="AudioStream" uid="uid://n0bkuodeg6do" path="res://SFX/Intro/hatch_open.ogg" id="4_dq1mj"]
-[ext_resource type="Material" uid="uid://ddci1mcpoge4y" path="res://Materials/ParticleAnimateMaterial.tres" id="4_jv3kg"]
-[ext_resource type="AudioStream" uid="uid://68wa7hlfodh6" path="res://SFX/Intro/hatch_close.ogg" id="5_n1jwh"]
+[ext_resource type="AudioStream" uid="uid://dwbr4ugggfwb2" path="res://SFX/Intro/hatch_open.ogg" id="4_dq1mj"]
+[ext_resource type="Material" uid="uid://cb7cycyyaetms" path="res://Materials/ParticleAnimateMaterial.tres" id="4_jv3kg"]
+[ext_resource type="AudioStream" uid="uid://cgoelw1i1gnwf" path="res://SFX/Intro/hatch_close.ogg" id="5_n1jwh"]
 [ext_resource type="AudioStream" uid="uid://bnlmjkpvo6mry" path="res://SFX/Intro/rocket_blast.ogg" id="7_rrapg"]
 [ext_resource type="AudioStream" uid="uid://ccf4qd8ps18bq" path="res://SFX/Intro/rocket_blast_loop.ogg" id="8_7n281"]
 
@@ -386,6 +386,152 @@ _data = {
 "pulsate": SubResource("Animation_omket")
 }
 
+[sub_resource type="Animation" id="Animation_7van2"]
+resource_name = "CloseWindow"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Cylinder/Window:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.143003, 0.148762, 0.8207)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Root/WindowPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_n1jwh")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_n0hqt"]
+resource_name = "LandShip"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere/OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere/SmokeEmitter:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 10.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere/SmokeEmitter:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.5, 9.9, 10.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.5569, 1.0, 0.227]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere/SmokeEmitter:process_material:radial_accel_min")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 10.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.0, 9.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere/SmokeEmitter:process_material:radial_accel_max")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 10.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.0, 11.0]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Root/RocketPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_7n281")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_7n281")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_7n281")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_7n281")
+}],
+"times": PackedFloat32Array(0, 3.32, 6.64, 9.96)
+}
+tracks/6/use_blend = true
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Root/RocketPlayer:volume_db")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 8.2, 11),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [-5.0, -5.0, -80.0]
+}
+
 [sub_resource type="Animation" id="Animation_16b4f"]
 resource_name = "OpenWindow"
 length = 0.4
@@ -552,37 +698,6 @@ tracks/10/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_7van2"]
-resource_name = "CloseWindow"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Cylinder/Window:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.143003, 0.148762, 0.8207)]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Root/WindowPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("5_n1jwh")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/1/use_blend = true
-
 [sub_resource type="Animation" id="Animation_cx54e"]
 resource_name = "StartShip"
 length = 11.7
@@ -684,121 +799,6 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_n0hqt"]
-resource_name = "LandShip"
-length = 12.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere/OmniLight3D:light_energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 10.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [4.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere/SmokeEmitter:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 10.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere/SmokeEmitter:amount_ratio")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 5.5, 9.9, 10.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [1.0, 0.5569, 1.0, 0.227]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere/SmokeEmitter:process_material:radial_accel_min")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 10.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [3.0, 9.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Icosphere/SmokeEmitter:process_material:radial_accel_max")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 10.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [5.0, 11.0]
-}
-tracks/6/type = "audio"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Root/RocketPlayer")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("8_7n281")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("8_7n281")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("8_7n281")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("8_7n281")
-}],
-"times": PackedFloat32Array(0, 3.32, 6.64, 9.96)
-}
-tracks/6/use_blend = true
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Root/RocketPlayer:volume_db")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 8.2, 11),
-"transitions": PackedFloat32Array(1, -2, 1),
-"update": 0,
-"values": [0.0, 0.0, -80.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g0ae5"]
@@ -943,10 +943,12 @@ speed_scale = 0.26
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 volume_db = -5.517
 panning_strength = 0.2
+bus = &"Effects"
 
 [node name="RocketPlayer" type="AudioStreamPlayer3D" parent="Root"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 panning_strength = 0.2
+bus = &"Effects"
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
