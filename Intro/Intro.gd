@@ -16,6 +16,9 @@ func planet_specific_ready():
 		$Cutscene.play(play_from_scene, play_from_seconds)
 		
 	GameState.situation = Constants.Situation.Overworld
+
+
+func play_intro_music():
 	Music.play(Music.Track.Intro)
 
 

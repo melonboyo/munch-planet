@@ -155,7 +155,7 @@ cheat={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://text.en.translation", "res://text.nb.translation")
+locale/translations=PackedStringArray("res://text.en.translation")
 
 [layer_names]
 

@@ -1,5 +1,7 @@
 extends Control
 
+const CAN_SKIP_ANIMATIONS := false
+
 @export_range(1, 50) var text_cps = 30
 var character_wait_time: float:
 	get: return 1.0 / text_cps
@@ -55,7 +57,7 @@ func skip_waiting():
 	if is_dialogue_playing:
 		%Label.visible_characters = dialogue_text_length
 		_end_dialogue()
-	elif is_animation_playing:
+	elif CAN_SKIP_ANIMATIONS and is_animation_playing:
 		animation_player.seek(animation_player.current_animation_length)
 		_end_animation()
 	
