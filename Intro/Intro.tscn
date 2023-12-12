@@ -20,7 +20,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tgy13"]
 shader = ExtResource("2_0pxcx")
-shader_parameter/circle_size = 1.05
+shader_parameter/circle_size = 0.0
 shader_parameter/screen_width = 1920.0
 shader_parameter/screen_height = 1080.0
 
@@ -281,9 +281,12 @@ tracks/9/path = NodePath("..")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(28.96, 34.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 28.96, 34.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [],
+"method": &"play_intro_music"
+}, {
 "args": [],
 "method": &"stop_intro_music"
 }, {

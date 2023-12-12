@@ -10,9 +10,12 @@ func planet_specific_ready():
 	if GameState.during_intro:
 		%Muncher.player_controlled = false
 	GameState.situation = Constants.Situation.Overworld
-	Music.play(Music.Track.Intro)
 	
 	$Cutscene.play(play_from_scene, play_from_seconds)
+
+
+func play_intro_music():
+	Music.play(Music.Track.Intro)
 
 
 func stop_intro_music():
