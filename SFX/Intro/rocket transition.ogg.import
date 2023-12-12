@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c7a2n66arb40i"
+path="res://.godot/imported/rocket transition.ogg-2a865fa9547b2f5894b9b91f6a7fa82c.oggvorbisstr"
+
+[deps]
+
+source_file="res://SFX/Intro/rocket transition.ogg"
+dest_files=["res://.godot/imported/rocket transition.ogg-2a865fa9547b2f5894b9b91f6a7fa82c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -27,6 +27,5 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/normal_font_size = 52
 theme_override_font_sizes/bold_font_size = 52
 bbcode_enabled = true
-text = ""
 scroll_following = true
 visible_characters_behavior = 1

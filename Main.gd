@@ -2,9 +2,13 @@ extends Node3D
 class_name Main
 
 
+@export var skip_rocket_cutscene := false
+
+
 var catch_looker_scene := preload("res://Looker/Catch/CatchLooker.tscn")
 var manage_looker_scene := preload("res://Looker/Manage/ManageLooker.tscn")
 var deploy_looker_scene := preload("res://Looker/Deploy/DeployLooker.tscn")
+var settings_looker_scene := preload("res://Looker/Settings/SettingsLooker.tscn")
 
 var mouse_captured = true
 var munchme_getting_caught: Munchme
@@ -17,14 +21,18 @@ func _ready():
 
 
 func planet_specific_ready():
-	$RocketReturnCutscene.play()
+	if not skip_rocket_cutscene:
+		$RocketReturnCutscene.play()
+		%Muncher.player_controlled = false
+	else:
+		Music.play(Music.Track.Overworld)
+	
 	$Overlay/OverlayAnimation.play("RESET")
 	
 	GameState.water_height = 100.35
 	GameState.during_intro = false
 	
 	GameState.situation = Constants.Situation.Overworld
-	#Music.play(Music.Track.Overworld)
 	GameState.munchme_deployed.connect(_on_munchme_deployed)
 	
 	var points: Array[Vector3] = []
@@ -50,6 +58,10 @@ func _process(delta):
 		resource.resource_local_to_scene = true
 		GameState.add_munchme(resource)
 		$Cutscene.play()
+	
+	if Input.is_action_just_pressed("settings"):
+		open_settings()
+	
 	if GameState.situation != Constants.Situation.Overworld:
 		pass
 	
@@ -64,6 +76,17 @@ func _process(delta):
 		current_manage_ui != null
 	):
 		close_manage()
+
+
+func open_settings():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	for child in $UI.get_children():
+		if child.name == "SettingsLooker":
+			return
+	
+	var settings_looker = settings_looker_scene.instantiate()
+	$UI.add_child(settings_looker)
 
 
 func _on_catch_munchme(munchme: Munchme):
