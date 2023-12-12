@@ -11,6 +11,8 @@ enum Track {
 	ThoughtfulMuncher,
 	Battle,
 	Catch,
+	Tutorial,
+	Mystermunchme,
 }
 
 var streams = {
@@ -18,6 +20,8 @@ var streams = {
 	Track.ThoughtfulMuncher: preload("res://Music/thoughtful_muncher.ogg"),
 	Track.Battle: preload("res://Music/battle.ogg"),
 	Track.Catch: preload("res://Music/catchy_music.ogg"),
+	Track.Tutorial: preload("res://Music/tutorial.ogg"),
+	Track.Mystermunchme: preload("res://Music/mystermunchme.ogg"),
 }
 
 var volume = 0
@@ -26,6 +30,8 @@ var volumes = {
 	Track.ThoughtfulMuncher: 0,
 	Track.Battle: 0,
 	Track.Catch: 0,
+	Track.Tutorial: 0,
+	Track.Mystermunchme: 0,
 }
 
 var selected_track = null

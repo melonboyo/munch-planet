@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cslqcoi11u7n0"]
+
+[ext_resource type="Script" path="res://TestTutorialMusic.gd" id="1_frc65"]
+[ext_resource type="Script" path="res://Tutorial/TutorialMusic.gd" id="2_1cu85"]
+
+[node name="TestTutorialMusic" type="Node2D"]
+script = ExtResource("1_frc65")
+
+[node name="TutorialMusic" type="Node" parent="."]
+script = ExtResource("2_1cu85")
