@@ -56,3 +56,7 @@ func walk_to_rocket():
 
 func set_focus_to_rocket():
 	%RocketCamera.focus = %Rocket
+
+
+func remove_black_bars():
+	%OverlayAnimation.play("remove_bars")

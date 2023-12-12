@@ -420,7 +420,7 @@ transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
 transform = Transform3D(-85.4453, 51.9528, -3.90364e-07, -2.27395e-06, -2.98852e-06, 100, 51.9528, 85.4453, 3.73493e-06, 0, 0, 0.865273)
 
 [node name="Window" type="Node3D" parent="Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Cylinder"]
-transform = Transform3D(0.689635, -0.709144, 0.146701, 0.724157, 0.674751, -0.142516, 0.00207764, 0.204518, 0.978861, -0.60945, 0.58019, 1.66407)
+transform = Transform3D(0.689635, -0.709144, 0.146701, 0.724157, 0.674751, -0.142516, 0.00207769, 0.204518, 0.978861, -0.60945, 0.58019, 1.66407)
 
 [node name="Cylinder_Material_001_0" type="MeshInstance3D" parent="Root/Sketchfab_model/dd66cdb4b7fd420296714f206ef336de_fbx/RootNode/Cylinder/Window"]
 transform = Transform3D(0.689633, 0.724155, 0.00207767, -0.711637, 0.677176, 0.187094, 0.134078, -0.130505, 0.982339, -0.00330799, -1.13456, -1.47791)
@@ -489,7 +489,7 @@ visible = false
 
 [node name="TextFront" type="Sprite3D" parent="Root/GoText"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.005)
-pixel_size = 0.002
+pixel_size = 0.0015
 billboard = 1
 no_depth_test = true
 fixed_size = true
@@ -497,14 +497,14 @@ texture = ExtResource("1_x7cbv")
 
 [node name="TextBack" type="Sprite3D" parent="Root/GoText"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.005)
-pixel_size = 0.002
+pixel_size = 0.0015
 billboard = 1
 no_depth_test = true
 fixed_size = true
 texture = ExtResource("1_x7cbv")
 
 [node name="Border" type="Sprite3D" parent="Root/GoText"]
-pixel_size = 0.002
+pixel_size = 0.0015
 billboard = 1
 no_depth_test = true
 fixed_size = true

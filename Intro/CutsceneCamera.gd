@@ -4,8 +4,12 @@ extends Node3D
 
 @export_node_path("Node3D") var focus_path
 @onready var focus: Node3D = get_node(focus_path)
-@export var in_editor := false
-@export var follow := true
+@export var in_editor := false:
+	set(value):
+		in_editor = value
+@export var follow := true:
+	set(value):
+		follow = value
 
 
 func _process(delta):
