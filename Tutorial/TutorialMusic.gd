@@ -4,14 +4,14 @@ class_name TutorialMusic
 const BPM := 140
 const MEASURES := 4
 const BEATS_PER_MEASURE := 4
-const FIRST_CUT_INDEX := 2
-const END_CUT_INDEX := 7
+const END_CUT_INDEX := 6
 
+# Essentially the length of half of the cut. We duplicate
+# the cut in the audio file for seamless looping
 const cut_length := (60.0 / BPM) * MEASURES * BEATS_PER_MEASURE
 
 var is_playing := false
 var current_cut := 0
-var next_cut := 0
 
 
 func _process(delta: float):
@@ -19,17 +19,13 @@ func _process(delta: float):
 		queue_free()
 		return
 	
-	if get_current_playing_cut() != current_cut:
-		current_cut = next_cut
-		Music.music_player.seek(get_cut_start_position(current_cut))
-
-
-func get_current_playing_cut():
-	return floor(Music.position / cut_length)
+	# If past the first half of the cut, loop back one half
+	if Music.position > get_cut_start_position(current_cut) + cut_length:
+		Music.music_player.seek(Music.position - cut_length)
 
 
 func get_cut_start_position(cut_index: int):
-	return cut_length * cut_index
+	return cut_length * cut_index * 2
 
 
 func play(cut_index: int = 0):
@@ -38,13 +34,7 @@ func play(cut_index: int = 0):
 
 
 func progress():
-	next_cut += 1
-	if current_cut == 0:
-		# Seek to the same point in cut 1
-		Music.music_player.seek(Music.position + cut_length)
-		current_cut += 1
-		next_cut += 1
-
-
-func queue_cut(cut_index: int = 0):
-	next_cut = cut_index
+	current_cut += 1
+	
+	# Switch to the second part of the cut
+	Music.music_player.seek(Music.position + cut_length)
