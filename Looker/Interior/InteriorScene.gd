@@ -6,8 +6,11 @@ extends Node3D
 
 
 func _ready():
-	#GameState.focus_main = false
-	$TutorialCutscene.play()
+	if GameState.tutorial_stage == Constants.TutorialStage.GuildEntered:
+		$TutorialCutscene.play()
+		return
+	$Torpejo.queue_free()
+	$EnterCutscene.play()
 
 
 func _on_deploy_looker_focus_entered():

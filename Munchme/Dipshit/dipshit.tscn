@@ -1,26 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqcx081xjqlj7"]
+[gd_scene load_steps=8 format=3 uid="uid://dqcx081xjqlj7"]
 
 [ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_ogbw3"]
 [ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="2_8tfwt"]
+[ext_resource type="Script" path="res://Munchme/Dipshit/Dipshit.gd" id="2_db2f0"]
 [ext_resource type="PackedScene" uid="uid://cndhpflfe2f6g" path="res://Munchme/Dipshit/dipshit_model.tscn" id="3_vmdgh"]
+[ext_resource type="PackedScene" uid="uid://chov0ya4t4q2h" path="res://Munchme/Dipshit/DipshitMinigame.tscn" id="4_54x24"]
 
-[sub_resource type="Resource" id="Resource_iasch"]
+[sub_resource type="Resource" id="Resource_0yd1n"]
 script = ExtResource("2_8tfwt")
 id = 0
-name = "JIMBLO"
-munchme_type = 0
+name = "Dipshit"
+munchme_type = 4
 max_health = 100
 mood = 1
 catch_track = 3
 roam_track = 2
-catch_looker_size = Vector2(910, 647)
+catch_looker_size = Vector2(900, 900)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ismua"]
 radius = 0.593804
 height = 1.75105
 
 [node name="Dipshit" instance=ExtResource("1_ogbw3")]
-resource = SubResource("Resource_iasch")
+script = ExtResource("2_db2f0")
+resource = SubResource("Resource_0yd1n")
 height = 1.75
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
@@ -29,3 +32,13 @@ shape = SubResource("CapsuleShape3D_ismua")
 
 [node name="Model" parent="." index="1" instance=ExtResource("3_vmdgh")]
 transform = Transform3D(0.762352, 0, 0, 0, 0.762352, 0, 0, 0, 0.762352, 0, -0.0176239, 0)
+
+[node name="DipshitMinigame" parent="." index="7" instance=ExtResource("4_54x24")]
+visible = false
+
+[node name="WinTimer" type="Timer" parent="DipshitMinigame" index="1"]
+unique_name_in_owner = true
+wait_time = 10.0
+
+[connection signal="ball_dropped" from="DipshitMinigame" to="." method="_on_dipshit_minigame_ball_dropped"]
+[connection signal="timeout" from="DipshitMinigame/WinTimer" to="." method="_on_win_timer_timeout"]

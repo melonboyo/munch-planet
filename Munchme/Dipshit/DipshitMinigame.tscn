@@ -1,9 +1,199 @@
-[gd_scene format=3 uid="uid://chov0ya4t4q2h"]
+[gd_scene load_steps=21 format=3 uid="uid://chov0ya4t4q2h"]
+
+[ext_resource type="Texture2D" uid="uid://b4cdwvwc4o147" path="res://Sprites/Paddle/paddle-0.png" id="1_bfs3t"]
+[ext_resource type="Script" path="res://Munchme/Dipshit/DipshitMinigame.gd" id="1_gxvvg"]
+[ext_resource type="Script" path="res://Munchme/Dipshit/Paddle.gd" id="2_eaqcg"]
+[ext_resource type="Texture2D" uid="uid://bd8gmu8i8pded" path="res://Sprites/Paddle/paddle-1.png" id="2_o8y2p"]
+[ext_resource type="Texture2D" uid="uid://ddnin3qjlpwep" path="res://Sprites/Paddle/paddle-2.png" id="3_r3lc4"]
+[ext_resource type="Texture2D" uid="uid://bt2dgflxvx45g" path="res://Sprites/Ball/dipshit-ball-0.png" id="5_4qxql"]
+[ext_resource type="Texture2D" uid="uid://d3myfoa7vu8w2" path="res://Sprites/Ball/dipshit-ball-1.png" id="6_tm3yx"]
+[ext_resource type="Texture2D" uid="uid://c52mh3mhqo4v1" path="res://Sprites/Ball/dipshit-ball-2.png" id="7_08pla"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iob6h"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sto1l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bfs3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o8y2p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r3lc4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4c3n"]
+size = Vector2(326, 69)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a0xvm"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f5mcs"]
+radius = 100.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6848k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4qxql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tm3yx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_08pla")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="Animation" id="Animation_yd7k2"]
+resource_name = "bounce"
+length = 0.08
+step = 0.08
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(0.432161, 0.432161)]
+}
+
+[sub_resource type="Animation" id="Animation_sp3fk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.432161, 0.432161)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5sj23"]
+_data = {
+"RESET": SubResource("Animation_sp3fk"),
+"bounce": SubResource("Animation_yd7k2")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8j8v"]
+size = Vector2(193.5, 2000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1ur3"]
+size = Vector2(1920, 145)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r134h"]
+size = Vector2(1920, 135)
 
 [node name="DipshitMinigame" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1032.0
+offset_bottom = -218.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gxvvg")
+playfield_width = 888.0
+
+[node name="Container" type="Node2D" parent="."]
+position = Vector2(72, 0)
+
+[node name="Paddle" type="StaticBody2D" parent="Container"]
+unique_name_in_owner = true
+position = Vector2(444, 753)
+collision_priority = 10.0
+physics_material_override = SubResource("PhysicsMaterial_iob6h")
+script = ExtResource("2_eaqcg")
+
+[node name="PaddleSprite" type="AnimatedSprite2D" parent="Container/Paddle"]
+modulate = Color(1, 0.858824, 0.498039, 1)
+scale = Vector2(0.66, 0.66)
+sprite_frames = SubResource("SpriteFrames_sto1l")
+frame_progress = 0.554686
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Paddle"]
+shape = SubResource("RectangleShape2D_q4c3n")
+
+[node name="Ball" type="RigidBody2D" parent="Container"]
+unique_name_in_owner = true
+position = Vector2(444, -378)
+collision_layer = 3
+collision_priority = 10.0
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_a0xvm")
+gravity_scale = 1.5
+freeze = true
+continuous_cd = 2
+max_contacts_reported = 1
+contact_monitor = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Ball"]
+shape = SubResource("CircleShape2D_f5mcs")
+
+[node name="BallSprite" type="AnimatedSprite2D" parent="Container/Ball"]
+scale = Vector2(0.432161, 0.432161)
+sprite_frames = SubResource("SpriteFrames_6848k")
+frame_progress = 0.152199
+
+[node name="Animation" type="AnimationPlayer" parent="Container/Ball"]
+libraries = {
+"": SubResource("AnimationLibrary_5sj23")
+}
+
+[node name="Walls" type="StaticBody2D" parent="Container"]
+position = Vector2(444, 444)
+collision_priority = 10.0
+physics_material_override = SubResource("PhysicsMaterial_iob6h")
+
+[node name="Left" type="CollisionShape2D" parent="Container/Walls"]
+unique_name_in_owner = true
+position = Vector2(-540.75, 0)
+rotation = 0.00267834
+shape = SubResource("RectangleShape2D_w8j8v")
+
+[node name="Right" type="CollisionShape2D" parent="Container/Walls"]
+unique_name_in_owner = true
+position = Vector2(540.75, 0)
+shape = SubResource("RectangleShape2D_w8j8v")
+
+[node name="Top" type="CollisionShape2D" parent="Container/Walls"]
+unique_name_in_owner = true
+position = Vector2(0, -523)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_q1ur3")
+one_way_collision = true
+
+[node name="LoseArea" type="Area2D" parent="Container"]
+position = Vector2(4, 780)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="Container/LoseArea"]
+position = Vector2(450, 372)
+shape = SubResource("RectangleShape2D_r134h")
+debug_color = Color(0.870588, 0.352941, 0, 0.419608)
+
+[connection signal="body_entered" from="Container/Ball" to="." method="_on_ball_body_entered"]
+[connection signal="body_entered" from="Container/LoseArea" to="." method="_on_lose_area_body_entered"]

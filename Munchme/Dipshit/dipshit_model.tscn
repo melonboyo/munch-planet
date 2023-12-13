@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cndhpflfe2f6g"]
+[gd_scene load_steps=14 format=3 uid="uid://cndhpflfe2f6g"]
 
 [ext_resource type="PackedScene" uid="uid://crwyyaj2j2u83" path="res://Models/munchmes/Dipshit.glb" id="1_ks0q3"]
 [ext_resource type="Script" path="res://Munchme/munchme_model.gd" id="2_1lii7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bdcpmug7jxq75" path="res://Sprites/Faces/dip-0.png" id="5_blg5c"]
 [ext_resource type="Texture2D" uid="uid://8v8kxbcahfed" path="res://Sprites/Faces/dip-1.png" id="6_fh4ao"]
 [ext_resource type="Texture2D" uid="uid://m42l0rvgusyj" path="res://Sprites/Faces/dip-2.png" id="7_n7i7c"]
+[ext_resource type="Script" path="res://Munchme/Dipshit/Face.gd" id="8_lpsp5"]
 
 [sub_resource type="Gradient" id="Gradient_j6y4m"]
 
@@ -81,3 +82,4 @@ bone_idx = 0
 transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 1.49012e-08, 0, 4.47035e-08, 1, -1.25184e-08, 0.796936, 0.501735)
 sprite_frames = SubResource("SpriteFrames_73xaw")
 frame_progress = 0.693704
+script = ExtResource("8_lpsp5")

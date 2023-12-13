@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://fjx7o5aysy0p"]
+[gd_scene load_steps=39 format=3 uid="uid://fjx7o5aysy0p"]
 
 [ext_resource type="Script" path="res://Looker/Interior/InteriorScene.gd" id="1_t0r3o"]
 [ext_resource type="Shader" path="res://Shaders/CircleTransition.gdshader" id="2_b8815"]
@@ -500,6 +500,68 @@ _data = {
 "Tutorial_2": SubResource("Animation_bt3j7")
 }
 
+[sub_resource type="Resource" id="Resource_usr1y"]
+script = ExtResource("5_pjo6k")
+animation_name = "enter"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_h612k"]
+resource_name = "enter"
+length = 2.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"walk_in"
+}]
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Overlay/OverlayAnimation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("fade_in"),
+"times": PackedFloat32Array(0.2)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../EnterGuildArea:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Muncher:player_controlled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1l87"]
+_data = {
+"enter": SubResource("Animation_h612k")
+}
+
 [node name="InteriorScene" type="Node3D"]
 script = ExtResource("1_t0r3o")
 
@@ -664,10 +726,17 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Effects"
 
-[node name="ExitCutscene" parent="." instance=ExtResource("4_6lna5")]
+[node name="EnterCutscene" parent="." instance=ExtResource("4_6lna5")]
+scenes = Array[ExtResource("5_pjo6k")]([SubResource("Resource_usr1y")])
+
+[node name="CutsceneAnimation" parent="EnterCutscene" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_p1l87")
+}
 
 [connection signal="body_entered" from="EnterGuildArea" to="." method="_on_enter_guild_area_body_entered"]
 
 [editable path="Muncher"]
 [editable path="Torpejo"]
 [editable path="TutorialCutscene"]
+[editable path="EnterCutscene"]
