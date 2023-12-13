@@ -9,6 +9,18 @@ enum Situation {
 	Intro,
 }
 
+enum TutorialStage {
+	NotStarted,
+	Landed,
+	GuildEntered,
+	GuildExited,
+	Catching,
+	Caught,
+	Deploying,
+	Kidnapped,
+	Finished,
+}
+
 enum Emote {
 	Question,
 	Exclamation,

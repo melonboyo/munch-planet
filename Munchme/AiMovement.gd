@@ -9,7 +9,6 @@ var has_reached_end = true
 
 
 func _process(delta):
-	print(has_reached_end)
 	if has_reached_end:
 		return
 	

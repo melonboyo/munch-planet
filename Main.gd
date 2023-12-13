@@ -16,6 +16,8 @@ var munchme_getting_caught: Munchme
 var current_manage_ui = null
 var manage_allowed = true
 
+var tutorial_music: TutorialMusic
+
 
 func _ready():
 	GameState.main_window = $UI
@@ -24,8 +26,12 @@ func _ready():
 
 func planet_specific_ready():
 	if not GameState.tutorial_cleared:
-		GameState.tutorial_active = true
-	
+		GameState.tutorial_stage = Constants.TutorialStage.Landed
+		
+		tutorial_music = TutorialMusic.new()
+		add_child(tutorial_music)
+		tutorial_music.play(GameState.tutorial_stage)
+
 	%OverlayAnimation.play("fade_in")
 	if not skip_rocket_cutscene:
 		$RocketReturnCutscene.play()
@@ -46,6 +52,13 @@ func play_overworld_music():
 	Music.play(Music.Track.Overworld)
 
 
+func go_to_tutorial_stage(stage: Constants.TutorialStage):
+	if GameState.tutorial_active:
+		GameState.tutorial_stage = stage
+		if tutorial_music != null:
+			tutorial_music.go_to(GameState.tutorial_stage)
+
+
 func _unhandled_input(event):
 	if (event is InputEventMouseButton 
 		and event.get_button_index() == MOUSE_BUTTON_LEFT
@@ -62,7 +75,7 @@ func _process(delta):
 		var resource = MunchmeResource.new()
 		resource.resource_local_to_scene = true
 		GameState.add_munchme(resource)
-		$Cutscene.play()
+		go_to_tutorial_stage(GameState.tutorial_stage + 1)
 	
 	if not CutsceneManager.is_cutscene_playing and Input.is_action_just_pressed("settings"):
 		open_settings()
@@ -197,9 +210,7 @@ func _on_enter_guild_area_entered(body):
 func open_guild_interior_looker():
 	var interior_ui: Looker = guild_interior_looker_scene.instantiate()
 	$UI.add_child(interior_ui)
-	if not GameState.tutorial_cleared:
-		#$TutorialMusic.play()
-		pass
+	go_to_tutorial_stage(Constants.TutorialStage.GuildEntered)
 
 
 func _on_exit_guild_looker():
@@ -211,9 +222,10 @@ func _on_exit_guild_looker():
 	%Muncher.player_controlled = true
 	$MainCamera.enable = true
 	manage_allowed = true
-	$TutorialArea/TutorialProgressCollision.disabled = true
 	
 	if GameState.tutorial_active:
+		go_to_tutorial_stage(Constants.TutorialStage.GuildExited)
+		$TutorialArea/TutorialProgressCollision.disabled = true
 		$TutorialWalkToMunchmeCutscene.play()
 
 
