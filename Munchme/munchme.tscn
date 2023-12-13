@@ -77,7 +77,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.13, 0.26),
 "transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.0666667, 0.980392, 0.776471, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 0.854902, 0.564706, 1), Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -89,7 +89,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.13, 0.26),
 "transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.0666667, 0.980392, 0.776471, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 0.854902, 0.564706, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4ys37"]
@@ -100,7 +100,7 @@ _data = {
 
 [node name="Munchme" type="CharacterBody3D"]
 collision_layer = 8
-collision_mask = 15
+collision_mask = 5
 floor_max_angle = 0.959931
 script = ExtResource("1_ygrta")
 

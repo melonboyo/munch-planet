@@ -47,7 +47,7 @@ func get_move_input() -> Vector3:
 	var raw_move_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if Vector2.ZERO.distance_to(raw_move_input) > 1.0:
 		raw_move_input = raw_move_input.normalized()
-	if Vector2.ZERO.distance_to(raw_move_input) < ProjectSettings.get_setting("global/leftstick_deadzone") * sqrt(2.0):
+	if Vector2.ZERO.distance_to(raw_move_input) < ProjectSettings.get_setting("global/control_stick_deadzone") * sqrt(2.0):
 		raw_move_input = Vector2.ZERO
 	var right_axis = Math.project_direction_on_plane(camera.global_transform.basis.x.normalized(), up_direction)
 	var forward_axis = Math.project_direction_on_plane(camera.global_transform.basis.z.normalized(), up_direction)
@@ -78,7 +78,8 @@ func _physics_process(delta):
 
 
 func _overworld_process(delta):
-	if in_catch_mode:
+	_munchme_specific_process(delta)
+	if in_catch_mode or not can_be_caught:
 		$CatchArea.monitoring = false
 		return
 	$CatchArea.monitoring = true
@@ -96,6 +97,10 @@ func _overworld_process(delta):
 	
 	if Input.is_action_just_pressed("interact") and can_catch and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		attempt_catch()
+
+
+func _munchme_specific_process(delta):
+	pass
 
 
 func _on_catch_area_body_entered(body):

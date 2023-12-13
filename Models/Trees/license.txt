@@ -1,0 +1,8 @@
+Model Information:
+* title:	Trees - Mesh lowpoly
+* source:	https://sketchfab.com/3d-models/trees-mesh-lowpoly-239402c601c74bcca33b9855dd7961ae
+* author:	NguyenVuDuc (https://sketchfab.com/nguyenvuduc2000)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

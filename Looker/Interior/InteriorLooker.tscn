@@ -24,7 +24,7 @@ handle_input_locally = false
 screen_space_aa = 1
 audio_listener_enable_3d = true
 physics_object_picking = true
-size = Vector2i(634, 391)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="InteriorScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_mkit5")]

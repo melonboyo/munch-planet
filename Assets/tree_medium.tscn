@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://pxhmk3i53ucj"]
+
+[ext_resource type="PackedScene" uid="uid://cexh0psi7yv7a" path="res://Models/Trees/tree_medium.gltf" id="1_ord1q"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_ncbil"]
+[ext_resource type="Texture2D" uid="uid://car8lq5fema0t" path="res://Models/Trees/textures/Tree_Lowpoly_SG_baseColor.png" id="3_504v3"]
+
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxvyt"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_31tp3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k4ij1"]
+render_priority = 0
+shader = ExtResource("2_ncbil")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.935
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.19
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.0
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.468
+shader_parameter/wobble_displacement = 5.84
+shader_parameter/wobble_frequency = 1.735
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/albedo_texture = ExtResource("3_504v3")
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5hhi1"]
+height = 2.56921
+radius = 0.359199
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7ju7o"]
+height = 0.813471
+radius = 1.92529
+
+[node name="tree_medium" instance=ExtResource("1_ord1q")]
+
+[node name="TreeMedium" parent="." index="0"]
+transform = Transform3D(0.0469408, 0, 0, 0, 0.0469408, 0, 0, 0, 0.0469408, 0, -0.0462824, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_k4ij1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0286229, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27314, 0)
+shape = SubResource("CylinderShape3D_5hhi1")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0286229, 0)
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.141712, 0)
+shape = SubResource("CylinderShape3D_7ju7o")

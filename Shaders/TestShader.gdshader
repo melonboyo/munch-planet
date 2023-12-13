@@ -4,7 +4,7 @@ render_mode diffuse_lambert_wrap;
 uniform vec4 albedo : source_color;
 uniform sampler2D albedo_texture : hint_default_white, filter_nearest;
 //uniform sampler2D overlay_texture : hint_default_white, filter_nearest;
-uniform vec2 albedo_uv_scale = vec2(1.0);
+//uniform vec2 albedo_uv_scale = vec2(1.0);
 
 uniform bool use_normal_texture = false;
 uniform sampler2D normal_texture : hint_normal;
@@ -23,7 +23,7 @@ uniform float subsurface : hint_range(0.0, 1.0) = 0.0;
 uniform float shadow_cutoff: hint_range(-2.0, 2.0) = 0.5;
 uniform float shadow_cutoff_smoothness : hint_range(0.0, 1.0) = 1.0;
 
-uniform float wobble_displacement : hint_range(0.0, 3.0) = 0.01;
+uniform float wobble_displacement : hint_range(0.0, 10.0) = 0.01;
 uniform float wobble_frequency : hint_range(0.1, 5.0) = 2.0;
 uniform int num_of_wobbles : hint_range(0, 100, 1) = 7;
 uniform bool use_uv2 = true;
@@ -57,7 +57,9 @@ void fragment() {
 	ROUGHNESS = roughness;
 	SPECULAR = specularity;
 	//METALLIC = metallic;
-	NORMAL_MAP = normal_tex.rgb;
+	if (use_normal_texture) {
+		NORMAL_MAP = normal_tex.rgb;
+	}
 }
 
 float fresnel(float LdotH) {

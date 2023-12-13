@@ -23,6 +23,9 @@ func _ready():
 
 
 func planet_specific_ready():
+	if not GameState.tutorial_cleared:
+		GameState.tutorial_active = true
+	
 	%OverlayAnimation.play("fade_in")
 	if not skip_rocket_cutscene:
 		$RocketReturnCutscene.play()
@@ -195,19 +198,37 @@ func open_guild_interior_looker():
 	var interior_ui: Looker = guild_interior_looker_scene.instantiate()
 	$UI.add_child(interior_ui)
 	if not GameState.tutorial_cleared:
-		$TutorialMusic.play()
+		#$TutorialMusic.play()
+		pass
 
 
 func _on_exit_guild_looker():
 	walk_out_after_guild_exit()
+	
 	await get_tree().create_timer(0.16).timeout
 	%OverlayAnimation.play("fade_in")
 	await get_tree().create_timer(0.6).timeout
 	%Muncher.player_controlled = true
 	$MainCamera.enable = true
 	manage_allowed = true
+	$TutorialArea/TutorialProgressCollision.disabled = true
+	
+	if GameState.tutorial_active:
+		$TutorialWalkToMunchmeCutscene.play()
 
 
 func walk_out_after_guild_exit():
 	var point = $FollowPoints/GuildFront.global_position
 	%Muncher.set_follow_points([point] as Array[Vector3])
+
+
+func torpejo_walk_to_first_munchme():
+	var points: Array[Vector3] = get_children_positions($TutorialTorpejoPoints/Follow)
+	%Torpejo.set_follow_points(points)
+
+
+func get_children_positions(parent: Node3D) -> Array[Vector3]:
+	var points: Array[Vector3] = []
+	for p in parent.get_children():
+		points.append(p.global_position)
+	return points

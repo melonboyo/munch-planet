@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://c6sd1o4abgguc"]
+
+[ext_resource type="Texture2D" uid="uid://d1vy6cckfb06s" path="res://Sprites/impact_lines/impact_lines_0.png" id="1_onpfg"]
+[ext_resource type="Texture2D" uid="uid://i3no0be8f7cb" path="res://Sprites/impact_lines/impact_lines_1.png" id="2_uk577"]
+[ext_resource type="Texture2D" uid="uid://nq20jg1u32q0" path="res://Sprites/impact_lines/impact_lines_2.png" id="3_yr5k8"]
+[ext_resource type="Texture2D" uid="uid://spaeqkkqo0l8" path="res://Sprites/impact_lines/impact_lines_3.png" id="4_nckts"]
+[ext_resource type="Texture2D" uid="uid://cjxkxpsv7wyqu" path="res://Sprites/impact_lines/impact_lines_4.png" id="5_sq042"]
+[ext_resource type="Texture2D" uid="uid://dw6q0ejlih102" path="res://Sprites/impact_lines/impact_lines_5.png" id="6_mhchc"]
+[ext_resource type="Texture2D" uid="uid://la41y0g4p4sd" path="res://Sprites/impact_lines/impact_lines_6.png" id="7_mmmrr"]
+[ext_resource type="Texture2D" uid="uid://u6omeyqtswa4" path="res://Sprites/impact_lines/impact_lines_7.png" id="8_41uyp"]
+[ext_resource type="Texture2D" uid="uid://c03e8rvpn6ghk" path="res://Sprites/impact_lines/impact_lines_8.png" id="9_qbd3r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tk3p3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_onpfg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uk577")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yr5k8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nckts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sq042")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mhchc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mmmrr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_41uyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qbd3r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="ImpactLines" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 540)
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+position = Vector2(960, 540)
+sprite_frames = SubResource("SpriteFrames_tk3p3")
+frame_progress = 0.821514

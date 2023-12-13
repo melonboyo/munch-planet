@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cav1bw5myvifc"]
+
+[ext_resource type="Script" path="res://Tutorial/TutorialMusic.gd" id="1_f38tq"]
+
+[node name="TutorialMusic" type="Node"]
+script = ExtResource("1_f38tq")
