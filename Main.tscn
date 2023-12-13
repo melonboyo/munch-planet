@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=68 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -746,6 +746,11 @@ _data = {
 script = ExtResource("11_nrph8")
 animation_name = "Tutorial_3"
 dialogue_translation_key = ""
+
+[sub_resource type="Resource" id="Resource_j5mw4"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_1"
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
@@ -1959,7 +1964,7 @@ libraries = {
 }
 
 [node name="TutorialMeetDipshitCutscene" parent="." instance=ExtResource("10_01ks1")]
-scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_oiibg")])
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_oiibg"), SubResource("Resource_j5mw4")])
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
 visible = false
