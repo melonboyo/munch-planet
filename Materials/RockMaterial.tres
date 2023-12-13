@@ -1,0 +1,39 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://dwdqdachvks65"]
+
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="1_gnt48"]
+[ext_resource type="Texture2D" uid="uid://dj8yye33ejci3" path="res://Models/Rocks/big_rock_Image_0.jpg" id="2_nn4f7"]
+[ext_resource type="Texture2D" uid="uid://fb2yv0fjt21l" path="res://Models/Rocks/big_rock_Image_2.png" id="3_lbv48"]
+
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxvyt"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_31tp3")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_gnt48")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/use_normal_texture = true
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.717
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.13
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.12
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.309
+shader_parameter/wobble_displacement = 0.01
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/albedo_texture = ExtResource("2_nn4f7")
+shader_parameter/normal_texture = ExtResource("3_lbv48")
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")

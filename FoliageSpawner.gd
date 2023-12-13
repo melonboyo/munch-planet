@@ -6,6 +6,9 @@ extends Node3D
 	set(value):
 		spawn = false
 		spawn_foliage()
+@export var use_y_up_as_direction := false:
+	set(value):
+		use_y_up_as_direction = value
 @export_range(0, 500) var amount: int = 15:
 	set(value):
 		amount = value
@@ -39,7 +42,8 @@ func spawn_foliage():
 		for c in get_children():
 			c.free()
 	
-	var ray_dir = -global_position.normalized()
+	
+	var ray_dir = global_basis.y if use_y_up_as_direction else -global_position.normalized()
 	var ray_dir_rotated: Vector3 = Vector3.FORWARD * Math.from_to_rotation(Vector3.UP, ray_dir)
 	
 	randomize()
@@ -66,7 +70,7 @@ func spawn_foliage():
 		var spawn_pos = global_position + ray_dir_rotated.rotated(ray_dir, randf_range(-PI, PI)) * pow(randf_range(0, 1), 0.67) * spawn_radius
 		var spawn_ray_dir = -spawn_pos.normalized()
 		var ray_query = PhysicsRayQueryParameters3D.create(
-			spawn_pos, spawn_pos + spawn_ray_dir * ray_dist, pow(2, 1-1)
+			spawn_pos, spawn_pos + spawn_ray_dir * ray_dist, (pow(2, 1-1) + pow(2, 8-1))
 		)
 		ray_query.hit_back_faces = false
 		ray_query.hit_from_inside = false
@@ -86,7 +90,7 @@ func spawn_foliage():
 		model.name = StringName(str(i))
 		model.set_owner(get_tree().get_edited_scene_root())
 		
-		await get_tree().process_frame
+		await get_tree().physics_frame * 2
 		
 		model.global_position = result.position
 		model.global_transform.basis = Basis(right, up, forward)

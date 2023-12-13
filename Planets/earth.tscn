@@ -11,7 +11,6 @@
 render_priority = 0
 shader = ExtResource("2_qhse1")
 shader_parameter/albedo = Color(0.909804, 0.909804, 0.909804, 1)
-shader_parameter/albedo_uv_scale = Vector2(1, 1)
 shader_parameter/use_normal_texture = false
 shader_parameter/normal_depth = 1.0
 shader_parameter/roughness = 0.883
@@ -85,6 +84,7 @@ surface_material_override/0 = ExtResource("3_6a3y0")
 
 [node name="UnderWaterSurface" type="MeshInstance3D" parent="." index="2"]
 transform = Transform3D(0.858886, -0.140036, -0.492651, -0.0489139, 0.935071, -0.35107, 0.509825, 0.325627, 0.79627, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_pvxid")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("4_556qu")
