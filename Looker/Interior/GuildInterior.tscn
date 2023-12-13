@@ -66,6 +66,9 @@ shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
 [node name="Plane" parent="." index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_tki0n")
 
+[node name="StaticBody3D" parent="Plane" index="0"]
+collision_layer = 17
+
 [node name="Cube_001" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0438821, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_pxt8t")

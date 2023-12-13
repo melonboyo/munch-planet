@@ -14,6 +14,7 @@ var guild_interior_looker_scene := preload("res://Looker/Interior/InteriorLooker
 var mouse_captured = true
 var munchme_getting_caught: Munchme
 var current_manage_ui = null
+var manage_allowed = true
 
 
 func _ready():
@@ -22,18 +23,17 @@ func _ready():
 
 
 func planet_specific_ready():
+	%OverlayAnimation.play("fade_in")
 	if not skip_rocket_cutscene:
 		$RocketReturnCutscene.play()
 		%Muncher.player_controlled = false
-		$Overlay/OverlayAnimation.play("RESET")
 	else:
 		play_overworld_music()
 		%Muncher.player_controlled = true
-		
-		%OverlayAnimation.play("fade_in")
 	
 	GameState.water_height = 100.35
 	GameState.during_intro = false
+	GameState.exit_guild_looker.connect(_on_exit_guild_looker)
 	
 	GameState.situation = Constants.Situation.Overworld
 	GameState.munchme_deployed.connect(_on_munchme_deployed)
@@ -69,7 +69,8 @@ func _process(delta):
 	
 	if (
 		Input.is_action_just_pressed("open_manage") and 
-		#GameState.situation == Constants.Situation.Overworld and 
+		not CutsceneManager.is_cutscene_playing and
+		manage_allowed and
 		current_manage_ui == null
 	):
 		open_manage()
@@ -121,13 +122,6 @@ func close_manage():
 	current_manage_ui.close()
 
 
-#func deploy_munchme():
-	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	#var deploy_ui: Control = choose_deploy_looker_scene.instantiate()
-	#current_manage_ui = manage_ui.get_node("Looker")
-	#$UI.add_child(manage_ui)
-
-
 func retrieve_munchme():
 	pass
 
@@ -149,6 +143,7 @@ func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
 	munchme.position = pos
 	munchme.camera = deploy_ui.get_node("%DeployScene").get_camera()
 	munchme.player_controlled = true
+	munchme.is_inside = false
 	#GameState.deployed_munchme = munchme
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	GameState.deploy_munchme(deploy_ui, munchme)
@@ -190,10 +185,29 @@ func force_player_to_center():
 
 func _on_enter_guild_area_entered(body):
 	%OverlayAnimation.play("fade_out")
-	%Muncher.play_controlled = false
+	%Muncher.player_controlled = false
+	$MainCamera.enable = false
+	manage_allowed = false
 	open_guild_interior_looker()
 
 
 func open_guild_interior_looker():
 	var interior_ui: Looker = guild_interior_looker_scene.instantiate()
-	Music.stop()
+	$UI.add_child(interior_ui)
+	if not GameState.tutorial_cleared:
+		$TutorialMusic.play()
+
+
+func _on_exit_guild_looker():
+	walk_out_after_guild_exit()
+	await get_tree().create_timer(0.16).timeout
+	%OverlayAnimation.play("fade_in")
+	await get_tree().create_timer(0.6).timeout
+	%Muncher.player_controlled = true
+	$MainCamera.enable = true
+	manage_allowed = true
+
+
+func walk_out_after_guild_exit():
+	var point = $FollowPoints/GuildFront.global_position
+	%Muncher.set_follow_points([point] as Array[Vector3])

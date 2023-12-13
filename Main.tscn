@@ -70,7 +70,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.0392157, 0.0313726, 0.0235294, 0)]
+"values": [Color(0.0392157, 0.0313726, 0.0235294, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_wx7rx"]
@@ -490,7 +490,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_02hsb"]
 resource_name = "Rocket_Return_1"
-length = 17.0
+length = 18.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -498,7 +498,7 @@ tracks/0/path = NodePath("../RocketPlatform/ReturnCamera:current")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 11.7),
+"times": PackedFloat32Array(0, 13.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -510,7 +510,7 @@ tracks/1/path = NodePath("../MainCamera/SpringArm3D/Camera3D:current")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 15.8),
+"times": PackedFloat32Array(1.5, 17.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -522,7 +522,7 @@ tracks/2/path = NodePath("%Muncher:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 13.4),
+"times": PackedFloat32Array(1.5, 14.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -534,7 +534,7 @@ tracks/3/path = NodePath("../RocketPlatform/RocketPath/RocketPathFollow:progress
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 9.8),
+"times": PackedFloat32Array(1.5, 11.3),
 "transitions": PackedFloat32Array(0.499999, 1),
 "update": 0,
 "values": [80.0, 0.0]
@@ -546,10 +546,10 @@ tracks/4/path = NodePath("../RocketPlatform/ReturnCamera:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 10.1),
+"times": PackedFloat32Array(1.2, 11.2),
 "transitions": PackedFloat32Array(-2, 0),
 "update": 0,
-"values": [Vector3(12.2172, 53.4557, 9.99535), Vector3(3.78862, 1.16981, -0.292116)]
+"values": [Vector3(20.8456, 72.1505, 4.91099), Vector3(3.78862, 1.16981, -0.292116)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -558,7 +558,7 @@ tracks/5/path = NodePath("../Overlay/CircleTransition:material:shader_parameter/
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.5, 3.4),
+"times": PackedFloat32Array(2, 4.9),
 "transitions": PackedFloat32Array(0.554785, 1),
 "update": 0,
 "values": [0.0, 1.05]
@@ -570,7 +570,7 @@ tracks/6/path = NodePath("%Muncher:player_controlled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(-0.1, 17),
+"times": PackedFloat32Array(1.4, 18.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -582,7 +582,7 @@ tracks/7/path = NodePath("../RocketPlatform/ReturnCamera:follow")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 11.7),
+"times": PackedFloat32Array(0, 13.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -594,7 +594,7 @@ tracks/8/path = NodePath("../Cameras/ExitRocketCamera:current")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 11.7),
+"times": PackedFloat32Array(1.5, 13.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -611,7 +611,7 @@ tracks/9/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("25_07esk")
 }],
-"times": PackedFloat32Array(0.6)
+"times": PackedFloat32Array(2.1)
 }
 tracks/9/use_blend = true
 tracks/10/type = "method"
@@ -621,7 +621,7 @@ tracks/10/path = NodePath("%Rocket")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(12.6, 14.2),
+"times": PackedFloat32Array(14.1, 15.7),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -638,7 +638,7 @@ tracks/11/path = NodePath("../RocketPlatform/RocketPath/RocketPathFollow/Rocket"
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -653,7 +653,7 @@ tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "clips": PackedStringArray("fade_out", "fade_in"),
-"times": PackedFloat32Array(14.8, 15.9)
+"times": PackedFloat32Array(16.3, 17.4)
 }
 tracks/13/type = "method"
 tracks/13/imported = false
@@ -662,7 +662,7 @@ tracks/13/path = NodePath("..")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(16.8),
+"times": PackedFloat32Array(18.3),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -681,7 +681,7 @@ tracks/14/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("25_scv7q")
 }],
-"times": PackedFloat32Array(9.2)
+"times": PackedFloat32Array(10.7)
 }
 tracks/14/use_blend = true
 
@@ -763,6 +763,7 @@ _data = {
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
+skip_rocket_cutscene = true
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -813,7 +814,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.0392157, 0.0313726, 0.0235294, 0)
+color = Color(0.0392157, 0.0313726, 0.0235294, 1)
 
 [node name="OverlayAnimation" type="AnimationPlayer" parent="Overlay"]
 unique_name_in_owner = true
@@ -864,11 +865,6 @@ transform = Transform3D(-0.0501459, 0.161398, -0.985613, -0.140531, 0.975897, 0.
 wall_min_slide_angle = 1.8867
 camera_path = NodePath("../../MainCamera")
 
-[node name="FollowPoints" type="Node3D" parent="."]
-
-[node name="Center" type="Node3D" parent="FollowPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4938, 100.612, 19.4683)
-
 [node name="Munchmes" type="Node3D" parent="."]
 
 [node name="Goby" parent="Munchmes" instance=ExtResource("4_7y8hl")]
@@ -898,6 +894,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.866, 95.1749, 36.2685)
 [node name="Snake4" parent="Munchmes" instance=ExtResource("6_j55uy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6908, 91.5853, 44.2517)
 
+[node name="FollowPoints" type="Node3D" parent="."]
+
+[node name="Center" type="Node3D" parent="FollowPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4938, 100.612, 19.4683)
+
+[node name="GuildFront" type="Node3D" parent="FollowPoints"]
+transform = Transform3D(0.808073, -0.0576144, 0.586259, -0.00148314, 0.995004, 0.0998279, -0.589081, -0.0815377, 0.80395, -12.5448, 101.985, 0.946573)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cpnc6")
 camera_attributes = SubResource("CameraAttributesPractical_1rtsb")
@@ -919,6 +923,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 79.9273, 0)
 for_munchme = false
 focus_path = NodePath("../Player/Muncher")
 look_input_deadzone = 0.1
+orbit_angles = Vector2(-20, 270)
 
 [node name="Planet" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0, 0, 0)
@@ -1671,7 +1676,7 @@ transform = Transform3D(0.423775, 0.758064, -0.495733, -0.760309, 0.00025329, -0
 curve = SubResource("Curve3D_g8sv8")
 
 [node name="RocketPathFollow" type="PathFollow3D" parent="RocketPlatform/RocketPath"]
-transform = Transform3D(0.573091, 0.0294026, 0.819163, 0.393554, 0.866635, -0.306689, -0.718642, 0.498048, 0.485299, -52.4797, 12.326, -34.635)
+transform = Transform3D(0.573092, 0.0294029, 0.819166, 0.393555, 0.866644, -0.30669, -0.718643, 0.498053, 0.485301, -52.4797, 12.326, -34.635)
 progress = 64.3
 rotation_mode = 4
 loop = false
@@ -1680,11 +1685,14 @@ loop = false
 unique_name_in_owner = true
 transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988, 0.998136, -0.0250779, -0.999581, -0.0144419, -0.0261015, 0.132022, -0.98487)
 
+[node name="RocketFocus" type="Node3D" parent="RocketPlatform/RocketPath/RocketPathFollow/Rocket"]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
+
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.370546, 0.556378, 0.393848, 0.000998089, 0.448717, -0.632952, -0.681671, -0.301786, -0.215019, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.355755, 0.554292, 0.410092, 0.000224985, 0.461554, -0.623654, -0.689507, -0.285844, -0.211796, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
-focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket")
+focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
 in_editor = true
 
 [node name="Cameras" type="Node3D" parent="."]
@@ -1748,6 +1756,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5392, 92.879, -58.4374)
 
 [node name="LightmapProbe13" type="LightmapProbe" parent="LightmapGI"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.384, 92.879, 1.74851)
+
+[node name="LightmapProbe14" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0043, 102.294, -28.5242)
+
+[node name="LightmapProbe15" type="LightmapProbe" parent="LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 
 [node name="RocketLandingMusicPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = 3.0

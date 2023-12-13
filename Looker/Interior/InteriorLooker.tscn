@@ -3,16 +3,20 @@
 [ext_resource type="PackedScene" uid="uid://tjvibtamtkfc" path="res://Looker/Looker.tscn" id="1_06m1g"]
 [ext_resource type="PackedScene" uid="uid://fjx7o5aysy0p" path="res://Looker/Interior/InteriorScene.tscn" id="2_mkit5"]
 
-[node name="Looker" instance=ExtResource("1_06m1g")]
-offset_right = 1200.0
-offset_bottom = 952.0
-pivot_offset = Vector2(600, 476)
-window_width = 1200
-window_height = 952
+[node name="InteriorLooker" instance=ExtResource("1_06m1g")]
+offset_right = 1280.0
+offset_bottom = 820.0
+pivot_offset = Vector2(640, 410)
+window_width = 1280
+window_height = 820
+can_close = false
 is_interior_looker = true
 
 [node name="PlaceholderBackground" parent="ContentMarginContainer" index="0"]
 visible = false
+
+[node name="SubViewportContainer" parent="ContentMarginContainer" index="1"]
+stretch_shrink = 2
 
 [node name="SubViewport" type="SubViewport" parent="ContentMarginContainer/SubViewportContainer" index="0"]
 own_world_3d = true
@@ -20,7 +24,11 @@ handle_input_locally = false
 screen_space_aa = 1
 audio_listener_enable_3d = true
 physics_object_picking = true
-size = Vector2i(1188, 914)
+size = Vector2i(634, 391)
 render_target_update_mode = 4
 
 [node name="InteriorScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_mkit5")]
+looker_path = NodePath("../../../..")
+
+[node name="CloseButton" parent="TopMarginContainer/TopHBoxContainer/CloseButtonCenterContainer" index="0"]
+visible = false

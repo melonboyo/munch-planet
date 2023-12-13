@@ -16,6 +16,7 @@ func planet_specific_ready():
 	GameState.water_height = 0.0
 	if GameState.during_intro:
 		%Muncher.player_controlled = false
+		manage_allowed = false
 		$Cutscene.play(play_from_scene, play_from_seconds)
 	
 	GameState.situation = Constants.Situation.Overworld
@@ -40,6 +41,7 @@ func stop_postlude():
 func _on_cutscene_animation_animation_finished(anim_name):
 	if anim_name == "Intro_2":
 		#GameState.during_intro = false
+		manage_allowed = true
 		pass
 	
 	if anim_name == "Enter_Rocket_1":
@@ -48,6 +50,7 @@ func _on_cutscene_animation_animation_finished(anim_name):
 
 func _on_rocket_go():
 	%Muncher.player_controlled = false
+	manage_allowed = false
 	$RocketCutscene.play()
 
 

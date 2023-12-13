@@ -5,8 +5,10 @@ class_name Munchme
 @export var situation: Constants.Situation = Constants.Situation.Overworld
 @export var freeze := false
 @export var player_controlled := false
+@export var can_be_caught := true
 @export_range(0.0, 1.0) var move_input_deadzone: float = 0.15
 @export_range(0.0, 10.0) var height: float = 0.75
+@export var is_inside := false
 
 
 var is_in_area = false
@@ -23,10 +25,11 @@ signal finish_catch(win: bool)
 
 func _ready():
 	if situation == Constants.Situation.Overworld:
-		$OverworldMovement.spherical_gravity = true
-		var root = get_parent().get_parent()
-		if root != null:
-			catch_munchme.connect(root._on_catch_munchme)
+		$OverworldMovement.spherical_gravity = not is_inside
+		if can_be_caught:
+			var root = get_parent().get_parent()
+			if root != null:
+				catch_munchme.connect(root._on_catch_munchme)
 	elif situation == Constants.Situation.Catch:
 		get_parent().start_minigame.connect(_on_start_minigame)
 		if not finish_catch.is_connected(get_parent()._on_munchme_finish_catch):
@@ -133,5 +136,9 @@ func play_animation(anim: String):
 	$Model.play_animation(anim)
 
 
-func set_follow_points(_points: Array[Vector3]):
-	$AiMovement.set_follow_points(_points)
+func set_follow_points(_points: Array[Vector3], spherical: bool = true):
+	$AiMovement.set_follow_points(_points, spherical)
+
+
+func rotate_towards(pos: Vector3):
+	$OverworldMovement.last_strong_direction = (pos - global_position).normalized()

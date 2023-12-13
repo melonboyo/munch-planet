@@ -15,7 +15,7 @@ var prev_mouse_mode = null
 		if %Title != null:
 			%Title.text = value
 
-@export_range(30, 1200) var window_width: int = 300:
+@export_range(30, 1600) var window_width: int = 300:
 	get:
 		return size.x
 	set(value):
@@ -62,7 +62,7 @@ func _ready():
 	
 	GameState.add_looker(self)
 	
-	if is_deploy_looker:
+	if is_deploy_looker or is_interior_looker:
 		grab_focus()
 
 

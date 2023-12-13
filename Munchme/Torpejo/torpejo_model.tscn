@@ -51,36 +51,26 @@ animations = [{
 [node name="Model" instance=ExtResource("1_rl1b2")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/rotation = Quaternion(-0.0107579, 0.998809, 0.0473509, -0.00476165)
-bones/1/rotation = Quaternion(0, -0.175338, 0, 0.984508)
-bones/2/rotation = Quaternion(-0.0378833, 0.368012, 0.0150081, 0.928928)
-bones/2/scale = Vector3(1.26597, 1.26597, 1.26597)
-bones/3/rotation = Quaternion(-0.0188799, -0.0405048, -0.11312, 0.992576)
-bones/4/rotation = Quaternion(-0.00149069, 0.065505, 0.0708025, 0.995336)
-bones/5/rotation = Quaternion(0.0660693, -0.0330432, 0.238658, 0.96829)
-bones/6/rotation = Quaternion(0.163757, -0.148006, -0.11068, 0.969035)
-bones/7/position = Vector3(0.843249, 0.409904, -0.322224)
-bones/7/rotation = Quaternion(-0.393646, 0.244329, -0.791038, 0.399506)
-bones/7/scale = Vector3(0.897881, 1.2404, 0.897881)
-bones/8/position = Vector3(1.16275, 0.00196791, -0.831657)
-bones/9/position = Vector3(-0.741963, 0.462218, 0.124505)
-bones/9/rotation = Quaternion(0.499152, 0.309815, 0.272721, 0.761896)
-bones/9/scale = Vector3(0.73435, 1.85436, 0.73435)
-bones/10/position = Vector3(-0.857417, 0.845622, 1.13433)
-bones/11/position = Vector3(0.532492, -0.0282023, 0.0144451)
-bones/11/rotation = Quaternion(-0.0593161, 0.243487, 0.777858, -0.576309)
-bones/11/scale = Vector3(0.716181, 1.94965, 0.71618)
-bones/12/position = Vector3(1.69583, -0.319359, 0.613973)
-bones/13/position = Vector3(-0.532492, -0.0282023, 0.014445)
-bones/13/rotation = Quaternion(-0.0111511, -0.0649754, 0.954235, -0.291702)
-bones/13/scale = Vector3(0.869898, 1.32149, 0.869897)
-bones/14/position = Vector3(-0.0252635, -0.774638, -0.0923327)
+bones/0/position = Vector3(-1.42109e-14, 0.248691, 0.430746)
+bones/0/rotation = Quaternion(1.68621e-07, 0.5, -0.866025, -9.73536e-08)
+bones/1/rotation = Quaternion(-0.167912, 0, -6.53872e-08, 0.985802)
+bones/2/rotation = Quaternion(-0.199305, 1.05356e-07, -8.55024e-08, 0.979937)
+bones/3/rotation = Quaternion(0.0986181, -0.00140214, -0.0920558, 0.990857)
+bones/5/rotation = Quaternion(0.098618, 0.00140201, 0.0920559, 0.990857)
+bones/7/rotation = Quaternion(-0.254837, 0.158173, -0.381091, 0.874534)
+bones/8/position = Vector3(1.2015, 0.791783, -0.386424)
+bones/9/rotation = Quaternion(-0.254837, -0.158173, 0.381091, 0.874534)
+bones/10/position = Vector3(-1.2015, 0.791783, -0.386424)
+bones/11/rotation = Quaternion(0.0590075, -0.225204, 0.925649, -0.298287)
+bones/12/position = Vector3(0.866867, -0.486607, -0.273162)
+bones/13/rotation = Quaternion(-0.0590075, -0.225204, 0.925649, 0.298286)
+bones/14/position = Vector3(-0.866866, -0.486608, -0.273163)
 
 [node name="Body" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_eng0g")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.941889, -0.0210392, 0.335264, 0.0120288, 0.995284, 0.0962518, -0.335708, 0.0946914, -0.937195, -0.0104867, -0.00129503, 0.0471978)
+transform = Transform3D(-1, 5.68434e-14, -3.89414e-07, 3.82685e-07, -0.185104, -0.982719, -7.2082e-08, -0.982719, 0.185103, -7.12763e-15, -0.000527769, -0.000913978)
 bone_name = "Torso"
 bone_idx = 1
 

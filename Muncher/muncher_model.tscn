@@ -22,23 +22,24 @@ volume_db = -5.0
 bus = &"Effects"
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0, 1.51937, 0)
-bones/0/scale = Vector3(0.944091, 1.10667, 0.944091)
+bones/0/position = Vector3(0, 1.07041, 0)
+bones/0/scale = Vector3(1.02432, 0.963158, 1.02432)
 bones/2/rotation = Quaternion(0.707107, -3.09086e-08, 1.37679e-07, 0.707107)
-bones/4/position = Vector3(-0.399912, -0.00800619, -0.301737)
-bones/4/rotation = Quaternion(0.602478, 0.288018, -0.616868, -0.416581)
+bones/4/position = Vector3(-0.347952, -0.204071, -0.0603477)
+bones/4/rotation = Quaternion(0.701614, 0.0602909, -0.704626, -0.0872031)
 bones/4/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(-0.00172186, -0.000193394, -0.00357253, 0.999992)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/position = Vector3(0.353894, -0.271762, 0.107814)
-bones/8/rotation = Quaternion(0.651209, 0.354075, 0.636616, 0.212786)
+bones/8/position = Vector3(0.338748, -0.256822, 0.0215628)
+bones/8/rotation = Quaternion(0.706045, 0.0729147, 0.703039, 0.0438192)
+bones/8/scale = Vector3(1, 1, 1)
 bones/10/rotation = Quaternion(0.0911258, -0.101586, -0.661499, 0.737425)
 bones/11/rotation = Quaternion(-0.00172188, 0.000193411, 0.00357254, 0.999992)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(0.195224, -0.255569, 0.887838, -0.329114)
+bones/12/rotation = Quaternion(0.0397689, -0.0520613, 0.95743, -0.281133)
 bones/13/rotation = Quaternion(-2.10095e-07, 1.35752e-07, -0.21259, 0.977142)
 bones/14/rotation = Quaternion(-1.62248e-07, -4.95851e-08, -0.180326, 0.983607)
-bones/15/rotation = Quaternion(0.0397657, 0.491802, 0.800563, 0.340072)
+bones/15/rotation = Quaternion(0.0083238, 0.102951, 0.952196, 0.287495)
 bones/17/rotation = Quaternion(-1.62248e-07, 4.95852e-08, 0.180326, 0.983607)
 
 [node name="Body" parent="Armature/Skeleton3D" index="0"]
@@ -46,7 +47,7 @@ surface_material_override/0 = ExtResource("3_fk1ay")
 
 [node name="HandAttachment" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
 unique_name_in_owner = true
-transform = Transform3D(-0.847433, 0.178495, 0.375905, 0.229833, -0.681008, 0.8415, 0.367045, 0.722447, 0.484413, -0.908911, 1.88387, 0.595518)
+transform = Transform3D(-0.99858, 0.214833, 0.0768729, -0.185261, -0.927045, 0.184226, 0.115082, 0.176214, 1.00246, -1.00661, 1.02118, 0.156034)
 visible = false
 bone_name = "WingEnd.R"
 bone_idx = 17

@@ -23,25 +23,31 @@ func _process(delta):
 		has_reached_end = true
 
 
-func set_follow_point(point: Vector3):
-	set_follow_points([point])
+func set_follow_point(point: Vector3, spherical: bool = true):
+	set_follow_points([point], spherical)
 
 
-func set_follow_points(_points: Array[Vector3]):
+func set_follow_points(_points: Array[Vector3], spherical: bool = true):
 	points.clear()
 	points = _points
 	for i in points.size():
-		points[i] = Math.position_to_position_on_surface(points[i], points[i].normalized(), target)
+		if spherical:
+			points[i] = Math.position_to_position_on_surface(points[i], points[i].normalized(), target)
+		else:
+			points[i] = Math.position_to_position_on_surface(points[i], Vector3.UP, target, false)
 	follow_point = points[0]
 	has_reached_end = false
 
 
-func add_points(_points: Array[Vector3]):
+func add_points(_points: Array[Vector3], spherical: bool = true):
 	if has_reached_end:
 		set_follow_points(_points)
 		return
 	for i in _points.size():
-		_points[i] = Math.position_to_position_on_surface(_points[i], _points[i].normalized(), target)
+		if spherical:
+			_points[i] = Math.position_to_position_on_surface(_points[i], _points[i].normalized(), target)
+		else:
+			_points[i] = Math.position_to_position_on_surface(_points[i], Vector3.UP, target, false)
 	points.append_array(_points)
 	has_reached_end = false
 

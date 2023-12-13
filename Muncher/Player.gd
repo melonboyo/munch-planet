@@ -6,6 +6,8 @@ class_name Muncher
 @export_range(0.0, 1.0) var move_input_deadzone: float = 0.15
 @export_range(0.0, 10.0) var height: float = 1.8
 @export var player_controlled: bool = true
+@export var is_inside := false
+
 #@export var is_inside
 
 @onready var camera: Node3D = get_node_or_null(camera_path)
@@ -51,7 +53,7 @@ func get_move_input() -> Vector3:
 func _physics_process(delta):
 	#print($AiMovement.has_reached_end)
 	$Model.is_on_floor = is_on_floor()
-	if GameState.focus_main and GameState.situation == Constants.Situation.Overworld and player_controlled:
+	if ((GameState.focus_main and GameState.situation == Constants.Situation.Overworld) or is_inside) and player_controlled:
 		$OverworldMovement.move_input = move_input
 	else:
 		$OverworldMovement.move_input = Vector3.ZERO
@@ -63,8 +65,8 @@ func _physics_process(delta):
 	#print(velocity, ", ", is_on_floor(), ", ")
 
 
-func set_follow_points(_points: Array[Vector3]):
-	$AiMovement.set_follow_points(_points)
+func set_follow_points(_points: Array[Vector3], spherical: bool = true):
+	$AiMovement.set_follow_points(_points, spherical)
 
 
 func walk_to_phone():
