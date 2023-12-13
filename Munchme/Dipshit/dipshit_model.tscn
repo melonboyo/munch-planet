@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://cndhpflfe2f6g"]
+
+[ext_resource type="PackedScene" uid="uid://crwyyaj2j2u83" path="res://Models/munchmes/Dipshit.glb" id="1_ks0q3"]
+[ext_resource type="Script" path="res://Munchme/munchme_model.gd" id="2_1lii7"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_8jpg1"]
+[ext_resource type="Texture2D" uid="uid://68j4prmatqv1" path="res://Models/textures/dipshit-texture.png" id="3_jpx3r"]
+[ext_resource type="Texture2D" uid="uid://bdcpmug7jxq75" path="res://Sprites/Faces/dip-0.png" id="5_blg5c"]
+[ext_resource type="Texture2D" uid="uid://8v8kxbcahfed" path="res://Sprites/Faces/dip-1.png" id="6_fh4ao"]
+[ext_resource type="Texture2D" uid="uid://m42l0rvgusyj" path="res://Sprites/Faces/dip-2.png" id="7_n7i7c"]
+
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxvyt"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_31tp3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ptuad"]
+render_priority = 0
+shader = ExtResource("2_8jpg1")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/use_normal_texture = true
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.717
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.13
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.12
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.309
+shader_parameter/wobble_displacement = 0.01
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/albedo_texture = ExtResource("3_jpx3r")
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_73xaw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_blg5c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fh4ao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_n7i7c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Model" instance=ExtResource("1_ks0q3")]
+script = ExtResource("2_1lii7")
+
+[node name="Skeleton3D" parent="Armature_001" index="0"]
+bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -2.11758e-22, 1)
+bones/1/position = Vector3(-0.463035, -0.158614, 0.0344067)
+bones/1/rotation = Quaternion(0.706982, 0.0132927, -0.706982, 0.0132928)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/position = Vector3(0.463035, -0.158614, 0.0344069)
+bones/2/scale = Vector3(1, 1, 1)
+
+[node name="Body_001" parent="Armature_001/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_ptuad")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" index="1"]
+transform = Transform3D(1, -7.1054e-15, 2.38418e-07, -7.1054e-15, 1, 5.96046e-08, -2.38418e-07, -5.96046e-08, 1, 0, 0.16494, 0)
+bone_name = "Body"
+bone_idx = 0
+
+[node name="Face" type="AnimatedSprite3D" parent="Armature_001/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 1.49012e-08, 0, 4.47035e-08, 1, -1.25184e-08, 0.796936, 0.501735)
+sprite_frames = SubResource("SpriteFrames_73xaw")
+frame_progress = 0.693704

@@ -30,7 +30,6 @@ var tutorial_cleared = false
 var tutorial_active = false
 
 
-
 func _ready():
 	var deadzone = ProjectSettings.get_setting("global/control_stick_deadzone")
 	InputMap.action_set_deadzone("look_right", deadzone)
