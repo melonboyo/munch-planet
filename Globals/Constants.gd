@@ -33,6 +33,7 @@ enum Munchme {
 	Solidude,
 	Snake,
 	Torpejo,
+	Dipshit,
 }
 
 enum Mood {

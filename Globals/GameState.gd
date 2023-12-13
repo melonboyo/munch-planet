@@ -40,7 +40,6 @@ var tutorial_active: bool:
 		if tutorial_stage == Constants.TutorialStage.NotStarted:
 			tutorial_stage = Constants.TutorialStage.Landed
 
-
 func _ready():
 	var deadzone = ProjectSettings.get_setting("global/control_stick_deadzone")
 	InputMap.action_set_deadzone("look_right", deadzone)
