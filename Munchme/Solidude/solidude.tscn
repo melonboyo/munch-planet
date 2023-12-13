@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dxvcr50hyn1yv" path="res://Munchme/Solidude/solidude_model.tscn" id="4_h5uhp"]
 [ext_resource type="PackedScene" uid="uid://bjn2rcatd3p5i" path="res://Munchme/Solidude/solidude_minigame.tscn" id="4_q1idu"]
 [ext_resource type="PackedScene" uid="uid://c4ys6xwwbmvsm" path="res://Sprites/solidude/SolidudeDies.tscn" id="5_fe33d"]
-[ext_resource type="AudioStream" uid="uid://u6y8nr44jq3d" path="res://SFX/Minigames/punch.ogg" id="6_e51nt"]
+[ext_resource type="AudioStream" uid="uid://bhpemdup1hr05" path="res://SFX/Minigames/punch_hit.ogg" id="7_tgp74"]
 
 [sub_resource type="Resource" id="Resource_3mgou"]
 script = ExtResource("3_ek83g")
@@ -198,7 +198,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0596607, -0.560593, -0.1202
 size = Vector3(6.6236, 1.14893, 6.07568)
 
 [node name="PunchedAudioPlayer" type="AudioStreamPlayer" parent="." index="12"]
-stream = ExtResource("6_e51nt")
+bus = &"Effects"
+
+[node name="PunchedHitAudioPlayer" type="AudioStreamPlayer" parent="." index="13"]
+stream = ExtResource("7_tgp74")
+volume_db = -12.0
 bus = &"Effects"
 
 [connection signal="punched" from="SolidudeMinigame" to="." method="_on_solidude_minigame_punched"]
