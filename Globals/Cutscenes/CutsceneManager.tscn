@@ -3,23 +3,25 @@
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneManager.gd" id="1_q7cik"]
 
 [node name="CutsceneManager" type="Control"]
+z_index = 99
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 8
 script = ExtResource("1_q7cik")
 
 [node name="Label" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 texture_filter = 4
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = -1
+anchor_top = 0.923
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -83.0
+offset_top = 0.159973
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -27,5 +29,6 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/normal_font_size = 52
 theme_override_font_sizes/bold_font_size = 52
 bbcode_enabled = true
+fit_content = true
 scroll_following = true
 visible_characters_behavior = 1

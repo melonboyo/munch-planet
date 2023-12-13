@@ -89,7 +89,7 @@ func _overworld_physics_process(delta):
 	
 	#floor_normal = target.get_floor_normal()
 	var new_floor_normal := target.up_direction
-	if target.is_on_floor() and not float_node.is_floating():
+	if (target.is_on_floor() and not float_node.is_floating()) or (target.is_on_floor() and target.is_inside):
 		if target.is_on_floor():
 			new_floor_normal = target.get_floor_normal()
 		steps_since_grounded = 0
@@ -105,7 +105,8 @@ func _overworld_physics_process(delta):
 		acceleration = air_acceleration
 	
 	floor_normal = last_floor_normal.move_toward(new_floor_normal, 8.0 * delta).normalized()
-	gravity_velocity += float_node.get_float_velocity(delta, target.velocity)
+	if not target.is_inside:
+		gravity_velocity += float_node.get_float_velocity(delta, target.velocity)
 	
 	if gravity_velocity.length() > max_fall_speed:
 		gravity_velocity = gravity_velocity.normalized() * max_fall_speed
@@ -115,13 +116,13 @@ func _overworld_physics_process(delta):
 		move_velocity = Vector3.ZERO
 	gravity_velocity = gravity_velocity.project(target.up_direction)
 	
-	if not float_node.is_floating(): snap_to_floor()
+	if not float_node.is_floating() or target.is_inside: snap_to_floor()
 	animate()
 	orient_to_direction(last_strong_direction, delta)
-
+	
 	target.velocity = move_velocity + gravity_velocity
 	target.move_and_slide()
-	last_position = target.global_position
+	last_position = target.global_position	
 	last_floor_normal = floor_normal
 
 
