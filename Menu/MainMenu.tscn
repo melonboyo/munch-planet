@@ -95,6 +95,34 @@ tracks/2/keys = {
 "values": [0.8]
 }
 
+[sub_resource type="Animation" id="Animation_v08h8"]
+resource_name = "fade_to_menu"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/MainMenu3D/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(-3, 1),
+"update": 0,
+"values": [Vector3(-346.07, 220.032, 518.499), Vector3(-201.567, 125.811, 519.667)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewportContainer/SubViewport/MainMenu3D/Camera3D:fov")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(-3, 1),
+"update": 0,
+"values": [75.0, 26.2]
+}
+
 [sub_resource type="Animation" id="Animation_oq7kt"]
 resource_name = "fade_to_title"
 length = 1.7
@@ -133,34 +161,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(-3, 1),
 "update": 0,
 "values": [1.0, 0.8]
-}
-
-[sub_resource type="Animation" id="Animation_v08h8"]
-resource_name = "fade_to_menu"
-length = 1.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewportContainer/SubViewport/MainMenu3D/Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.7),
-"transitions": PackedFloat32Array(-3, 1),
-"update": 0,
-"values": [Vector3(-346.07, 220.032, 518.499), Vector3(-201.567, 125.811, 519.667)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SubViewportContainer/SubViewport/MainMenu3D/Camera3D:fov")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.7),
-"transitions": PackedFloat32Array(-3, 1),
-"update": 0,
-"values": [75.0, 26.2]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yht4y"]
@@ -312,6 +312,7 @@ autoplay = "RESET"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_1y1ld")
+autoplay = true
 bus = &"Music"
 
 [connection signal="button_up" from="MarginContainer/CenterContainer/StartButton" to="." method="_on_start_button_button_up"]
