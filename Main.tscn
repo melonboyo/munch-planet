@@ -869,7 +869,7 @@ transform = Transform3D(-0.915803, -0.245389, -0.317946, -0.258819, 0.965926, 0,
 collision_layer = 262152
 
 [node name="Solidude" parent="Munchmes" instance=ExtResource("5_3y1ey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2644, 86.2134, 45.6933)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8707, 105.548, 11.0967)
 collision_layer = 262152
 floor_max_angle = 0.785398
 
