@@ -8,3 +8,5 @@ script = ExtResource("1_frc65")
 
 [node name="TutorialMusic" type="Node" parent="."]
 script = ExtResource("2_1cu85")
+
+[connection signal="finale" from="TutorialMusic" to="." method="_on_tutorial_music_finale"]
