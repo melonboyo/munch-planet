@@ -58,10 +58,16 @@ func _ready():
 
 
 func play(track: Track, from_position: float = 0.0, fade_in = null):
+	if GameState.tutorial_active and track != Track.Tutorial:
+		return
+	
 	return _play(track, from_position, fade_in or (fade_in == null && from_position > 0))
 
 
 func stop(fade_out: bool = true):
+	if GameState.tutorial_active:
+		return
+	
 	var previous_track = get_playing_track()
 	_stop(fade_out)
 	return previous_track
@@ -72,6 +78,9 @@ func switch_to(
 	from_position: float = 0.0, 
 	fade_out: bool = true, 
 	fade_in = null):
+	if GameState.tutorial_active:
+		return
+
 	var previous_track = get_playing_track()
 	_stop(fade_out, track, from_position)
 	return previous_track
