@@ -136,7 +136,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.53792, 0)
 walking_speed = 10.0
 
 [node name="TalkText" type="Node3D" parent="." index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.52653, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.92311, 0)
 visible = false
 
 [node name="TextFront" type="Sprite3D" parent="TalkText" index="0"]

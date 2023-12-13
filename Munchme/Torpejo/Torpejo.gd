@@ -13,6 +13,7 @@ var talk_player: CharacterBody3D
 
 func _munchme_specific_process(delta):
 	is_talking = CutsceneManager.is_scene_playing
+	#print(is_talkable, ", ", is_talking)
 	if is_talking or not is_talkable:
 		$TalkArea.monitoring = false
 		return
@@ -34,13 +35,15 @@ func _munchme_specific_process(delta):
 func _on_talk_area_body_entered(body):
 	in_talk_area = true
 	talk_player = body
+	$TalkText.visible = true
 
 
 func _on_talk_area_body_exited(body):
 	in_talk_area = false
-	can_catch = false
+	can_talk = false
 	$TalkText.visible = false
 
 
 func talk():
+	is_talkable = false
 	torpejo_talked_to.emit()

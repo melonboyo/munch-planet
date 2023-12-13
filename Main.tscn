@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=67 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="6_mqxa6"]
 [ext_resource type="PackedScene" uid="uid://rkcx1xfq1g7m" path="res://Munchme/Torpejo/Torpejo.tscn" id="7_8qtkd"]
 [ext_resource type="PackedScene" uid="uid://ct1kbjcajv4bf" path="res://FoliageSpawner.tscn" id="7_fo20x"]
+[ext_resource type="PackedScene" uid="uid://dqcx081xjqlj7" path="res://Munchme/Dipshit/dipshit.tscn" id="8_82vux"]
 [ext_resource type="PackedScene" uid="uid://c2eraey620ohp" path="res://Globals/Cutscenes/Cutscene.tscn" id="10_01ks1"]
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="11_nrph8"]
 [ext_resource type="PackedScene" uid="uid://bx7g1p62e5vct" path="res://Assets/Rocks/big_rock.tscn" id="14_3ulth"]
@@ -294,6 +295,9 @@ _data = {
 "tilts": PackedFloat32Array(0, 2.1519, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_skowq"]
+radius = 1.58025
 
 [sub_resource type="Resource" id="Resource_dmdrs"]
 script = ExtResource("11_nrph8")
@@ -738,6 +742,11 @@ _data = {
 "Return_1": SubResource("Animation_jgwt7")
 }
 
+[sub_resource type="Resource" id="Resource_oiibg"]
+script = ExtResource("11_nrph8")
+animation_name = "Tutorial_3"
+dialogue_translation_key = ""
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
 skip_rocket_cutscene = true
@@ -879,6 +888,9 @@ collision_layer = 262152
 [node name="Snake4" parent="Munchmes" instance=ExtResource("6_j55uy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6908, 91.5853, 44.2517)
 collision_layer = 262152
+
+[node name="Dipshit" parent="Munchmes" instance=ExtResource("8_82vux")]
+transform = Transform3D(0.441255, 0, 0.897382, 0, 1, 0, -0.897382, 0, 0.441255, -22.0668, 100.327, 16.1534)
 
 [node name="FollowPoints" type="Node3D" parent="."]
 
@@ -1888,6 +1900,14 @@ transform = Transform3D(-0.533267, 0.0464981, 1.17245, 0.0530296, 1.2875, -0.026
 [node name="CatchMunchmePoint" type="Node3D" parent="TutorialTorpejoPoints"]
 transform = Transform3D(1, -6.89179e-08, -2.98023e-08, -3.05474e-07, 0.999992, 2.00234e-07, -1.49012e-07, 1.76951e-08, 1, 54.2666, -29.0643, 48.3639)
 
+[node name="TorpejoArea" type="Area3D" parent="TutorialTorpejoPoints/CatchMunchmePoint"]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTorpejoPoints/CatchMunchmePoint/TorpejoArea"]
+shape = SubResource("SphereShape3D_skowq")
+
 [node name="Start" type="Node3D" parent="TutorialTorpejoPoints"]
 transform = Transform3D(0.999999, -9.31323e-09, 0, -7.07805e-08, 0.999998, 4.93601e-08, -2.98023e-07, 3.07336e-08, 1, 17.3811, -2.22651, -11.9631)
 
@@ -1937,6 +1957,9 @@ scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_4s4g3")])
 libraries = {
 "": SubResource("AnimationLibrary_csvc7")
 }
+
+[node name="TutorialMeetDipshitCutscene" parent="." instance=ExtResource("10_01ks1")]
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_oiibg")])
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
 visible = false
@@ -1992,10 +2015,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 [connection signal="focus_entered" from="UI" to="." method="_on_ui_focus_entered"]
 [connection signal="focus_exited" from="UI" to="." method="_on_ui_focus_exited"]
 [connection signal="body_entered" from="TutorialArea" to="." method="_on_tutorial_area_body_entered"]
+[connection signal="torpejo_talked_to" from="Munchmes/Torpejo" to="." method="_on_torpejo_torpejo_talked_to"]
 [connection signal="body_entered" from="Planet/Guild/EnterGuildArea" to="." method="_on_enter_guild_area_entered"]
+[connection signal="body_entered" from="TutorialTorpejoPoints/CatchMunchmePoint/TorpejoArea" to="." method="_on_torpejo_area_body_entered"]
 [connection signal="animation_finished" from="RocketReturnCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_finished"]
 
 [editable path="MainCamera"]
 [editable path="RocketReturnCutscene"]
 [editable path="TutorialWalkToMunchmeCutscene"]
 [editable path="ReturnToTutorialCutscene"]
+[editable path="TutorialMeetDipshitCutscene"]

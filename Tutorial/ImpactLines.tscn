@@ -57,4 +57,5 @@ pivot_offset = Vector2(960, 540)
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 position = Vector2(960, 540)
 sprite_frames = SubResource("SpriteFrames_tk3p3")
-frame_progress = 0.821514
+frame = 8
+frame_progress = 0.726057

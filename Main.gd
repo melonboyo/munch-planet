@@ -208,9 +208,9 @@ func _on_enter_guild_area_entered(body):
 
 
 func open_guild_interior_looker():
+	go_to_tutorial_stage(Constants.TutorialStage.GuildEntered)
 	var interior_ui: Looker = guild_interior_looker_scene.instantiate()
 	$UI.add_child(interior_ui)
-	go_to_tutorial_stage(Constants.TutorialStage.GuildEntered)
 
 
 func _on_exit_guild_looker():
@@ -244,3 +244,14 @@ func get_children_positions(parent: Node3D) -> Array[Vector3]:
 	for p in parent.get_children():
 		points.append(p.global_position)
 	return points
+
+
+func _on_torpejo_area_body_entered(body):
+	if GameState.tutorial_stage == Constants.TutorialStage.GuildExited:
+		%Torpejo.is_talkable = true
+
+
+func _on_torpejo_torpejo_talked_to():
+	if GameState.tutorial_stage == Constants.TutorialStage.GuildExited:
+		%Muncher.player_controlled = false
+		$TutorialMeetDipshitCutscene.play()
