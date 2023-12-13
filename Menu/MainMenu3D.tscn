@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://imceply230pp"]
+[gd_scene load_steps=13 format=3 uid="uid://imceply230pp"]
 
 [ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="2_0h8gc"]
 [ext_resource type="Script" path="res://Menu/MenuPlanet.gd" id="2_7d0fl"]
+[ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/Goby/goby.tscn" id="3_6gin3"]
+[ext_resource type="Script" path="res://Movement/FollowPoints.gd" id="4_wwdf8"]
 [ext_resource type="Texture2D" uid="uid://ios8c7bseiai" path="res://Sprites/Skybox/main-skybox.png" id="9_ynspi"]
 [ext_resource type="Script" path="res://Environment.gd" id="10_50364"]
 
@@ -62,7 +64,7 @@ shadow_blur = 1.99
 directional_shadow_pancake_size = 13.0
 
 [node name="Planet" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0, 0, 0)
+transform = Transform3D(0.583984, -0.0971392, -0.805932, 0.67565, -0.492145, 0.548899, -0.449955, -0.865076, -0.221773, 0, 0, 0)
 script = ExtResource("2_7d0fl")
 
 [node name="Earth" parent="Planet" instance=ExtResource("2_0h8gc")]
@@ -78,10 +80,68 @@ collision_mask = 2
 transform = Transform3D(-0.0148178, -0.999891, -4.65661e-10, 0.99989, -0.0148169, 0, -2.6077e-08, -9.31323e-10, 1, 0, 0, 0)
 shape = SubResource("SphereShape3D_jqb1s")
 
+[node name="GobyFollow" type="Node3D" parent="Planet"]
+script = ExtResource("4_wwdf8")
+target = NodePath("../Goby")
+loop = true
+
+[node name="Node3D10" type="Marker3D" parent="Planet/GobyFollow"]
+transform = Transform3D(0.599874, 0.791383, -0.117732, -0.795674, 0.574617, -0.191614, -0.0839897, 0.20862, 0.974379, -70.5282, -59.0564, 62.6306)
+gizmo_extents = 0.75
+
+[node name="Node3D" type="Marker3D" parent="Planet/GobyFollow"]
+transform = Transform3D(1, 0, 0, 0, 0.999997, -1.49012e-08, 0, 1.49012e-08, 0.999997, 1.13181, -36.6837, 97.7321)
+gizmo_extents = 0.75
+
+[node name="Node3D2" type="Marker3D" parent="Planet/GobyFollow"]
+transform = Transform3D(1, 0, 0, 0, 0.999997, -1.49012e-08, 0, 1.49012e-08, 0.999997, 40.112, -10.993, 103.305)
+gizmo_extents = 0.75
+
+[node name="Node3D3" type="Marker3D" parent="Planet/GobyFollow"]
+transform = Transform3D(1, 0, 0, 0, 0.999997, -1.49012e-08, 0, 1.49012e-08, 0.999997, 82.2574, 56.0704, 52.4377)
+gizmo_extents = 0.75
+
+[node name="Node3D4" type="Marker3D" parent="Planet/GobyFollow"]
+transform = Transform3D(1, 0, 0, 0, 0.999997, -1.49012e-08, 0, 1.49012e-08, 0.999997, 37.5593, 103.35, -3.89514)
+gizmo_extents = 0.75
+
+[node name="Node3D5" type="Marker3D" parent="Planet/GobyFollow"]
+transform = Transform3D(1, 0, 0, 0, 0.999997, -1.49012e-08, 0, 1.49012e-08, 0.999997, -72.2948, 111.607, 9.1917)
+gizmo_extents = 0.75
+
+[node name="Node3D6" type="Marker3D" parent="Planet/GobyFollow"]
+transform = Transform3D(0.599874, 0.791383, -0.117732, -0.795674, 0.574617, -0.191614, -0.0839896, 0.20862, 0.974381, -83.7604, 74.7045, -36.2409)
+gizmo_extents = 0.75
+
+[node name="Node3D7" type="Marker3D" parent="Planet/GobyFollow"]
+transform = Transform3D(0.599874, 0.791383, -0.117732, -0.795674, 0.574617, -0.191614, -0.0839897, 0.20862, 0.97438, -94.6964, 21.1811, -67.6262)
+gizmo_extents = 0.75
+
+[node name="Node3D8" type="Marker3D" parent="Planet/GobyFollow"]
+transform = Transform3D(0.599874, 0.791383, -0.117732, -0.795674, 0.574617, -0.191614, -0.0839897, 0.20862, 0.974379, -95.2929, -30.3232, -50.1384)
+gizmo_extents = 0.75
+
+[node name="Node3D9" type="Marker3D" parent="Planet/GobyFollow"]
+transform = Transform3D(0.599874, 0.791383, -0.117732, -0.795674, 0.574617, -0.191614, -0.0839897, 0.20862, 0.974379, -88.2329, -64.8572, -23.5876)
+gizmo_extents = 0.75
+
+[node name="Goby" parent="Planet" instance=ExtResource("3_6gin3")]
+transform = Transform3D(-0.0203961, -0.99596, -0.0874474, -0.0607988, -0.0860681, 0.994432, -0.997942, 0.0255992, -0.0587977, -83.1882, -71.4317, 30.4777)
+collision_layer = 262152
+can_be_caught = false
+
+[node name="Model" parent="Planet/Goby" index="3"]
+transform = Transform3D(1, -1.86265e-09, 2.98023e-08, 1.86265e-09, 1, -5.55112e-17, -2.98023e-08, 1.11022e-16, 1, -1.90735e-06, 0.00391388, 1.90735e-05)
+
+[node name="OverworldMovement" parent="Planet/Goby" index="7"]
+walking_speed = 20.0
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_63gv3")
 camera_attributes = SubResource("CameraAttributesPractical_e6hxx")
 script = ExtResource("10_50364")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99566, 0.0930657, 0, -0.0930657, 0.99566, 0, 172.731, 205.529)
+transform = Transform3D(1, 0, 0, 0, 0.99566, 0.0930657, 0, -0.0930657, 0.99566, -160.283, 132.361, 205.529)
+
+[editable path="Planet/Goby"]
