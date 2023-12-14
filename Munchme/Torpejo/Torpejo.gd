@@ -4,10 +4,10 @@ class_name Torpejo
 
 signal torpejo_talked_to
 
-var is_talkable := false
-var can_talk := false
-var is_talking := false
-var in_talk_area := false
+var is_talkable := false # can be talked to at all
+var can_talk := false # player is in the talk area and is pointing towards him
+var is_talking := false # is during a dialogue
+var in_talk_area := false # player is in the talk area
 var talk_player: CharacterBody3D
 
 

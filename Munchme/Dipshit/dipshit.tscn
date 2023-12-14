@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_0yd1n"]
 script = ExtResource("2_8tfwt")
-id = 0
+id = 133
 name = "Dipshit"
 munchme_type = 4
 max_health = 100
