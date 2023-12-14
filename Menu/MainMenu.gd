@@ -20,6 +20,7 @@ var hovering_earth: bool
 
 func _on_start_button_pressed():
 	$AnimationPlayer.play("fade_to_game")
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
 func _on_settings_button_pressed():
