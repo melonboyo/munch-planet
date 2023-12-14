@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/hatch_open.ogg-32947f67842939fea128db0642f58f
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dl6rlbluelsaw"]
+[gd_scene load_steps=26 format=3 uid="uid://dl6rlbluelsaw"]
 
 [ext_resource type="Script" path="res://Menu/MainMenu.gd" id="1_60vhr"]
 [ext_resource type="Script" path="res://Menu/MenuPlanet.gd" id="2_c0vw7"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cmn56erx6gh2j" path="res://Sprites/game_title.png" id="8_hyhtv"]
 [ext_resource type="AudioStream" uid="uid://dv3ohnqdtvta2" path="res://Music/title_screen.ogg" id="10_1y1ld"]
 [ext_resource type="AudioStream" uid="uid://bnst0sidu031u" path="res://Music/title_screen_melody.ogg" id="11_4pxpc"]
+[ext_resource type="Texture2D" uid="uid://6od1ys2isygd" path="res://logo_512.png" id="11_kh7ey"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jqb1s"]
 radius = 100.35
@@ -127,7 +128,7 @@ tracks/5/path = NodePath("TitleMusicPlayer:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(-0.1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -203,6 +204,30 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("CenterContainer/GoFrogLogo:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CenterContainer/GoFrogLogo:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_hmf81"]
@@ -601,12 +626,53 @@ tracks/10/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_nphm4"]
+resource_name = "intro"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/GoFrogLogo:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/GoFrogLogo:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.9, 2.1, 4, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yht4y"]
 _data = {
 "RESET": SubResource("Animation_iiptv"),
 "fade_to_game": SubResource("Animation_hmf81"),
 "fade_to_menu": SubResource("Animation_v08h8"),
-"fade_to_title": SubResource("Animation_oq7kt")
+"fade_to_title": SubResource("Animation_oq7kt"),
+"intro": SubResource("Animation_nphm4")
 }
 
 [node name="MainMenu" type="Control"]
@@ -775,11 +841,25 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GoFrogLogo" type="TextureRect" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("11_kh7ey")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_yht4y")
 }
-autoplay = "RESET"
+autoplay = "intro"
 
 [node name="TitleAmbiencePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_1y1ld")

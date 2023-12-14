@@ -36,7 +36,6 @@ func _on_effects_volume_slider_value_changed(value: float):
 	
 	Settings.effects_volume = floor(value)
 	Settings.save_settings()
-	print("changed settings")
 	
 	if is_dragging_effects and (not %EffectsPlayer.playing or %EffectsPlayer.stream != effect_demo_agaga):
 		%EffectsPlayer.stream = effect_demo_agaga

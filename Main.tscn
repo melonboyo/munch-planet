@@ -580,11 +580,11 @@ tracks/13/path = NodePath("../..")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(18.3),
+"times": PackedFloat32Array(17.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"play_overworld_music"
+"method": &"play_tutorial_music"
 }]
 }
 tracks/14/type = "audio"
@@ -1390,7 +1390,6 @@ _data = {
 [node name="Main" type="Node3D"]
 transform = Transform3D(0.721482, -0.141671, 0.677785, 0.692433, 0.147614, -0.70622, 0, 0.978846, 0.204599, 0, 0, 0)
 script = ExtResource("1_12yvb")
-tutorial_stage = 3
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -2505,7 +2504,7 @@ transform = Transform3D(0.423775, 0.758064, -0.495733, -0.760309, 0.00025329, -0
 curve = SubResource("Curve3D_g8sv8")
 
 [node name="RocketPathFollow" type="PathFollow3D" parent="RocketPlatform/RocketPath"]
-transform = Transform3D(0.573092, 0.0294029, 0.819166, 0.393555, 0.866644, -0.30669, -0.718643, 0.498053, 0.485301, -52.4797, 12.326, -34.635)
+transform = Transform3D(0.574253, 0.0122628, 0.818788, 0.468993, 0.814555, -0.341409, -0.670855, 0.57995, 0.462206, -65.3334, 17.4243, -42.0676)
 progress = 64.3
 rotation_mode = 4
 loop = false

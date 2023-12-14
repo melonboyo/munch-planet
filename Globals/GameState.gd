@@ -31,6 +31,7 @@ var open_lookers: Array[Looker] = []
 var looker_music_map := {}
 var water_height = 0.0
 var cursor_sensitivty: float = 0.5
+var has_game_started := true
 var tutorial_cleared = false
 var tutorial_stage := Constants.TutorialStage.NotStarted:
 	set(value):
@@ -62,6 +63,7 @@ func _process(delta):
 		Settings.save_settings()
 		
 	if (
+		has_game_started and
 		(Input.is_action_just_pressed("cancel") or Input.is_action_just_pressed("settings")) and 
 		GameState.situation != Constants.Situation.Catch
 	):
