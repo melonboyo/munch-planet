@@ -33,7 +33,6 @@ var looker_music_map := {}
 var water_height = 0.0
 var cursor_sensitivty: float = 0.5
 var has_game_started := true
-var tutorial_cleared = false
 var tutorial_stage := Constants.TutorialStage.NotStarted:
 	set(value):
 		if value <= tutorial_stage:
@@ -45,6 +44,8 @@ var tutorial_active: bool:
 	set(value):
 		if tutorial_stage == Constants.TutorialStage.NotStarted:
 			tutorial_stage = Constants.TutorialStage.Landed
+var tutorial_cleared:
+	get: return tutorial_stage >= Constants.TutorialStage.Finished
 
 func _ready():
 	var deadzone = ProjectSettings.get_setting("global/control_stick_deadzone")

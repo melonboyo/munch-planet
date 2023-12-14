@@ -1946,7 +1946,7 @@ collision_layer = 262152
 floor_block_on_wall = true
 
 [node name="Solidude" parent="Munchmes" instance=ExtResource("5_3y1ey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8707, 105.548, 11.0967)
+transform = Transform3D(1, 7.80895e-09, -2.08098e-08, 3.31634e-09, 1, 1.04308e-07, 3.20528e-08, -2.98023e-08, 1, 11.3117, 105.614, 5.66004)
 collision_layer = 262152
 floor_block_on_wall = true
 floor_max_angle = 0.785398

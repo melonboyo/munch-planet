@@ -2,6 +2,17 @@
 extends Control
 
 
+var wall_clink_sounds := [
+	preload("res://SFX/Minigames/wall_1.ogg"),
+	preload("res://SFX/Minigames/wall_2.ogg"),
+	preload("res://SFX/Minigames/wall_3.ogg"),
+]
+var paddle_clink_sounds := [
+	preload("res://SFX/Minigames/paddle_1.ogg"),
+	preload("res://SFX/Minigames/paddle_2.ogg"),
+	preload("res://SFX/Minigames/paddle_3.ogg"),
+]
+
 signal ball_dropped
 
 @export_range(0.0, 1920.0, 1.0) var playfield_width := 720.0:
@@ -47,6 +58,14 @@ func drop_ball():
 
 func _on_ball_body_entered(body):
 	%Ball/Animation.play("bounce")
+	if body is Paddle:
+		$PaddleClinkPlayer.stream = paddle_clink_sounds.pick_random()
+		$PaddleClinkPlayer.play()
+	else:
+		$WallClinkPlayer.stream = wall_clink_sounds.pick_random()
+		$WallClinkPlayer.play()
+	
+	
 	if not body is Paddle:
 		return
 	var angle = Vector2.UP.angle_to((ball.global_position - paddle.global_position).normalized())

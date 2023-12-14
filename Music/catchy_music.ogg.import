@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/catchy_music.ogg-7c3e395abdd713cc47573252e5c4
 [params]
 
 loop=true
-loop_offset=7.5
+loop_offset=3.75
 bpm=0.0
 beat_count=0
 bar_beats=4

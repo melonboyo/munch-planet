@@ -12,7 +12,7 @@ config_version=5
 
 config/name="MUNCH WORLD"
 config/tags=PackedStringArray("bigmode", "gamejam", "gofrog")
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Entrypoint.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://sketches/munch-icon.png"
 
