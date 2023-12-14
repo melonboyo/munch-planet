@@ -101,6 +101,7 @@ _data = {
 [node name="Munchme" type="CharacterBody3D"]
 collision_layer = 8
 collision_mask = 5
+floor_block_on_wall = false
 floor_max_angle = 0.959931
 script = ExtResource("1_ygrta")
 
