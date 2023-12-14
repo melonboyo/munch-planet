@@ -38,7 +38,7 @@ func is_floating() -> bool:
 	var situation = GameState.situation
 	if target is Munchme:
 		situation = target.situation
-	if situation != Constants.Situation.Overworld:
+	if not (situation == Constants.Situation.Overworld or situation == Constants.Situation.Interact):
 		return false
 	var depth = GameState.water_height - target.global_position.length() - target.height*0.5
 	return depth > 0

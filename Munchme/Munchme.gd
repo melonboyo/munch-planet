@@ -63,6 +63,9 @@ func _process(delta):
 
 func _physics_process(delta):
 	if freeze:
+		$OverworldMovement.move_input = Vector3.ZERO
+		#$Model.play_animation("Idle")
+		#$Model.set_animation_speed_scale(1.0)
 		return
 	if GameState.is_munchme_active(self) and situation == Constants.Situation.Interact:
 		$OverworldMovement.move_input = get_move_input()
@@ -91,7 +94,12 @@ func _overworld_process(delta):
 	
 	$CatchText.visible = can_catch
 	
-	if Input.is_action_just_pressed("interact") and can_catch and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+	if (
+		Input.is_action_just_pressed("interact") and 
+		can_catch and 
+		Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and
+		GameState.focus_main
+	):
 		attempt_catch()
 
 

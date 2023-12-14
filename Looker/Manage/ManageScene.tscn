@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://dg1b5732ogt5i"]
+[gd_scene load_steps=28 format=3 uid="uid://dg1b5732ogt5i"]
 
 [ext_resource type="Script" path="res://Looker/Manage/ManageScene.gd" id="1_uxug5"]
-[ext_resource type="Material" uid="uid://be83a65vy13cq" path="res://Materials/MainMaterial.tres" id="3_ocmrq"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_qq0rt"]
+[ext_resource type="Texture2D" uid="uid://bnv51mffvaltj" path="res://Models/textures/tummy-texture.png" id="3_fg0km"]
 [ext_resource type="Shader" uid="uid://jpiny8hlebgl" path="res://Shaders/2DFadeIn.tres" id="4_bb68e"]
 [ext_resource type="Texture2D" uid="uid://b67nwdf3d0dyr" path="res://Sprites/glow.png" id="4_vhdkc"]
 [ext_resource type="Texture2D" uid="uid://fypmv6jiwbbk" path="res://Sprites/deploy-button-pressed.png" id="6_bowjn"]
@@ -63,6 +64,41 @@ lightmap_size_hint = Vector2i(22, 22)
 size = Vector2(10, 10)
 subdivide_width = 32
 subdivide_depth = 32
+
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxvyt"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_31tp3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m41pi"]
+render_priority = 0
+shader = ExtResource("2_qq0rt")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
+shader_parameter/use_normal_texture = true
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.717
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.13
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.12
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.309
+shader_parameter/wobble_displacement = 0.01
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/albedo_texture = ExtResource("3_fg0km")
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qrdgl"]
 size = Vector3(11, 1, 23.4155)
@@ -169,7 +205,7 @@ shape = SubResource("BoxShape3D_w4jdp")
 [node name="Platform" type="MeshInstance3D" parent="."]
 layers = 1025
 mesh = SubResource("PlaneMesh_57blw")
-surface_material_override/0 = ExtResource("3_ocmrq")
+surface_material_override/0 = SubResource("ShaderMaterial_m41pi")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Platform"]
 input_ray_pickable = false
@@ -188,6 +224,7 @@ transform = Transform3D(-0.986856, 0.0581774, -0.150771, 0, 0.932953, 0.359997, 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 unique_name_in_owner = true
 transform = Transform3D(1, 7.45058e-09, 2.98023e-08, 7.45058e-09, 1, 0, -1.49012e-08, -5.96046e-08, 1, 0, 0, 6.472)
+current = true
 fov = 55.0
 
 [node name="Animation" type="AnimationPlayer" parent="CameraPivot"]
@@ -250,6 +287,7 @@ shape = SubResource("CircleShape2D_d5sf3")
 transform = Transform3D(1, 0, 0, 0, -0.0697739, 0.997563, 0, -0.997563, -0.0697739, 0, 6.13162, -0.428872)
 light_color = Color(0.988235, 0.984314, 1, 1)
 light_energy = 0.98
+shadow_enabled = true
 spot_range = 20.7743
 spot_attenuation = 0.0384733
 spot_angle = 42.5519

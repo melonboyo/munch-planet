@@ -17,7 +17,7 @@ noise = SubResource("FastNoiseLite_31tp3")
 [resource]
 render_priority = 0
 shader = ExtResource("1_0bsc6")
-shader_parameter/albedo = Color(0.894118, 0.894118, 0.894118, 1)
+shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/albedo_uv_scale = Vector2(1, 1)
 shader_parameter/albedo_uv_offset = Vector2(0, 0)
 shader_parameter/use_normal_texture = true

@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://6ux8ioy73xet"]
+[gd_scene load_steps=10 format=3 uid="uid://6ux8ioy73xet"]
 
-[ext_resource type="Material" uid="uid://be83a65vy13cq" path="res://Materials/MainMaterial.tres" id="2_1p6ls"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="1_4dkmg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to6ms"]
 
@@ -36,6 +36,40 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pkh8a")
 
+[sub_resource type="Gradient" id="Gradient_j6y4m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxvyt"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_j6y4m")
+noise = SubResource("FastNoiseLite_31tp3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_413ti"]
+render_priority = 0
+shader = ExtResource("1_4dkmg")
+shader_parameter/albedo = Color(0.6, 0.435294, 0.286275, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
+shader_parameter/use_normal_texture = true
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.717
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.13
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.12
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.309
+shader_parameter/wobble_displacement = 0.01
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uinvn"]
 radius = 0.992644
 
@@ -45,7 +79,7 @@ radius = 0.992644
 transform = Transform3D(1, 0, 0, 0, 0.140148, 0, 0, 0, 1, -0.000160396, 0.785374, 0.000315626)
 mesh = SubResource("ArrayMesh_nch67")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_1p6ls")
+surface_material_override/0 = SubResource("ShaderMaterial_413ti")
 
 [node name="CollisionPolygon3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.739635, 0)

@@ -6,7 +6,7 @@ class_name OverworldMovement
 @export var is_animating := true
 @export_node_path("CharacterBody3D") var target_path: NodePath
 @export_node_path("Node3D") var model_path: NodePath = "../Model"
-@export_node_path("Node3D") var float_node_path: NodePath
+@export_node_path("Node") var float_node_path: NodePath
 @export_range(0.5, 50.0) var walking_speed: float = 10.68
 @export_range(0.5, 50.0) var sneak_speed: float = 5.0
 @export_range(0.5, 50.0) var air_speed: float = 6.5
@@ -15,6 +15,8 @@ class_name OverworldMovement
 @export_range(0.5, 50.0) var alignment_speed: float = 8.0
 @export_range(0.01, 15.0) var probe_dist = 1.5
 @export_range(0.01, 180.0) var max_fall_speed = 40.0
+@export var can_jump := false
+@export_range(0.0, 100.0) var jump_velocity := 9.0
 
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -108,6 +110,16 @@ func _overworld_physics_process(delta):
 	if not target.is_inside:
 		gravity_velocity += float_node.get_float_velocity(delta, target.velocity)
 	
+	if (
+		can_jump and 
+		Input.is_action_just_pressed("interact") and 
+		Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and 
+		target.player_controlled and
+		target.is_on_floor() and 
+		not float_node.is_floating()
+	):
+		gravity_velocity += jump_velocity * target.up_direction
+	
 	if gravity_velocity.length() > max_fall_speed:
 		gravity_velocity = gravity_velocity.normalized() * max_fall_speed
 	
@@ -116,26 +128,38 @@ func _overworld_physics_process(delta):
 		move_velocity = Vector3.ZERO
 	gravity_velocity = gravity_velocity.project(target.up_direction)
 	
+	if move_velocity.length() > 0.05:
+		last_strong_direction = move_velocity.normalized()
+	
 	if not float_node.is_floating() or target.is_inside: snap_to_floor()
 	animate()
 	orient_to_direction(last_strong_direction, delta)
 	
 	target.velocity = move_velocity + gravity_velocity
 	target.move_and_slide()
-	last_position = target.global_position	
+	last_position = target.global_position
 	last_floor_normal = floor_normal
 
 
 func animate():
 	if not is_animating:
+		#model.play_animation("Idle")
+		#model.set_animation_speed_scale(1.0)
 		return
+	
 	if target is Muncher and target.sitting:
 		model.play_animation("Sit")
 		return
+	
+	if not target.is_on_floor() and not float_node.is_floating():
+		if model.has_animation("Jump"):
+			model.play_animation("Jump")
+			model.set_animation_speed_scale(1.0)
+			return
+	
 	if move_velocity.length() > 0.05:
 		model.play_animation("Run")
 		model.set_animation_speed_scale(move_velocity.length() * 0.12)
-		last_strong_direction = move_velocity.normalized()
 	else:
 		var idle = "Idle"
 		if get_parent() is Munchme:
@@ -155,7 +179,7 @@ func orient_to_direction(direction: Vector3, delta: float):
 
 
 func snap_to_floor() -> bool:
-	if steps_since_grounded < 1 or steps_since_grounded > 3:
+	if steps_since_grounded < 3 or steps_since_grounded > 5:
 		return false
 	var space_state = get_parent().get_world_3d().direct_space_state
 	var ray_query = PhysicsRayQueryParameters3D.create(

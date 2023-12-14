@@ -20,7 +20,7 @@ static func position_to_position_on_surface(pos: Vector3, up: Vector3, node: Nod
 	var ray_query = PhysicsRayQueryParameters3D.create(
 		pos + up*10.0, pos - up*200.0, pow(2, 5-1)
 	)
-	ray_query.hit_back_faces = true
+	ray_query.hit_back_faces = false
 	ray_query.hit_from_inside = true
 	var result = space_state.intersect_ray(ray_query)
 	if !result:
