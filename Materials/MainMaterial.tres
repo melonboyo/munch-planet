@@ -3,16 +3,16 @@
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="1_0bsc6"]
 [ext_resource type="Texture2D" uid="uid://bnv51mffvaltj" path="res://Models/textures/tummy-texture.png" id="2_gh2i7"]
 
-[sub_resource type="Gradient" id="Gradient_j6y4m"]
+[sub_resource type="Gradient" id="Gradient_6kjvt"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_31tp3"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8kajq"]
 frequency = 0.0031
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jxvyt"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_is1dc"]
 width = 256
 height = 256
-color_ramp = SubResource("Gradient_j6y4m")
-noise = SubResource("FastNoiseLite_31tp3")
+color_ramp = SubResource("Gradient_6kjvt")
+noise = SubResource("FastNoiseLite_8kajq")
 
 [resource]
 render_priority = 0
@@ -36,4 +36,4 @@ shader_parameter/wobble_frequency = 2.0
 shader_parameter/num_of_wobbles = 7
 shader_parameter/use_uv2 = true
 shader_parameter/albedo_texture = ExtResource("2_gh2i7")
-shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_is1dc")
