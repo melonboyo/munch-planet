@@ -11,6 +11,7 @@ var main_scene = preload("res://Main.tscn")
 func planet_specific_ready():
 	GameState.during_intro = play_intro
 	if not play_intro:
+		$Overlay/CircleTransition.material.set_shader_parameter("circle_size", 1.05)
 		play_postlude()
 	
 	GameState.water_height = 0.0

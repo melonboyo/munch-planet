@@ -10,6 +10,7 @@ var intro_scene = preload("res://Intro/Intro.tscn")
 var main_scene = preload("res://Main.tscn")
 var settings_looker_scene = preload("res://Looker/Settings/SettingsLooker.tscn")
 
+const INTRO_FADE_IN_DURATION = 1  # seconds
 const EARTH_COLLISION_LAYER = 1
 const PLANET_NORMAL_SCALE := 1
 const PLANET_NOT_HOVER_SCALE := 0.8
@@ -18,7 +19,12 @@ var hovering_earth: bool
 @export var earth_scale: float = 0.8
 
 
+func _ready():
+	GameState.has_game_started = false
+
+
 func _on_start_button_pressed():
+	%StartButton.disabled = true
 	$AnimationPlayer.play("fade_to_game")
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
@@ -34,6 +40,12 @@ func _on_exit_button_pressed():
 func _process(delta):
 	%Planet.scale = %Planet.scale.lerp(Vector3.ONE * earth_scale, 0.2)
 	if $AnimationPlayer.is_playing():
+		# Skip to the fade_in part of the intro cutscene on interact
+		if (Input.is_action_just_pressed("interact") and
+			$AnimationPlayer.current_animation == "intro" and 
+		 	$AnimationPlayer.current_animation_position < $AnimationPlayer.current_animation_length - INTRO_FADE_IN_DURATION):
+			$AnimationPlayer.seek($AnimationPlayer.current_animation_length - INTRO_FADE_IN_DURATION)
+		
 		return
 	
 	if state == State.Title:
@@ -89,4 +101,5 @@ func open_settings():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "fade_to_game":
+		GameState.has_game_started = true
 		get_tree().change_scene_to_packed(intro_scene)

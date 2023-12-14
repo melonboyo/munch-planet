@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Assets/rocket.gd" id="1_l3elb"]
 [ext_resource type="Texture2D" uid="uid://c4k1ylk1f483h" path="res://Sprites/go_text.png" id="1_x7cbv"]
 [ext_resource type="Texture2D" uid="uid://buf67kls8306j" path="res://Sprites/go_border.png" id="2_wya8t"]
-[ext_resource type="AudioStream" uid="uid://dwbr4ugggfwb2" path="res://SFX/Intro/hatch_open.ogg" id="4_dq1mj"]
+[ext_resource type="AudioStream" uid="uid://n0bkuodeg6do" path="res://SFX/Intro/hatch_open.ogg" id="4_dq1mj"]
 [ext_resource type="Material" uid="uid://cb7cycyyaetms" path="res://Materials/ParticleAnimateMaterial.tres" id="4_jv3kg"]
-[ext_resource type="AudioStream" uid="uid://cgoelw1i1gnwf" path="res://SFX/Intro/hatch_close.ogg" id="5_n1jwh"]
+[ext_resource type="AudioStream" uid="uid://68wa7hlfodh6" path="res://SFX/Intro/hatch_close.ogg" id="5_n1jwh"]
 [ext_resource type="AudioStream" uid="uid://bnlmjkpvo6mry" path="res://SFX/Intro/rocket_blast.ogg" id="7_rrapg"]
 [ext_resource type="AudioStream" uid="uid://ccf4qd8ps18bq" path="res://SFX/Intro/rocket_blast_loop.ogg" id="8_7n281"]
 
@@ -533,7 +533,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0, 8.2, 11),
 "transitions": PackedFloat32Array(1, -2, 1),
 "update": 0,
-"values": [-5.0, -5.0, -80.0]
+"values": [-12.0, -12.0, -80.0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false

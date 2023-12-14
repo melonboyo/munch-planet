@@ -3,7 +3,7 @@ class_name Main
 
 
 @export var skip_rocket_cutscene := false
-@export var tutorial_stage: Constants.TutorialStage = Constants.TutorialStage.Landed
+@export var tutorial_stage: Constants.TutorialStage = Constants.TutorialStage.NotStarted
 
 
 var catch_looker_scene := preload("res://Looker/Catch/CatchLooker.tscn")
@@ -37,7 +37,6 @@ func planet_specific_ready():
 		
 		tutorial_music = TutorialMusic.new()
 		add_child(tutorial_music)
-		tutorial_music.play(GameState.tutorial_stage)
 		ready_tutorial_stage(GameState.tutorial_stage)
 
 	%OverlayAnimation.play("fade_in")
@@ -112,6 +111,10 @@ func add_munchme_to_inventory(type: Constants.Munchme):
 	resource.munchme_type = type
 	resource.id = randi()
 	GameState.add_munchme(resource)
+
+
+func play_tutorial_music():
+	tutorial_music.play(GameState.tutorial_stage)
 
 
 func play_overworld_music():

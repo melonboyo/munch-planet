@@ -10,7 +10,6 @@ pivot_offset = Vector2(96.5, 133)
 title = "Settings"
 window_width = 193
 window_height = 266
-is_in_main_menu = null
 is_deploy_looker = false
 
 [node name="PlaceholderBackground" parent="ContentMarginContainer" index="0"]
@@ -22,7 +21,7 @@ handle_input_locally = false
 screen_space_aa = 1
 audio_listener_enable_3d = true
 physics_object_picking = true
-size = Vector2i(181, 228)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="SettingsScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_mfmqj")]
