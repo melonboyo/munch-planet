@@ -112,7 +112,7 @@ func _overworld_physics_process(delta):
 	
 	if (
 		can_jump and 
-		Input.is_action_just_pressed("interact") and 
+		Input.is_action_just_pressed("use_power") and 
 		Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and 
 		target.player_controlled and
 		target.is_on_floor() and 

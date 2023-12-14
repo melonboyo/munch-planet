@@ -671,6 +671,7 @@ spherical_gravity = false
 
 [node name="Torpejo" parent="." instance=ExtResource("7_4qmg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.99013, -4.76358)
+floor_block_on_wall = true
 
 [node name="WalkHere" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.800776, 3.73964)

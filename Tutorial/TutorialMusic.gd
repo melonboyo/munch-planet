@@ -7,7 +7,7 @@ const BPM := 140
 const MEASURES := 4
 const BEATS_PER_MEASURE := 4
 const START_TUTORIAL_STAGE = Constants.TutorialStage.Landed
-const END_TUTORIAL_STAGE := Constants.TutorialStage.Deploying
+const END_TUTORIAL_STAGE := Constants.TutorialStage.Kidnapped
 
 
 # Essentially the length of half of the cut. We duplicate

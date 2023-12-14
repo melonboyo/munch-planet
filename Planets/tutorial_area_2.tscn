@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://j1816wugs53e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3yl1q"]
+size = Vector3(26.0291, 112.871, 128.462)
+
+[node name="TutorialArea2" type="Area3D"]
+collision_layer = 0
+collision_mask = 10
+monitoring = false
+monitorable = false
+metadata/_edit_group_ = true
+
+[node name="C1" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.579417, 0.327682, 0.746277, -0.471577, 0.881588, -0.0209581, -0.66476, -0.339781, 0.665327, 36.5854, 110.87, -38.6341)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="C2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.939179, 0.292671, 0.17974, -0.343101, 0.775826, 0.529528, 0.0155345, -0.558984, 0.82905, 24.4314, 100.214, -78.0038)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="C3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.598807, 0.530223, -0.600261, 0.307065, 0.540226, 0.783516, 0.739701, -0.653487, 0.160682, 25.2321, 53.4323, -92.5403)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="C4" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.264502, 0.530224, -0.805563, 0.83767, 0.540226, 0.0805363, 0.477875, -0.653487, -0.587037, 90.1217, 24.7041, -63.6396)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="C5" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.752949, 0.656358, -0.0477706, 0.460688, 0.473872, -0.75049, -0.469948, -0.587083, -0.659177, 97.4222, 22.4061, -58.0429)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="C6" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.434127, 0.682498, 0.588009, -0.320296, 0.493139, -0.808861, -0.842, -0.539481, 0.00450972, 86.6024, 84.9445, -19.4326)
+shape = SubResource("BoxShape3D_3yl1q")

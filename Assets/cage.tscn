@@ -68,3 +68,5 @@ shape = SubResource("BoxShape3D_kvnml")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18, 18, 7.9875e-07)
 shape = SubResource("BoxShape3D_kvnml")
+
+[node name="Platform" type="StaticBody3D" parent="." index="2"]

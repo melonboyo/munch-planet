@@ -33,8 +33,6 @@ func _ready():
 
 
 func planet_specific_ready():
-	GameState.munchme_added.connect(_on_munchme_added)
-	
 	if skip_rocket_cutscene and tutorial_stage == Constants.TutorialStage.NotStarted:
 		GameState.tutorial_stage = Constants.TutorialStage.Landed
 	
@@ -56,6 +54,22 @@ func planet_specific_ready():
 	
 	GameState.situation = Constants.Situation.Overworld
 	GameState.munchme_deployed.connect(_on_munchme_deployed)
+	GameState.munchme_added.connect(_on_munchme_added)
+
+
+func set_invis_wall_active(munchme: bool, player: bool):
+	#var value = pow(2, 2-1) if player else 0
+	#if munchme:
+		#value += pow(2, 4-1)
+	var value = 0
+	if munchme or player:
+		value = 1
+	#if not munchme:
+		#$TutorialInvisWall/C4.disabled = true
+	#else:
+		#$TutorialInvisWall/C4.disabled = false
+		
+	$TutorialInvisWall.collision_layer = value
 
 
 func get_point_on_surface(node: Node3D) -> Vector3:
@@ -66,6 +80,7 @@ func start_tutorial():
 	GameState.tutorial_active = true
 	tutorial_music = TutorialMusic.new()
 	add_child(tutorial_music)
+	tutorial_music.finale.connect(_on_finale_music)
 	tutorial_music.play(GameState.tutorial_stage)
 	ready_tutorial_stage(GameState.tutorial_stage)
 
@@ -76,7 +91,7 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 	%Torpejo.visible = true
 	%Dipshit.freeze = false
 	%Dipshit.visible = false
-	$TutorialArea2.monitoring = false
+	set_invis_wall_active(false, false)
 	manage_allowed = true
 	
 	if stage > Constants.TutorialStage.NotStarted:
@@ -106,11 +121,11 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 		%Dipshit.global_position = get_point_on_surface($TutorialTorpejoPoints/DipshitWaitingPoints/Follow2)
 		%Muncher.global_position = get_point_on_surface($TutorialTorpejoPoints/AfterCatchMuncherPoint)
 		%Torpejo.global_position = get_point_on_surface($TutorialTorpejoPoints/CatchMunchmePoint)
-		$TutorialArea2.monitoring = true
+		set_invis_wall_active(true, true)
 		manage_allowed = false
 	elif stage == Constants.TutorialStage.Caught:
 		$TutorialArea/TutorialProgressCollision.disabled = true
-		$TutorialArea2.monitoring = true
+		set_invis_wall_active(true, true)
 		%Dipshit.queue_free()
 		%Muncher.global_position = get_point_on_surface($TutorialTorpejoPoints/DipshitWaitingPoints/Follow2)
 		%Torpejo.global_position = get_point_on_surface($TutorialTorpejoPoints/CatchMunchmePoint)
@@ -120,13 +135,14 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 		add_munchme_to_inventory(Constants.Munchme.Dipshit)
 		%TutorialDeployCutscene.play()
 	elif stage == Constants.TutorialStage.Deploying:
-		$TutorialArea2.monitoring = true
+		set_invis_wall_active(false, true)
 		%Muncher.player_controlled = false
 		$TutorialArea/TutorialProgressCollision.disabled = true
 	elif stage == Constants.TutorialStage.Kidnapped:
-		$TutorialArea2.monitoring = true
+		set_invis_wall_active(false, true)
 		$TutorialArea/TutorialProgressCollision.disabled = true
 	elif stage == Constants.TutorialStage.Finished:
+		set_invis_wall_active(false, false)
 		$TutorialArea2.monitoring = false
 		$TutorialArea.monitoring = false
 	else:
@@ -274,6 +290,10 @@ func get_ray_position(origin: Vector3, dir: Vector3, length: float = 4.0) -> Vec
 func _on_munchme_deployed(resource):
 	var spawn_pos: Vector3 = get_ray_position(%Muncher.global_position, %Muncher.global_transform.basis.z)
 	#spawn_pos = spawn_pos.rotated(Vector3.RIGHT, rotation.x).rotated(Vector3.UP, rotation.y).rotated(Vector3.FORWARD, rotation.z)
+	
+	if GameState.tutorial_stage == Constants.TutorialStage.Deploying:
+		spawn_pos = $TutorialTorpejoPoints/CagePoint.global_position
+	
 	spawn_pos = Math.position_to_position_on_surface(
 		spawn_pos, spawn_pos.normalized(), %Muncher
 	) + spawn_pos.normalized() * 1.2
@@ -284,6 +304,7 @@ func _on_munchme_deployed(resource):
 		%TutorialDeployCutscene3.play()
 	elif GameState.tutorial_stage == Constants.TutorialStage.Deploying:
 		%TutorialKidnappedCutscene.play()
+		%Muncher.player_controlled = false
 	
 	close_manage()
 
@@ -291,18 +312,26 @@ func _on_munchme_deployed(resource):
 func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
 	var deploy_ui: Looker = deploy_looker_scene.instantiate()
 	deploy_ui.music_track = munchme_resource.roam_track
-	if GameState.tutorial_stage == Constants.TutorialStage.Caught:
-		deploy_ui.can_close = false
 	
 	var munchme: Munchme = Scenes.munchmes[munchme_resource.munchme_type].instantiate()
 	munchme.resource = munchme_resource
+	munchme.name = StringName(munchme_resource.name)
 	munchme.situation = Constants.Situation.Interact
 	munchme.global_position = pos
 	munchme.camera = deploy_ui.get_node("%DeployScene").get_camera()
 	munchme.player_controlled = true
 	munchme.is_inside = false
+	munchme.unique_name_in_owner = true
 	#GameState.deployed_munchme = munchme
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	if GameState.tutorial_stage == Constants.TutorialStage.Caught:
+		deploy_ui.can_close = false
+	elif GameState.tutorial_stage == Constants.TutorialStage.Deploying:
+		deploy_ui.can_close = false
+		deploy_ui.spawn_centered = false
+		munchme.player_controlled = false
+	
 	GameState.deploy_munchme(deploy_ui, munchme)
 	$Player.add_child(munchme)
 	$UI.add_child(deploy_ui)
@@ -401,8 +430,9 @@ func _on_torpejo_torpejo_talked_to():
 	if GameState.tutorial_stage == Constants.TutorialStage.GuildExited:
 		%Muncher.player_controlled = false
 		$MainCamera.enable = false
+		set_invis_wall_active(true, true)
 		%TutorialMeetDipshitCutscene.play()
-		$TutorialArea2.monitoring = true
+		#$TutorialArea2.monitoring = true
 
 
 func rotate_torpejo_towards_camera():
@@ -438,6 +468,21 @@ func _on_cutscene_animation_animation_finished(anim_name):
 		%TutorialCageCutscene.play()
 	if anim_name == "Test_Dipshit_3":
 		manage_allowed = true
+		set_invis_wall_active(false, true)
+	if anim_name == "Open_Manage":
+		manage_allowed = true
+	if anim_name == "Teach_Deploy":
+		#$TutorialArea2.monitoring = true
+		pass
+	if anim_name == "Capture_Dipshit":
+		%Muncher.player_controlled = true
+		if not GameState.deployed_munchmes.is_empty():
+			GameState.deployed_munchmes[0]
+		manage_allowed = false
+	if anim_name == "Begin_Escape":
+		go_to_tutorial_stage(Constants.TutorialStage.Kidnapped)
+	if anim_name == "End_Tutorial":
+		set_invis_wall_active(false, false)
 
 
 func return_to_torpejo():
@@ -450,9 +495,8 @@ func set_deploy_looker_can_close():
 
 func _on_munchme_added(resource: MunchmeResource):
 	if GameState.tutorial_stage == Constants.TutorialStage.Deploying:
-		if resource.id == dipshit_id:
-			manage_allowed = false
-			%TutorialCageCutscene.play()
+		manage_allowed = false
+		%TutorialCageCutscene.play()
 
 
 func _on_tutorial_area_2_body_entered(body):
@@ -460,3 +504,11 @@ func _on_tutorial_area_2_body_entered(body):
 		$TutorialPlayer.play("ForceDipshitToCatchCenter")
 	else:
 		$TutorialPlayer.play("ForcePlayerToCatchCenter")
+
+
+func _on_finale_music():
+	$FinaleTimer.start()
+
+
+func _on_finale_timer_timeout():
+	%TutorialFinaleCutscene.play()
