@@ -14,9 +14,7 @@ config/name="MUNCH WORLD"
 config/tags=PackedStringArray("bigmode", "gamejam", "gofrog")
 run/main_scene="res://Menu/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/show_image=false
-boot_splash/use_filter=false
+boot_splash/bg_color=Color(0.0392157, 0.0313726, 0.0235294, 1)
 config/icon="res://sketches/munch-icon.png"
 
 [autoload]
@@ -253,3 +251,4 @@ anti_aliasing/quality/msaa_2d=2
 anti_aliasing/quality/msaa_3d=2
 anti_aliasing/quality/screen_space_aa=1
 occlusion_culling/use_occlusion_culling=true
+environment/defaults/default_clear_color.release=Color(0.0392157, 0.0313726, 0.0235294, 1)
