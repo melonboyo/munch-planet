@@ -1,10 +1,11 @@
-[gd_scene load_steps=133 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=134 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
 [ext_resource type="Shader" path="res://Shaders/CircleTransition.gdshader" id="2_ww73t"]
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/Camera.tscn" id="3_8oj03"]
 [ext_resource type="Script" path="res://Environment.gd" id="3_ligat"]
+[ext_resource type="PackedScene" uid="uid://c6sd1o4abgguc" path="res://Tutorial/ImpactLines.tscn" id="3_mjopi"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/Goby/goby.tscn" id="4_7y8hl"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
 [ext_resource type="PackedScene" uid="uid://cuw7r31kr73x" path="res://Munchme/Solidude/solidude.tscn" id="5_3y1ey"]
@@ -975,6 +976,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector3(0.12712, 2.20655, 0.990541), Vector3(0.12712, 2.20655, 0.990541), Vector3(0.44474, 1.9755, 0.924272), Vector3(0.12712, 2.20655, 0.990541)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("%TutorialMeetDipshitCutscene/../../Overlay/ImpactLines:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(4.7, 7.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_gfidx"]
 resource_name = "End_Catch_Tut"
@@ -1177,6 +1190,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.44474, 1.9755, 0.924272)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("%TutorialMeetDipshitCutscene/../../Overlay/ImpactLines:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_sbxk1"]
@@ -1923,6 +1948,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.0392157, 0.0313726, 0.0235294, 1)
+
+[node name="ImpactLines" parent="Overlay" instance=ExtResource("3_mjopi")]
+visible = false
+layout_mode = 1
 
 [node name="OverlayAnimation" type="AnimationPlayer" parent="Overlay"]
 unique_name_in_owner = true
