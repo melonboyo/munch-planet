@@ -18,20 +18,24 @@ roam_track = 2
 catch_looker_size = Vector2(900, 900)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ismua"]
-radius = 0.593804
-height = 1.75105
+radius = 0.443271
+height = 1.49385
 
 [node name="Dipshit" instance=ExtResource("1_ogbw3")]
 script = ExtResource("2_db2f0")
 resource = SubResource("Resource_0yd1n")
-height = 1.75
+height = 1.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.873464, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.748874, 0)
 shape = SubResource("CapsuleShape3D_ismua")
 
 [node name="Model" parent="." index="1" instance=ExtResource("3_vmdgh")]
-transform = Transform3D(0.762352, 0, 0, 0, 0.762352, 0, 0, 0, 0.762352, 0, -0.0176239, 0)
+transform = Transform3D(0.649745, 0, 0, 0, 0.649745, 0, 0, 0, 0.649745, 0, -0.0176239, 0)
+
+[node name="OverworldMovement" parent="." index="4"]
+can_jump = true
+jump_velocity = 11.0
 
 [node name="DipshitMinigame" parent="." index="7" instance=ExtResource("4_54x24")]
 visible = false

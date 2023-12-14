@@ -228,7 +228,7 @@ locale/translations=PackedStringArray("res://text.en.translation")
 
 [physics]
 
-3d/default_gravity=13.5
+3d/default_gravity=18.5
 
 [rendering]
 

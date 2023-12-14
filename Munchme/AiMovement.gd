@@ -90,6 +90,7 @@ func _get_points(nodes: Array[Node]) -> Array[Node3D]:
 	var _points: Array[Node3D] = []
 	for child in nodes:
 		if child is Node3D:
+			print(child)
 			_points.append(child)
 	
 	return _points

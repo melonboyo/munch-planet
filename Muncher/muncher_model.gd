@@ -58,3 +58,7 @@ func grab_phone(yes: bool = true):
 	else:
 		%phone_handle.put_down()
 	$PhonePlayer.play()
+
+
+func has_animation(anim: String) -> bool:
+	return $AnimationPlayer.has_animation(anim)

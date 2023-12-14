@@ -3,6 +3,7 @@ class_name Main
 
 
 @export var skip_rocket_cutscene := false
+@export var tutorial_stage: Constants.TutorialStage = Constants.TutorialStage.Landed
 
 
 var catch_looker_scene := preload("res://Looker/Catch/CatchLooker.tscn")
@@ -31,19 +32,22 @@ func _ready():
 
 func planet_specific_ready():
 	if not GameState.tutorial_cleared:
-		GameState.tutorial_stage = Constants.TutorialStage.Landed
+		GameState.tutorial_active = true
+		go_to_tutorial_stage(tutorial_stage)
 		
 		tutorial_music = TutorialMusic.new()
 		add_child(tutorial_music)
 		tutorial_music.play(GameState.tutorial_stage)
+		ready_tutorial_stage(GameState.tutorial_stage)
 
 	%OverlayAnimation.play("fade_in")
-	if not skip_rocket_cutscene:
-		$RocketReturnCutscene.play()
+	
+	if not skip_rocket_cutscene and tutorial_stage == Constants.TutorialStage.NotStarted:
+		%RocketReturnCutscene.play()
 		%Muncher.player_controlled = false
 	else:
-		play_overworld_music()
-		%Muncher.player_controlled = true
+		if GameState.tutorial_cleared:
+			play_overworld_music()
 	
 	GameState.water_height = 100.35
 	GameState.during_intro = false
@@ -51,6 +55,63 @@ func planet_specific_ready():
 	
 	GameState.situation = Constants.Situation.Overworld
 	GameState.munchme_deployed.connect(_on_munchme_deployed)
+
+
+func get_point_on_surface(node: Node3D) -> Vector3:
+	return Math.position_to_position_on_surface(node.global_position, node.global_position, self)
+
+
+func ready_tutorial_stage(stage: Constants.TutorialStage):
+	%Muncher.visible = true
+	%Muncher.player_controlled = true
+	%Torpejo.visible = true
+	%Dipshit.freeze = false
+	%Dipshit.visible = false
+	if stage == Constants.TutorialStage.NotStarted:
+		%Muncher.player_controlled = false
+		%Muncher.visible = false
+		%Torpejo.visible = false
+		%Dipshit.freeze = true
+	if stage == Constants.TutorialStage.Landed:
+		%Torpejo.visible = false
+		%Dipshit.freeze = true
+	elif stage == Constants.TutorialStage.GuildEntered:
+		%Muncher.global_position = get_point_on_surface(%EnterGuildArea)
+		%Torpejo.visible = false
+		%Dipshit.freeze = true
+	elif stage == Constants.TutorialStage.GuildExited:
+		%Muncher.global_position = get_point_on_surface($FollowPoints/GuildFront)
+		%Dipshit.freeze = true
+		%TutorialWalkToMunchmeCutscene.play()
+	elif stage == Constants.TutorialStage.Catching:
+		%Dipshit.visible = true
+		%Dipshit.global_position = get_point_on_surface($TutorialTorpejoPoints/DipshitWaitingPoints/Follow2)
+		%Muncher.global_position = get_point_on_surface($TutorialTorpejoPoints/AfterCatchMuncherPoint)
+		%Torpejo.global_position = get_point_on_surface($TutorialTorpejoPoints/CatchMunchmePoint)
+	elif stage == Constants.TutorialStage.Caught:
+		%Dipshit.queue_free()
+		%Muncher.global_position = get_point_on_surface($TutorialTorpejoPoints/DipshitWaitingPoints/Follow2)
+		%Torpejo.global_position = get_point_on_surface($TutorialTorpejoPoints/CatchMunchmePoint)
+		%Muncher.player_controlled = false
+		%Torpejo.visible = true
+		add_munchme_to_inventory(Constants.Munchme.Dipshit)
+		%TutorialDeployCutscene.play()
+	elif stage == Constants.TutorialStage.Deploying:
+		pass
+	elif stage == Constants.TutorialStage.Kidnapped:
+		pass
+	elif stage == Constants.TutorialStage.Finished:
+		pass
+	else:
+		%Muncher.player_controlled = true
+
+
+func add_munchme_to_inventory(type: Constants.Munchme):
+	var resource = MunchmeResource.new()
+	resource.resource_local_to_scene = true
+	resource.munchme_type = type
+	resource.id = randi()
+	GameState.add_munchme(resource)
 
 
 func play_overworld_music():
@@ -80,6 +141,10 @@ func _process(delta):
 		var resource = MunchmeResource.new()
 		resource.resource_local_to_scene = true
 		GameState.add_munchme(resource)
+		var resource_dip = MunchmeResource.new()
+		resource_dip.resource_local_to_scene = true
+		resource_dip.munchme_type = Constants.Munchme.Dipshit
+		GameState.add_munchme(resource_dip)
 		go_to_tutorial_stage(GameState.tutorial_stage + 1)
 	
 	if not CutsceneManager.is_cutscene_playing and Input.is_action_just_pressed("settings"):
@@ -131,7 +196,8 @@ func _on_munchme_finish_catch(win: bool):
 		GameState.add_munchme(munchme_getting_caught.resource)
 		munchme_getting_caught.queue_free()
 		if GameState.tutorial_stage == Constants.TutorialStage.Catching:
-			GameState.tutorial_stage = Constants.TutorialStage.Caught
+			go_to_tutorial_stage(Constants.TutorialStage.Caught)
+			%TutorialDeployCutscene.play()
 	else:
 		pass
 
@@ -151,9 +217,28 @@ func retrieve_munchme():
 	pass
 
 
+func get_ray_position(origin: Vector3, dir: Vector3, length: float = 4.0) -> Vector3:
+	var space_state = get_world_3d().direct_space_state
+	var ray_end = origin + dir * length
+	var ray_query = PhysicsRayQueryParameters3D.create(
+		origin, ray_end, pow(2, 1-1)
+	)
+	ray_query.hit_back_faces = false
+	ray_query.hit_from_inside = true
+	var result = space_state.intersect_ray(ray_query)
+	if !result:
+		return ray_end
+	return result.position
+
+
 func _on_munchme_deployed(resource):
-	var spawn_pos = %Muncher.global_position + %Muncher.global_basis.z * 3.0
-	spawn_pos = Math.position_to_position_on_surface(spawn_pos, spawn_pos.normalized(), self)
+	print(%Muncher.global_transform.basis.z)
+	var spawn_pos: Vector3 = get_ray_position(%Muncher.global_position, %Muncher.global_transform.basis.z)
+	#spawn_pos = spawn_pos.rotated(Vector3.RIGHT, rotation.x).rotated(Vector3.UP, rotation.y).rotated(Vector3.FORWARD, rotation.z)
+	spawn_pos = Math.position_to_position_on_surface(
+		spawn_pos, spawn_pos.normalized(), %Muncher
+	) + spawn_pos.normalized() * 1.2
+	
 	deploy_munchme(resource, spawn_pos)
 	close_manage()
 
@@ -195,12 +280,12 @@ func add_black_bars():
 func _on_cutscene_animation_finished(anim_name):
 	if anim_name == "Rocket_Return_1":
 		#if not GameState.tutorial_cleared:
-			#$TutorialStartCutscene.play()
+			#%TutorialStartCutscene.play()
 		pass
 
 
 func _on_tutorial_area_body_entered(body):
-	$ReturnToTutorialCutscene.play()
+	%ReturnToTutorialCutscene.play()
 
 
 func force_player_to_center():
@@ -236,7 +321,7 @@ func _on_exit_guild_looker():
 	if GameState.tutorial_active:
 		go_to_tutorial_stage(Constants.TutorialStage.GuildExited)
 		$TutorialArea/TutorialProgressCollision.disabled = true
-		$TutorialWalkToMunchmeCutscene.play()
+		%TutorialWalkToMunchmeCutscene.play()
 
 
 func walk_out_after_guild_exit():
@@ -257,7 +342,7 @@ func _on_torpejo_torpejo_talked_to():
 	if GameState.tutorial_stage == Constants.TutorialStage.GuildExited:
 		%Muncher.player_controlled = false
 		$MainCamera.enable = false
-		$TutorialMeetDipshitCutscene.play()
+		%TutorialMeetDipshitCutscene.play()
 
 
 func rotate_torpejo_towards_camera():
@@ -288,5 +373,8 @@ func _on_cutscene_animation_animation_finished(anim_name):
 	if anim_name == "End_Catch_Tut":
 		%Muncher.player_controlled = true
 		$MainCamera.enable = true
-		GameState.tutorial_stage = Constants.TutorialStage.Catching
-		
+		go_to_tutorial_stage(Constants.TutorialStage.Catching)
+
+
+func return_to_torpejo():
+	%Muncher.set_follow_point($TutorialTorpejoPoints/AfterCatchMuncherPoint)

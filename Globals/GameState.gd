@@ -32,7 +32,6 @@ var tutorial_stage := Constants.TutorialStage.NotStarted:
 	set(value):
 		if value <= tutorial_stage:
 			return
-		
 		tutorial_stage = value
 var tutorial_active: bool:
 	get:
