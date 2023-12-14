@@ -22,6 +22,16 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	if get_munchme_or_null():
+		if held_munchme != null:
+			if $Control.mouse_default_cursor_shape != Input.CURSOR_POINTING_HAND:
+				$Control.mouse_default_cursor_shape = Input.CURSOR_POINTING_HAND
+		else:
+			if $Control.mouse_default_cursor_shape != Input.CURSOR_CROSS:
+				$Control.mouse_default_cursor_shape = Input.CURSOR_CROSS
+	else:
+		if $Control.mouse_default_cursor_shape != Input.CURSOR_ARROW:
+			$Control.mouse_default_cursor_shape = Input.CURSOR_ARROW
 	if held_munchme == null:
 		return
 	var new_held_position = mouse_to_world_position()

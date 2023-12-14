@@ -10,7 +10,6 @@ pivot_offset = Vector2(400, 280)
 title = "YOUR GUYS"
 window_width = 800
 window_height = 560
-is_in_main_menu = null
 
 [node name="PlaceholderBackground" parent="ContentMarginContainer" index="0"]
 visible = false
@@ -25,6 +24,9 @@ size = Vector2i(788, 522)
 render_target_update_mode = 4
 
 [node name="ManageScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_0thvi")]
+
+[node name="ScreenTransition" parent="ContentMarginContainer" index="2"]
+mouse_default_cursor_shape = 3
 
 [node name="Title" parent="TopMarginContainer/TopHBoxContainer" index="0"]
 text = "YOUR GUYS"

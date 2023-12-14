@@ -82,13 +82,16 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 	elif stage == Constants.TutorialStage.GuildExited:
 		%Muncher.global_position = get_point_on_surface($FollowPoints/GuildFront)
 		%Dipshit.freeze = true
+		$TutorialArea/TutorialProgressCollision.disabled = true
 		%TutorialWalkToMunchmeCutscene.play()
 	elif stage == Constants.TutorialStage.Catching:
 		%Dipshit.visible = true
+		$TutorialArea/TutorialProgressCollision.disabled = true
 		%Dipshit.global_position = get_point_on_surface($TutorialTorpejoPoints/DipshitWaitingPoints/Follow2)
 		%Muncher.global_position = get_point_on_surface($TutorialTorpejoPoints/AfterCatchMuncherPoint)
 		%Torpejo.global_position = get_point_on_surface($TutorialTorpejoPoints/CatchMunchmePoint)
 	elif stage == Constants.TutorialStage.Caught:
+		$TutorialArea/TutorialProgressCollision.disabled = true
 		%Dipshit.queue_free()
 		%Muncher.global_position = get_point_on_surface($TutorialTorpejoPoints/DipshitWaitingPoints/Follow2)
 		%Torpejo.global_position = get_point_on_surface($TutorialTorpejoPoints/CatchMunchmePoint)
@@ -97,11 +100,11 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 		add_munchme_to_inventory(Constants.Munchme.Dipshit)
 		%TutorialDeployCutscene.play()
 	elif stage == Constants.TutorialStage.Deploying:
-		pass
+		$TutorialArea/TutorialProgressCollision.disabled = true
 	elif stage == Constants.TutorialStage.Kidnapped:
-		pass
+		$TutorialArea/TutorialProgressCollision.disabled = true
 	elif stage == Constants.TutorialStage.Finished:
-		pass
+		$TutorialArea.monitoring = false
 	else:
 		%Muncher.player_controlled = true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=91 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -1198,6 +1198,38 @@ _data = {
 "Tutorial_3": SubResource("Animation_irxay")
 }
 
+[sub_resource type="Resource" id="Resource_5extt"]
+script = ExtResource("11_nrph8")
+animation_name = "Teach_Deploy"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_lnpox"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TutorialDeployCutscene/../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%TutorialDeployCutscene/../../MainCamera/SpringArm3D/Camera3D:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_jrot7"]
 resource_name = "Teach_Deploy"
 length = 6.0
@@ -1238,33 +1270,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_lnpox"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%TutorialDeployCutscene/../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:current")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%TutorialDeployCutscene/../../MainCamera/SpringArm3D/Camera3D:current")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eyery"]
@@ -1385,7 +1390,7 @@ _data = {
 [node name="Main" type="Node3D"]
 transform = Transform3D(0.721482, -0.141671, 0.677785, 0.692433, 0.147614, -0.70622, 0, 0.978846, 0.204599, 0, 0, 0)
 script = ExtResource("1_12yvb")
-tutorial_stage = 4
+tutorial_stage = 3
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -2481,7 +2486,7 @@ transform = Transform3D(-5.9766, 0.871372, -1.65035, -1.18385, -6.0504, 1.09263,
 transform = Transform3D(3.20074, 2.28762, 1.20225, 2.44991, -3.29507, -0.252574, 0.822528, 0.912498, -3.92608, 35.4947, 45.4963, -18.1072)
 
 [node name="cage" parent="Planet" instance=ExtResource("20_a2o6a")]
-transform = Transform3D(0.516858, 0.71081, -0.117364, -0.506195, 0.508928, -0.412329, -0.235411, 0.466295, 0.628936, 77.9468, 52.7035, 48.1668)
+transform = Transform3D(0.516858, 0.71081, -0.117364, -0.506195, 0.508929, -0.412329, -0.235411, 0.466295, 0.628935, 77.9468, 52.7035, 48.1668)
 visible = false
 
 [node name="RocketPlatform" type="MeshInstance3D" parent="."]
@@ -2513,7 +2518,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(0.172595, 0.541387, 0.528288, 0.732429, 0.015809, -0.255489, -0.189041, 0.555544, -0.507561, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(0.550585, 0.361464, 0.410095, 0.461534, 0.00454783, -0.623653, -0.292955, 0.686516, -0.211795, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
@@ -2636,6 +2641,7 @@ libraries = {
 
 [node name="TutorialDeployCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
 unique_name_in_owner = true
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_5extt")])
 
 [node name="CutsceneAnimation" parent="Cutscenes/TutorialDeployCutscene" index="0"]
 libraries = {

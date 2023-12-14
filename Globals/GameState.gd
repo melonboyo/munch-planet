@@ -1,6 +1,10 @@
 extends Node
 
 
+var cursor_default = load("res://Sprites/Cursor/default.png")
+var cursor_hover = load("res://Sprites/Cursor/click.png")
+var cursor_click = load("res://Sprites/Cursor/hover.png")
+
 signal munchme_added(resource: MunchmeResource)
 signal situation_changed(new_situation: Constants.Situation)
 signal munchme_deployed(resource: MunchmeResource)
@@ -46,6 +50,10 @@ func _ready():
 	InputMap.action_set_deadzone("look_left", deadzone)
 	InputMap.action_set_deadzone("look_up", deadzone)
 	InputMap.action_set_deadzone("look_right", deadzone)
+	
+	Input.set_custom_mouse_cursor(cursor_default)
+	Input.set_custom_mouse_cursor(cursor_hover, Input.CURSOR_POINTING_HAND)
+	Input.set_custom_mouse_cursor(cursor_click, Input.CURSOR_CROSS)
 
 
 func _process(delta):

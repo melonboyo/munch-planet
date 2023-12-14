@@ -76,7 +76,7 @@ bones/2/scale = Vector3(1, 1, 1)
 surface_material_override/0 = SubResource("ShaderMaterial_ptuad")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" index="1"]
-transform = Transform3D(1, -7.10543e-15, 2.38419e-07, -7.10543e-15, 1, 5.96046e-08, -2.38419e-07, -5.96046e-08, 1, 0, 0.16494, 0)
+transform = Transform3D(1, -7.1054e-15, 2.38418e-07, -7.1054e-15, 1, 5.96046e-08, -2.38418e-07, -5.96046e-08, 1, 0, 0.16494, 0)
 bone_name = "Body"
 bone_idx = 0
 
