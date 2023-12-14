@@ -27,6 +27,10 @@ CutsceneManager="*res://Globals/Cutscenes/CutsceneManager.tscn"
 MouseInput="*res://Globals/MouseInput.gd"
 Settings="*res://Globals/Settings.gd"
 
+[debug]
+
+shapes/collision/shape_color=Color(0.870588, 0, 0.192157, 0.745098)
+
 [display]
 
 window/size/viewport_width=1920
