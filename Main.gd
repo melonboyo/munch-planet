@@ -37,6 +37,7 @@ func planet_specific_ready():
 		GameState.tutorial_active = true
 		
 		tutorial_music = TutorialMusic.new()
+		tutorial_music.finale.connect(_on_finale_music)
 		add_child(tutorial_music)
 		go_to_tutorial_stage(tutorial_stage)
 		ready_tutorial_stage(GameState.tutorial_stage)
@@ -60,9 +61,17 @@ func planet_specific_ready():
 
 
 func set_invis_wall_active(munchme: bool, player: bool):
-	var value = pow(2, 2-1) if player else 0
-	if munchme:
-		value += pow(2, 4-1)
+	#var value = pow(2, 2-1) if player else 0
+	#if munchme:
+		#value += pow(2, 4-1)
+	var value = 0
+	if munchme or player:
+		value = 1
+	#if not munchme:
+		#$TutorialInvisWall/C4.disabled = true
+	#else:
+		#$TutorialInvisWall/C4.disabled = false
+		
 	$TutorialInvisWall.collision_layer = value
 
 
@@ -450,9 +459,9 @@ func _on_cutscene_animation_animation_finished(anim_name):
 		go_to_tutorial_stage(Constants.TutorialStage.Catching)
 	if anim_name == "End_Deploy_Tut":
 		%TutorialCageCutscene.play()
-		set_invis_wall_active(false, true)
 	if anim_name == "Test_Dipshit_3":
 		manage_allowed = true
+		set_invis_wall_active(false, true)
 	if anim_name == "Open_Manage":
 		manage_allowed = true
 	if anim_name == "Teach_Deploy":
@@ -488,3 +497,11 @@ func _on_tutorial_area_2_body_entered(body):
 		$TutorialPlayer.play("ForceDipshitToCatchCenter")
 	else:
 		$TutorialPlayer.play("ForcePlayerToCatchCenter")
+
+
+func _on_finale_music():
+	$FinaleTimer.start()
+
+
+func _on_finale_timer_timeout():
+	%TutorialFinaleCutscene.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=133 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -181,7 +181,7 @@ size = Vector3(26.0291, 112.871, 128.462)
 friction = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4ycc4"]
-size = Vector3(26.0291, 112.871, 128.462)
+size = Vector3(26.4147, 112.871, 139.065)
 
 [sub_resource type="Resource" id="Resource_0jlqk"]
 script = ExtResource("9_8u21n")
@@ -1271,6 +1271,11 @@ script = ExtResource("11_nrph8")
 animation_name = ""
 dialogue_translation_key = "DIPSHIT_CAUGHT_1"
 
+[sub_resource type="Resource" id="Resource_3i5k2"]
+script = ExtResource("11_nrph8")
+animation_name = "To_Player_Cam"
+dialogue_translation_key = ""
+
 [sub_resource type="Resource" id="Resource_heb7n"]
 script = ExtResource("11_nrph8")
 animation_name = ""
@@ -1285,6 +1290,10 @@ dialogue_translation_key = "DIPSHIT_CAUGHT_3"
 script = ExtResource("11_nrph8")
 animation_name = "Open_Manage"
 dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_4ywn5"]
+resource_name = "Open_Manage"
+length = 0.1
 
 [sub_resource type="Animation" id="Animation_lnpox"]
 length = 0.001
@@ -1347,6 +1356,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%Muncher:player_controlled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_jrot7"]
@@ -1427,15 +1448,64 @@ tracks/5/keys = {
 "values": [false, false]
 }
 
-[sub_resource type="Animation" id="Animation_4ywn5"]
-resource_name = "Open_Manage"
-length = 0.1
+[sub_resource type="Animation" id="Animation_ye80l"]
+resource_name = "To_Player_Cam"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TutorialDeployCutscene/../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Muncher:player_controlled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%TutorialDeployCutscene/../../MainCamera:enable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%TutorialDeployCutscene/../../MainCamera/SpringArm3D/Camera3D:current")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eyery"]
 _data = {
 "Open_Manage": SubResource("Animation_4ywn5"),
 "RESET": SubResource("Animation_lnpox"),
-"Teach_Deploy": SubResource("Animation_jrot7")
+"Teach_Deploy": SubResource("Animation_jrot7"),
+"To_Player_Cam": SubResource("Animation_ye80l")
 }
 
 [sub_resource type="Resource" id="Resource_xn0uj"]
@@ -1613,6 +1683,10 @@ script = ExtResource("11_nrph8")
 animation_name = "Begin_Escape"
 dialogue_translation_key = ""
 
+[sub_resource type="Animation" id="Animation_ituke"]
+resource_name = "Begin_Escape"
+length = 0.1
+
 [sub_resource type="Animation" id="Animation_4caop"]
 resource_name = "Capture_Dipshit"
 length = 3.2
@@ -1776,10 +1850,6 @@ tracks/5/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_ituke"]
-resource_name = "Begin_Escape"
-length = 0.1
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lrkhl"]
 _data = {
 "Begin_Escape": SubResource("Animation_ituke"),
@@ -1787,9 +1857,22 @@ _data = {
 "RESET": SubResource("Animation_ijgiy")
 }
 
+[sub_resource type="Resource" id="Resource_6onan"]
+script = ExtResource("11_nrph8")
+animation_name = "Kill_Dipshit"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_y8ep6"]
+resource_name = "Kill_Dipshit"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kjx0u"]
+_data = {
+"Kill_Dipshit": SubResource("Animation_y8ep6")
+}
+
 [node name="Main" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_12yvb")
+tutorial_stage = 5
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -1900,19 +1983,19 @@ transform = Transform3D(0.873569, 0.452319, 0.17974, -0.47342, 0.703915, 0.52952
 shape = SubResource("BoxShape3D_4ycc4")
 
 [node name="C3" type="CollisionShape3D" parent="TutorialInvisWall"]
-transform = Transform3D(0.598807, 0.530223, -0.600261, 0.307065, 0.540226, 0.783516, 0.739701, -0.653487, 0.160682, 27.158, 55.3946, -94.914)
+transform = Transform3D(0.560257, 0.530223, -0.636393, 0.35527, 0.540226, 0.762869, 0.748273, -0.653487, 0.114297, 31.5948, 52.0363, -94.0903)
 shape = SubResource("BoxShape3D_4ycc4")
 
 [node name="C4" type="CollisionShape3D" parent="TutorialInvisWall"]
-transform = Transform3D(-0.264502, 0.530224, -0.805563, 0.83767, 0.540226, 0.0805363, 0.477875, -0.653487, -0.587037, 90.1217, 24.7041, -63.6396)
+transform = Transform3D(-0.43617, 0.530224, -0.727082, 0.834728, 0.540226, -0.106788, 0.336156, -0.653487, -0.678217, 98.738, 2.81188, -74.7464)
 shape = SubResource("BoxShape3D_4ycc4")
 
 [node name="C5" type="CollisionShape3D" parent="TutorialInvisWall"]
-transform = Transform3D(-0.752949, 0.656358, -0.0477706, 0.460688, 0.473872, -0.75049, -0.469948, -0.587083, -0.659177, 97.4222, 22.4061, -58.0429)
+transform = Transform3D(-0.753423, 0.656358, 0.0395882, 0.370846, 0.473872, -0.798714, -0.542995, -0.587083, -0.600434, 106.39, 36.9854, -36.2494)
 shape = SubResource("BoxShape3D_4ycc4")
 
 [node name="C6" type="CollisionShape3D" parent="TutorialInvisWall"]
-transform = Transform3D(-0.434127, 0.682498, 0.588009, -0.320296, 0.493139, -0.808861, -0.842, -0.539481, 0.00450972, 86.6024, 84.9445, -19.4326)
+transform = Transform3D(-0.503255, 0.682498, 0.530051, -0.218217, 0.493139, -0.842156, -0.836143, -0.539481, -0.0992475, 85.5445, 84.4858, -21.1903)
 shape = SubResource("BoxShape3D_4ycc4")
 
 [node name="Player" type="Node3D" parent="."]
@@ -1922,7 +2005,6 @@ unique_name_in_owner = true
 transform = Transform3D(-0.0501459, 0.161398, -0.985613, -0.140531, 0.975897, 0.166956, 0.988805, 0.146882, -0.0262554, 19.0219, 104.505, 12.5638)
 wall_min_slide_angle = 1.8867
 camera_path = NodePath("../../MainCamera")
-player_controlled = false
 
 [node name="Munchmes" type="Node3D" parent="."]
 
@@ -2960,7 +3042,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.355753, 0.554292, 0.410095, 0.000224827, 0.461556, -0.623652, -0.689508, -0.285841, -0.211796, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.355755, 0.554292, 0.410092, 0.000224985, 0.461554, -0.623654, -0.689507, -0.285844, -0.211796, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
@@ -3007,7 +3089,7 @@ libraries = {
 }
 
 [node name="DipshitCamera2" type="Camera3D" parent="TutorialTorpejoPoints/CatchMunchmePoint"]
-transform = Transform3D(-0.734438, 0.248183, 0.0313721, -0.0159574, -0.143582, 0.76231, 0.249651, 0.720952, 0.141018, -5.36108, 7.8775, 46.1307)
+transform = Transform3D(-0.734438, 0.248183, 0.031372, -0.0159574, -0.143582, 0.762309, 0.249651, 0.720952, 0.141018, -9.23958, 10.1213, 34.8639)
 
 [node name="FollowPoints" type="Node3D" parent="TutorialTorpejoPoints"]
 transform = Transform3D(1, 1.86265e-09, 0, -3.72529e-09, 1, 2.79397e-09, -2.98023e-08, -2.79397e-09, 1, 0, 0, 0)
@@ -3091,7 +3173,7 @@ libraries = {
 
 [node name="TutorialDeployCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
 unique_name_in_owner = true
-scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_5extt"), SubResource("Resource_6buak"), SubResource("Resource_heb7n"), SubResource("Resource_desur"), SubResource("Resource_4lx56")])
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_5extt"), SubResource("Resource_6buak"), SubResource("Resource_3i5k2"), SubResource("Resource_heb7n"), SubResource("Resource_desur"), SubResource("Resource_4lx56")])
 
 [node name="CutsceneAnimation" parent="Cutscenes/TutorialDeployCutscene" index="0"]
 libraries = {
@@ -3127,6 +3209,15 @@ scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_w5spu"), SubResou
 [node name="CutsceneAnimation" parent="Cutscenes/TutorialKidnappedCutscene" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_lrkhl")
+}
+
+[node name="TutorialFinaleCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
+unique_name_in_owner = true
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_6onan")])
+
+[node name="CutsceneAnimation" parent="Cutscenes/TutorialFinaleCutscene" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_kjx0u")
 }
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
@@ -3180,6 +3271,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0043, 102.294, -28.5242)
 [node name="LightmapProbe15" type="LightmapProbe" parent="LightmapGI"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 
+[node name="FinaleTimer" type="Timer" parent="."]
+wait_time = 19.714
+one_shot = true
+
 [connection signal="focus_entered" from="UI" to="." method="_on_ui_focus_entered"]
 [connection signal="focus_exited" from="UI" to="." method="_on_ui_focus_exited"]
 [connection signal="body_entered" from="TutorialArea" to="." method="_on_tutorial_area_body_entered"]
@@ -3192,6 +3287,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 [connection signal="animation_finished" from="Cutscenes/TutorialDeployCutscene3/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
 [connection signal="animation_finished" from="Cutscenes/TutorialCageCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
 [connection signal="animation_finished" from="Cutscenes/TutorialKidnappedCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
+[connection signal="timeout" from="FinaleTimer" to="." method="_on_finale_timer_timeout"]
 
 [editable path="MainCamera"]
 [editable path="Cutscenes/RocketReturnCutscene"]
@@ -3202,3 +3298,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 [editable path="Cutscenes/TutorialDeployCutscene3"]
 [editable path="Cutscenes/TutorialCageCutscene"]
 [editable path="Cutscenes/TutorialKidnappedCutscene"]
+[editable path="Cutscenes/TutorialFinaleCutscene"]
