@@ -1511,7 +1511,7 @@ transform = Transform3D(-0.915803, -0.245389, -0.317946, -0.258819, 0.965926, 0,
 collision_layer = 262152
 
 [node name="Solidude" parent="Munchmes" instance=ExtResource("5_3y1ey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8707, 105.548, 11.0967)
+transform = Transform3D(1, 7.80895e-09, -2.08098e-08, 3.31634e-09, 1, 1.04308e-07, 3.20528e-08, -2.98023e-08, 1, 11.3117, 105.614, 5.66004)
 collision_layer = 262152
 floor_max_angle = 0.785398
 
@@ -2504,7 +2504,7 @@ transform = Transform3D(0.423775, 0.758064, -0.495733, -0.760309, 0.00025329, -0
 curve = SubResource("Curve3D_g8sv8")
 
 [node name="RocketPathFollow" type="PathFollow3D" parent="RocketPlatform/RocketPath"]
-transform = Transform3D(0.574253, 0.0122628, 0.818788, 0.468993, 0.814555, -0.341409, -0.670855, 0.57995, 0.462206, -65.3334, 17.4243, -42.0676)
+transform = Transform3D(0.573092, 0.0294029, 0.819166, 0.393555, 0.866643, -0.30669, -0.718643, 0.498053, 0.485301, -52.4797, 12.326, -34.635)
 progress = 64.3
 rotation_mode = 4
 loop = false

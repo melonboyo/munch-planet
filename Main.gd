@@ -25,6 +25,7 @@ var tutorial_music: TutorialMusic
 
 
 func _ready():
+	GameState.tutorial_stage = tutorial_stage
 	GameState.main_window = $UI
 	GameState.attempt_catch_munchme.connect(_on_attempt_catch_munchme)
 	planet_specific_ready()

@@ -939,7 +939,7 @@ transform = Transform3D(0.423775, 0.758064, -0.495733, -0.760309, 0.00025329, -0
 curve = SubResource("Curve3D_e16gn")
 
 [node name="RocketPathFollow" type="PathFollow3D" parent="home/RocketPlatform/RocketPath"]
-transform = Transform3D(0.572026, 0.0411323, 0.819359, 0.300883, 0.918621, -0.256294, -0.763004, 0.393086, 0.513209, -38.2986, 7.43381, -25.997)
+transform = Transform3D(0.592565, 0.0317633, 0.805047, 0, 0.999259, -0.0394396, -0.805472, 0.0233675, 0.592253, 0, 0, 0)
 rotation_mode = 4
 loop = false
 
@@ -1026,7 +1026,7 @@ orbit_angles = Vector2(-10, 90)
 
 [node name="RocketCamera" type="Camera3D" parent="Cameras"]
 unique_name_in_owner = true
-transform = Transform3D(-0.973779, 0.0162534, 0.226914, -1.86265e-09, 0.997445, -0.0714448, -0.227496, -0.0695715, -0.971291, 11.2006, 6.93473, -7.50577)
+transform = Transform3D(-0.617657, 0.177877, 0.766068, -7.45058e-09, 0.974086, -0.226177, -0.786448, -0.1397, -0.601651, 11.2006, 6.93473, -7.50577)
 script = ExtResource("14_66j6k")
 focus_path = NodePath("../../Player/Muncher")
 in_editor = true
