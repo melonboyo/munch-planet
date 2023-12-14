@@ -132,7 +132,6 @@ noise = SubResource("FastNoiseLite_31tp3")
 render_priority = 0
 shader = ExtResource("13_snone")
 shader_parameter/albedo = Color(0.392157, 0.458824, 0.466667, 1)
-shader_parameter/albedo_uv_scale = Vector2(1, 1)
 shader_parameter/use_normal_texture = false
 shader_parameter/normal_depth = 1.0
 shader_parameter/roughness = 0.809
@@ -628,7 +627,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.05]
+"values": [0.0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false

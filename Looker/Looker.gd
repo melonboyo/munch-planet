@@ -40,6 +40,7 @@ var prev_mouse_mode = null
 			can_close = value
 
 @export var spawn_centered: bool = true
+@export var is_in_main_menu: bool = false
 @export var is_deploy_looker = false
 @export var is_interior_looker = false
 @export var looker_z_index := 0
@@ -60,7 +61,8 @@ func _ready():
 	
 	_setup_sub_viewport()
 	
-	GameState.add_looker(self)
+	if not is_in_main_menu:
+		GameState.add_looker(self)
 	
 	if is_deploy_looker or is_interior_looker:
 		grab_focus()
@@ -89,8 +91,8 @@ func _on_close_button_pressed():
 
 func close():
 	%CloseButton.disabled = true
-	#can_close = false
-	GameState.situation = Constants.Situation.Overworld
+	if not is_in_main_menu:
+		GameState.situation = Constants.Situation.Overworld
 	$Animation.play("close_1")
 
 
@@ -117,10 +119,14 @@ func _on_animation_finished(anim_name):
 	if anim_name == "close_1":
 		close_looker.emit()
 		queue_free()
-		GameState.remove_looker(self)
+		if not is_in_main_menu:
+			GameState.remove_looker(self)
 
 
 func _on_sub_viewport_container_gui_input(event):
+	if is_in_main_menu:
+		return
+	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		if is_deploy_looker:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

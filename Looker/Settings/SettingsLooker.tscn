@@ -10,8 +10,8 @@ pivot_offset = Vector2(96.5, 133)
 title = "Settings"
 window_width = 193
 window_height = 266
-looker_z_index = 5
-music_track = 1
+is_in_main_menu = null
+is_deploy_looker = false
 
 [node name="PlaceholderBackground" parent="ContentMarginContainer" index="0"]
 visible = false
