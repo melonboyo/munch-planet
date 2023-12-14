@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=72 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -174,15 +174,6 @@ size = Vector3(26.0291, 81.8575, 165.737)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3yl1q"]
 size = Vector3(26.0291, 112.871, 128.462)
 
-[sub_resource type="Gradient" id="Gradient_7abcu"]
-offsets = PackedFloat32Array(0, 0.345361, 1)
-colors = PackedColorArray(0.150988, 0.119537, 0.0897483, 1, 0.281626, 0.183907, 0.16937, 1, 0.987646, 0.870591, 0.885756, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ict2w"]
-gradient = SubResource("Gradient_7abcu")
-width = 128
-height = 128
-
 [sub_resource type="Shader" id="Shader_bjxy6"]
 code = "
 // NOTE: Shader automatically converted from Godot Engine 4.2.stable's PanoramaSkyMaterial.
@@ -232,9 +223,10 @@ volumetric_fog_albedo = Color(0.678431, 0.996078, 1, 1)
 volumetric_fog_emission = Color(0.737255, 0.866667, 0.85098, 1)
 volumetric_fog_emission_energy = 0.9
 volumetric_fog_length = 0.15
-adjustment_brightness = 1.12
-adjustment_saturation = 1.23
-adjustment_color_correction = SubResource("GradientTexture2D_ict2w")
+adjustment_enabled = true
+adjustment_brightness = 1.02
+adjustment_contrast = 1.05
+adjustment_saturation = 1.25
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1rtsb"]
 auto_exposure_scale = 0.5
@@ -297,7 +289,7 @@ _data = {
 point_count = 4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_skowq"]
-radius = 1.58025
+radius = 2.51647
 
 [sub_resource type="Resource" id="Resource_dmdrs"]
 script = ExtResource("11_nrph8")
@@ -752,7 +744,107 @@ script = ExtResource("11_nrph8")
 animation_name = ""
 dialogue_translation_key = "DIPSHIT_1"
 
+[sub_resource type="Resource" id="Resource_cseye"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_2"
+
+[sub_resource type="Resource" id="Resource_ny1ib"]
+script = ExtResource("11_nrph8")
+animation_name = "Dipshit_Enters"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_irxay"]
+resource_name = "Tutorial_3"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(10.4505, -2.2817, -1.36005), Vector3(10.3581, -2.65873, -1.78588)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MainCamera/SpringArm3D/Camera3D:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_t43r0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(15.0713, -1.79764, -0.65313)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MainCamera/SpringArm3D/Camera3D:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_qvj0c"]
+resource_name = "Dipshit_Enters"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_onsyh"]
+_data = {
+"Dipshit_Enters": SubResource("Animation_qvj0c"),
+"RESET": SubResource("Animation_t43r0"),
+"Tutorial_3": SubResource("Animation_irxay")
+}
+
 [node name="Main" type="Node3D"]
+transform = Transform3D(0.827519, 0.0160057, 0.56121, 0.442996, 0.595481, -0.670192, -0.344917, 0.80321, 0.485681, 0, 0, 0)
 script = ExtResource("1_12yvb")
 skip_rocket_cutscene = true
 
@@ -899,10 +991,10 @@ transform = Transform3D(0.441255, 0, 0.897382, 0, 1, 0, -0.897382, 0, 0.441255, 
 
 [node name="FollowPoints" type="Node3D" parent="."]
 
-[node name="Center" type="Node3D" parent="FollowPoints"]
+[node name="Center" type="Marker3D" parent="FollowPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4938, 100.612, 19.4683)
 
-[node name="GuildFront" type="Node3D" parent="FollowPoints"]
+[node name="GuildFront" type="Marker3D" parent="FollowPoints"]
 transform = Transform3D(0.808073, -0.0576144, 0.586259, -0.00148314, 0.995004, 0.0998279, -0.589081, -0.0815377, 0.80395, -12.5448, 101.985, 0.946573)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -1884,7 +1976,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.355755, 0.554292, 0.410092, 0.000224985, 0.461554, -0.623654, -0.689507, -0.285844, -0.211796, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(0.32131, 0.57494, 0.410099, 0.407237, 0.217253, -0.623647, -0.576974, 0.473523, -0.211804, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
@@ -1902,10 +1994,14 @@ transform = Transform3D(-0.887381, -6.32327e-07, -0.461036, -2.53788e-07, 1, -1.
 [node name="TutorialTorpejoPoints" type="Node3D" parent="."]
 transform = Transform3D(-0.533267, 0.0464981, 1.17245, 0.0530296, 1.2875, -0.0269409, -1.17218, 0.0370932, -0.534612, 20.1387, 104.194, 16.6353)
 
+[node name="Start" type="Node3D" parent="TutorialTorpejoPoints"]
+transform = Transform3D(0.999999, -9.31323e-09, 0, -7.07805e-08, 0.999998, 4.93601e-08, -2.98023e-07, 3.07336e-08, 1, 17.3811, -2.22651, -11.9631)
+
 [node name="CatchMunchmePoint" type="Node3D" parent="TutorialTorpejoPoints"]
-transform = Transform3D(1, -6.89179e-08, -2.98023e-08, -3.05474e-07, 0.999992, 2.00234e-07, -1.49012e-07, 1.76951e-08, 1, 54.2666, -29.0643, 48.3639)
+transform = Transform3D(0.999999, -8.56817e-08, 0, -3.22238e-07, 0.999992, 1.73226e-07, -2.98023e-07, 1.86265e-08, 1, 50.1479, -27.3393, 52.5375)
 
 [node name="TorpejoArea" type="Area3D" parent="TutorialTorpejoPoints/CatchMunchmePoint"]
+transform = Transform3D(1, 1.86265e-09, -5.96046e-08, -1.86265e-09, 1, 7.45058e-09, -5.96046e-08, -6.51926e-09, 1, 0, 0, 0)
 collision_layer = 0
 collision_mask = 8
 monitorable = false
@@ -1913,23 +2009,24 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTorpejoPoints/CatchMunchmePoint/TorpejoArea"]
 shape = SubResource("SphereShape3D_skowq")
 
-[node name="Start" type="Node3D" parent="TutorialTorpejoPoints"]
-transform = Transform3D(0.999999, -9.31323e-09, 0, -7.07805e-08, 0.999998, 4.93601e-08, -2.98023e-07, 3.07336e-08, 1, 17.3811, -2.22651, -11.9631)
+[node name="DipshitCamera1" type="Camera3D" parent="TutorialTorpejoPoints/CatchMunchmePoint"]
+transform = Transform3D(0.0222015, 0.124418, 0.76551, 0.578255, 0.507692, -0.0992852, -0.516831, 0.573371, -0.078202, 15.0713, -1.79764, -0.65313)
 
-[node name="Follow" type="Node3D" parent="TutorialTorpejoPoints"]
+[node name="FollowPoints" type="Node3D" parent="TutorialTorpejoPoints"]
 transform = Transform3D(1, 1.86265e-09, 0, -3.72529e-09, 1, 2.79397e-09, -2.98023e-08, -2.79397e-09, 1, 0, 0, 0)
 
-[node name="ToFirstMunchme1" type="Node3D" parent="TutorialTorpejoPoints/Follow"]
+[node name="ToFirstMunchme1" type="Node3D" parent="TutorialTorpejoPoints/FollowPoints"]
 transform = Transform3D(0.999999, -2.6077e-08, 2.98023e-08, -1.00583e-07, 0.999997, 6.61239e-08, -2.08616e-07, 3.1665e-08, 1, 16.0217, 0.0626068, 8.43611)
 
-[node name="ToFirstMunchme2" type="Node3D" parent="TutorialTorpejoPoints/Follow"]
+[node name="ToFirstMunchme2" type="Node3D" parent="TutorialTorpejoPoints/FollowPoints"]
 transform = Transform3D(0.999999, -2.42144e-08, 2.98023e-08, -1.37836e-07, 0.999996, 8.6613e-08, -2.08616e-07, 5.02914e-08, 1, 26.5926, -3.05791, 28.2594)
 
-[node name="ToFirstMunchme3" type="Node3D" parent="TutorialTorpejoPoints/Follow"]
-transform = Transform3D(0.507185, -0.261586, -0.821179, 0.458385, 0.888747, 1.32248e-07, 0.729825, -0.376415, 0.570671, 45.9628, -24.525, 50.9121)
+[node name="ToFirstMunchme3" type="Node3D" parent="TutorialTorpejoPoints/FollowPoints"]
+transform = Transform3D(0.507185, -0.261586, -0.821179, 0.458385, 0.888747, 1.45286e-07, 0.729825, -0.376415, 0.570671, 38.0621, -17.7116, 48.9652)
 
-[node name="ToFirstMunchme4" type="Node3D" parent="TutorialTorpejoPoints/Follow"]
-transform = Transform3D(0.480234, 0.176971, -0.859101, 0.305727, 0.884235, 0.353052, 0.822133, -0.432196, 0.370539, 54.2666, -29.0643, 48.3639)
+[node name="ToFirstMunchme4" type="Marker3D" parent="TutorialTorpejoPoints/FollowPoints"]
+transform = Transform3D(0.507185, -0.261586, -0.821177, 0.458385, 0.888747, 1.78814e-07, 0.729825, -0.376415, 0.570672, 50.4239, -27.6179, 52.5207)
+gizmo_extents = 2.3
 
 [node name="RocketLandingMusicPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = 3.0
@@ -1964,7 +2061,12 @@ libraries = {
 }
 
 [node name="TutorialMeetDipshitCutscene" parent="." instance=ExtResource("10_01ks1")]
-scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_oiibg"), SubResource("Resource_j5mw4")])
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_oiibg"), SubResource("Resource_j5mw4"), SubResource("Resource_cseye"), SubResource("Resource_ny1ib")])
+
+[node name="CutsceneAnimation" parent="TutorialMeetDipshitCutscene" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_onsyh")
+}
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
 visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckhytfotl50qm"]
+[gd_scene load_steps=16 format=3 uid="uid://ckhytfotl50qm"]
 
 [ext_resource type="PackedScene" uid="uid://dkfcc32y461yt" path="res://Models/guild.glb" id="1_8qsdr"]
 [ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="2_8jb4f"]
@@ -15,6 +15,9 @@ size = Vector3(51.5972, 47.6868, 24.493)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7i54j"]
 size = Vector3(33.3349, 47.6868, 24.493)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g5yqf"]
+size = Vector3(33.3349, 25.2153, 6.45768)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1hq8"]
 size = Vector3(3.45224, 0.813721, 3.14215)
@@ -92,6 +95,14 @@ shape = SubResource("BoxShape3D_7i54j")
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" index="6"]
 transform = Transform3D(-0.772734, 0, 0.63473, 0, 1, 0, -0.63473, 0, -0.772734, -6.93882, 23.9866, -11.2268)
 shape = SubResource("BoxShape3D_7i54j")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.757, 11.1724, -8.60099)
+shape = SubResource("BoxShape3D_g5yqf")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.757, 11.172, 8.601)
+shape = SubResource("BoxShape3D_g5yqf")
 
 [node name="Guild_StaticBody3D#CollisionShape3D2" type="CollisionShape3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 0.887461, -0.460881, 0, 0.460881, 0.887461, 3.29005, -0.0995483, 10.2983)

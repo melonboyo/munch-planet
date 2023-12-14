@@ -65,16 +65,16 @@ func _physics_process(delta):
 	#print(velocity, ", ", is_on_floor(), ", ")
 
 
-func set_follow_points(_points: Array[Vector3], spherical: bool = true):
-	$AiMovement.set_follow_points(_points, spherical)
+func set_follow_points(_points: Variant, spherical: bool = true):
+	$AiMovement.set_follow_points(_points)
 
 
-func walk_to_phone():
-	set_follow_points([Vector3(-2.05, 9.98, 1.67)])
+func set_follow_point(_point: Node3D, spherical: bool = true):
+	$AiMovement.set_follow_point(_point)
 
 
-func walk_outside():
-	set_follow_points([Vector3(3.964, 9.984, 1.665)])
+func set_vector_follow_point(_point: Vector3, spherical: bool = true):
+	$AiMovement.set_vector_follow_point(_point, spherical)
 
 
 func sit(yes = true):

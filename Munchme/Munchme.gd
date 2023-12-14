@@ -141,8 +141,16 @@ func play_animation(anim: String):
 	$Model.play_animation(anim)
 
 
-func set_follow_points(_points: Array[Vector3], spherical: bool = true):
-	$AiMovement.set_follow_points(_points, spherical)
+func set_follow_points(_points: Variant, spherical: bool = true):
+	$AiMovement.set_follow_points(_points)
+
+
+func set_follow_point(_point: Node3D, spherical: bool = true):
+	$AiMovement.set_follow_point(_point)
+
+
+func set_vector_follow_point(_point: Vector3, spherical: bool = true):
+	$AiMovement.set_vector_follow_point(_point, spherical)
 
 
 func rotate_towards(pos: Vector3):

@@ -48,6 +48,14 @@ func _on_cutscene_animation_animation_finished(anim_name):
 		get_tree().change_scene_to_packed(main_scene)
 
 
+func walk_to_phone():
+	%Muncher.set_follow_point(%Phone)
+
+
+func walk_outside():
+	%Muncher.set_follow_point(%Outside)
+
+
 func _on_rocket_go():
 	%Muncher.player_controlled = false
 	manage_allowed = false
@@ -61,7 +69,7 @@ func ready_for_rocket():
 
 
 func walk_to_rocket():
-	%Muncher.set_follow_points([$FollowPoints/Rocket2.global_position] as Array[Vector3])
+	%Muncher.set_follow_point($FollowPoints/Rocket2)
 
 
 func set_focus_to_rocket():

@@ -23,19 +23,19 @@ func _on_deploy_looker_focus_exited():
 
 
 func walk_in():
-	$Muncher.set_follow_points([$WalkHere.global_position] as Array[Vector3], false)
+	$Muncher.set_vector_follow_point($WalkHere.global_position, false)
 
 
 func torpejo_walk_out():
-	$Torpejo.set_follow_points([$ExitPoint.global_position] as Array[Vector3], false)
+	$Torpejo.set_vector_follow_point($ExitPoint.global_position, false)
 
 
 func player_walk_out():
-	$Muncher.set_follow_points([$ExitPoint.global_position] as Array[Vector3], false)
+	$Muncher.set_vector_follow_point($ExitPoint.global_position, false)
 
 
 func step_aside():
-	$Muncher.set_follow_points([$WalkHere2.global_position] as Array[Vector3], false)
+	$Muncher.set_vector_follow_point($WalkHere2.global_position, false)
 
 
 func turn_to_torpejo():

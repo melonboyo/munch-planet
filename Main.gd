@@ -195,7 +195,8 @@ func _on_tutorial_area_body_entered(body):
 
 
 func force_player_to_center():
-	var point = %Muncher.global_position + ($FollowPoints/Center.global_position - %Muncher.global_position).normalized() * 10.0
+	var point = %Muncher.global_position + ($FollowPoints/Center.global_position \
+		- %Muncher.global_position).normalized() * 10.0
 	%Muncher.set_follow_points([point] as Array[Vector3])
 
 
@@ -230,20 +231,12 @@ func _on_exit_guild_looker():
 
 
 func walk_out_after_guild_exit():
-	var point = $FollowPoints/GuildFront.global_position
-	%Muncher.set_follow_points([point] as Array[Vector3])
+	%Muncher.set_follow_point($FollowPoints/GuildFront)
 
 
 func torpejo_walk_to_first_munchme():
-	var points: Array[Vector3] = get_children_positions($TutorialTorpejoPoints/Follow)
+	var points: Array[Node] = $TutorialTorpejoPoints/FollowPoints.get_children()
 	%Torpejo.set_follow_points(points)
-
-
-func get_children_positions(parent: Node3D) -> Array[Vector3]:
-	var points: Array[Vector3] = []
-	for p in parent.get_children():
-		points.append(p.global_position)
-	return points
 
 
 func _on_torpejo_area_body_entered(body):

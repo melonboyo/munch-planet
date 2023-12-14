@@ -2,7 +2,7 @@ extends Node3D
 class_name FollowPoints
 
 @onready var points := _get_points()
-@export_node_path("Goby") var target: NodePath
+@export_node_path("CharacterBody3D") var target: NodePath
 @export var spherical := true
 @export var loop := false
 

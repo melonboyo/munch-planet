@@ -132,7 +132,6 @@ noise = SubResource("FastNoiseLite_31tp3")
 render_priority = 0
 shader = ExtResource("13_snone")
 shader_parameter/albedo = Color(0.392157, 0.458824, 0.466667, 1)
-shader_parameter/albedo_uv_scale = Vector2(1, 1)
 shader_parameter/use_normal_texture = false
 shader_parameter/normal_depth = 1.0
 shader_parameter/roughness = 0.809
@@ -324,17 +323,14 @@ tracks/5/path = NodePath("../Player/Muncher")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 31.5, 32.2, 32.8, 32.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 31.5, 32.8, 32.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [true],
 "method": &"sit"
 }, {
 "args": [false],
 "method": &"sit"
-}, {
-"args": [],
-"method": &"walk_to_phone"
 }, {
 "args": [false],
 "method": &"set_is_movement_animating"
@@ -426,11 +422,14 @@ tracks/11/path = NodePath("..")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 32.2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"add_black_bars"
+}, {
+"args": [],
+"method": &"walk_to_phone"
 }]
 }
 
@@ -444,8 +443,8 @@ tracks/0/path = NodePath("../Player/Muncher")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8, 2.7, 2.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.8, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [false],
 "method": &"set_is_movement_animating"
@@ -455,9 +454,6 @@ tracks/0/keys = {
 }, {
 "args": [true],
 "method": &"set_is_movement_animating"
-}, {
-"args": [],
-"method": &"walk_outside"
 }]
 }
 tracks/1/type = "method"
@@ -530,6 +526,20 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("..")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"walk_outside"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_oflk8"]
@@ -1104,7 +1114,6 @@ transform = Transform3D(-0.452857, -0.745059, 0.489702, 0.856071, -0.516831, 0.0
 transform = Transform3D(0.643, -8.19564e-08, 1.49012e-08, 5.21541e-08, 0.643, 2.98023e-08, 0, -1.49012e-08, 0.643, 6.3287, 10.7113, 22.1505)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="EarthPivot/EarthFarAway"]
-transform = Transform3D(1.55521, 1.19209e-07, -2.98023e-08, 1.49012e-08, 1.55521, -6.55651e-07, 0, 5.96046e-07, 1.55521, -9.97968, 88.2205, 28.5597)
 omni_range = 57.8457
 
 [connection signal="rocket_go" from="home/RocketPlatform/RocketPath/RocketPathFollow/Rocket" to="." method="_on_rocket_go"]
