@@ -49,6 +49,10 @@ func _ready():
 
 
 func _process(delta):
+	if Input.is_action_just_pressed("toggle_fullscreen"):
+		Settings.fullscreen = not Settings.fullscreen
+		Settings.save_settings()
+		
 	if (
 		(Input.is_action_just_pressed("cancel") or Input.is_action_just_pressed("settings")) and 
 		GameState.situation != Constants.Situation.Catch

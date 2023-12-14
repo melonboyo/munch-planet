@@ -85,12 +85,22 @@ visible = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
+[node name="MasterVolumeLabel" parent="MarginContainer/Tabs/AudioTab" index="0"]
+text = "Master"
+
 [node name="MasterVolumeSlider" parent="MarginContainer/Tabs/AudioTab" index="1"]
 focus_neighbor_left = NodePath("../../GeneralTab/TextSpeedSlider")
 focus_neighbor_top = NodePath("../../TabButtons/AudioTabButton")
 
+[node name="MusicVolumeLabel" parent="MarginContainer/Tabs/AudioTab" index="2"]
+text = "Music"
+
 [node name="MusicVolumeSlider" parent="MarginContainer/Tabs/AudioTab" index="3"]
 focus_neighbor_left = NodePath("../../GeneralTab/TextSpeedSlider")
+
+[node name="EffectsVolumeLabel" parent="MarginContainer/Tabs/AudioTab" index="4"]
+text = "Effects
+"
 
 [node name="EffectsVolumeSlider" parent="MarginContainer/Tabs/AudioTab" index="5"]
 focus_neighbor_left = NodePath("../../GeneralTab/TextSpeedSlider")

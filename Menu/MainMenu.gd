@@ -8,6 +8,7 @@ var state: State = State.Title
 
 var intro_scene = preload("res://Intro/Intro.tscn")
 var main_scene = preload("res://Main.tscn")
+var settings_looker_scene = preload("res://Looker/Settings/SettingsLooker.tscn")
 
 const EARTH_COLLISION_LAYER = 1
 const PLANET_NORMAL_SCALE := 1
@@ -15,6 +16,19 @@ const PLANET_NOT_HOVER_SCALE := 0.8
 
 var hovering_earth: bool
 @export var earth_scale: float = 0.8
+
+
+func _on_start_button_pressed():
+	$AnimationPlayer.play("fade_to_game")
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+
+func _on_settings_button_pressed():
+	open_settings()
+
+
+func _on_exit_button_pressed():
+	get_tree().quit()
 
 
 func _process(delta):
@@ -49,10 +63,6 @@ func state_back():
 		set_state(State.Title)
 
 
-func _on_start_button_button_up():
-	get_tree().change_scene_to_packed(intro_scene)
-
-
 func is_mouse_hovering(collision_layer: int):
 	var mouse_position = get_viewport().get_mouse_position()
 	var ray_origin = %Camera3D.project_ray_origin(mouse_position)
@@ -64,3 +74,19 @@ func is_mouse_hovering(collision_layer: int):
 		return false
 
 	return result.collider.collision_layer | collision_layer
+
+
+func open_settings():
+	for child in get_children():
+		if child.name == "SettingsLooker":
+			child.close()
+			return
+	
+	var settings_looker = settings_looker_scene.instantiate()
+	settings_looker.is_in_main_menu = true
+	add_child(settings_looker)
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "fade_to_game":
+		get_tree().change_scene_to_packed(intro_scene)

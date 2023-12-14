@@ -21,7 +21,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tgy13"]
 shader = ExtResource("2_0pxcx")
-shader_parameter/circle_size = 1.05
+shader_parameter/circle_size = 0.0
 shader_parameter/screen_width = 1920.0
 shader_parameter/screen_height = 1080.0
 
@@ -638,7 +638,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.05]
+"values": [0.0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -897,7 +897,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.05]
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e1vgw"]
