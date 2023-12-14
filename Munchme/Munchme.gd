@@ -26,10 +26,6 @@ signal finish_catch(win: bool)
 func _ready():
 	if situation == Constants.Situation.Overworld:
 		$OverworldMovement.spherical_gravity = not is_inside
-		if can_be_caught:
-			var root = get_parent().get_parent()
-			if root != null:
-				catch_munchme.connect(root._on_catch_munchme)
 	elif situation == Constants.Situation.Catch:
 		get_parent().start_minigame.connect(_on_start_minigame)
 		if not finish_catch.is_connected(get_parent()._on_munchme_finish_catch):
@@ -116,7 +112,7 @@ func _on_catch_area_body_exited(body):
 
 func attempt_catch():
 	in_catch_mode = true
-	emit_signal("catch_munchme", self)
+	GameState.attempt_catch_munchme.emit(self)
 
 
 func _on_start_minigame():

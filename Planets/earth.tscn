@@ -11,6 +11,8 @@
 render_priority = 0
 shader = ExtResource("2_qhse1")
 shader_parameter/albedo = Color(0.909804, 0.909804, 0.909804, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
 shader_parameter/use_normal_texture = false
 shader_parameter/normal_depth = 1.0
 shader_parameter/roughness = 0.883

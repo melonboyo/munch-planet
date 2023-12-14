@@ -5,6 +5,7 @@ signal munchme_added(resource: MunchmeResource)
 signal situation_changed(new_situation: Constants.Situation)
 signal munchme_deployed(resource: MunchmeResource)
 signal exit_guild_looker
+signal attempt_catch_munchme(munchme: Munchme)
 
 var situation: Constants.Situation = Constants.Situation.Overworld:
 	set(new_situation):

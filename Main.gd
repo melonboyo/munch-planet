@@ -14,13 +14,18 @@ var guild_interior_looker_scene := preload("res://Looker/Interior/InteriorLooker
 var mouse_captured = true
 var munchme_getting_caught: Munchme
 var current_manage_ui = null
-var manage_allowed = true
+var manage_allowed = true:
+	set(value):
+		manage_allowed = value
+		if not manage_allowed and current_manage_ui != null:
+			close_manage()
 
 var tutorial_music: TutorialMusic
 
 
 func _ready():
 	GameState.main_window = $UI
+	GameState.attempt_catch_munchme.connect(_on_attempt_catch_munchme)
 	planet_specific_ready()
 
 
@@ -107,8 +112,9 @@ func open_settings():
 	$UI.add_child(settings_looker)
 
 
-func _on_catch_munchme(munchme: Munchme):
+func _on_attempt_catch_munchme(munchme: Munchme):
 	GameState.situation = Constants.Situation.Catch
+	manage_allowed = false
 	munchme_getting_caught = munchme
 	
 	var catch_ui: Control = catch_looker_scene.instantiate()
@@ -119,10 +125,13 @@ func _on_catch_munchme(munchme: Munchme):
 
 func _on_munchme_finish_catch(win: bool):
 	munchme_getting_caught.in_catch_mode = false
+	manage_allowed = true
 	munchme_getting_caught.situation = Constants.Situation.Overworld
 	if win:
 		GameState.add_munchme(munchme_getting_caught.resource)
 		munchme_getting_caught.queue_free()
+		if GameState.tutorial_stage == Constants.TutorialStage.Catching:
+			GameState.tutorial_stage = Constants.TutorialStage.Caught
 	else:
 		pass
 
@@ -143,7 +152,7 @@ func retrieve_munchme():
 
 
 func _on_munchme_deployed(resource):
-	var spawn_pos = %Muncher.global_position + %Muncher.global_basis.z * 2.5
+	var spawn_pos = %Muncher.global_position + %Muncher.global_basis.z * 3.0
 	spawn_pos = Math.position_to_position_on_surface(spawn_pos, spawn_pos.normalized(), self)
 	deploy_munchme(resource, spawn_pos)
 	close_manage()
@@ -156,7 +165,7 @@ func deploy_munchme(munchme_resource: MunchmeResource, pos: Vector3):
 	var munchme: Munchme = Scenes.munchmes[munchme_resource.munchme_type].instantiate()
 	munchme.resource = munchme_resource
 	munchme.situation = Constants.Situation.Interact
-	munchme.position = pos
+	munchme.global_position = pos
 	munchme.camera = deploy_ui.get_node("%DeployScene").get_camera()
 	munchme.player_controlled = true
 	munchme.is_inside = false
@@ -197,7 +206,7 @@ func _on_tutorial_area_body_entered(body):
 func force_player_to_center():
 	var point = %Muncher.global_position + ($FollowPoints/Center.global_position \
 		- %Muncher.global_position).normalized() * 10.0
-	%Muncher.set_follow_points([point] as Array[Vector3])
+	%Muncher.set_vector_follow_point(point)
 
 
 func _on_enter_guild_area_entered(body):
@@ -247,4 +256,37 @@ func _on_torpejo_area_body_entered(body):
 func _on_torpejo_torpejo_talked_to():
 	if GameState.tutorial_stage == Constants.TutorialStage.GuildExited:
 		%Muncher.player_controlled = false
+		$MainCamera.enable = false
 		$TutorialMeetDipshitCutscene.play()
+
+
+func rotate_torpejo_towards_camera():
+	%Torpejo.rotate_towards($TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1.global_position)
+
+
+func rotate_torpejo_towards_dipshit():
+	%Torpejo.rotate_towards(%Dipshit.global_position)
+
+
+func rotate_player_towards_dipshit():
+	%Muncher.rotate_towards(%Dipshit.global_position)
+
+
+func dipshit_walk_downhill():
+	%Dipshit.set_follow_points($TutorialTorpejoPoints/DipshitWaitingPoints.get_children())
+
+
+func torpejo_turn_to_player():
+	%Torpejo.rotate_towards(%Muncher.global_position)
+
+
+func move_dipshit_camera_down():
+	%DipshitCameraAnimation.play("pan_down")
+
+
+func _on_cutscene_animation_animation_finished(anim_name):
+	if anim_name == "End_Catch_Tut":
+		%Muncher.player_controlled = true
+		$MainCamera.enable = true
+		GameState.tutorial_stage = Constants.TutorialStage.Catching
+		

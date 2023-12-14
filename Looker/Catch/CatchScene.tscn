@@ -1,7 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://ct2kqjitntgre"]
+[gd_scene load_steps=13 format=3 uid="uid://ct2kqjitntgre"]
 
-[ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="1_blmnl"]
 [ext_resource type="Script" path="res://Looker/Catch/CatchScene.gd" id="1_u7ylu"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_lbkba"]
+[ext_resource type="Texture2D" uid="uid://bg3ymobja86l8" path="res://Models/earth_earth-texture.png" id="3_iina4"]
+[ext_resource type="Environment" uid="uid://ddd2lxon2t62u" path="res://MiscResources/MainEnvironment.tres" id="4_2u1b4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_arq71"]
 lightmap_size_hint = Vector2i(202, 202)
@@ -10,59 +12,31 @@ size = Vector2(40, 40)
 subdivide_width = 32
 subdivide_depth = 32
 
-[sub_resource type="Gradient" id="Gradient_xc70b"]
-colors = PackedColorArray(0.466967, 0.262914, 0.118214, 1, 0.55678, 0.71312, 0.133622, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_r0ahm"]
-frequency = 0.023
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k1xsw"]
-color_ramp = SubResource("Gradient_xc70b")
-noise = SubResource("FastNoiseLite_r0ahm")
-
-[sub_resource type="Gradient" id="Gradient_j6y4m"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5y2og"]
-frequency = 0.019
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8yt8x"]
-color_ramp = SubResource("Gradient_j6y4m")
-noise = SubResource("FastNoiseLite_5y2og")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sq7vu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xc4rc"]
 render_priority = 0
-shader = ExtResource("1_blmnl")
-shader_parameter/VertexVariationDisplacement = 0.06
-shader_parameter/VertexVariationFrequency = 0.41
-shader_parameter/NumberOfVertexVariations = 5
-shader_parameter/Albedo = Color(1, 1, 1, 1)
-shader_parameter/AlbedoInfluence = 1.0
-shader_parameter/Roughness = 1.0
-shader_parameter/Specular = 0.174
-shader_parameter/LightBlendColor = Color(1, 0.735861, 0.618202, 1)
-shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
-shader_parameter/FaceTexture = SubResource("NoiseTexture2D_k1xsw")
+shader = ExtResource("2_lbkba")
+shader_parameter/albedo = Color(0.909804, 0.909804, 0.909804, 1)
+shader_parameter/albedo_uv_scale = Vector2(0.1, 0.1)
+shader_parameter/albedo_uv_offset = Vector2(0.74, 1.05)
+shader_parameter/use_normal_texture = false
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.883
+shader_parameter/metallic = 0.033
+shader_parameter/specularity = 0.069
+shader_parameter/specular_tint = 0.506
+shader_parameter/sheen = 0.676
+shader_parameter/sheen_tint = 0.963
+shader_parameter/subsurface = 0.695
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.055
+shader_parameter/wobble_displacement = 0.05
+shader_parameter/wobble_frequency = 0.5
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/albedo_texture = ExtResource("3_iina4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sniqy"]
 size = Vector3(50, 1, 50)
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b3tss"]
-sky_top_color = Color(0.772549, 0.988235, 0.976471, 1)
-sky_horizon_color = Color(0.764706, 0.772549, 0.784314, 1)
-sky_energy_multiplier = 0.95
-
-[sub_resource type="Sky" id="Sky_87rhe"]
-sky_material = SubResource("ProceduralSkyMaterial_b3tss")
-
-[sub_resource type="Environment" id="Environment_x3oj8"]
-background_mode = 2
-background_color = Color(0.564706, 0.929412, 0.941176, 1)
-sky = SubResource("Sky_87rhe")
-tonemap_white = 0.6
-adjustment_enabled = true
-adjustment_brightness = 1.05
-adjustment_saturation = 1.1
 
 [sub_resource type="Curve3D" id="Curve3D_0828f"]
 _data = {
@@ -192,7 +166,7 @@ script = ExtResource("1_u7ylu")
 
 [node name="Plane" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_arq71")
-surface_material_override/0 = SubResource("ShaderMaterial_sq7vu")
+surface_material_override/0 = SubResource("ShaderMaterial_xc4rc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Plane"]
 
@@ -201,10 +175,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_sniqy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_x3oj8")
+environment = ExtResource("4_2u1b4")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 1.74846e-07, -8.20894e-09, 0.998897, 0.0469495, -1.74653e-07, -0.0469495, 0.998897, 0, 0, 0)
 
 [node name="Path" type="Path3D" parent="CameraPivot"]
 transform = Transform3D(2.36192, 0, 0, 0, 2.36192, 0, 0, 0, 2.36192, -2.931, 0.835557, 3.50799)
@@ -221,7 +195,7 @@ transform = Transform3D(0.402705, -5.40167e-08, -0.13085, 6.1933e-08, 0.423419, 
 transform = Transform3D(-0.940591, -0.197824, -0.275961, -0.339542, 0.548007, 0.76446, 4.01391e-07, 0.812745, -0.58262, 1.94224, 1.90524, 1.78926)
 layers = 2
 light_color = Color(0.960784, 0.960784, 0.960784, 1)
-light_energy = 1.1
+light_energy = 0.825
 shadow_enabled = true
 shadow_blur = 1.99
 directional_shadow_pancake_size = 13.0

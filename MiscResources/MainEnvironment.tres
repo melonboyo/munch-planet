@@ -1,0 +1,55 @@
+[gd_resource type="Environment" load_steps=5 format=3 uid="uid://ddd2lxon2t62u"]
+
+[ext_resource type="Texture2D" uid="uid://ios8c7bseiai" path="res://Sprites/Skybox/main-skybox.png" id="1_abofr"]
+
+[sub_resource type="Shader" id="Shader_bjxy6"]
+code = "
+// NOTE: Shader automatically converted from Godot Engine 4.2.stable's PanoramaSkyMaterial.
+
+shader_type sky;
+
+uniform sampler2D source_panorama : filter_linear, source_color, hint_default_black;
+
+void sky() {
+	     
+	COLOR = texture(source_panorama, SKY_COORDS).rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjbsd"]
+shader = SubResource("Shader_bjxy6")
+shader_parameter/source_panorama = ExtResource("1_abofr")
+
+[sub_resource type="Sky" id="Sky_hjdba"]
+sky_material = SubResource("ShaderMaterial_wjbsd")
+
+[resource]
+background_mode = 2
+background_color = Color(0.564706, 0.929412, 0.941176, 1)
+sky = SubResource("Sky_hjdba")
+ambient_light_source = 3
+ambient_light_color = Color(0.921569, 0.811765, 0.784314, 1)
+ambient_light_sky_contribution = 0.76
+ambient_light_energy = 0.8
+reflected_light_source = 2
+ssao_enabled = true
+ssao_power = 1.21838
+ssao_horizon = 1.0
+sdfgi_enabled = true
+sdfgi_bounce_feedback = 0.66
+sdfgi_cascades = 6
+sdfgi_min_cell_size = 2.0
+sdfgi_energy = 1.035
+sdfgi_probe_bias = 1.8
+glow_normalized = true
+fog_light_color = Color(0.627451, 0.752941, 0.733333, 1)
+fog_light_energy = 1.05
+fog_density = 0.002
+volumetric_fog_enabled = true
+volumetric_fog_density = 1.4315
+volumetric_fog_albedo = Color(0.678431, 0.996078, 1, 1)
+volumetric_fog_emission = Color(0.737255, 0.866667, 0.85098, 1)
+volumetric_fog_emission_energy = 0.9
+volumetric_fog_length = 0.15
+adjustment_enabled = true
+adjustment_brightness = 1.02
+adjustment_saturation = 1.03

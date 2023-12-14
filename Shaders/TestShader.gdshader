@@ -4,7 +4,8 @@ render_mode diffuse_lambert_wrap;
 uniform vec4 albedo : source_color;
 uniform sampler2D albedo_texture : hint_default_white, filter_nearest;
 //uniform sampler2D overlay_texture : hint_default_white, filter_nearest;
-//uniform vec2 albedo_uv_scale = vec2(1.0);
+uniform vec2 albedo_uv_scale = vec2(1.0);
+uniform vec2 albedo_uv_offset = vec2(0.0);
 
 uniform bool use_normal_texture = false;
 uniform sampler2D normal_texture : hint_normal;
@@ -49,7 +50,7 @@ void vertex() {
 }
 
 void fragment() {
-	vec4 albedo_tex = texture(albedo_texture, UV);
+	vec4 albedo_tex = texture(albedo_texture, UV*albedo_uv_scale+albedo_uv_offset);
 	vec4 normal_tex = texture(normal_texture, UV);
 	//vec4 overlay_tex = texture(overlay_texture, UV);
 	//ALBEDO = albedo.rgb * albedo_tex.rgb + (overlay_tex.rgb + vec3(-1.0));

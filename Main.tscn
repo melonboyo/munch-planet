@@ -1,8 +1,7 @@
-[gd_scene load_steps=72 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=83 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
-[ext_resource type="Texture2D" uid="uid://ios8c7bseiai" path="res://Sprites/Skybox/main-skybox.png" id="2_hhsoy"]
 [ext_resource type="Shader" path="res://Shaders/CircleTransition.gdshader" id="2_ww73t"]
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/Camera.tscn" id="3_8oj03"]
 [ext_resource type="Script" path="res://Environment.gd" id="3_ligat"]
@@ -14,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://rkcx1xfq1g7m" path="res://Munchme/Torpejo/Torpejo.tscn" id="7_8qtkd"]
 [ext_resource type="PackedScene" uid="uid://ct1kbjcajv4bf" path="res://FoliageSpawner.tscn" id="7_fo20x"]
 [ext_resource type="PackedScene" uid="uid://dqcx081xjqlj7" path="res://Munchme/Dipshit/dipshit.tscn" id="8_82vux"]
+[ext_resource type="Environment" uid="uid://ddd2lxon2t62u" path="res://MiscResources/MainEnvironment.tres" id="9_18ahj"]
 [ext_resource type="PackedScene" uid="uid://c2eraey620ohp" path="res://Globals/Cutscenes/Cutscene.tscn" id="10_01ks1"]
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="11_nrph8"]
 [ext_resource type="PackedScene" uid="uid://bx7g1p62e5vct" path="res://Assets/Rocks/big_rock.tscn" id="14_3ulth"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://reb1ntdr4vvv" path="res://Assets/rocket.tscn" id="23_5lo66"]
 [ext_resource type="AudioStream" uid="uid://dhtfeqs3hcfw8" path="res://Music/rocket_piano.ogg" id="25_07esk"]
 [ext_resource type="AudioStream" uid="uid://521ccmfxr2r5" path="res://SFX/Intro/rocket_landing.ogg" id="25_scv7q"]
+[ext_resource type="AudioStream" uid="uid://dbibj27ed8pf0" path="res://SFX/Orchestra/gagaan.ogg" id="27_t1m0m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dgl50"]
 shader = ExtResource("2_ww73t")
@@ -174,60 +175,6 @@ size = Vector3(26.0291, 81.8575, 165.737)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3yl1q"]
 size = Vector3(26.0291, 112.871, 128.462)
 
-[sub_resource type="Shader" id="Shader_bjxy6"]
-code = "
-// NOTE: Shader automatically converted from Godot Engine 4.2.stable's PanoramaSkyMaterial.
-
-shader_type sky;
-
-uniform sampler2D source_panorama : filter_linear, source_color, hint_default_black;
-
-void sky() {
-	     
-	COLOR = texture(source_panorama, SKY_COORDS).rgb;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjbsd"]
-shader = SubResource("Shader_bjxy6")
-shader_parameter/source_panorama = ExtResource("2_hhsoy")
-
-[sub_resource type="Sky" id="Sky_hjdba"]
-sky_material = SubResource("ShaderMaterial_wjbsd")
-
-[sub_resource type="Environment" id="Environment_cpnc6"]
-background_mode = 2
-background_color = Color(0.564706, 0.929412, 0.941176, 1)
-sky = SubResource("Sky_hjdba")
-ambient_light_source = 3
-ambient_light_color = Color(0.921569, 0.811765, 0.784314, 1)
-ambient_light_sky_contribution = 0.76
-ambient_light_energy = 0.8
-reflected_light_source = 2
-ssao_enabled = true
-ssao_power = 1.21838
-ssao_horizon = 1.0
-sdfgi_enabled = true
-sdfgi_bounce_feedback = 0.66
-sdfgi_cascades = 6
-sdfgi_min_cell_size = 2.0
-sdfgi_energy = 1.035
-sdfgi_probe_bias = 1.8
-glow_enabled = true
-glow_normalized = true
-fog_light_color = Color(0.627451, 0.752941, 0.733333, 1)
-fog_light_energy = 1.05
-fog_density = 0.002
-volumetric_fog_enabled = true
-volumetric_fog_density = 1.4315
-volumetric_fog_albedo = Color(0.678431, 0.996078, 1, 1)
-volumetric_fog_emission = Color(0.737255, 0.866667, 0.85098, 1)
-volumetric_fog_emission_energy = 0.9
-volumetric_fog_length = 0.15
-adjustment_enabled = true
-adjustment_brightness = 1.02
-adjustment_contrast = 1.05
-adjustment_saturation = 1.25
-
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1rtsb"]
 auto_exposure_scale = 0.5
 dof_blur_far_distance = 100.0
@@ -260,6 +207,8 @@ noise = SubResource("FastNoiseLite_ik3lo")
 render_priority = 0
 shader = ExtResource("22_ui3dp")
 shader_parameter/albedo = Color(0.392157, 0.458824, 0.466667, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
 shader_parameter/use_normal_texture = false
 shader_parameter/normal_depth = 1.0
 shader_parameter/roughness = 0.809
@@ -290,6 +239,67 @@ point_count = 4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_skowq"]
 radius = 2.51647
+
+[sub_resource type="Animation" id="Animation_vva76"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(10.3169, 0.468647, -1.18568)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.44474, 1.9755, 0.924272)]
+}
+
+[sub_resource type="Animation" id="Animation_y8w0q"]
+resource_name = "pan_down"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(8.07722, 2.16845, 3.47026), Vector3(1.33257, 0.226536, -3.23048)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.127935, 1.91035, 1.00077), Vector3(0.12712, 2.20655, 0.990541)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qs7x"]
+_data = {
+"RESET": SubResource("Animation_vva76"),
+"pan_down": SubResource("Animation_y8w0q")
+}
 
 [sub_resource type="Resource" id="Resource_dmdrs"]
 script = ExtResource("11_nrph8")
@@ -754,32 +764,178 @@ script = ExtResource("11_nrph8")
 animation_name = "Dipshit_Enters"
 dialogue_translation_key = ""
 
-[sub_resource type="Animation" id="Animation_irxay"]
-resource_name = "Tutorial_3"
-length = 2.0
+[sub_resource type="Resource" id="Resource_6fc8c"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_3"
+
+[sub_resource type="Resource" id="Resource_n46iy"]
+script = ExtResource("11_nrph8")
+animation_name = "Player_Turns"
+dialogue_translation_key = ""
+
+[sub_resource type="Resource" id="Resource_ypwbw"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_4"
+
+[sub_resource type="Resource" id="Resource_5ocai"]
+script = ExtResource("11_nrph8")
+animation_name = "Torpejo_Turns"
+dialogue_translation_key = ""
+
+[sub_resource type="Resource" id="Resource_j8dvl"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_5"
+
+[sub_resource type="Resource" id="Resource_uucwk"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_6"
+
+[sub_resource type="Resource" id="Resource_q2drc"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_7"
+
+[sub_resource type="Resource" id="Resource_br865"]
+script = ExtResource("11_nrph8")
+animation_name = "End_Catch_Tut"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_qvj0c"]
+resource_name = "Dipshit_Enters"
+length = 9.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:current")
+tracks/0/path = NodePath("%Dipshit:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:position")
+tracks/1/path = NodePath("%Dipshit:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-2, 1),
+"times": PackedFloat32Array(0, 1, 2.7),
+"transitions": PackedFloat32Array(1, 0.659754, 1),
 "update": 0,
-"values": [Vector3(10.4505, -2.2817, -1.36005), Vector3(10.3581, -2.65873, -1.78588)]
+"values": [Vector3(108.049, 128.829, -79.5369), Vector3(108.049, 128.829, -79.5369), Vector3(82.3592, 94.2973, -40.6726)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DipshitPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 1.45,
+"start_offset": 0.0,
+"stream": ExtResource("27_t1m0m")
+}],
+"times": PackedFloat32Array(4.7)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.7, 4.7, 7.7),
+"transitions": PackedFloat32Array(1, 2, 0, 1),
+"update": 0,
+"values": [Vector3(1.33257, 0.226536, -3.23048), Vector3(1.33257, 0.226536, -3.23048), Vector3(-28.7304, 20.0305, 10.1061), Vector3(1.33257, 0.226536, -3.23048)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:fov")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.7, 4.7, 7.7),
+"transitions": PackedFloat32Array(1, 1, 0, 1),
+"update": 0,
+"values": [75.0, 75.0, 95.0, 75.0]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(8.3, 8.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"rotate_torpejo_towards_dipshit"
+}, {
+"args": [],
+"method": &"dipshit_walk_downhill"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%Dipshit:freeze")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(7.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 3.7, 4.7, 7.7),
+"transitions": PackedFloat32Array(1, 1, 0, 1),
+"update": 0,
+"values": [Vector3(0.12712, 2.20655, 0.990541), Vector3(0.12712, 2.20655, 0.990541), Vector3(0.44474, 1.9755, 0.924272), Vector3(0.12712, 2.20655, 0.990541)]
+}
+
+[sub_resource type="Animation" id="Animation_gfidx"]
+resource_name = "End_Catch_Tut"
+length = 4.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%OverlayAnimation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("fade_out", "fade_in"),
+"times": PackedFloat32Array(2.1, 3.1)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -788,10 +944,76 @@ tracks/2/path = NodePath("../MainCamera/SpringArm3D/Camera3D:current")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(3),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.554785, 1),
+"update": 0,
+"values": [Vector3(-13.1508, 1.09385, 3.56694), Vector3(-13.8597, 1.349, 3.63452)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.344053, 1.66584, 0.77706)]
+}
+
+[sub_resource type="Animation" id="Animation_ry6vc"]
+resource_name = "Player_Turns"
+length = 1.6
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"rotate_player_towards_dipshit"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(0, 1),
+"update": 0,
+"values": [Vector3(1.33257, 0.226536, -3.23048), Vector3(-3.58445, -1.54217, 5.62424)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(0, 1),
+"update": 0,
+"values": [Vector3(0.12712, 2.20655, 0.990541), Vector3(0.238317, -0.450648, -0.793822)]
 }
 
 [sub_resource type="Animation" id="Animation_t43r0"]
@@ -832,14 +1054,146 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Dipshit:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Dipshit:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(108.049, 128.829, -79.5369)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:fov")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%Dipshit:freeze")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.44474, 1.9755, 0.924272)]
+}
 
-[sub_resource type="Animation" id="Animation_qvj0c"]
-resource_name = "Dipshit_Enters"
+[sub_resource type="Animation" id="Animation_sbxk1"]
+resource_name = "Torpejo_Turns"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"torpejo_turn_to_player"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_irxay"]
+resource_name = "Tutorial_3"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MainCamera/SpringArm3D/Camera3D:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"move_dipshit_camera_down"
+}, {
+"args": [],
+"method": &"rotate_torpejo_towards_camera"
+}]
+}
+tracks/3/type = "animation"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%OverlayAnimation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": PackedStringArray("fade_out", "fade_in"),
+"times": PackedFloat32Array(0.1, 1.1)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_onsyh"]
 _data = {
 "Dipshit_Enters": SubResource("Animation_qvj0c"),
+"End_Catch_Tut": SubResource("Animation_gfidx"),
+"Player_Turns": SubResource("Animation_ry6vc"),
 "RESET": SubResource("Animation_t43r0"),
+"Torpejo_Turns": SubResource("Animation_sbxk1"),
 "Tutorial_3": SubResource("Animation_irxay")
 }
 
@@ -954,6 +1308,7 @@ camera_path = NodePath("../../MainCamera")
 unique_name_in_owner = true
 transform = Transform3D(1, -3.72529e-09, 0, 1.86265e-09, 1, 3.72529e-09, -2.98023e-08, 9.31323e-10, 1, -36.8211, 99.9388, -12.9802)
 visible = false
+is_inside = false
 
 [node name="Goby" parent="Munchmes" instance=ExtResource("4_7y8hl")]
 unique_name_in_owner = true
@@ -987,7 +1342,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6908, 91.5853, 44.2517)
 collision_layer = 262152
 
 [node name="Dipshit" parent="Munchmes" instance=ExtResource("8_82vux")]
-transform = Transform3D(0.441255, 0, 0.897382, 0, 1, 0, -0.897382, 0, 0.441255, -22.0668, 100.327, 16.1534)
+unique_name_in_owner = true
+transform = Transform3D(-0.68015, 0.36045, -0.638335, 0.709571, 0.542433, -0.449755, 0.18414, -0.758844, -0.624702, 108.049, 128.829, -79.5369)
+visible = false
+freeze = true
+
+[node name="OverworldMovement" parent="Munchmes/Dipshit" index="4"]
+spherical_gravity = true
 
 [node name="FollowPoints" type="Node3D" parent="."]
 
@@ -998,7 +1359,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4938, 100.612, 19.4683)
 transform = Transform3D(0.808073, -0.0576144, 0.586259, -0.00148314, 0.995004, 0.0998279, -0.589081, -0.0815377, 0.80395, -12.5448, 101.985, 0.946573)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_cpnc6")
+environment = ExtResource("9_18ahj")
 camera_attributes = SubResource("CameraAttributesPractical_1rtsb")
 script = ExtResource("3_ligat")
 
@@ -1072,6 +1433,8 @@ transform = Transform3D(-3.87135, 2.89102, -5.23406, -4.34864, 2.91834, 4.82838,
 spawn = false
 
 [node name="Trees" type="Node3D" parent="Planet"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="HandPlaced" type="Node3D" parent="Planet/Trees"]
 
@@ -1976,7 +2339,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(0.32131, 0.57494, 0.410099, 0.407237, 0.217253, -0.623647, -0.576974, 0.473523, -0.211804, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(0.32132, 0.574938, 0.410095, 0.407229, 0.217251, -0.623653, -0.576974, 0.473526, -0.211795, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
@@ -2010,7 +2373,14 @@ monitorable = false
 shape = SubResource("SphereShape3D_skowq")
 
 [node name="DipshitCamera1" type="Camera3D" parent="TutorialTorpejoPoints/CatchMunchmePoint"]
-transform = Transform3D(0.0222015, 0.124418, 0.76551, 0.578255, 0.507692, -0.0992852, -0.516831, 0.573371, -0.078202, 15.0713, -1.79764, -0.65313)
+transform = Transform3D(0.0608735, 0.428686, 0.64382, 0.559048, 0.421932, -0.333799, -0.534551, 0.490087, -0.275779, 15.0713, -1.79764, -0.65313)
+
+[node name="DipshitCameraAnimation" type="AnimationPlayer" parent="TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1"]
+unique_name_in_owner = true
+root_node = NodePath("../../../..")
+libraries = {
+"": SubResource("AnimationLibrary_1qs7x")
+}
 
 [node name="FollowPoints" type="Node3D" parent="TutorialTorpejoPoints"]
 transform = Transform3D(1, 1.86265e-09, 0, -3.72529e-09, 1, 2.79397e-09, -2.98023e-08, -2.79397e-09, 1, 0, 0, 0)
@@ -2028,12 +2398,25 @@ transform = Transform3D(0.507185, -0.261586, -0.821179, 0.458385, 0.888747, 1.45
 transform = Transform3D(0.507185, -0.261586, -0.821177, 0.458385, 0.888747, 1.78814e-07, 0.729825, -0.376415, 0.570672, 50.4239, -27.6179, 52.5207)
 gizmo_extents = 2.3
 
+[node name="DipshitWaitingPoints" type="Node3D" parent="TutorialTorpejoPoints"]
+transform = Transform3D(0.999839, 0.0178336, -0.00239283, -0.0178947, 0.999412, -0.0292738, 0.00186943, 0.0293101, 0.999569, 32.7291, -24.9097, 57.436)
+
+[node name="1" type="Marker3D" parent="TutorialTorpejoPoints/DipshitWaitingPoints"]
+transform = Transform3D(0.986109, -0.115474, 0.119397, 0.124897, 0.989355, -0.0746829, -0.109502, 0.0885576, 0.990034, -0.502689, 1.31553, -0.738701)
+
+[node name="2" type="Marker3D" parent="TutorialTorpejoPoints/DipshitWaitingPoints"]
+transform = Transform3D(0.986109, -0.115474, 0.119397, 0.124897, 0.989355, -0.0746829, -0.109502, 0.0885575, 0.990034, 2.1126, 1.04144, -2.25378)
+
 [node name="RocketLandingMusicPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = 3.0
 bus = &"Music"
 
 [node name="RocketLandingPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = 3.0
+bus = &"Effects"
+
+[node name="DipshitPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -1.206
 bus = &"Effects"
 
 [node name="RocketReturnCutscene" parent="." instance=ExtResource("10_01ks1")]
@@ -2061,7 +2444,7 @@ libraries = {
 }
 
 [node name="TutorialMeetDipshitCutscene" parent="." instance=ExtResource("10_01ks1")]
-scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_oiibg"), SubResource("Resource_j5mw4"), SubResource("Resource_cseye"), SubResource("Resource_ny1ib")])
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_oiibg"), SubResource("Resource_j5mw4"), SubResource("Resource_cseye"), SubResource("Resource_ny1ib"), SubResource("Resource_6fc8c"), SubResource("Resource_n46iy"), SubResource("Resource_ypwbw"), SubResource("Resource_5ocai"), SubResource("Resource_j8dvl"), SubResource("Resource_uucwk"), SubResource("Resource_q2drc"), SubResource("Resource_br865")])
 
 [node name="CutsceneAnimation" parent="TutorialMeetDipshitCutscene" index="0"]
 libraries = {
@@ -2126,7 +2509,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 [connection signal="body_entered" from="Planet/Guild/EnterGuildArea" to="." method="_on_enter_guild_area_entered"]
 [connection signal="body_entered" from="TutorialTorpejoPoints/CatchMunchmePoint/TorpejoArea" to="." method="_on_torpejo_area_body_entered"]
 [connection signal="animation_finished" from="RocketReturnCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_finished"]
+[connection signal="animation_finished" from="TutorialMeetDipshitCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
 
+[editable path="Munchmes/Dipshit"]
 [editable path="MainCamera"]
 [editable path="RocketReturnCutscene"]
 [editable path="TutorialWalkToMunchmeCutscene"]

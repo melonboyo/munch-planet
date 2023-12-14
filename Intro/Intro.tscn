@@ -1,7 +1,6 @@
-[gd_scene load_steps=51 format=3 uid="uid://bofbjnkj2gsl2"]
+[gd_scene load_steps=45 format=3 uid="uid://bofbjnkj2gsl2"]
 
 [ext_resource type="Script" path="res://Intro/Intro.gd" id="1_08500"]
-[ext_resource type="Texture2D" uid="uid://ios8c7bseiai" path="res://Sprites/Skybox/main-skybox.png" id="1_njc2r"]
 [ext_resource type="Shader" path="res://Shaders/CircleTransition.gdshader" id="2_0pxcx"]
 [ext_resource type="Script" path="res://Environment.gd" id="2_i578r"]
 [ext_resource type="Script" path="res://Light.gd" id="3_hkfkd"]
@@ -10,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://1wvwl1nbhxni" path="res://Planets/home.tscn" id="6_p8frt"]
 [ext_resource type="PackedScene" uid="uid://c2eraey620ohp" path="res://Globals/Cutscenes/Cutscene.tscn" id="9_jt0ki"]
 [ext_resource type="PackedScene" uid="uid://6ux8ioy73xet" path="res://Assets/table.tscn" id="10_5oqc0"]
+[ext_resource type="Environment" uid="uid://ddd2lxon2t62u" path="res://MiscResources/MainEnvironment.tres" id="10_venul"]
 [ext_resource type="PackedScene" uid="uid://lqlx5wf2cmjj" path="res://Assets/phone.tscn" id="11_ydew1"]
 [ext_resource type="PackedScene" uid="uid://x8jg67cxv075" path="res://Assets/phone_handle.tscn" id="12_6dgyc"]
 [ext_resource type="PackedScene" uid="uid://reb1ntdr4vvv" path="res://Assets/rocket.tscn" id="13_edbb5"]
@@ -132,6 +132,8 @@ noise = SubResource("FastNoiseLite_31tp3")
 render_priority = 0
 shader = ExtResource("13_snone")
 shader_parameter/albedo = Color(0.392157, 0.458824, 0.466667, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
 shader_parameter/use_normal_texture = false
 shader_parameter/normal_depth = 1.0
 shader_parameter/roughness = 0.809
@@ -159,65 +161,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 2.1519, 0, 0)
 }
 point_count = 4
-
-[sub_resource type="Gradient" id="Gradient_7abcu"]
-offsets = PackedFloat32Array(0, 0.345361, 1)
-colors = PackedColorArray(0.150988, 0.119537, 0.0897483, 1, 0.281626, 0.183907, 0.16937, 1, 0.987646, 0.870591, 0.885756, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ict2w"]
-gradient = SubResource("Gradient_7abcu")
-width = 128
-height = 128
-
-[sub_resource type="Shader" id="Shader_bjxy6"]
-code = "
-// NOTE: Shader automatically converted from Godot Engine 4.2.stable's PanoramaSkyMaterial.
-
-shader_type sky;
-
-uniform sampler2D source_panorama : filter_linear, source_color, hint_default_black;
-
-void sky() {
-	     
-	COLOR = texture(source_panorama, SKY_COORDS).rgb;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjbsd"]
-shader = SubResource("Shader_bjxy6")
-shader_parameter/source_panorama = ExtResource("1_njc2r")
-
-[sub_resource type="Sky" id="Sky_hjdba"]
-sky_material = SubResource("ShaderMaterial_wjbsd")
-
-[sub_resource type="Environment" id="Environment_fldhn"]
-background_mode = 2
-background_color = Color(0.564706, 0.929412, 0.941176, 1)
-sky = SubResource("Sky_hjdba")
-ambient_light_source = 3
-ambient_light_color = Color(0.921569, 0.811765, 0.784314, 1)
-ambient_light_sky_contribution = 0.76
-ambient_light_energy = 0.8
-reflected_light_source = 2
-ssao_enabled = true
-ssao_power = 1.21838
-ssao_horizon = 1.0
-sdfgi_enabled = true
-sdfgi_bounce_feedback = 0.76
-sdfgi_min_cell_size = 2.0
-sdfgi_energy = 1.05
-glow_normalized = true
-fog_light_color = Color(0.627451, 0.752941, 0.733333, 1)
-fog_light_energy = 1.05
-fog_density = 0.002
-volumetric_fog_enabled = true
-volumetric_fog_density = 1.4315
-volumetric_fog_albedo = Color(0.678431, 0.996078, 1, 1)
-volumetric_fog_emission = Color(0.737255, 0.866667, 0.85098, 1)
-volumetric_fog_emission_energy = 0.9
-volumetric_fog_length = 0.15
-adjustment_brightness = 1.12
-adjustment_saturation = 1.23
-adjustment_color_correction = SubResource("GradientTexture2D_ict2w")
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_x6k2k"]
 auto_exposure_scale = 0.5
@@ -1017,7 +960,7 @@ camera_path = NodePath("../../Cameras/Camera")
 [node name="Munchmes" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_fldhn")
+environment = ExtResource("10_venul")
 camera_attributes = SubResource("CameraAttributesPractical_x6k2k")
 script = ExtResource("2_i578r")
 

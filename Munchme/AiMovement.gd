@@ -13,7 +13,7 @@ var has_reached_end = true
 
 func _process(delta):
 	if not points.is_empty() and target.player_controlled:
-		points.clear()
+		has_reached_end = true
 	if has_reached_end:
 		return
 	
