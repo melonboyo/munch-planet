@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://er4dwtlgxuc5" path="res://Muncher/emoter.tscn" id="3_8mst7"]
 [ext_resource type="PackedScene" uid="uid://cdumv0t8swix3" path="res://Movement/overworld_movement.tscn" id="4_2hhfk"]
 [ext_resource type="PackedScene" uid="uid://bcaj1ogqexsb7" path="res://Movement/float_movement.tscn" id="5_8aopf"]
-[ext_resource type="PackedScene" uid="uid://dco60ny2ql34u" path="res://ai_movement.tscn" id="5_w863o"]
+[ext_resource type="PackedScene" uid="uid://dco60ny2ql34u" path="res://Movement/ai_movement.tscn" id="5_w863o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wx677"]
 radius = 1.04752
