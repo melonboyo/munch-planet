@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bofbjnkj2gsl2"]
+[gd_scene load_steps=49 format=3 uid="uid://bofbjnkj2gsl2"]
 
 [ext_resource type="Script" path="res://Intro/Intro.gd" id="1_08500"]
 [ext_resource type="Shader" path="res://Shaders/CircleTransition.gdshader" id="2_0pxcx"]
@@ -190,6 +190,26 @@ dialogue_translation_key = "INTRO_1"
 script = ExtResource("17_td0oi")
 animation_name = ""
 dialogue_translation_key = "INTRO_2"
+
+[sub_resource type="Resource" id="Resource_1v2qm"]
+script = ExtResource("17_td0oi")
+animation_name = ""
+dialogue_translation_key = "INTRO_3"
+
+[sub_resource type="Resource" id="Resource_c0ou3"]
+script = ExtResource("17_td0oi")
+animation_name = ""
+dialogue_translation_key = "INTRO_4"
+
+[sub_resource type="Resource" id="Resource_silyh"]
+script = ExtResource("17_td0oi")
+animation_name = ""
+dialogue_translation_key = "INTRO_5"
+
+[sub_resource type="Resource" id="Resource_wb82b"]
+script = ExtResource("17_td0oi")
+animation_name = ""
+dialogue_translation_key = "INTRO_6"
 
 [sub_resource type="Resource" id="Resource_owxms"]
 script = ExtResource("17_td0oi")
@@ -1007,7 +1027,8 @@ transform = Transform3D(2.36192, -2.6077e-08, 8.3819e-08, 1.86265e-09, 2.36192, 
 curve = SubResource("Curve3D_yxy00")
 
 [node name="PathFollow" type="PathFollow3D" parent="Cameras/CameraPivot/Path"]
-transform = Transform3D(0.999899, 0, 0, 0, 0.999919, 0, 0, 0, 0.999924, -52.6121, -4.9777, -48.8145)
+transform = Transform3D(0.999899, 0, 0, 0, 0.999919, 0, 0, 0, 0.999924, -51.9313, -5.88009, -49.0898)
+progress = 1.16335
 rotation_mode = 0
 loop = false
 tilt_enabled = false
@@ -1035,7 +1056,7 @@ in_editor = true
 volume_db = -8.0
 
 [node name="Cutscene" parent="." instance=ExtResource("9_jt0ki")]
-scenes = Array[ExtResource("17_td0oi")]([SubResource("Resource_anfb4"), SubResource("Resource_qlwfi"), SubResource("Resource_rpr1d"), SubResource("Resource_owxms")])
+scenes = Array[ExtResource("17_td0oi")]([SubResource("Resource_anfb4"), SubResource("Resource_qlwfi"), SubResource("Resource_rpr1d"), SubResource("Resource_1v2qm"), SubResource("Resource_c0ou3"), SubResource("Resource_silyh"), SubResource("Resource_wb82b"), SubResource("Resource_owxms")])
 
 [node name="CutsceneAnimation" parent="Cutscene" index="0"]
 libraries = {

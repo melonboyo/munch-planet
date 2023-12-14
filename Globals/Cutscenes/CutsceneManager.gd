@@ -79,7 +79,7 @@ func _process(delta: float):
 		_update_dialogue(delta)
 
 	# Let the player skip waiting or go to the next scene
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("advance_text"):
 		if is_scene_playing:
 			skip_waiting()
 		else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=119 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://rkcx1xfq1g7m" path="res://Munchme/Torpejo/Torpejo.tscn" id="7_8qtkd"]
 [ext_resource type="PackedScene" uid="uid://ct1kbjcajv4bf" path="res://FoliageSpawner.tscn" id="7_fo20x"]
 [ext_resource type="PackedScene" uid="uid://dqcx081xjqlj7" path="res://Munchme/Dipshit/dipshit.tscn" id="8_82vux"]
+[ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="9_8u21n"]
 [ext_resource type="Environment" uid="uid://ddd2lxon2t62u" path="res://MiscResources/MainEnvironment.tres" id="9_18ahj"]
 [ext_resource type="PackedScene" uid="uid://c2eraey620ohp" path="res://Globals/Cutscenes/Cutscene.tscn" id="10_01ks1"]
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="11_nrph8"]
@@ -175,6 +176,17 @@ size = Vector3(26.0291, 81.8575, 165.737)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3yl1q"]
 size = Vector3(26.0291, 112.871, 128.462)
+
+[sub_resource type="Resource" id="Resource_0jlqk"]
+script = ExtResource("9_8u21n")
+id = 166
+name = "JIMBLO"
+munchme_type = 0
+max_health = 100
+mood = 1
+catch_track = 3
+roam_track = 2
+catch_looker_size = Vector2(910, 647)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1rtsb"]
 auto_exposure_scale = 0.5
@@ -689,62 +701,6 @@ _data = {
 "Tutorial_1": SubResource("Animation_sgl3q")
 }
 
-[sub_resource type="Resource" id="Resource_4s4g3"]
-script = ExtResource("11_nrph8")
-animation_name = "Return_1"
-dialogue_translation_key = ""
-
-[sub_resource type="Animation" id="Animation_hiseh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%Muncher:player_controlled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_jgwt7"]
-resource_name = "Return_1"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%Muncher:player_controlled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"force_player_to_center"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_csvc7"]
-_data = {
-"RESET": SubResource("Animation_hiseh"),
-"Return_1": SubResource("Animation_jgwt7")
-}
-
 [sub_resource type="Resource" id="Resource_oiibg"]
 script = ExtResource("11_nrph8")
 animation_name = "Tutorial_3"
@@ -1203,6 +1159,21 @@ script = ExtResource("11_nrph8")
 animation_name = "Teach_Deploy"
 dialogue_translation_key = ""
 
+[sub_resource type="Resource" id="Resource_6buak"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_1"
+
+[sub_resource type="Resource" id="Resource_heb7n"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_2"
+
+[sub_resource type="Resource" id="Resource_desur"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_3"
+
 [sub_resource type="Animation" id="Animation_lnpox"]
 length = 0.001
 tracks/0/type = "value"
@@ -1229,10 +1200,46 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.58445, -1.54217, 5.62424)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.238317, -0.450648, -0.793822)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../Player/Muncher:player_controlled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_jrot7"]
 resource_name = "Teach_Deploy"
-length = 6.0
+length = 2.6
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1271,11 +1278,235 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.58445, -1.54217, 5.62424)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.238317, -0.450648, -0.793822)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%Muncher:player_controlled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eyery"]
 _data = {
 "RESET": SubResource("Animation_lnpox"),
 "Teach_Deploy": SubResource("Animation_jrot7")
+}
+
+[sub_resource type="Resource" id="Resource_xn0uj"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_4"
+
+[sub_resource type="Resource" id="Resource_lqkfu"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_IN"
+
+[sub_resource type="Resource" id="Resource_4hbt0"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_5"
+
+[sub_resource type="Resource" id="Resource_wa8y4"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_6"
+
+[sub_resource type="Resource" id="Resource_hyb3i"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_MOVE"
+
+[sub_resource type="Resource" id="Resource_kidcn"]
+script = ExtResource("11_nrph8")
+animation_name = "Close_Appear"
+dialogue_translation_key = ""
+
+[sub_resource type="Resource" id="Resource_xdk8x"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_CLOSE"
+
+[sub_resource type="Resource" id="Resource_r2k7r"]
+script = ExtResource("11_nrph8")
+animation_name = "End_Deploy_Tut"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_3sokh"]
+resource_name = "Close_Appear"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"set_deploy_looker_can_close"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_yo2yk"]
+resource_name = "End_Deploy_Tut"
+length = 3.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Overlay/OverlayAnimation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("fade_out", "fade_in"),
+"times": PackedFloat32Array(0.9, 1.9)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%TutorialDeployCutscene3/../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_7mipr"]
+resource_name = "RESET"
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vxw3g"]
+_data = {
+"Close_Appear": SubResource("Animation_3sokh"),
+"End_Deploy_Tut": SubResource("Animation_yo2yk"),
+"RESET": SubResource("Animation_7mipr")
+}
+
+[sub_resource type="Resource" id="Resource_tdxxs"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_7"
+
+[sub_resource type="Resource" id="Resource_iras0"]
+script = ExtResource("11_nrph8")
+animation_name = "Test_Dipshit_2"
+dialogue_translation_key = ""
+
+[sub_resource type="Resource" id="Resource_6s5wj"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_8"
+
+[sub_resource type="Resource" id="Resource_nmbbf"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_9"
+
+[sub_resource type="Resource" id="Resource_ys670"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_BRING"
+
+[sub_resource type="Resource" id="Resource_wkt80"]
+script = ExtResource("11_nrph8")
+animation_name = "Test_Dipshit_3"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_h5n3i"]
+resource_name = "Test_Dipshit_1"
+length = 2.5
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Overlay/OverlayAnimation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("fade_out", "fade_in"),
+"times": PackedFloat32Array(0.2, 1.2)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8oess"]
+resource_name = "Test_Dipshit_2"
+length = 1.2
+
+[sub_resource type="Animation" id="Animation_hjung"]
+resource_name = "Test_Dipshit_3"
+length = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k25lk"]
+_data = {
+"Test_Dipshit_1": SubResource("Animation_h5n3i"),
+"Test_Dipshit_2": SubResource("Animation_8oess"),
+"Test_Dipshit_3": SubResource("Animation_hjung")
 }
 
 [sub_resource type="Animation" id="Animation_4caop"]
@@ -1387,9 +1618,112 @@ _data = {
 "RESET": SubResource("Animation_ijgiy")
 }
 
+[sub_resource type="Animation" id="Animation_e1cjn"]
+resource_name = "ForceDipshitToCatchCenter"
+length = 1.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"force_dipshit_to_catch_center"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Munchmes/Dipshit:player_controlled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_okgw7"]
+resource_name = "ForcePlayerToCatchCenter"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Muncher:player_controlled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"force_player_to_catch_center"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1s6n2"]
+resource_name = "ForcePlayerToCenter"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Muncher:player_controlled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"force_player_to_center"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hphoa"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q1rab"]
+_data = {
+"ForceDipshitToCatchCenter": SubResource("Animation_e1cjn"),
+"ForcePlayerToCatchCenter": SubResource("Animation_okgw7"),
+"ForcePlayerToCenter": SubResource("Animation_1s6n2"),
+"RESET": SubResource("Animation_hphoa")
+}
+
 [node name="Main" type="Node3D"]
-transform = Transform3D(0.721482, -0.141671, 0.677785, 0.692433, 0.147614, -0.70622, 0, 0.978846, 0.204599, 0, 0, 0)
+transform = Transform3D(0.737101, -0.486638, 0.468898, 0.665073, 0.645422, -0.375644, -0.119834, 0.588739, 0.799391, 0, 0, 0)
 script = ExtResource("1_12yvb")
+skip_rocket_cutscene = true
+tutorial_stage = 5
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -1484,6 +1818,37 @@ shape = SubResource("BoxShape3D_3yl1q")
 transform = Transform3D(0.632302, 0.208072, 0.746277, -0.29011, 0.956776, -0.0209581, -0.718363, -0.203249, 0.665327, 24.7499, 113.675, -36.3139)
 shape = SubResource("BoxShape3D_3yl1q")
 
+[node name="TutorialArea2" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 10
+monitoring = false
+monitorable = false
+metadata/_edit_group_ = true
+
+[node name="C1" type="CollisionShape3D" parent="TutorialArea2"]
+transform = Transform3D(0.579417, 0.327682, 0.746277, -0.471577, 0.881588, -0.0209581, -0.66476, -0.339781, 0.665327, 31.1022, 111.024, -43.5225)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="C2" type="CollisionShape3D" parent="TutorialArea2"]
+transform = Transform3D(0.939179, 0.292671, 0.17974, -0.343101, 0.775826, 0.529528, 0.0155345, -0.558984, 0.82905, 24.4314, 100.214, -78.0038)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="C3" type="CollisionShape3D" parent="TutorialArea2"]
+transform = Transform3D(0.598807, 0.530223, -0.600261, 0.307065, 0.540226, 0.783516, 0.739701, -0.653487, 0.160682, 27.5449, 54.6183, -89.6833)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="C4" type="CollisionShape3D" parent="TutorialArea2"]
+transform = Transform3D(-0.264502, 0.530224, -0.805563, 0.83767, 0.540226, 0.0805363, 0.477875, -0.653487, -0.587037, 89.4645, 26.7854, -62.4522)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="C5" type="CollisionShape3D" parent="TutorialArea2"]
+transform = Transform3D(-0.752949, 0.656358, -0.0477706, 0.460688, 0.473872, -0.75049, -0.469948, -0.587083, -0.659177, 89.0073, 27.5547, -63.295)
+shape = SubResource("BoxShape3D_3yl1q")
+
+[node name="C6" type="CollisionShape3D" parent="TutorialArea2"]
+transform = Transform3D(-0.472717, 0.656359, 0.588009, -0.348168, 0.473872, -0.808861, -0.809528, -0.587083, 0.00450966, 84.4083, 83.3272, -23.419)
+shape = SubResource("BoxShape3D_3yl1q")
+
 [node name="Player" type="Node3D" parent="."]
 
 [node name="Muncher" parent="Player" instance=ExtResource("2_b0ky1")]
@@ -1491,6 +1856,7 @@ unique_name_in_owner = true
 transform = Transform3D(-0.0501459, 0.161398, -0.985613, -0.140531, 0.975897, 0.166956, 0.988805, 0.146882, -0.0262554, 19.0219, 104.505, 12.5638)
 wall_min_slide_angle = 1.8867
 camera_path = NodePath("../../MainCamera")
+player_controlled = false
 
 [node name="Munchmes" type="Node3D" parent="."]
 
@@ -1539,6 +1905,7 @@ freeze = true
 
 [node name="Dipshit2" parent="Munchmes" instance=ExtResource("8_82vux")]
 transform = Transform3D(-0.68015, 0.36045, -0.638335, 0.709571, 0.542433, -0.449755, 0.18414, -0.758844, -0.624702, -11.9862, 106.028, 11.1755)
+resource = SubResource("Resource_0jlqk")
 
 [node name="FollowPoints" type="Node3D" parent="."]
 
@@ -2517,7 +2884,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(0.550585, 0.361464, 0.410095, 0.461534, 0.00454783, -0.623653, -0.292955, 0.686516, -0.211795, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(0.447704, 0.483074, 0.410095, 0.446945, 0.115216, -0.623652, -0.449201, 0.596108, -0.211795, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
@@ -2554,7 +2921,7 @@ monitorable = false
 shape = SubResource("SphereShape3D_skowq")
 
 [node name="DipshitCamera1" type="Camera3D" parent="TutorialTorpejoPoints/CatchMunchmePoint"]
-transform = Transform3D(0.0608735, 0.428686, 0.64382, 0.559048, 0.421932, -0.333799, -0.534551, 0.490087, -0.275779, 15.0713, -1.79764, -0.65313)
+transform = Transform3D(0.54656, 0.442065, -0.32838, -0.537594, 0.528611, -0.183159, 0.119372, 0.356555, 0.678675, -3.58445, -1.54217, 5.62424)
 
 [node name="DipshitCameraAnimation" type="AnimationPlayer" parent="TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera1"]
 unique_name_in_owner = true
@@ -2588,6 +2955,11 @@ transform = Transform3D(0.986109, -0.115474, 0.119397, 0.124897, 0.989355, -0.07
 [node name="Follow2" type="Marker3D" parent="TutorialTorpejoPoints/DipshitWaitingPoints"]
 transform = Transform3D(0.986109, -0.115474, 0.119397, 0.124897, 0.989355, -0.0746829, -0.109502, 0.0885575, 0.990034, 2.1126, 1.04144, -2.25378)
 
+[node name="CatchCenter" type="Marker3D" parent="TutorialTorpejoPoints"]
+unique_name_in_owner = true
+transform = Transform3D(0.988438, -0.0980253, 0.115677, 0.110383, 0.988247, -0.105756, -0.10395, 0.117302, 0.987641, 34.8653, -23.8407, 55.2177)
+gizmo_extents = 10.0
+
 [node name="RocketLandingMusicPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = 3.0
 bus = &"Music"
@@ -2620,15 +2992,6 @@ libraries = {
 "": SubResource("AnimationLibrary_5whae")
 }
 
-[node name="ReturnToTutorialCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
-unique_name_in_owner = true
-scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_4s4g3")])
-
-[node name="CutsceneAnimation" parent="Cutscenes/ReturnToTutorialCutscene" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_csvc7")
-}
-
 [node name="TutorialMeetDipshitCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
 unique_name_in_owner = true
 scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_oiibg"), SubResource("Resource_j5mw4"), SubResource("Resource_cseye"), SubResource("Resource_ny1ib"), SubResource("Resource_6fc8c"), SubResource("Resource_n46iy"), SubResource("Resource_ypwbw"), SubResource("Resource_5ocai"), SubResource("Resource_j8dvl"), SubResource("Resource_uucwk"), SubResource("Resource_q2drc"), SubResource("Resource_br865")])
@@ -2640,11 +3003,33 @@ libraries = {
 
 [node name="TutorialDeployCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
 unique_name_in_owner = true
-scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_5extt")])
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_5extt"), SubResource("Resource_6buak"), SubResource("Resource_heb7n"), SubResource("Resource_desur")])
 
 [node name="CutsceneAnimation" parent="Cutscenes/TutorialDeployCutscene" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_eyery")
+}
+
+[node name="TutorialDeployCutscene2" parent="Cutscenes" instance=ExtResource("10_01ks1")]
+unique_name_in_owner = true
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_xn0uj")])
+
+[node name="TutorialDeployCutscene3" parent="Cutscenes" instance=ExtResource("10_01ks1")]
+unique_name_in_owner = true
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_lqkfu"), SubResource("Resource_4hbt0"), SubResource("Resource_wa8y4"), SubResource("Resource_hyb3i"), SubResource("Resource_kidcn"), SubResource("Resource_xdk8x"), SubResource("Resource_r2k7r")])
+
+[node name="CutsceneAnimation" parent="Cutscenes/TutorialDeployCutscene3" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_vxw3g")
+}
+
+[node name="TutorialCageCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
+unique_name_in_owner = true
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_tdxxs"), SubResource("Resource_iras0"), SubResource("Resource_6s5wj"), SubResource("Resource_nmbbf"), SubResource("Resource_ys670"), SubResource("Resource_wkt80")])
+
+[node name="CutsceneAnimation" parent="Cutscenes/TutorialCageCutscene" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_k25lk")
 }
 
 [node name="TutorialKidnappedCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
@@ -2706,22 +3091,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0043, 102.294, -28.5242)
 [node name="LightmapProbe15" type="LightmapProbe" parent="LightmapGI"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.106, 0, 0)
+[node name="TutorialPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q1rab")
+}
 
 [connection signal="focus_entered" from="UI" to="." method="_on_ui_focus_entered"]
 [connection signal="focus_exited" from="UI" to="." method="_on_ui_focus_exited"]
 [connection signal="body_entered" from="TutorialArea" to="." method="_on_tutorial_area_body_entered"]
+[connection signal="body_entered" from="TutorialArea2" to="." method="_on_tutorial_area_2_body_entered"]
 [connection signal="torpejo_talked_to" from="Munchmes/Torpejo" to="." method="_on_torpejo_torpejo_talked_to"]
 [connection signal="body_entered" from="Planet/Guild/EnterGuildArea" to="." method="_on_enter_guild_area_entered"]
 [connection signal="body_entered" from="TutorialTorpejoPoints/CatchMunchmePoint/TorpejoArea" to="." method="_on_torpejo_area_body_entered"]
 [connection signal="animation_finished" from="Cutscenes/RocketReturnCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_finished"]
 [connection signal="animation_finished" from="Cutscenes/TutorialMeetDipshitCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
+[connection signal="animation_finished" from="Cutscenes/TutorialDeployCutscene3/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
+[connection signal="animation_finished" from="Cutscenes/TutorialCageCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
 
 [editable path="MainCamera"]
 [editable path="Cutscenes/RocketReturnCutscene"]
 [editable path="Cutscenes/TutorialWalkToMunchmeCutscene"]
-[editable path="Cutscenes/ReturnToTutorialCutscene"]
 [editable path="Cutscenes/TutorialMeetDipshitCutscene"]
 [editable path="Cutscenes/TutorialDeployCutscene"]
+[editable path="Cutscenes/TutorialDeployCutscene2"]
+[editable path="Cutscenes/TutorialDeployCutscene3"]
+[editable path="Cutscenes/TutorialCageCutscene"]
 [editable path="Cutscenes/TutorialKidnappedCutscene"]

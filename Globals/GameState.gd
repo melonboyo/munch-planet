@@ -8,6 +8,7 @@ var cursor_click = load("res://Sprites/Cursor/hover.png")
 signal munchme_added(resource: MunchmeResource)
 signal situation_changed(new_situation: Constants.Situation)
 signal munchme_deployed(resource: MunchmeResource)
+signal munchme_retrieved(resource: MunchmeResource)
 signal exit_guild_looker
 signal attempt_catch_munchme(munchme: Munchme)
 
