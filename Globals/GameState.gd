@@ -44,8 +44,12 @@ var tutorial_active: bool:
 	set(value):
 		if tutorial_stage == Constants.TutorialStage.NotStarted:
 			tutorial_stage = Constants.TutorialStage.Landed
-var tutorial_cleared:
+var tutorial_cleared: bool:
 	get: return tutorial_stage >= Constants.TutorialStage.Finished
+	set(value):
+		if value:
+			tutorial_stage = Constants.TutorialStage.Finished
+
 
 func _ready():
 	var deadzone = ProjectSettings.get_setting("global/control_stick_deadzone")
@@ -54,9 +58,10 @@ func _ready():
 	InputMap.action_set_deadzone("look_up", deadzone)
 	InputMap.action_set_deadzone("look_right", deadzone)
 	
-	Input.set_custom_mouse_cursor(cursor_default)
-	Input.set_custom_mouse_cursor(cursor_hover, Input.CURSOR_POINTING_HAND)
-	Input.set_custom_mouse_cursor(cursor_click, Input.CURSOR_CROSS)
+	var cursor_hotspot = ProjectSettings.get_setting("display/mouse_cursor/custom_image_hotspot")
+	Input.set_custom_mouse_cursor(cursor_default, Input.CURSOR_ARROW, cursor_hotspot)
+	Input.set_custom_mouse_cursor(cursor_hover, Input.CURSOR_POINTING_HAND, cursor_hotspot)
+	Input.set_custom_mouse_cursor(cursor_click, Input.CURSOR_CROSS, cursor_hotspot)
 
 
 func _process(delta):

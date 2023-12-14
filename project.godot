@@ -12,8 +12,11 @@ config_version=5
 
 config/name="MUNCH WORLD"
 config/tags=PackedStringArray("bigmode", "gamejam", "gofrog")
-run/main_scene="res://Entrypoint.tscn"
+run/main_scene="res://Menu/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/use_filter=false
 config/icon="res://sketches/munch-icon.png"
 
 [autoload]
@@ -34,7 +37,7 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://Sprites/Cursor/default.png"
-mouse_cursor/custom_image_hotspot=Vector2(-9, -9)
+mouse_cursor/custom_image_hotspot=Vector2(1, 1)
 
 [file_customization]
 

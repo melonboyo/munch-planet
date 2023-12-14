@@ -34,13 +34,12 @@ func _ready():
 
 func planet_specific_ready():
 	GameState.munchme_added.connect(_on_munchme_added)
-	if not GameState.tutorial_cleared:
-		GameState.tutorial_active = true
-		
-		tutorial_music = TutorialMusic.new()
-		add_child(tutorial_music)
-		go_to_tutorial_stage(tutorial_stage)
-		ready_tutorial_stage(GameState.tutorial_stage)
+	
+	if skip_rocket_cutscene and tutorial_stage == Constants.TutorialStage.NotStarted:
+		GameState.tutorial_stage = Constants.TutorialStage.Landed
+	
+	if GameState.tutorial_active:
+		start_tutorial()
 
 	%OverlayAnimation.play("fade_in")
 	
@@ -63,6 +62,14 @@ func get_point_on_surface(node: Node3D) -> Vector3:
 	return Math.position_to_position_on_surface(node.global_position, node.global_position, self)
 
 
+func start_tutorial():
+	GameState.tutorial_active = true
+	tutorial_music = TutorialMusic.new()
+	add_child(tutorial_music)
+	tutorial_music.play(GameState.tutorial_stage)
+	ready_tutorial_stage(GameState.tutorial_stage)
+
+
 func ready_tutorial_stage(stage: Constants.TutorialStage):
 	%Muncher.visible = true
 	%Muncher.player_controlled = true
@@ -71,11 +78,16 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 	%Dipshit.visible = false
 	$TutorialArea2.monitoring = false
 	manage_allowed = true
+	
+	if stage > Constants.TutorialStage.NotStarted:
+		tutorial_music.play(stage)
+	
 	if stage == Constants.TutorialStage.NotStarted:
 		%Muncher.player_controlled = false
 		%Muncher.visible = false
 		%Torpejo.visible = false
 		%Dipshit.freeze = true
+	
 	if stage == Constants.TutorialStage.Landed:
 		%Torpejo.visible = false
 		%Dipshit.freeze = true
@@ -129,10 +141,6 @@ func add_munchme_to_inventory(type: Constants.Munchme):
 	resource.munchme_type = type
 	resource.id = randi()
 	GameState.add_munchme(resource)
-
-
-func play_tutorial_music():
-	tutorial_music.play(GameState.tutorial_stage)
 
 
 func play_overworld_music():

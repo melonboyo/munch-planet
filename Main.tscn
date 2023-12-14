@@ -596,7 +596,7 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"play_tutorial_music"
+"method": &"start_tutorial"
 }]
 }
 tracks/14/type = "audio"
@@ -1722,8 +1722,6 @@ _data = {
 [node name="Main" type="Node3D"]
 transform = Transform3D(0.737101, -0.486638, 0.468898, 0.665073, 0.645422, -0.375644, -0.119834, 0.588739, 0.799391, 0, 0, 0)
 script = ExtResource("1_12yvb")
-skip_rocket_cutscene = true
-tutorial_stage = 5
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -2884,7 +2882,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(0.447704, 0.483074, 0.410095, 0.446945, 0.115216, -0.623652, -0.449201, 0.596108, -0.211795, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.18655, 0.536739, 0.528288, 0.576633, 0.451882, -0.255488, -0.48443, 0.331198, -0.507562, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
