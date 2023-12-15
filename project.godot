@@ -14,11 +14,12 @@ config/name="Munch Planet"
 config/description="Explore the wondrous planet of the munchers' guild."
 config/version="0.1.0"
 config/tags=PackedStringArray("bigmode", "gamejam", "gofrog")
-run/main_scene="res://Menu/MainMenu.tscn"
+run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=60
 boot_splash/bg_color=Color(0.0392157, 0.0313726, 0.0235294, 1)
 config/icon="res://sketches/munch-icon.png"
+run/main_scene.release="res://Menu/MainMenu.tscn"
 
 [autoload]
 
