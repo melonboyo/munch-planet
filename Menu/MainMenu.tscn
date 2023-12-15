@@ -856,7 +856,7 @@ visible = false
 
 [node name="MainMenuCircle" parent="MenuHints" instance=ExtResource("12_d6b7u")]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.601684)
+modulate = Color(1, 1, 1, 0)
 position = Vector2(1420, 772)
 
 [node name="Green" type="AnimatedSprite2D" parent="MenuHints"]

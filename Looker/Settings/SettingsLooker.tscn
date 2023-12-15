@@ -23,7 +23,7 @@ handle_input_locally = false
 screen_space_aa = 1
 audio_listener_enable_3d = true
 physics_object_picking = true
-size = Vector2i(181, 222)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="SettingsScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_mfmqj")]
