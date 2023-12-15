@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddf57gvskakjl"]
+
+[ext_resource type="Script" path="res://Menu/MainMenuCircle.gd" id="1_0jdng"]
+[ext_resource type="Texture2D" uid="uid://dvfnv2biqde3u" path="res://Sprites/circle.png" id="2_gdwec"]
+
+[node name="MainMenuCircle" type="CanvasGroup"]
+modulate = Color(1, 1, 1, 0.642226)
+script = ExtResource("1_0jdng")
+
+[node name="Circle" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.68793)
+rotation = -115.931
+scale = Vector2(0.910991, 0.910991)
+texture = ExtResource("2_gdwec")
