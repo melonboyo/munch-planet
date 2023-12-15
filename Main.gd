@@ -494,6 +494,7 @@ func clear_tutorial():
 	%Torpejo.freeze = true
 	%Torpejo.global_position = Vector3.ZERO
 	go_to_tutorial_stage(Constants.TutorialStage.Finished)
+	play_overworld_music()
 
 
 func return_to_torpejo():
