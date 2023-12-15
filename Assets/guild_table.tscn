@@ -1,12 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjpggebnjfqtd"]
+[gd_scene load_steps=10 format=3 uid="uid://bjpggebnjfqtd"]
 
 [ext_resource type="PackedScene" uid="uid://cebdxd2flrvll" path="res://Models/low_poly_table.glb" id="1_ykxwf"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_kwssi"]
+[ext_resource type="Texture2D" uid="uid://dxmt5x21ab7wy" path="res://Models/low_poly_table_0.jpg" id="3_p8jli"]
+[ext_resource type="Texture2D" uid="uid://bhq1pn0smbcg7" path="res://Models/low_poly_table_2.jpg" id="4_q7u04"]
+
+[sub_resource type="Gradient" id="Gradient_6kjvt"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8kajq"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_is1dc"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_6kjvt")
+noise = SubResource("FastNoiseLite_8kajq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_65ydk"]
+render_priority = 0
+shader = ExtResource("2_kwssi")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
+shader_parameter/use_normal_texture = true
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.717
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.13
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.12
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.309
+shader_parameter/wobble_displacement = 0.01
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/albedo_texture = ExtResource("3_p8jli")
+shader_parameter/normal_texture = ExtResource("4_q7u04")
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_is1dc")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jxbqm"]
 height = 1.05773
 radius = 0.996267
 
 [node name="GuildTable" instance=ExtResource("1_ykxwf")]
+
+[node name="defaultMaterial" parent="Sketchfab_model/Collada visual scene group/Table_Low" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_65ydk")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
 

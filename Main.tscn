@@ -2361,7 +2361,6 @@ script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
 debug_tutorial_stage = 8
 debug_use_debug_spawn = true
-debug_initial_munchme_type = 1
 debug_initial_munchme_spawn = true
 debug_initial_munchme_caught = true
 
@@ -2603,12 +2602,13 @@ omni_range = 7.64558
 
 [node name="EnterGuildArea" type="Area3D" parent="Planet/Guild"]
 unique_name_in_owner = true
+transform = Transform3D(1, -2.6077e-08, -5.96046e-08, -7.45058e-09, 1, -1.30385e-08, -8.9407e-08, 2.6077e-08, 1, 16.4991, 0, -1.14441e-05)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Guild/EnterGuildArea"]
-transform = Transform3D(1, -5.21541e-07, 5.96046e-08, -8.19564e-08, 0.999999, -2.92435e-07, 3.57628e-07, -1.73226e-07, 1.00001, 15.3598, 1.99435, 9.53674e-06)
+transform = Transform3D(1, -5.53206e-07, 8.9407e-08, -7.26432e-08, 0.999999, -2.6077e-07, 3.57628e-07, -1.73226e-07, 1.00001, -4.19559, 1.99435, 2.86102e-06)
 shape = SubResource("BoxShape3D_v17nd")
 
 [node name="Rocks" type="Node3D" parent="Planet"]
