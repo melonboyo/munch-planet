@@ -2,8 +2,11 @@ extends Node3D
 class_name Main
 
 
-@export var skip_rocket_cutscene := false
-@export var tutorial_stage: Constants.TutorialStage = Constants.TutorialStage.NotStarted
+@export_group("Debug", "debug_")
+@export var debug_skip_rocket_cutscene := false:
+	get: return debug_skip_rocket_cutscene if OS.is_debug_build() else false
+@export var debug_tutorial_stage: Constants.TutorialStage = Constants.TutorialStage.NotStarted:
+	get: return debug_tutorial_stage if OS.is_debug_build() else Constants.TutorialStage.NotStarted
 
 
 var catch_looker_scene := preload("res://Looker/Catch/CatchLooker.tscn")
@@ -26,10 +29,10 @@ var dipshit_id: int
 
 
 func _ready():
+	GameState.tutorial_stage = debug_tutorial_stage
 	setup_graphics_detail()
 	Settings.changed.connect(setup_graphics_detail)
 	
-	GameState.tutorial_stage = tutorial_stage
 	GameState.main_window = $UI
 	GameState.attempt_catch_munchme.connect(_on_attempt_catch_munchme)
 	planet_specific_ready()
@@ -44,7 +47,7 @@ func setup_graphics_detail():
 
 
 func planet_specific_ready():
-	if skip_rocket_cutscene and tutorial_stage == Constants.TutorialStage.NotStarted:
+	if debug_skip_rocket_cutscene and debug_tutorial_stage == Constants.TutorialStage.NotStarted:
 		GameState.tutorial_stage = Constants.TutorialStage.Landed
 	
 	if GameState.tutorial_active:
@@ -52,7 +55,7 @@ func planet_specific_ready():
 
 	%OverlayAnimation.play("fade_in")
 	
-	if not skip_rocket_cutscene and tutorial_stage == Constants.TutorialStage.NotStarted:
+	if not debug_skip_rocket_cutscene and debug_tutorial_stage == Constants.TutorialStage.NotStarted:
 		%RocketReturnCutscene.play()
 		%Muncher.player_controlled = false
 	else:

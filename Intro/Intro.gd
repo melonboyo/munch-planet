@@ -1,16 +1,20 @@
 extends Main
 
 
-@export var play_from_scene := 0
-@export var play_from_seconds := 0.0
-@export var play_intro := true
+@export_group("Intro Debug", "debug_")
+@export var debug_play_from_scene := 0:
+	get: return debug_play_from_scene if OS.is_debug_build() else 0
+@export var debug_play_from_seconds := 0.0:
+	get: return debug_play_from_seconds if OS.is_debug_build() else 0.0
+@export var debug_play_intro := true:
+	get: return debug_play_intro if OS.is_debug_build() else true
 
 var main_scene = preload("res://Main.tscn")
 
 
 func planet_specific_ready():
-	GameState.during_intro = play_intro
-	if not play_intro:
+	GameState.during_intro = debug_play_intro
+	if not debug_play_intro:
 		$Overlay/CircleTransition.material.set_shader_parameter("circle_size", 1.05)
 		play_postlude()
 	
@@ -18,7 +22,7 @@ func planet_specific_ready():
 	if GameState.during_intro:
 		%Muncher.player_controlled = false
 		manage_allowed = false
-		$Cutscene.play(play_from_scene, play_from_seconds)
+		$Cutscene.play(debug_play_from_scene, debug_play_from_seconds)
 	
 	GameState.situation = Constants.Situation.Overworld
 

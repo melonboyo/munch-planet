@@ -8,7 +8,7 @@ modulate = Color(1, 1, 1, 0.642226)
 script = ExtResource("1_0jdng")
 
 [node name="Circle" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.68793)
-rotation = -115.931
-scale = Vector2(0.910991, 0.910991)
+modulate = Color(1, 1, 1, 0.989951)
+rotation = 14.3092
+scale = Vector2(0.948744, 0.948744)
 texture = ExtResource("2_gdwec")
