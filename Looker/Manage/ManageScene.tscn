@@ -249,7 +249,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = -435
+theme_override_constants/margin_top = -170
 theme_override_constants/margin_bottom = 365
 
 [node name="Glow" type="TextureRect" parent="Control/MarginContainer"]

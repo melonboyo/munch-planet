@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://d2vyal2h88f5e"]
 
 [ext_resource type="PackedScene" uid="uid://dofwikg3bucms" path="res://Models/earth.glb" id="1_rcr66"]
-[ext_resource type="Texture2D" uid="uid://bg3ymobja86l8" path="res://Models/earth_earth-texture.png" id="2_7hfa7"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_qhse1"]
+[ext_resource type="Texture2D" uid="uid://bymi2v4cleatg" path="res://Models/textures/earth-texture.png" id="3_4l3lp"]
 [ext_resource type="Material" uid="uid://i7osp2htj2cn" path="res://Materials/Water.tres" id="3_6a3y0"]
 [ext_resource type="Material" uid="uid://63m6v13ibuth" path="res://Materials/UnderwaterSurface.tres" id="4_556qu"]
 [ext_resource type="PackedScene" uid="uid://ct1kbjcajv4bf" path="res://FoliageSpawner.tscn" id="7_dhbis"]
@@ -28,7 +28,7 @@ shader_parameter/wobble_displacement = 0.05
 shader_parameter/wobble_frequency = 0.5
 shader_parameter/num_of_wobbles = 7
 shader_parameter/use_uv2 = true
-shader_parameter/albedo_texture = ExtResource("2_7hfa7")
+shader_parameter/albedo_texture = ExtResource("3_4l3lp")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yytlc"]
 resource_name = "Material.003"
@@ -92,5 +92,4 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("4_556qu")
 
 [node name="FoliageSpawner" parent="." index="3" instance=ExtResource("7_dhbis")]
-spawn = false
 models = Array[PackedScene]([null, null, null])

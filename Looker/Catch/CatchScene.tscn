@@ -169,6 +169,7 @@ mesh = SubResource("PlaneMesh_arq71")
 surface_material_override/0 = SubResource("ShaderMaterial_xc4rc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Plane"]
+collision_mask = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -204,5 +205,7 @@ directional_shadow_pancake_size = 13.0
 libraries = {
 "": SubResource("AnimationLibrary_3maul")
 }
+
+[node name="SceneDecor" type="Node3D" parent="."]
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]

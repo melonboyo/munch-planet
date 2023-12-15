@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci7wi673qh1n1"]
+
+[ext_resource type="PackedScene" uid="uid://bbl8mbvs36kc5" path="res://Models/Rocks/flat_rock.gltf" id="1_a5g5h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q5wxu"]
+size = Vector3(1.40619, 0.587646, 2.10596)
+
+[node name="flat_rock" instance=ExtResource("1_a5g5h")]
+
+[node name="FlatRock" parent="." index="0"]
+transform = Transform3D(4.48461, 0, 0, 0, 4.48461, 0, 0, 0, 4.48461, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00186157, 0.272827, -0.00170898)
+shape = SubResource("BoxShape3D_q5wxu")
