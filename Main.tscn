@@ -2342,7 +2342,8 @@ _data = {
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
-tutorial_stage = 6
+debug_skip_rocket_cutscene = true
+debug_tutorial_stage = 5
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3

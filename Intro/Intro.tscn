@@ -871,6 +871,7 @@ _data = {
 
 [node name="Intro" type="Node3D"]
 script = ExtResource("1_08500")
+debug_play_intro = false
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -1027,8 +1028,7 @@ transform = Transform3D(2.36192, -2.6077e-08, 8.3819e-08, 1.86265e-09, 2.36192, 
 curve = SubResource("Curve3D_yxy00")
 
 [node name="PathFollow" type="PathFollow3D" parent="Cameras/CameraPivot/Path"]
-transform = Transform3D(0.999899, 0, 0, 0, 0.999919, 0, 0, 0, 0.999924, -51.9313, -5.88009, -49.0898)
-progress = 1.16335
+transform = Transform3D(0.999899, 0, 0, 0, 0.999919, 0, 0, 0, 0.999924, -52.6121, -4.9777, -48.8145)
 rotation_mode = 0
 loop = false
 tilt_enabled = false
