@@ -1,12 +1,13 @@
 [gd_scene load_steps=34 format=3 uid="uid://dl6rlbluelsaw"]
 
 [ext_resource type="Script" path="res://Menu/MainMenu.gd" id="1_60vhr"]
+[ext_resource type="Script" path="res://Menu/MainMenu3D.gd" id="2_6nrhx"]
 [ext_resource type="Script" path="res://Menu/MenuPlanet.gd" id="2_c0vw7"]
 [ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="3_x8bl3"]
 [ext_resource type="Script" path="res://Movement/FollowPoints.gd" id="4_ro4wa"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/Goby/goby.tscn" id="5_v4nby"]
-[ext_resource type="Texture2D" uid="uid://ios8c7bseiai" path="res://Sprites/Skybox/main-skybox.png" id="6_vi1u0"]
 [ext_resource type="Script" path="res://Environment.gd" id="7_p1tm4"]
+[ext_resource type="Environment" uid="uid://ddd2lxon2t62u" path="res://MiscResources/MainEnvironment.tres" id="7_vv8x5"]
 [ext_resource type="Texture2D" uid="uid://xv7ye4o82teq" path="res://Sprites/title_680.png" id="8_ckgo5"]
 [ext_resource type="Texture2D" uid="uid://dborvcj46gq3v" path="res://Sprites/menu-button.png" id="9_g30e4"]
 [ext_resource type="AudioStream" uid="uid://dv3ohnqdtvta2" path="res://Music/title_screen.ogg" id="10_1y1ld"]
@@ -23,41 +24,6 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jqb1s"]
 radius = 100.35
-
-[sub_resource type="Shader" id="Shader_y2onu"]
-code = "
-// NOTE: Shader automatically converted from Godot Engine 4.2.stable's PanoramaSkyMaterial.
-
-shader_type sky;
-
-uniform sampler2D source_panorama : filter_linear, source_color, hint_default_black;
-
-void sky() {
-	     
-	COLOR = texture(source_panorama, SKY_COORDS).rgb;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdpqf"]
-shader = SubResource("Shader_y2onu")
-shader_parameter/source_panorama = ExtResource("6_vi1u0")
-
-[sub_resource type="Sky" id="Sky_2iofh"]
-sky_material = SubResource("ShaderMaterial_pdpqf")
-
-[sub_resource type="Environment" id="Environment_63gv3"]
-background_mode = 2
-background_color = Color(0.564706, 0.929412, 0.941176, 1)
-sky = SubResource("Sky_2iofh")
-ambient_light_source = 3
-ambient_light_color = Color(0.960784, 0.568627, 0.364706, 1)
-ambient_light_sky_contribution = 0.64
-reflected_light_source = 2
-tonemap_white = 0.6
-ssao_enabled = true
-ssao_power = 1.21838
-ssao_horizon = 1.0
-glow_normalized = true
-adjustment_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_e6hxx"]
 auto_exposure_scale = 0.5
@@ -721,6 +687,7 @@ render_target_update_mode = 4
 
 [node name="MainMenu3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
+script = ExtResource("2_6nrhx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/MainMenu3D"]
 transform = Transform3D(0.927315, -1.63604e-08, 0.374283, -0.374283, -4.05342e-08, 0.927315, 0, -1, -4.37114e-08, 0, 115.061, 0)
@@ -806,7 +773,7 @@ transform = Transform3D(1, -1.86265e-09, 2.98023e-08, 1.86265e-09, 1, -5.55112e-
 walking_speed = 20.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/MainMenu3D"]
-environment = SubResource("Environment_63gv3")
+environment = ExtResource("7_vv8x5")
 camera_attributes = SubResource("CameraAttributesPractical_e6hxx")
 script = ExtResource("7_p1tm4")
 

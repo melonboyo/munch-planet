@@ -31,6 +31,7 @@ var window_mode:
 func _ready():
 	changed.connect(update_audio_buses)
 	changed.connect(update_window_mode)
+	changed.connect(update_graphics_detail)
 	load_settings()
 
 
@@ -93,6 +94,22 @@ func update_audio_buses():
 	_set_bus_level("Master", master_volume)
 	_set_bus_level("Music", music_volume)
 	_set_bus_level("Effects", effects_volume)
+
+
+func update_graphics_detail():
+	#ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/size", Lookup.shadow_atlas_size[graphics_detail])
+	#ProjectSettings.set_setting("rendering/lights_and_shadows/positional_shadow/atlas_size", Lookup.shadow_atlas_size[graphics_detail])
+	#ProjectSettings.set_setting("rendering/global_illumination/sdfgi/probe_ray_count", graphics_detail+1)
+	#ProjectSettings.set_setting("rendering/global_illumination/sdfgi/frames_to_update_lights", 3-graphics_detail)
+
+	#ProjectSettings.set_setting("rendering/environment/ssao/quality", Lookup.ssao_and_ssil[graphics_detail])
+	#ProjectSettings.set_setting("rendering/environment/ssil/quality", Lookup.ssao_and_ssil[graphics_detail])
+	#ProjectSettings.set_setting("rendering/anti_aliasing/quality/msaa_2d", graphics_detail)
+	#ProjectSettings.set_setting("rendering/anti_aliasing/quality/msaa_3d", graphics_detail)
+	RenderingServer.viewport_set_msaa_2d(get_viewport(), Lookup.ssao_and_ssil[graphics_detail])
+	RenderingServer.viewport_set_msaa_3d(get_viewport(), Lookup.ssao_and_ssil[graphics_detail])
+	RenderingServer.environment_set_sdfgi_frames_to_update_light(3-graphics_detail)
+	RenderingServer.environment_set_sdfgi_ray_count(graphics_detail+1)
 
 
 func _set_bus_level(bus: String, level: int):

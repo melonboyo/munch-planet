@@ -18,6 +18,8 @@ signal finish_catch(win: bool)
 
 
 func _ready():
+	setup_graphics_detail()
+	Settings.changed.connect(setup_graphics_detail)
 	var main_node = find_parent("Main")
 	finish_catch.connect(main_node._on_munchme_finish_catch)
 	looker.music_track = munchme.resource.catch_track
@@ -25,6 +27,14 @@ func _ready():
 	looker.window_height = munchme.resource.catch_looker_size.y
 	
 	$Animation.play("enter")
+
+
+func setup_graphics_detail():
+	var level = Settings.graphics_detail
+	$WorldEnvironment.environment.ssao_enabled = level > Constants.Graphics.Low
+	$WorldEnvironment.environment.ssil_enabled = level > Constants.Graphics.Medium
+	$WorldEnvironment.environment.sdfgi_enabled = level > Constants.Graphics.Low
+	$WorldEnvironment.environment.volumetric_fog_enabled = level > Constants.Graphics.Low
 
 
 func add_munchme():

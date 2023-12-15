@@ -9,9 +9,19 @@ var deploy_area_entered = false
 
 func _ready():
 	GameState.munchme_added.connect(_on_munchme_added)
+	setup_graphics_detail()
+	Settings.changed.connect(setup_graphics_detail)
 	for m in GameState.munchmes:
 		if not GameState.is_munchme_deployed(m):
 			send_in_munchme(m, get_random_position())
+
+
+func setup_graphics_detail():
+	var level = Settings.graphics_detail
+	$WorldEnvironment.environment.ssao_enabled = level > Constants.Graphics.Low
+	$WorldEnvironment.environment.ssil_enabled = level > Constants.Graphics.Medium
+	$WorldEnvironment.environment.sdfgi_enabled = level > Constants.Graphics.Low
+	$WorldEnvironment.environment.volumetric_fog_enabled = level > Constants.Graphics.Low
 
 
 func _process(delta):
