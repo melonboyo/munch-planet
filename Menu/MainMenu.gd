@@ -18,6 +18,10 @@ const PLANET_NOT_HOVER_SCALE := 0.8
 var hovering_earth: bool
 @export var earth_scale: float = 0.8
 
+var time_since_hovered_earth := 0.0
+const SHOW_EARTH_HINT_TIME := 9.0
+var show_earth_hint := false
+
 
 func _ready():
 	GameState.has_game_started = false
@@ -38,7 +42,7 @@ func _on_exit_button_pressed():
 
 
 func _process(delta):
-	%Planet.scale = %Planet.scale.lerp(Vector3.ONE * earth_scale, 0.2)
+	%Planet.scale = %Planet.scale.lerp(Vector3.ONE * earth_scale, 8.0 * delta)
 	if $AnimationPlayer.is_playing():
 		# Skip to the fade_in part of the intro cutscene on interact
 		if (Input.is_action_just_pressed("interact") and
@@ -48,9 +52,16 @@ func _process(delta):
 		
 		return
 	
+	show_earth_hint = false
+	$MenuHints.visible = state == State.Title
 	if state == State.Title:
 		hovering_earth = is_mouse_hovering(EARTH_COLLISION_LAYER)
 		earth_scale = PLANET_NORMAL_SCALE if hovering_earth else PLANET_NOT_HOVER_SCALE
+		
+		time_since_hovered_earth = time_since_hovered_earth + delta if not hovering_earth else 0.0
+		show_earth_hint = time_since_hovered_earth > SHOW_EARTH_HINT_TIME
+	
+	%MainMenuCircle.modulate = %MainMenuCircle.modulate.lerp(Color.WHITE if show_earth_hint else Color.TRANSPARENT, 4.0 * delta if show_earth_hint else 10.0 * delta)
 	
 	if hovering_earth and Input.is_action_just_pressed("interact"):
 		set_state(State.Menu)

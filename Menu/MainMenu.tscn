@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://6od1ys2isygd" path="res://logo_512.png" id="11_kh7ey"]
 [ext_resource type="Texture2D" uid="uid://bkpxgbqbn2n6b" path="res://Sprites/menu-button-hover-settings.png" id="12_xro2q"]
 [ext_resource type="Texture2D" uid="uid://dht3df12kirc0" path="res://Sprites/menu-button-hover-exit.png" id="13_tc04k"]
+[ext_resource type="PackedScene" uid="uid://ddf57gvskakjl" path="res://Menu/MainMenuCircle.tscn" id="12_d6b7u"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jqb1s"]
 radius = 100.35
@@ -860,6 +861,14 @@ mouse_filter = 2
 visible = false
 layout_mode = 2
 texture = ExtResource("11_kh7ey")
+
+[node name="MenuHints" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MainMenuCircle" parent="MenuHints" instance=ExtResource("12_d6b7u")]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.601684)
+position = Vector2(1420, 772)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
