@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://daa260g0fgr6w"]
+[gd_scene load_steps=9 format=3 uid="uid://daa260g0fgr6w"]
 
 [ext_resource type="PackedScene" uid="uid://cmy2yn1hti2su" path="res://Models/cage.glb" id="1_wuxsw"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_48ovf"]
@@ -38,50 +38,10 @@ shader_parameter/use_uv2 = true
 shader_parameter/wobble_noise = SubResource("NoiseTexture2D_jxvyt")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bkhkw"]
-size = Vector3(37, 37, 1)
+size = Vector3(28.1654, 37, 0.79895)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvnml"]
-size = Vector3(29, 37, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_622tj"]
-size = Vector3(3, 0.5, 3)
-
-[sub_resource type="BoxMesh" id="BoxMesh_earfp"]
-size = Vector3(3, 0.5, 3)
-
-[sub_resource type="Gradient" id="Gradient_6kjvt"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_8kajq"]
-frequency = 0.0031
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_is1dc"]
-width = 256
-height = 256
-color_ramp = SubResource("Gradient_6kjvt")
-noise = SubResource("FastNoiseLite_8kajq")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0sy6b"]
-render_priority = 0
-shader = ExtResource("2_48ovf")
-shader_parameter/albedo = Color(0.964706, 0.627451, 0.721569, 1)
-shader_parameter/albedo_uv_scale = Vector2(1, 1)
-shader_parameter/albedo_uv_offset = Vector2(0, 0)
-shader_parameter/use_normal_texture = true
-shader_parameter/normal_depth = 1.0
-shader_parameter/roughness = 0.717
-shader_parameter/metallic = 0.0
-shader_parameter/specularity = 0.13
-shader_parameter/specular_tint = 0.5
-shader_parameter/sheen = 0.0
-shader_parameter/sheen_tint = 0.81
-shader_parameter/subsurface = 0.12
-shader_parameter/shadow_cutoff = 0.5
-shader_parameter/shadow_cutoff_smoothness = 0.309
-shader_parameter/wobble_displacement = 0.01
-shader_parameter/wobble_frequency = 2.0
-shader_parameter/num_of_wobbles = 7
-shader_parameter/use_uv2 = true
-shader_parameter/wobble_noise = SubResource("NoiseTexture2D_is1dc")
+size = Vector3(21.86, 37, 0.768)
 
 [node name="cage" instance=ExtResource("1_wuxsw")]
 
@@ -89,35 +49,21 @@ shader_parameter/wobble_noise = SubResource("NoiseTexture2D_is1dc")
 surface_material_override/0 = SubResource("ShaderMaterial_uisho")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
-transform = Transform3D(0.761, 0, 0, 0, 0.991, 0, 0, 0, 0.761, 0, 0, 0)
 collision_layer = 4
 collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0198364, 18, 10.6834)
 shape = SubResource("BoxShape3D_bkhkw")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, -14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0198364, 18, -10.6563)
 shape = SubResource("BoxShape3D_bkhkw")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -18, 18, -7.7486e-07)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13.7107, 18, -7.6978e-07)
 shape = SubResource("BoxShape3D_kvnml")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18, 18, 7.9875e-07)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.701, 18, 7.9875e-07)
 shape = SubResource("BoxShape3D_kvnml")
-
-[node name="Platform" type="StaticBody3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.17269, 1.0537, 8.14493)
-collision_layer = 4
-collision_mask = 15
-metadata/_edit_group_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform" index="0"]
-shape = SubResource("BoxShape3D_622tj")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform" index="1"]
-mesh = SubResource("BoxMesh_earfp")
-surface_material_override/0 = SubResource("ShaderMaterial_0sy6b")

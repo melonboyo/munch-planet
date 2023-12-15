@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=161 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cy1uce0rqfbtl" path="res://Muncher/Camera.tscn" id="3_8oj03"]
 [ext_resource type="Script" path="res://Environment.gd" id="3_ligat"]
 [ext_resource type="PackedScene" uid="uid://c6sd1o4abgguc" path="res://Tutorial/ImpactLines.tscn" id="3_mjopi"]
+[ext_resource type="Script" path="res://MouseCaptureOverlay.gd" id="4_3pusw"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/Goby/goby.tscn" id="4_7y8hl"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
 [ext_resource type="PackedScene" uid="uid://cuw7r31kr73x" path="res://Munchme/Solidude/solidude.tscn" id="5_3y1ey"]
@@ -30,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://reb1ntdr4vvv" path="res://Assets/rocket.tscn" id="23_5lo66"]
 [ext_resource type="AudioStream" uid="uid://dhtfeqs3hcfw8" path="res://Music/rocket_piano.ogg" id="25_07esk"]
 [ext_resource type="AudioStream" uid="uid://521ccmfxr2r5" path="res://SFX/Intro/rocket_landing.ogg" id="25_scv7q"]
+[ext_resource type="PackedScene" uid="uid://dyygqyjaejc1s" path="res://Assets/shotgun.tscn" id="27_rhpdr"]
 [ext_resource type="AudioStream" uid="uid://dbibj27ed8pf0" path="res://SFX/Orchestra/gagaan.ogg" id="27_t1m0m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dgl50"]
@@ -188,7 +190,7 @@ size = Vector3(26.4147, 112.871, 139.065)
 script = ExtResource("9_8u21n")
 id = 166
 name = "JIMBLO"
-munchme_type = 0
+munchme_type = 4
 max_health = 100
 mood = 1
 catch_track = 3
@@ -207,6 +209,70 @@ radius = 100.35
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v17nd"]
 size = Vector3(14.6467, 27.0709, 14.834)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ty3sk"]
+size = Vector3(3, 0.5, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bx7m0"]
+size = Vector3(3, 0.5, 3)
+
+[sub_resource type="Gradient" id="Gradient_yxwxd"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4y5o6"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_is1dc"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_yxwxd")
+noise = SubResource("FastNoiseLite_4y5o6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drwxt"]
+render_priority = 0
+shader = ExtResource("22_ui3dp")
+shader_parameter/albedo = Color(0.964706, 0.627451, 0.721569, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
+shader_parameter/use_normal_texture = true
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.717
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.13
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.12
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.309
+shader_parameter/wobble_displacement = 0.01
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_is1dc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bkv22"]
+size = Vector3(7, 0.5, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wmnax"]
+size = Vector3(7, 0.5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4duuu"]
+size = Vector3(2.5, 0.5, 2.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1omvk"]
+size = Vector3(2.5, 0.5, 2.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o0bv4"]
+size = Vector3(2, 0.5, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lvg32"]
+size = Vector3(2, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_elrfj"]
+size = Vector3(6, 0.5, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xbpsw"]
+size = Vector3(6, 0.5, 2)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1aoni"]
 top_radius = 1.42
@@ -1556,7 +1622,12 @@ dialogue_translation_key = "DIPSHIT_CAUGHT_6"
 [sub_resource type="Resource" id="Resource_hyb3i"]
 script = ExtResource("11_nrph8")
 animation_name = ""
-dialogue_translation_key = "DIPSHIT_CAUGHT_MOVE"
+dialogue_translation_key = "DIPSHIT_CAUGHT_MOVE_1"
+
+[sub_resource type="Resource" id="Resource_tdrr4"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_MOVE_2"
 
 [sub_resource type="Resource" id="Resource_kidcn"]
 script = ExtResource("11_nrph8")
@@ -1604,7 +1675,17 @@ dialogue_translation_key = ""
 [sub_resource type="Resource" id="Resource_tdxxs"]
 script = ExtResource("11_nrph8")
 animation_name = ""
-dialogue_translation_key = "DIPSHIT_CAUGHT_7"
+dialogue_translation_key = "DIPSHIT_CAUGHT_POWER_1"
+
+[sub_resource type="Resource" id="Resource_eu2nn"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_POWER_2"
+
+[sub_resource type="Resource" id="Resource_ny15j"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_POWER_3"
 
 [sub_resource type="Resource" id="Resource_iras0"]
 script = ExtResource("11_nrph8")
@@ -1711,6 +1792,20 @@ dialogue_translation_key = ""
 [sub_resource type="Animation" id="Animation_ituke"]
 resource_name = "Begin_Escape"
 length = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TutorialKidnappedCutscene/../..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"torpejo_walk_to_cage"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_4caop"]
 resource_name = "Capture_Dipshit"
@@ -1718,7 +1813,7 @@ length = 3.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%TutorialKidnappedCutscene/../../Planet/cage:position")
+tracks/0/path = NodePath("../../Planet/Cage:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1730,7 +1825,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%TutorialKidnappedCutscene/../../Planet/cage:rotation")
+tracks/1/path = NodePath("../../Planet/Cage:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1742,7 +1837,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%TutorialKidnappedCutscene/../../Planet/cage:scale")
+tracks/2/path = NodePath("../../Planet/Cage:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1754,7 +1849,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%TutorialKidnappedCutscene/../../Planet/cage:visible")
+tracks/3/path = NodePath("../../Planet/Cage:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1805,7 +1900,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%TutorialKidnappedCutscene/../../Planet/cage:position")
+tracks/0/path = NodePath("../../Planet/Cage:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1817,7 +1912,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%TutorialKidnappedCutscene/../../Planet/cage:rotation")
+tracks/1/path = NodePath("../../Planet/Cage:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1829,7 +1924,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%TutorialKidnappedCutscene/../../Planet/cage:scale")
+tracks/2/path = NodePath("../../Planet/Cage:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1841,7 +1936,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%TutorialKidnappedCutscene/../../Planet/cage:visible")
+tracks/3/path = NodePath("../../Planet/Cage:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1887,15 +1982,378 @@ script = ExtResource("11_nrph8")
 animation_name = "Kill_Dipshit"
 dialogue_translation_key = ""
 
+[sub_resource type="Resource" id="Resource_o35tx"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_KIDNAPPED_1"
+
+[sub_resource type="Resource" id="Resource_mnyoe"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_KIDNAPPED_2"
+
+[sub_resource type="Resource" id="Resource_fobr1"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_KIDNAPPED_3"
+
+[sub_resource type="Resource" id="Resource_06wmb"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_KIDNAPPED_4"
+
+[sub_resource type="Resource" id="Resource_cfxg4"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_KIDNAPPED_5"
+
+[sub_resource type="Resource" id="Resource_hry5o"]
+script = ExtResource("11_nrph8")
+animation_name = "Tutorial_End"
+dialogue_translation_key = ""
+
 [sub_resource type="Animation" id="Animation_y8ep6"]
 resource_name = "Kill_Dipshit"
+length = 7.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../MainCamera/SpringArm3D/Camera3D:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera3:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "animation"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Overlay/OverlayAnimation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": PackedStringArray("fade_out", "fade_in"),
+"times": PackedFloat32Array(3.1, 4.8)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera3/Shotgun:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera3/Shotgun:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 1.1, 1.9),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0.0146957, -2.68221e-07), Vector3(-0.593412, 0.0139626, 0), Vector3(0, 0.0146957, -2.68221e-07)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera3/Shotgun:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1, 1.1, 1.9),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.344246, -0.695969, -3.18205), Vector3(0.324932, -0.53952, -4.56481), Vector3(0.344246, -0.695969, -3.18205)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = false
+tracks/6/path = NodePath("%TutorialFinaleCutscene/../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera4:current")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.8, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%TutorialFinaleCutscene/../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera4:current")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("%TutorialFinaleCutscene/../..")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.05, 4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"kill_dipshit"
+}, {
+"args": [],
+"method": &"delete_cage"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%Muncher:player_controlled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("%TutorialFinaleCutscene/../..")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"teleport_to_guild"
+}]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("%TutorialFinaleCutscene/../../Cameras/GuildFrontCameraPivot/GuildFrontCamera:current")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("%TutorialFinaleCutscene/../../Cameras/GuildFrontCameraPivot/GuildFrontCamera:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(4.7, 7.4),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(-9.53674e-07, 5.44435, 0.23818), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yvu4c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera3:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera3/Shotgun:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera3/Shotgun:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.0146957, -2.68221e-07)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera3/Shotgun:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.344246, -0.695969, -3.18205)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%TutorialFinaleCutscene/../../TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera4:current")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%TutorialFinaleCutscene/../../Cameras/GuildFrontCameraPivot/GuildFrontCamera:current")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%TutorialFinaleCutscene/../../Cameras/GuildFrontCameraPivot/GuildFrontCamera:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-9.53674e-07, 5.44435, 0.23818)]
+}
+
+[sub_resource type="Animation" id="Animation_qeevr"]
+resource_name = "Tutorial_End"
+length = 4.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Overlay/OverlayAnimation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("fade_out", "fade_in"),
+"times": PackedFloat32Array(1.8, 3)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%TutorialFinaleCutscene/../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8, 3.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"tut_end_torpejo_walk_away"
+}, {
+"args": [],
+"method": &"play_overworld_music"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%TutorialFinaleCutscene/../../Cameras/GuildFrontCameraPivot/GuildFrontCamera:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%TutorialFinaleCutscene/../../MainCamera:enable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%TutorialFinaleCutscene/../../MainCamera/SpringArm3D/Camera3D:current")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%TutorialFinaleCutscene/../../UI")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"grab_focus"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kjx0u"]
 _data = {
-"Kill_Dipshit": SubResource("Animation_y8ep6")
+"Kill_Dipshit": SubResource("Animation_y8ep6"),
+"RESET": SubResource("Animation_yvu4c"),
+"Tutorial_End": SubResource("Animation_qeevr")
 }
 
 [node name="Main" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_12yvb")
 
 [node name="Overlay" type="Control" parent="."]
@@ -1968,6 +2426,16 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 mouse_filter = 1
+
+[node name="MouseCapturedOverlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_3pusw")
 
 [node name="TutorialArea" type="Area3D" parent="."]
 collision_layer = 0
@@ -2089,7 +2557,7 @@ floor_block_on_wall = true
 freeze = true
 
 [node name="Dipshit2" parent="Munchmes" instance=ExtResource("8_82vux")]
-transform = Transform3D(-0.68015, 0.36045, -0.638335, 0.709571, 0.542433, -0.449755, 0.18414, -0.758844, -0.624702, -11.9862, 106.028, 11.1755)
+transform = Transform3D(-0.522584, 0.724724, -0.449089, 0.803049, 0.595337, 0.0262611, 0.286393, -0.346916, -0.893104, 86.5969, 41.0103, -65.3178)
 floor_block_on_wall = true
 resource = SubResource("Resource_0jlqk")
 
@@ -2100,6 +2568,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4938, 100.612, 19.4683)
 
 [node name="GuildFront" type="Marker3D" parent="FollowPoints"]
 transform = Transform3D(0.864108, -0.0576145, 0.499999, 0.00879662, 0.995004, 0.0994506, -0.503231, -0.0815377, 0.860297, -12.7895, 101.936, 0.525494)
+
+[node name="GuildFrontMuncher" type="Marker3D" parent="FollowPoints"]
+transform = Transform3D(0.84759, -0.214361, 0.48543, 0.181637, 0.976717, 0.114159, -0.498599, -0.00858814, 0.866791, -10.2103, 102.465, 1.82019)
+
+[node name="GuildFrontTorpejo" type="Marker3D" parent="FollowPoints"]
+transform = Transform3D(0.84759, -0.214361, 0.48543, 0.181637, 0.976717, 0.114159, -0.498599, -0.00858814, 0.866791, -12.6396, 101.944, 3.24924)
+
+[node name="GuildFrontTorpejo2" type="Marker3D" parent="FollowPoints"]
+transform = Transform3D(0.847591, -0.214361, 0.48543, 0.181637, 0.976717, 0.114159, -0.498599, -0.00858814, 0.866791, -30.4345, 98.1305, 13.7171)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("9_18ahj")
@@ -3037,9 +3514,184 @@ transform = Transform3D(-5.9766, 0.871372, -1.65035, -1.18385, -6.0504, 1.09263,
 [node name="296" parent="Planet/Trees/FoliageSpawner7" instance=ExtResource("16_ksbrb")]
 transform = Transform3D(3.20074, 2.28762, 1.20225, 2.44991, -3.29507, -0.252574, 0.822528, 0.912498, -3.92608, 35.4947, 45.4963, -18.1072)
 
-[node name="cage" parent="Planet" instance=ExtResource("20_a2o6a")]
+[node name="Cage" parent="Planet" instance=ExtResource("20_a2o6a")]
 transform = Transform3D(0.516858, 0.71081, -0.117364, -0.506195, 0.508929, -0.412329, -0.235411, 0.466295, 0.628935, 77.9468, 52.7035, 48.1668)
 visible = false
+
+[node name="Platforms" type="Node3D" parent="Planet/Cage"]
+transform = Transform3D(0.999999, -1.19209e-07, -1.49012e-08, 1.49012e-07, 0.999999, 5.96046e-08, 2.98023e-08, -4.47035e-08, 0.999999, 7.62939e-06, 4.21349, -7.62939e-06)
+
+[node name="Platform" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45999, 1.93428, 8.14493)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform"]
+shape = SubResource("BoxShape3D_ty3sk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform"]
+mesh = SubResource("BoxMesh_bx7m0")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform2" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(0.905224, -0.26318, 0.333626, 0.279175, 0.96024, -2.98023e-08, -0.320361, 0.0931401, 0.942706, -1.79016, 3.73523, 7.51565)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform2"]
+shape = SubResource("BoxShape3D_ty3sk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform2"]
+mesh = SubResource("BoxMesh_bx7m0")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform3" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(0.749386, -0.224998, 0.622733, 0.287561, 0.957762, -2.98023e-08, -0.59643, 0.179074, 0.782434, 5.12315, 6.35756, 4.75748)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform3"]
+shape = SubResource("BoxShape3D_bkv22")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform3"]
+transform = Transform3D(1, -1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_wmnax")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform4" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, -5.96046e-08, -8.9407e-08, 0, 1, 10.2083, 9.29518, 0.0423756)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform4"]
+shape = SubResource("BoxShape3D_ty3sk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform4"]
+mesh = SubResource("BoxMesh_bx7m0")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform12" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(0.963116, 0, 0.269088, -5.96046e-08, 1, -1.3411e-07, -0.269088, 0, 0.963116, 10.2083, 9.86656, -6.02292)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform12"]
+shape = SubResource("BoxShape3D_ty3sk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform12"]
+mesh = SubResource("BoxMesh_bx7m0")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform5" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(0.929465, 0.295844, -0.220391, -0.303302, 0.952895, -7.45058e-08, 0.21001, 0.0668449, 0.975412, 2.88547, 13.05, -7.10683)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform5"]
+shape = SubResource("BoxShape3D_bkv22")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform5"]
+transform = Transform3D(1, -1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_wmnax")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform6" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(0.961002, 2.18861e-08, 0.276543, -8.9407e-08, 1, -2.23517e-08, -0.276543, 0, 0.961002, -4.73507, 15.6284, -6.23359)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform6"]
+shape = SubResource("BoxShape3D_ty3sk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform6"]
+mesh = SubResource("BoxMesh_bx7m0")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform7" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(0.834372, 0.233666, -0.499223, -0.200515, 0.972317, 0.119973, 0.513436, 1.49012e-08, 0.858128, -9.47998, 18.1765, -2.81715)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform7"]
+shape = SubResource("BoxShape3D_ty3sk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform7"]
+mesh = SubResource("BoxMesh_bx7m0")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform13" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(0.859202, -0.112019, -0.499223, 0.196579, 0.973121, 0.119973, 0.472365, -0.201218, 0.858128, -11.9852, 18.7786, 1.48919)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform13"]
+shape = SubResource("BoxShape3D_4duuu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform13"]
+mesh = SubResource("BoxMesh_1omvk")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform8" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(0.848944, 0, -0.528483, 0, 1, 0, 0.528483, 0, 0.848944, -9.24191, 21.3711, 6.14412)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform8"]
+shape = SubResource("BoxShape3D_o0bv4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform8"]
+mesh = SubResource("BoxMesh_lvg32")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform9" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(0.984714, -0.171002, 0.0331372, 0.170501, 0.985204, 0.0174019, -0.0356227, -0.0114859, 0.9993, -4.2836, 23.1678, 8.40814)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform9"]
+shape = SubResource("BoxShape3D_o0bv4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform9"]
+mesh = SubResource("BoxMesh_lvg32")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform10" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(0.960871, -0.175352, 0.214427, 0.187775, 0.981445, -0.0388438, -0.203637, 0.077588, 0.975968, 2.63826, 26.1235, 8.08185)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform10"]
+shape = SubResource("BoxShape3D_elrfj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_xbpsw")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
+
+[node name="Platform11" type="StaticBody3D" parent="Planet/Cage/Platforms"]
+transform = Transform3D(0.765405, 2.18861e-08, 0.64355, -2.98023e-08, 1, 0, -0.64355, 5.96046e-08, 0.765405, 10.4926, 27.9176, 3.55231)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/Cage/Platforms/Platform11"]
+shape = SubResource("BoxShape3D_o0bv4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform11"]
+mesh = SubResource("BoxMesh_lvg32")
+surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
 
 [node name="RocketPlatform" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.533267, 0.0464981, 1.17245, 0.0530296, 1.2875, -0.0269409, -1.17218, 0.0370932, -0.534612, 20.1387, 104.194, 16.6353)
@@ -3070,7 +3722,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.355755, 0.554292, 0.410092, 0.000224985, 0.461554, -0.623654, -0.689507, -0.285844, -0.211796, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.355753, 0.554292, 0.410094, 0.000224831, 0.461555, -0.623653, -0.689508, -0.285842, -0.211795, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
@@ -3085,6 +3737,13 @@ transform = Transform3D(0.505505, 0.142816, -0.850922, 0.0762949, 0.974945, 0.20
 [node name="TutorialCamera" type="Camera3D" parent="Cameras"]
 transform = Transform3D(-0.887381, -6.32327e-07, -0.461036, -2.53788e-07, 1, -1.71994e-07, 0.461036, -9.52239e-08, -0.887381, -7.9886, 109.642, -10.489)
 
+[node name="GuildFrontCameraPivot" type="Node3D" parent="Cameras"]
+transform = Transform3D(0.736232, -0.414761, 0.534729, 0.143924, 0.868057, 0.475145, -0.661247, -0.272857, 0.698786, -32.1058, 100.334, -9.50132)
+
+[node name="GuildFrontCamera" type="Camera3D" parent="Cameras/GuildFrontCameraPivot"]
+transform = Transform3D(1, -2.90573e-07, 1.19209e-06, 2.23517e-08, 0.999045, -0.0437063, -2.08616e-07, 0.0437065, 0.999044, -9.53674e-07, 5.44435, 0.23818)
+fov = 85.0
+
 [node name="TutorialTorpejoPoints" type="Node3D" parent="."]
 transform = Transform3D(-0.533267, 0.0464981, 1.17245, 0.0530296, 1.2875, -0.0269409, -1.17218, 0.0370932, -0.534612, 20.1387, 104.194, 16.6353)
 
@@ -3093,6 +3752,15 @@ transform = Transform3D(0.999999, -9.31323e-09, 0, -7.07805e-08, 0.999998, 4.936
 
 [node name="AfterCatchMuncherPoint" type="Marker3D" parent="TutorialTorpejoPoints"]
 transform = Transform3D(0.999997, 9.53674e-07, 1.49012e-08, -3.72529e-07, 0.999998, 0, 1.56462e-07, 7.7486e-07, 1, 46.1133, -25.2467, 53.4447)
+
+[node name="CagePoints" type="Node3D" parent="TutorialTorpejoPoints"]
+transform = Transform3D(0.929149, 9.51812e-07, 0.369698, -2.6077e-08, 0.999998, -2.99886e-07, -0.369697, 7.71135e-07, 0.929152, 34.9433, -40.4823, 70.238)
+
+[node name="P1" type="Marker3D" parent="TutorialTorpejoPoints/CagePoints"]
+transform = Transform3D(0.988918, 0.0181575, 0.147333, -0.0932177, 0.848369, 0.521133, -0.11553, -0.529093, 0.840662, -2.52015, 1.83407, -2.68342)
+
+[node name="P2" type="Marker3D" parent="TutorialTorpejoPoints/CagePoints"]
+transform = Transform3D(0.935288, -1.49012e-08, 0.353883, -0.118728, 0.942039, 0.31379, -0.333371, -0.335501, 0.881079, -2.13464, -3.0379, -1.25967)
 
 [node name="CatchMunchmePoint" type="Node3D" parent="TutorialTorpejoPoints"]
 transform = Transform3D(0.999999, -8.56817e-08, 0, -3.22238e-07, 0.999992, 1.73226e-07, -2.98023e-07, 1.86265e-08, 1, 50.1479, -27.3393, 52.5375)
@@ -3118,6 +3786,17 @@ libraries = {
 
 [node name="DipshitCamera2" type="Camera3D" parent="TutorialTorpejoPoints/CatchMunchmePoint"]
 transform = Transform3D(-0.734438, 0.248183, 0.031372, -0.0159574, -0.143582, 0.762309, 0.249651, 0.720952, 0.141018, -9.23958, 10.1213, 34.8639)
+
+[node name="DipshitCamera3" type="Camera3D" parent="TutorialTorpejoPoints/CatchMunchmePoint"]
+transform = Transform3D(0.724887, 0.134961, 0.24146, 0.109474, 0.482002, -0.59806, -0.254036, 0.592827, 0.431284, -16.044, -19.6301, 21.5864)
+
+[node name="Shotgun" parent="TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera3" instance=ExtResource("27_rhpdr")]
+transform = Transform3D(1.34985, 3.62059e-07, 0.0198384, -3.62098e-07, 1.35, 0, -0.0198384, -5.32108e-09, 1.34985, 0.344246, -0.695969, -3.18205)
+visible = false
+
+[node name="DipshitCamera4" type="Camera3D" parent="TutorialTorpejoPoints/CatchMunchmePoint"]
+transform = Transform3D(-0.0480829, 0.14636, 0.760425, 0.720678, 0.287254, -0.00971801, -0.283367, 0.705725, -0.153751, -13.5804, -19.0222, 20.4412)
+fov = 88.0
 
 [node name="FollowPoints" type="Node3D" parent="TutorialTorpejoPoints"]
 transform = Transform3D(1, 1.86265e-09, 0, -3.72529e-09, 1, 2.79397e-09, -2.98023e-08, -2.79397e-09, 1, 0, 0, 0)
@@ -3170,6 +3849,10 @@ libraries = {
 "": SubResource("AnimationLibrary_q1rab")
 }
 
+[node name="FinaleTimer" type="Timer" parent="."]
+wait_time = 18.714
+one_shot = true
+
 [node name="Cutscenes" type="Node" parent="."]
 
 [node name="RocketReturnCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
@@ -3214,7 +3897,7 @@ scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_xn0uj")])
 
 [node name="TutorialDeployCutscene3" parent="Cutscenes" instance=ExtResource("10_01ks1")]
 unique_name_in_owner = true
-scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_lqkfu"), SubResource("Resource_4hbt0"), SubResource("Resource_wa8y4"), SubResource("Resource_hyb3i"), SubResource("Resource_kidcn"), SubResource("Resource_xdk8x")])
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_lqkfu"), SubResource("Resource_4hbt0"), SubResource("Resource_wa8y4"), SubResource("Resource_hyb3i"), SubResource("Resource_tdrr4"), SubResource("Resource_kidcn"), SubResource("Resource_xdk8x")])
 
 [node name="CutsceneAnimation" parent="Cutscenes/TutorialDeployCutscene3" index="0"]
 libraries = {
@@ -3223,7 +3906,7 @@ libraries = {
 
 [node name="TutorialCageCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
 unique_name_in_owner = true
-scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_167a4"), SubResource("Resource_tdxxs"), SubResource("Resource_iras0"), SubResource("Resource_6s5wj"), SubResource("Resource_nmbbf"), SubResource("Resource_ys670"), SubResource("Resource_wkt80")])
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_167a4"), SubResource("Resource_tdxxs"), SubResource("Resource_eu2nn"), SubResource("Resource_ny15j"), SubResource("Resource_iras0"), SubResource("Resource_6s5wj"), SubResource("Resource_nmbbf"), SubResource("Resource_ys670"), SubResource("Resource_wkt80")])
 
 [node name="CutsceneAnimation" parent="Cutscenes/TutorialCageCutscene" index="0"]
 libraries = {
@@ -3241,7 +3924,7 @@ libraries = {
 
 [node name="TutorialFinaleCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
 unique_name_in_owner = true
-scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_6onan")])
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_6onan"), SubResource("Resource_o35tx"), SubResource("Resource_mnyoe"), SubResource("Resource_fobr1"), SubResource("Resource_06wmb"), SubResource("Resource_cfxg4"), SubResource("Resource_hry5o")])
 
 [node name="CutsceneAnimation" parent="Cutscenes/TutorialFinaleCutscene" index="0"]
 libraries = {
@@ -3299,23 +3982,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0043, 102.294, -28.5242)
 [node name="LightmapProbe15" type="LightmapProbe" parent="LightmapGI"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 
-[node name="FinaleTimer" type="Timer" parent="."]
-wait_time = 19.714
-one_shot = true
-
 [connection signal="focus_entered" from="UI" to="." method="_on_ui_focus_entered"]
 [connection signal="focus_exited" from="UI" to="." method="_on_ui_focus_exited"]
 [connection signal="body_entered" from="TutorialArea" to="." method="_on_tutorial_area_body_entered"]
 [connection signal="torpejo_talked_to" from="Munchmes/Torpejo" to="." method="_on_torpejo_torpejo_talked_to"]
 [connection signal="body_entered" from="Planet/Guild/EnterGuildArea" to="." method="_on_enter_guild_area_entered"]
 [connection signal="body_entered" from="TutorialTorpejoPoints/CatchMunchmePoint/TorpejoArea" to="." method="_on_torpejo_area_body_entered"]
-[connection signal="animation_finished" from="Cutscenes/RocketReturnCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_finished"]
+[connection signal="timeout" from="FinaleTimer" to="." method="_on_finale_timer_timeout"]
 [connection signal="animation_finished" from="Cutscenes/TutorialMeetDipshitCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
 [connection signal="animation_finished" from="Cutscenes/TutorialDeployCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
 [connection signal="animation_finished" from="Cutscenes/TutorialDeployCutscene3/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
 [connection signal="animation_finished" from="Cutscenes/TutorialCageCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
 [connection signal="animation_finished" from="Cutscenes/TutorialKidnappedCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
-[connection signal="timeout" from="FinaleTimer" to="." method="_on_finale_timer_timeout"]
+[connection signal="animation_finished" from="Cutscenes/TutorialFinaleCutscene/CutsceneAnimation" to="." method="_on_cutscene_animation_animation_finished"]
 
 [editable path="MainCamera"]
 [editable path="Cutscenes/RocketReturnCutscene"]

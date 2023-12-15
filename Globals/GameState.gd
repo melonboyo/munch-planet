@@ -175,11 +175,15 @@ func change_focus_to(new_focus: Control):
 func is_munchme_active(munchme: Munchme) -> bool:
 	if active_window == -1:
 		return false
+	if deployed_munchmes.is_empty():
+		return false
 	return deployed_munchmes[active_window] == munchme
 
 
 func is_window_active(window: Control) -> bool:
 	if active_window == -1:
+		return false
+	if munchme_windows.is_empty():
 		return false
 	return munchme_windows[active_window] == window
 

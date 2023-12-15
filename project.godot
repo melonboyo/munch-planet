@@ -45,6 +45,7 @@ mouse_cursor/custom_image_hotspot=Vector2(1, 1)
 
 folder_colors={
 "res://Assets/": "green",
+"res://Fonts/": "pink",
 "res://Globals/": "red",
 "res://Interaction/": "purple",
 "res://Intro/": "orange",
@@ -76,6 +77,10 @@ mouse_sensitivity=1.5
 invert_look_x=false
 invert_look_y=false
 control_stick_deadzone=0.15
+
+[gui]
+
+theme/custom_font="res://Fonts/HeyComic-vm34M.otf"
 
 [importer_defaults]
 

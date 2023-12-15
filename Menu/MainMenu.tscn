@@ -1,18 +1,21 @@
-[gd_scene load_steps=26 format=3 uid="uid://dl6rlbluelsaw"]
+[gd_scene load_steps=29 format=3 uid="uid://dl6rlbluelsaw"]
 
 [ext_resource type="Script" path="res://Menu/MainMenu.gd" id="1_60vhr"]
 [ext_resource type="Script" path="res://Menu/MenuPlanet.gd" id="2_c0vw7"]
-[ext_resource type="Texture2D" uid="uid://dc6wlonqrocbt" path="res://Sprites/rps-button-scissors.png" id="2_hphi5"]
-[ext_resource type="Texture2D" uid="uid://cytsv1vjralcs" path="res://Sprites/rps-button-pressed-scissors.png" id="3_nw0vd"]
 [ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="3_x8bl3"]
 [ext_resource type="Script" path="res://Movement/FollowPoints.gd" id="4_ro4wa"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/Goby/goby.tscn" id="5_v4nby"]
 [ext_resource type="Texture2D" uid="uid://ios8c7bseiai" path="res://Sprites/Skybox/main-skybox.png" id="6_vi1u0"]
 [ext_resource type="Script" path="res://Environment.gd" id="7_p1tm4"]
-[ext_resource type="Texture2D" uid="uid://cmn56erx6gh2j" path="res://Sprites/game_title.png" id="8_hyhtv"]
+[ext_resource type="Texture2D" uid="uid://xv7ye4o82teq" path="res://Sprites/title_680.png" id="8_ckgo5"]
+[ext_resource type="Texture2D" uid="uid://dborvcj46gq3v" path="res://Sprites/menu-button.png" id="9_g30e4"]
 [ext_resource type="AudioStream" uid="uid://dv3ohnqdtvta2" path="res://Music/title_screen.ogg" id="10_1y1ld"]
+[ext_resource type="Texture2D" uid="uid://t6nqtnbhx513" path="res://Sprites/menu-button-pressed.png" id="10_7rfkw"]
 [ext_resource type="AudioStream" uid="uid://bnst0sidu031u" path="res://Music/title_screen_melody.ogg" id="11_4pxpc"]
+[ext_resource type="Texture2D" uid="uid://sq525ryrlf08" path="res://Sprites/menu-button-hover-new.png" id="11_8t4nu"]
 [ext_resource type="Texture2D" uid="uid://6od1ys2isygd" path="res://logo_512.png" id="11_kh7ey"]
+[ext_resource type="Texture2D" uid="uid://bkpxgbqbn2n6b" path="res://Sprites/menu-button-hover-settings.png" id="12_xro2q"]
+[ext_resource type="Texture2D" uid="uid://dht3df12kirc0" path="res://Sprites/menu-button-hover-exit.png" id="13_tc04k"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jqb1s"]
 radius = 100.35
@@ -160,7 +163,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("MarginContainer/HBoxContainer/StartButton:modulate")
+tracks/8/path = NodePath("MarginContainer/HBoxContainer/ExitButton:self_modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -184,7 +187,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("MarginContainer/HBoxContainer/ExitButton:self_modulate")
+tracks/10/path = NodePath("MarginContainer/HBoxContainer/StartButton:modulate")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -320,7 +323,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MarginContainer/HBoxContainer/StartButton:modulate")
+tracks/7/path = NodePath("MarginContainer/HBoxContainer/ExitButton:self_modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -344,7 +347,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("MarginContainer/HBoxContainer/ExitButton:self_modulate")
+tracks/9/path = NodePath("MarginContainer/HBoxContainer/StartButton:modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -456,11 +459,11 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MarginContainer/HBoxContainer/StartButton:modulate")
+tracks/7/path = NodePath("MarginContainer/HBoxContainer/ExitButton:self_modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 1, 2.1),
+"times": PackedFloat32Array(0, 1.6, 2.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -480,11 +483,11 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("MarginContainer/HBoxContainer/ExitButton:self_modulate")
+tracks/9/path = NodePath("MarginContainer/HBoxContainer/StartButton:modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 1.6, 2.7),
+"times": PackedFloat32Array(0, 1, 2.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -592,7 +595,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("MarginContainer/HBoxContainer/StartButton:modulate")
+tracks/8/path = NodePath("MarginContainer/HBoxContainer/ExitButton:self_modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -616,7 +619,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("MarginContainer/HBoxContainer/ExitButton:self_modulate")
+tracks/10/path = NodePath("MarginContainer/HBoxContainer/StartButton:modulate")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -798,38 +801,41 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 280
-theme_override_constants/margin_right = 600
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="Title" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("8_hyhtv")
-stretch_mode = 4
+texture = ExtResource("8_ckgo5")
+stretch_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_constants/separation = 120
+theme_override_constants/separation = 60
 
 [node name="StartButton" type="TextureButton" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("2_hphi5")
-texture_pressed = ExtResource("3_nw0vd")
+texture_normal = ExtResource("9_g30e4")
+texture_pressed = ExtResource("10_7rfkw")
+texture_hover = ExtResource("11_8t4nu")
 
 [node name="SettingsButton" type="TextureButton" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("2_hphi5")
-texture_pressed = ExtResource("3_nw0vd")
+texture_normal = ExtResource("9_g30e4")
+texture_pressed = ExtResource("10_7rfkw")
+texture_hover = ExtResource("12_xro2q")
 
 [node name="ExitButton" type="TextureButton" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("2_hphi5")
-texture_pressed = ExtResource("3_nw0vd")
+texture_normal = ExtResource("9_g30e4")
+texture_pressed = ExtResource("10_7rfkw")
+texture_hover = ExtResource("13_tc04k")
 
 [node name="Fade" type="ColorRect" parent="."]
 layout_mode = 1
