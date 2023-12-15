@@ -26,6 +26,6 @@ func _on_deploy_looker_focus_exited():
 
 
 func _on_close_looker():
-	if GameState.tutorial_stage >= Constants.TutorialStage.Kidnapped:
+	if GameState.tutorial_active and GameState.tutorial_stage >= Constants.TutorialStage.Kidnapped:
 		return
 	GameState.retrieve_munchme_from_looker(looker)

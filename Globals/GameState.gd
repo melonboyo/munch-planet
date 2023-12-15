@@ -258,6 +258,7 @@ func get_looker_z_index_above(looker_index: int = 0):
 
 	return closest_looker_z_index
 
+
 func get_open_looker_with_highest_z_index():
 	var highest_looker = null
 	for looker in open_lookers:

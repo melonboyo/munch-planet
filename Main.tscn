@@ -1,4 +1,4 @@
-[gd_scene load_steps=159 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=156 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -7,10 +7,7 @@
 [ext_resource type="Script" path="res://Environment.gd" id="3_ligat"]
 [ext_resource type="PackedScene" uid="uid://c6sd1o4abgguc" path="res://Tutorial/ImpactLines.tscn" id="3_mjopi"]
 [ext_resource type="Script" path="res://MouseCaptureOverlay.gd" id="4_3pusw"]
-[ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/Goby/goby.tscn" id="4_7y8hl"]
 [ext_resource type="Script" path="res://Light.gd" id="4_llbt7"]
-[ext_resource type="PackedScene" uid="uid://cuw7r31kr73x" path="res://Munchme/Solidude/solidude.tscn" id="5_3y1ey"]
-[ext_resource type="PackedScene" uid="uid://csd8neh0mqxfc" path="res://Munchme/Snake/snake.tscn" id="6_j55uy"]
 [ext_resource type="PackedScene" uid="uid://d2vyal2h88f5e" path="res://Planets/earth.tscn" id="6_mqxa6"]
 [ext_resource type="PackedScene" uid="uid://rkcx1xfq1g7m" path="res://Munchme/Torpejo/Torpejo.tscn" id="7_8qtkd"]
 [ext_resource type="PackedScene" uid="uid://ct1kbjcajv4bf" path="res://FoliageSpawner.tscn" id="7_fo20x"]
@@ -2345,6 +2342,7 @@ _data = {
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
+tutorial_stage = 8
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -2500,44 +2498,6 @@ transform = Transform3D(1, -3.72529e-09, 0, 1.86265e-09, 1, 3.72529e-09, -2.9802
 visible = false
 floor_block_on_wall = true
 is_inside = false
-
-[node name="Goby" parent="Munchmes" instance=ExtResource("4_7y8hl")]
-unique_name_in_owner = true
-transform = Transform3D(-0.948109, 0, -0.317946, 0, 1, 0, 0.317946, 0, -0.948109, 3.24406, 105.199, 11.3674)
-collision_layer = 262152
-floor_block_on_wall = true
-
-[node name="Goby2" parent="Munchmes" instance=ExtResource("4_7y8hl")]
-unique_name_in_owner = true
-transform = Transform3D(-0.915803, -0.245389, -0.317946, -0.258819, 0.965926, 0, 0.307112, 0.0822905, -0.948109, 4.33285, 104.164, 17.3307)
-collision_layer = 262152
-floor_block_on_wall = true
-
-[node name="Solidude" parent="Munchmes" instance=ExtResource("5_3y1ey")]
-transform = Transform3D(1, 7.80895e-09, -2.08098e-08, 3.31634e-09, 1, 1.04308e-07, 3.20528e-08, -2.98023e-08, 1, 11.3117, 105.614, 5.66004)
-collision_layer = 262152
-floor_block_on_wall = true
-floor_max_angle = 0.785398
-
-[node name="Snake" parent="Munchmes" instance=ExtResource("6_j55uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.866, 91.5853, 44.2517)
-collision_layer = 262152
-floor_block_on_wall = true
-
-[node name="Snake2" parent="Munchmes" instance=ExtResource("6_j55uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5862, 94.9421, 39.6956)
-collision_layer = 262152
-floor_block_on_wall = true
-
-[node name="Snake3" parent="Munchmes" instance=ExtResource("6_j55uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.866, 95.1749, 36.2685)
-collision_layer = 262152
-floor_block_on_wall = true
-
-[node name="Snake4" parent="Munchmes" instance=ExtResource("6_j55uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6908, 91.5853, 44.2517)
-collision_layer = 262152
-floor_block_on_wall = true
 
 [node name="Dipshit" parent="Munchmes" instance=ExtResource("8_82vux")]
 unique_name_in_owner = true
