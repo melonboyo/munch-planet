@@ -8,6 +8,7 @@ extends Marker3D
 		spawn_foliage()
 @export var wait_for_physics := true
 @export var set_owner := true
+@export var is_flat := false
 @export var use_y_up_as_direction := false:
 	set(value):
 		use_y_up_as_direction = value
@@ -45,7 +46,7 @@ func spawn_foliage():
 			c.free()
 	
 	
-	var ray_dir = global_basis.y if use_y_up_as_direction else -global_position.normalized()
+	var ray_dir = global_basis.y if use_y_up_as_direction else (-global_position.normalized() if not is_flat else Vector3.DOWN)
 	var ray_dir_rotated: Vector3 = Vector3.FORWARD * Math.from_to_rotation(Vector3.UP, ray_dir)
 	
 	randomize()
@@ -68,9 +69,8 @@ func spawn_foliage():
 			planet_rid = result.collider_id
 			first_loop = false
 			continue
-		# Fix to make uniformly distributed?
 		var spawn_pos = global_position + ray_dir_rotated.rotated(ray_dir, randf_range(-PI, PI)) * pow(randf_range(0, 1), 0.67) * spawn_radius
-		var spawn_ray_dir = -spawn_pos.normalized()
+		var spawn_ray_dir = -spawn_pos.normalized() if not is_flat else Vector3.DOWN
 		var ray_query = PhysicsRayQueryParameters3D.create(
 			spawn_pos, spawn_pos + spawn_ray_dir * ray_dist, (pow(2, 1-1) + pow(2, 8-1))
 		)

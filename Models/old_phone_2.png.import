@@ -3,21 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dd86fbhcrhvch"
-path.s3tc="res://.godot/imported/old_phone_2.png-31cb6b6c9dddd07731260d16c8a1f6d6.s3tc.ctex"
+path="res://.godot/imported/old_phone_2.png-31cb6b6c9dddd07731260d16c8a1f6d6.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://Models/old_phone_2.png"
-dest_files=["res://.godot/imported/old_phone_2.png-31cb6b6c9dddd07731260d16c8a1f6d6.s3tc.ctex"]
+dest_files=["res://.godot/imported/old_phone_2.png-31cb6b6c9dddd07731260d16c8a1f6d6.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

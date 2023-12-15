@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://deax2ul2oi21o"]
+
+[ext_resource type="PackedScene" uid="uid://dj4vajxuyp4yp" path="res://Models/cube_rock.glb" id="1_krfi7"]
+[ext_resource type="Texture2D" uid="uid://b8mw8fm7kg7ut" path="res://Sprites/Faces/phone-0.png" id="2_bq4e3"]
+[ext_resource type="Texture2D" uid="uid://jigufdkwnf6j" path="res://Sprites/Faces/phone-1.png" id="3_h5d8r"]
+[ext_resource type="Texture2D" uid="uid://dc8x22br1udnx" path="res://Sprites/Faces/phone-2.png" id="4_urcj5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cccjh"]
+size = Vector3(17.6606, 10.4233, 12.311)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbj5b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bq4e3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h5d8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_urcj5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BreakableRock" instance=ExtResource("1_krfi7")]
+
+[node name="Sketchfab_model" parent="." index="0"]
+transform = Transform3D(0.397694, 0, 0, 0, 8.83058e-17, 0.397694, 0, -0.397694, 8.83058e-17, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.712402, 5.21836, -1.94409)
+shape = SubResource("BoxShape3D_cccjh")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="2"]
+transform = Transform3D(0.999957, 0, 0.00930247, 0, 1, 0, -0.00930247, 0, 0.999957, -0.000415004, 4.93396, 4.69938)
+pixel_size = 0.0775
+sprite_frames = SubResource("SpriteFrames_wbj5b")
+autoplay = "default"
+frame_progress = 0.410334

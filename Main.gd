@@ -563,10 +563,12 @@ func clear_tutorial():
 	$TutorialArea.queue_free()
 	$TutorialTorpejoPoints.queue_free()
 	%Muncher.player_controlled = true
-	%Torpejo.freeze = true
-	%Torpejo.global_position = Vector3.ZERO
+	%Torpejo.global_position = $Planet/Tower
 	go_to_tutorial_stage(Constants.TutorialStage.Finished)
 	play_overworld_music()
+	await get_tree().physics_frame
+	%Torpejo.rotate_towards($Planet/TowerFaceDirection.global_position)
+	%Torpejo.can_be_caught = true
 
 
 func return_to_torpejo():

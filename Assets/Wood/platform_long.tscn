@@ -1,14 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqfwalgiweaty"]
+[gd_scene load_steps=7 format=3 uid="uid://dqfwalgiweaty"]
 
 [ext_resource type="PackedScene" uid="uid://bubvbj07dlbt2" path="res://Models/wood/platform_pt1.glb" id="1_4dlh6"]
+[ext_resource type="Texture2D" uid="uid://cpnxmlb7obsge" path="res://Models/wood/platform_pt1_1.png" id="3_2rmcy"]
+[ext_resource type="Texture2D" uid="uid://d1dbfk6k062nv" path="res://Models/wood/platform_pt1_2.png" id="4_6pqta"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8k7p"]
+resource_name = "wood"
+cull_mode = 2
+albedo_texture = ExtResource("3_2rmcy")
+roughness = 0.896704
+normal_enabled = true
+normal_scale = 0.257813
+normal_texture = ExtResource("4_6pqta")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ec1c"]
 size = Vector3(0.618164, 2.59741, 0.523193)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a8pou"]
-size = Vector3(0.618164, 4.229, 0.283142)
+size = Vector3(0.655762, 4.229, 0.283142)
 
 [node name="PlatformLong" instance=ExtResource("1_4dlh6")]
+
+[node name="Object_3" parent="Sketchfab_model/platform1_obj_cleaner_materialmerger_gles" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_p8k7p")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
 
@@ -21,5 +35,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0483398, 1.30099, -1.66244
 shape = SubResource("BoxShape3D_1ec1c")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0483398, 2.54365, 0.207702)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0671387, 2.54365, 0.207702)
 shape = SubResource("BoxShape3D_a8pou")
