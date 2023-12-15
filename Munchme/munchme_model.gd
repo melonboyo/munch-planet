@@ -1,12 +1,8 @@
 extends Node3D
+class_name MunchmeModel
 
 
-var step_sounds := [
-	load("res://SFX/Step/step_mid1.ogg"),
-	load("res://SFX/Step/step_mid2.ogg"),
-	load("res://SFX/Step/step_mid3.ogg"),
-	load("res://SFX/Step/step_mid4.ogg"),
-]
+signal step
 
 var is_on_floor = false
 
@@ -33,13 +29,9 @@ func set_animation_speed_scale(value: float):
 	$AnimationPlayer.speed_scale = value
 
 
-func play_step_sound():
-	if not is_on_floor:
-		return
-	var i = randi_range(0, step_sounds.size()-1)
-	$StepPlayer.stream = step_sounds[i]
-	$StepPlayer.play()
-
-
 func has_animation(anim: String) -> bool:
 	return $AnimationPlayer.has_animation(anim)
+
+
+func emit_step():
+	step.emit()

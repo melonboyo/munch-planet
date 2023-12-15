@@ -223,8 +223,7 @@ resource = SubResource("Resource_hsa0i")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.364462, 0)
 shape = SubResource("CapsuleShape3D_y0bei")
 
-[node name="Model" parent="." index="3" instance=ExtResource("3_o5rs3")]
-transform = Transform3D(0.376657, 0, 0, 0, 0.376657, 0, 0, 0, 0.376657, 0, 0.00391814, 0)
+[node name="Model" parent="." index="1" instance=ExtResource("3_o5rs3")]
 
 [node name="RPSRoot" type="Node3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.135396, 0, 0)

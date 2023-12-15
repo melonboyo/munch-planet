@@ -2,6 +2,7 @@ extends Munchme
 class_name Solidude
 
 
+var walk_sound = preload("res://SFX/Step/stone_scrape.ogg")
 var death_sound = preload("res://SFX/owowowow.ogg")
 var punch_sounds = [
 	preload("res://SFX/Minigames/punch_1.ogg"),
@@ -19,6 +20,8 @@ func munchme_specific_ready():
 	#$Animation.play("RESET")
 	if situation == Constants.Situation.Catch:
 		times_punched = 0
+	
+	step_sounds.append(walk_sound)
 
 
 func start_minigame():

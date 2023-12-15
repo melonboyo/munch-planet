@@ -48,13 +48,17 @@ shader_parameter/LightBlendColor2 = Color(0.27451, 0.117647, 0.0588235, 1)
 shader_parameter/Color2Influence = 1.0
 shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
 
-[node name="GobyModel" instance=ExtResource("1_2ndti")]
+[node name="Model" instance=ExtResource("1_2ndti")]
+transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0, 0, 0)
 script = ExtResource("2_ejjfw")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/1/rotation = Quaternion(0.719963, -0.0518009, 0.0496883, 0.690291)
+bones/0/position = Vector3(0, 0.384112, 0)
+bones/1/position = Vector3(-0.479687, -0.207507, -0.309322)
+bones/1/rotation = Quaternion(0.711602, -0.0367682, 0.00636099, 0.701591)
 bones/2/rotation = Quaternion(0.0440124, -0.00631536, -0.000542125, 0.999011)
-bones/3/rotation = Quaternion(0.719963, 0.0518009, -0.0496883, 0.690291)
+bones/3/position = Vector3(0.479687, -0.207507, -0.309322)
+bones/3/rotation = Quaternion(0.711602, 0.0367682, -0.006361, 0.701591)
 bones/4/rotation = Quaternion(0.0440124, 0.00631536, 0.000542125, 0.999011)
 
 [node name="Munchme1" parent="Armature/Skeleton3D" index="0"]
@@ -62,7 +66,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_7in2j")
 surface_material_override/1 = SubResource("ShaderMaterial_obqel")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.353744, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.384112, 0)
 bone_name = "Body"
 bone_idx = 0
 

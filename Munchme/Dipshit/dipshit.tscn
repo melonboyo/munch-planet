@@ -26,12 +26,11 @@ script = ExtResource("2_db2f0")
 resource = SubResource("Resource_0yd1n")
 height = 1.5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+[node name="Model" parent="." index="0" instance=ExtResource("3_vmdgh")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.748874, 0)
 shape = SubResource("CapsuleShape3D_ismua")
-
-[node name="Model" parent="." index="1" instance=ExtResource("3_vmdgh")]
-transform = Transform3D(0.649745, 0, 0, 0, 0.649745, 0, 0, 0, 0.649745, 0, -0.0176239, 0)
 
 [node name="OverworldMovement" parent="." index="4"]
 can_jump = true

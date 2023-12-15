@@ -159,6 +159,8 @@ section_length = 0.01
 script = ExtResource("2_qf85q")
 resource = SubResource("Resource_3mgou")
 height = 1.0
+step_sounds_default = false
+step_sounds_type = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000909328, 0.721725, 0.0435762)
@@ -172,8 +174,12 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.598625, 0)
 visible = false
 
 [node name="OverworldMovement" parent="." index="5"]
-walking_speed = 2.0
+walking_speed = 1.0
 sneak_speed = 1.0
+air_speed = 3.0
+max_fall_speed = 100.0
+can_jump = true
+jump_velocity = 25.0
 
 [node name="Animation" type="AnimationPlayer" parent="." index="7"]
 libraries = {

@@ -2,10 +2,10 @@ extends Node3D
 
 
 var step_sounds := [
-	load("res://SFX/Step/step_mid1.ogg"),
-	load("res://SFX/Step/step_mid2.ogg"),
-	load("res://SFX/Step/step_mid3.ogg"),
-	load("res://SFX/Step/step_mid4.ogg"),
+	load("res://SFX/Step/step_soft1.ogg"),
+	load("res://SFX/Step/step_soft2.ogg"),
+	load("res://SFX/Step/step_soft3.ogg"),
+	load("res://SFX/Step/step_soft4.ogg"),
 ]
 
 var is_on_floor = false

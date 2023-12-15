@@ -36,6 +36,11 @@ enum Munchme {
 	Dipshit,
 }
 
+enum StepType {
+	Step,
+	Slide,
+}
+
 enum Mood {
 	Sad,
 	Happy,

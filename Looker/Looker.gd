@@ -2,6 +2,7 @@
 extends NinePatchRect
 class_name Looker
 
+signal start_close_looker
 signal close_looker
 
 var is_dragging_window = false
@@ -93,6 +94,7 @@ func close():
 	%CloseButton.disabled = true
 	if not is_in_main_menu:
 		GameState.situation = Constants.Situation.Overworld
+	start_close_looker.emit()
 	$Animation.play("close_1")
 
 

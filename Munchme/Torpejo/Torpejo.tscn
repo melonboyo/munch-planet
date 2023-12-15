@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://rkcx1xfq1g7m"]
+[gd_scene load_steps=13 format=3 uid="uid://rkcx1xfq1g7m"]
 
 [ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_c3uk6"]
 [ext_resource type="Script" path="res://Munchme/Torpejo/Torpejo.gd" id="2_6s5df"]
 [ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="2_rk87o"]
 [ext_resource type="PackedScene" uid="uid://bnwdm2ywoilrc" path="res://Munchme/Torpejo/torpejo_model.tscn" id="2_ymbe0"]
-[ext_resource type="Script" path="res://Munchme/munchme_model.gd" id="4_2pnpg"]
 [ext_resource type="Texture2D" uid="uid://brfs1tprvepjp" path="res://Sprites/talk_text.png" id="6_c2o2q"]
 [ext_resource type="Texture2D" uid="uid://c7c2c7ps64t8g" path="res://Sprites/talk_border.png" id="7_dymwn"]
 
@@ -118,16 +117,16 @@ radius = 3.14716
 script = ExtResource("2_6s5df")
 resource = SubResource("Resource_pd4j1")
 can_be_caught = false
-height = 2.8
+height = 2.75
 is_inside = true
+step_sounds_default = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45035, 0)
 shape = SubResource("CapsuleShape3D_1fjlo")
 
 [node name="Model" parent="." index="1" instance=ExtResource("2_ymbe0")]
-transform = Transform3D(0.923405, 0, 0, 0, 0.923405, 0, 0, 0, 0.923405, 0, 2.28143, 0)
-script = ExtResource("4_2pnpg")
+transform = Transform3D(0.923, 0, 0, 0, 0.923, 0, 0, 0, 0.923, 0, 2.3, 0)
 
 [node name="CatchText" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.53792, 0)

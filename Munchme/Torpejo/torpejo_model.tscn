@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnwdm2ywoilrc"]
+[gd_scene load_steps=14 format=3 uid="uid://bnwdm2ywoilrc"]
 
 [ext_resource type="PackedScene" uid="uid://pohxgbfm35x3" path="res://Models/munchmes/torpejo.glb" id="1_rl1b2"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_f166r"]
+[ext_resource type="Script" path="res://Munchme/munchme_model.gd" id="2_qogck"]
 [ext_resource type="Texture2D" uid="uid://df8dmv65ipif4" path="res://Sprites/Faces/yap-0.png" id="3_laa8n"]
 [ext_resource type="Texture2D" uid="uid://cwb1qcoqn7dbs" path="res://Sprites/Faces/yap-1.png" id="4_qk2xa"]
 [ext_resource type="Texture2D" uid="uid://bfv6qodomix22" path="res://Sprites/Faces/yap-2.png" id="5_osqpl"]
@@ -23,6 +24,8 @@ noise = SubResource("FastNoiseLite_31tp3")
 render_priority = 0
 shader = ExtResource("2_f166r")
 shader_parameter/albedo = Color(0.796078, 0.309804, 0.313726, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
 shader_parameter/use_normal_texture = false
 shader_parameter/normal_depth = 1.0
 shader_parameter/roughness = 0.921
@@ -72,10 +75,12 @@ animations = [{
 }]
 
 [node name="Model" instance=ExtResource("1_rl1b2")]
+transform = Transform3D(0.923, 0, 0, 0, 0.923, 0, 0, 0, 0.923, 0, 0, 0)
+script = ExtResource("2_qogck")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(-1.42109e-14, 0.248691, 0.430746)
-bones/0/rotation = Quaternion(1.68621e-07, 0.5, -0.866025, -9.73536e-08)
+bones/0/position = Vector3(-1.27893e-14, -0.497383, -1.78814e-07)
+bones/0/rotation = Quaternion(0, 1, 0, -1.94707e-07)
 bones/1/rotation = Quaternion(-0.167912, 0, -6.53872e-08, 0.985802)
 bones/2/rotation = Quaternion(-0.199305, 1.05356e-07, -8.55024e-08, 0.979937)
 bones/3/rotation = Quaternion(0.0986181, -0.00140214, -0.0920558, 0.990857)
@@ -93,7 +98,7 @@ bones/14/position = Vector3(-0.866866, -0.486608, -0.273163)
 surface_material_override/0 = SubResource("ShaderMaterial_eng0g")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(-1, -1.7053e-13, -3.89414e-07, 3.82685e-07, -0.185102, -0.982719, -7.20813e-08, -0.982719, 0.185102, -1.62959e-13, -0.000527829, -0.000914007)
+transform = Transform3D(-1, 1.7053e-13, -3.89414e-07, -1.28918e-07, 0.943611, 0.331056, 3.67455e-07, 0.331056, -0.943611, -1.27893e-14, 0.00105488, -1.78814e-07)
 bone_name = "Torso"
 bone_idx = 1
 

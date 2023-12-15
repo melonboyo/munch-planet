@@ -62,21 +62,24 @@ animations = [{
 }]
 
 [node name="Model" instance=ExtResource("1_ks0q3")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
 script = ExtResource("2_1lii7")
 
 [node name="Skeleton3D" parent="Armature_001" index="0"]
-bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -2.11758e-22, 1)
-bones/1/position = Vector3(-0.463035, -0.158614, 0.0344067)
+bones/0/position = Vector3(-1.44131e-09, 0.140547, -5.60616e-09)
+bones/0/rotation = Quaternion(0.0973006, 0.0752757, -0.00738064, 0.992377)
+bones/1/position = Vector3(-0.464878, -0.181566, -3.49655e-07)
 bones/1/rotation = Quaternion(0.706982, 0.0132927, -0.706982, 0.0132928)
 bones/1/scale = Vector3(1, 1, 1)
-bones/2/position = Vector3(0.463035, -0.158614, 0.0344069)
+bones/2/position = Vector3(0.464878, -0.181566, -1.27984e-07)
+bones/2/rotation = Quaternion(0.706982, -0.0132927, 0.706982, 0.0132928)
 bones/2/scale = Vector3(1, 1, 1)
 
 [node name="Body_001" parent="Armature_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_ptuad")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" index="1"]
-transform = Transform3D(1, -7.1054e-15, 2.38418e-07, -7.1054e-15, 1, 5.96046e-08, -2.38418e-07, -5.96046e-08, 1, 0, 0.16494, 0)
+transform = Transform3D(0.988558, 0.0292975, 0.147967, -1.49012e-08, 0.980956, -0.194229, -0.15084, 0.192006, 0.969732, -1.44131e-09, 0.140547, -5.60616e-09)
 bone_name = "Body"
 bone_idx = 0
 

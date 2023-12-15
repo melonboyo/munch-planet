@@ -219,7 +219,7 @@ func _unhandled_input(event):
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("cheat"):
+	if Input.is_action_just_pressed("cheat") and OS.is_debug_build():
 		var resource = MunchmeResource.new()
 		resource.resource_local_to_scene = true
 		GameState.add_munchme(resource)
@@ -257,7 +257,15 @@ func open_settings():
 	
 	var settings_looker = settings_looker_scene.instantiate()
 	$UI.add_child(settings_looker)
+	settings_looker.start_close_looker.connect(_on_close_settings)
 
+
+func _on_close_settings():
+	if not GameState.focus_main and GameState.munchme_windows.size() > GameState.active_window:
+		GameState.munchme_windows[GameState.active_window].grab_focus()
+		return
+	
+	$UI.grab_focus()	
 
 func _on_attempt_catch_munchme(munchme: Munchme):
 	GameState.situation = Constants.Situation.Catch

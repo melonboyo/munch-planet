@@ -3,12 +3,18 @@ class_name Munchme
 
 @export var resource: MunchmeResource
 @export var situation: Constants.Situation = Constants.Situation.Overworld
+@export_node_path("MunchmeModel") var model_path: NodePath = "Model"
 @export var freeze := false
 @export var player_controlled := false
 @export var can_be_caught := true
 @export_range(0.0, 1.0) var move_input_deadzone: float = 0.15
 @export_range(0.0, 10.0) var height: float = 0.75
 @export var is_inside := false
+
+@export_group("Step Sounds", "step_sounds_")
+@export var step_sounds_default := true
+@export var step_sounds_type := Constants.StepType.Step
+
 
 
 var is_in_area = false
@@ -17,10 +23,15 @@ var in_catch_mode = false
 var player: Node3D = null
 var move_input
 
+var step_sounds := []
+var is_stepping := false
+
 var camera: Node3D
 
 signal catch_munchme(munchme: Munchme)
 signal finish_catch(win: bool)
+
+@onready var model: MunchmeModel = get_node_or_null(model_path)
 
 
 func _ready():
@@ -33,6 +44,15 @@ func _ready():
 	elif situation == Constants.Situation.Interact:
 		$OverworldMovement.spherical_gravity = true
 		player_controlled = true
+	
+	model.step.connect(play_step_sound)
+	if step_sounds_default:
+		step_sounds.append_array([
+			load("res://SFX/Step/step_soft1.ogg"),
+			load("res://SFX/Step/step_soft2.ogg"),
+			load("res://SFX/Step/step_soft3.ogg"),
+			load("res://SFX/Step/step_soft4.ogg"),
+		])
 	
 	munchme_specific_ready()
 
@@ -56,6 +76,14 @@ func munchme_specific_ready():
 	pass
 
 
+func play_step_sound():
+	if not is_on_floor() or step_sounds.size() == 0:
+		return
+
+	$StepPlayer.stream = step_sounds.pick_random()
+	$StepPlayer.play()
+
+
 func _process(delta):
 	if situation == Constants.Situation.Overworld:
 		_overworld_process(delta)
@@ -73,6 +101,17 @@ func _physics_process(delta):
 		$OverworldMovement.move_input = Vector3.ZERO
 	if not player_controlled:
 		$OverworldMovement.move_input = $AiMovement.get_move_direction()
+	
+	if step_sounds_type == Constants.StepType.Slide:
+		var should_step = $OverworldMovement.move_velocity.length() > 0.05 and is_on_floor()
+		print($OverworldMovement.move_velocity.length())
+		if not is_stepping and should_step:
+			is_stepping = true
+			play_step_sound()
+		elif is_stepping and not should_step:
+			$StepPlayer.stop()
+			is_stepping = false
+	
 	$OverworldMovement._overworld_physics_process(delta)
 
 

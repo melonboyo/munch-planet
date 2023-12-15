@@ -11,6 +11,12 @@ var in_talk_area := false # player is in the talk area
 var talk_player: CharacterBody3D
 
 
+func munchme_specific_ready():
+	step_sounds.append_array([
+		load("res://SFX/Step/torpejo_step.ogg"),
+	])
+
+
 func _munchme_specific_process(delta):
 	is_talking = CutsceneManager.is_scene_playing
 	#print(is_talkable, ", ", is_talking)
