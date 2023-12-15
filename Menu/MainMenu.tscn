@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dl6rlbluelsaw"]
+[gd_scene load_steps=30 format=3 uid="uid://dl6rlbluelsaw"]
 
 [ext_resource type="Script" path="res://Menu/MainMenu.gd" id="1_60vhr"]
 [ext_resource type="Script" path="res://Menu/MenuPlanet.gd" id="2_c0vw7"]
@@ -14,9 +14,9 @@
 [ext_resource type="AudioStream" uid="uid://bnst0sidu031u" path="res://Music/title_screen_melody.ogg" id="11_4pxpc"]
 [ext_resource type="Texture2D" uid="uid://sq525ryrlf08" path="res://Sprites/menu-button-hover-new.png" id="11_8t4nu"]
 [ext_resource type="Texture2D" uid="uid://6od1ys2isygd" path="res://logo_512.png" id="11_kh7ey"]
+[ext_resource type="PackedScene" uid="uid://ddf57gvskakjl" path="res://Menu/MainMenuCircle.tscn" id="12_d6b7u"]
 [ext_resource type="Texture2D" uid="uid://bkpxgbqbn2n6b" path="res://Sprites/menu-button-hover-settings.png" id="12_xro2q"]
 [ext_resource type="Texture2D" uid="uid://dht3df12kirc0" path="res://Sprites/menu-button-hover-exit.png" id="13_tc04k"]
-[ext_resource type="PackedScene" uid="uid://ddf57gvskakjl" path="res://Menu/MainMenuCircle.tscn" id="12_d6b7u"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jqb1s"]
 radius = 100.35

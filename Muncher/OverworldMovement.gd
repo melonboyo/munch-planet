@@ -118,7 +118,10 @@ func _overworld_physics_process(delta):
 		target.is_on_floor() and 
 		not float_node.is_floating()
 	):
-		gravity_velocity += jump_velocity * target.up_direction
+		if target is Munchme and not GameState.is_munchme_active(target):
+			pass
+		else:
+			gravity_velocity += jump_velocity * target.up_direction
 	
 	if gravity_velocity.length() > max_fall_speed:
 		gravity_velocity = gravity_velocity.normalized() * max_fall_speed

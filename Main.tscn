@@ -1,4 +1,4 @@
-[gd_scene load_steps=161 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=159 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://rkcx1xfq1g7m" path="res://Munchme/Torpejo/Torpejo.tscn" id="7_8qtkd"]
 [ext_resource type="PackedScene" uid="uid://ct1kbjcajv4bf" path="res://FoliageSpawner.tscn" id="7_fo20x"]
 [ext_resource type="PackedScene" uid="uid://dqcx081xjqlj7" path="res://Munchme/Dipshit/dipshit.tscn" id="8_82vux"]
-[ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="9_8u21n"]
 [ext_resource type="Environment" uid="uid://ddd2lxon2t62u" path="res://MiscResources/MainEnvironment.tres" id="9_18ahj"]
 [ext_resource type="PackedScene" uid="uid://c2eraey620ohp" path="res://Globals/Cutscenes/Cutscene.tscn" id="10_01ks1"]
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="11_nrph8"]
@@ -185,17 +184,6 @@ friction = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4ycc4"]
 size = Vector3(26.4147, 112.871, 139.065)
-
-[sub_resource type="Resource" id="Resource_0jlqk"]
-script = ExtResource("9_8u21n")
-id = 166
-name = "JIMBLO"
-munchme_type = 4
-max_health = 100
-mood = 1
-catch_track = 3
-roam_track = 2
-catch_looker_size = Vector2(910, 647)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1rtsb"]
 auto_exposure_scale = 0.5
@@ -2353,7 +2341,6 @@ _data = {
 }
 
 [node name="Main" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_12yvb")
 
 [node name="Overlay" type="Control" parent="."]
@@ -2556,11 +2543,6 @@ visible = false
 floor_block_on_wall = true
 freeze = true
 
-[node name="Dipshit2" parent="Munchmes" instance=ExtResource("8_82vux")]
-transform = Transform3D(-0.522584, 0.724724, -0.449089, 0.803049, 0.595337, 0.0262611, 0.286393, -0.346916, -0.893104, 86.5969, 41.0103, -65.3178)
-floor_block_on_wall = true
-resource = SubResource("Resource_0jlqk")
-
 [node name="FollowPoints" type="Node3D" parent="."]
 
 [node name="Center" type="Marker3D" parent="FollowPoints"]
@@ -2570,7 +2552,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4938, 100.612, 19.4683)
 transform = Transform3D(0.864108, -0.0576145, 0.499999, 0.00879662, 0.995004, 0.0994506, -0.503231, -0.0815377, 0.860297, -12.7895, 101.936, 0.525494)
 
 [node name="GuildFrontMuncher" type="Marker3D" parent="FollowPoints"]
-transform = Transform3D(0.84759, -0.214361, 0.48543, 0.181637, 0.976717, 0.114159, -0.498599, -0.00858814, 0.866791, -10.2103, 102.465, 1.82019)
+transform = Transform3D(0.84759, -0.214361, 0.48543, 0.181637, 0.976717, 0.114159, -0.498599, -0.00858814, 0.866791, -9.4715, 102.623, 1.38559)
 
 [node name="GuildFrontTorpejo" type="Marker3D" parent="FollowPoints"]
 transform = Transform3D(0.84759, -0.214361, 0.48543, 0.181637, 0.976717, 0.114159, -0.498599, -0.00858814, 0.866791, -12.6396, 101.944, 3.24924)
@@ -3676,7 +3658,6 @@ metadata/_edit_group_ = true
 shape = SubResource("BoxShape3D_elrfj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Planet/Cage/Platforms/Platform10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_xbpsw")
 surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
 
@@ -3722,7 +3703,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.355753, 0.554292, 0.410094, 0.000224831, 0.461555, -0.623653, -0.689508, -0.285842, -0.211795, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.355755, 0.554292, 0.410092, 0.000224985, 0.461554, -0.623654, -0.689507, -0.285844, -0.211796, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
@@ -3791,7 +3772,7 @@ transform = Transform3D(-0.734438, 0.248183, 0.031372, -0.0159574, -0.143582, 0.
 transform = Transform3D(0.724887, 0.134961, 0.24146, 0.109474, 0.482002, -0.59806, -0.254036, 0.592827, 0.431284, -16.044, -19.6301, 21.5864)
 
 [node name="Shotgun" parent="TutorialTorpejoPoints/CatchMunchmePoint/DipshitCamera3" instance=ExtResource("27_rhpdr")]
-transform = Transform3D(1.34985, 3.62059e-07, 0.0198384, -3.62098e-07, 1.35, 0, -0.0198384, -5.32108e-09, 1.34985, 0.344246, -0.695969, -3.18205)
+transform = Transform3D(1.34985, 3.62059e-07, 0.0198384, -3.62097e-07, 1.35, 0, -0.0198384, -5.3211e-09, 1.34985, 0.344246, -0.695969, -3.18205)
 visible = false
 
 [node name="DipshitCamera4" type="Camera3D" parent="TutorialTorpejoPoints/CatchMunchmePoint"]
