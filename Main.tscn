@@ -2342,7 +2342,10 @@ _data = {
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
-tutorial_stage = 8
+debug_skip_rocket_cutscene = true
+debug_tutorial_stage = 1
+debug_spawn_munchme = true
+debug_spawn_munchme_type = 1
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
