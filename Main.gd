@@ -35,6 +35,9 @@ var dipshit_id: int
 
 
 func _ready():
+	rotation = Vector3.ZERO
+	position = Vector3.ZERO
+	
 	GameState.tutorial_stage = debug_tutorial_stage
 	setup_graphics_detail()
 	Settings.changed.connect(setup_graphics_detail)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=156 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=158 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -18,11 +18,13 @@
 [ext_resource type="PackedScene" uid="uid://bx7g1p62e5vct" path="res://Assets/Rocks/big_rock.tscn" id="14_3ulth"]
 [ext_resource type="PackedScene" uid="uid://c24yymqlo81vu" path="res://Assets/tree_small.tscn" id="14_l7n5m"]
 [ext_resource type="PackedScene" uid="uid://pxhmk3i53ucj" path="res://Assets/tree_medium.tscn" id="15_c1ebt"]
+[ext_resource type="PackedScene" uid="uid://77wjl54ng6sx" path="res://Assets/Rocks/rock_2.tscn" id="15_gxi1y"]
 [ext_resource type="PackedScene" uid="uid://dok7xnww2nhky" path="res://Assets/tree_large.tscn" id="16_ksbrb"]
 [ext_resource type="PackedScene" uid="uid://ckhytfotl50qm" path="res://Planets/Buildings/guild.tscn" id="17_b2ff7"]
 [ext_resource type="LightmapGIData" uid="uid://cdi4e4o3k42oi" path="res://MiscResources/Main.lmbake" id="19_80l5t"]
 [ext_resource type="Script" path="res://Intro/CutsceneCamera.gd" id="20_68thv"]
 [ext_resource type="PackedScene" uid="uid://daa260g0fgr6w" path="res://Assets/cage.tscn" id="20_a2o6a"]
+[ext_resource type="PackedScene" uid="uid://c8r451r8u6ser" path="res://Assets/tower.tscn" id="21_onhbx"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="22_ui3dp"]
 [ext_resource type="PackedScene" uid="uid://reb1ntdr4vvv" path="res://Assets/rocket.tscn" id="23_5lo66"]
 [ext_resource type="AudioStream" uid="uid://dhtfeqs3hcfw8" path="res://Music/rocket_piano.ogg" id="25_07esk"]
@@ -2341,6 +2343,7 @@ _data = {
 }
 
 [node name="Main" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
 debug_tutorial_stage = 8
@@ -2570,13 +2573,11 @@ shape = SubResource("SphereShape3D_13cqd")
 transform = Transform3D(0.183434, -0.0393746, -0.276424, -0.275965, -0.0758781, -0.172321, -0.0424732, 0.322956, -0.074188, -21.4803, -13.0011, 99.8031)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Planet/Guild"]
-transform = Transform3D(1, 2.10894e-15, -3.18439e-07, -2.10894e-15, 1, 1.05447e-15, 3.18439e-07, -1.05447e-15, 1, 38.6177, 19.705, 3.8147e-06)
 light_energy = 1.39
 omni_range = 7.64558
 
 [node name="EnterGuildArea" type="Area3D" parent="Planet/Guild"]
 unique_name_in_owner = true
-transform = Transform3D(1, -1.49012e-07, -5.58794e-09, 0, 0.999999, -5.96046e-08, -4.09782e-08, 5.21541e-08, 1, 19.6745, 2.52332, -2.09808e-05)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -2598,6 +2599,9 @@ transform = Transform3D(5.33565, 1.16658, -3.23427, -3.18612, -0.566611, -5.4605
 
 [node name="big_rock3" parent="Planet/Rocks/HandPlaced" instance=ExtResource("14_3ulth")]
 transform = Transform3D(-3.59022, 2.04849, -7.1239, -4.03285, 2.69147, 6.02294, 3.80597, 4.7843, -0.338077, 56.4561, -1.04775, 91.2234)
+
+[node name="rock-2" parent="Planet/Rocks/HandPlaced" instance=ExtResource("15_gxi1y")]
+transform = Transform3D(38.5097, -27.9184, 9.01419, -7.59313, -23.8529, -41.4376, 28.3379, 31.5482, -23.3529, -68.7249, -50.253, 68.4409)
 
 [node name="FoliageSpawner" parent="Planet/Rocks" instance=ExtResource("7_fo20x")]
 spawn = false
@@ -3641,6 +3645,9 @@ shape = SubResource("BoxShape3D_o0bv4")
 mesh = SubResource("BoxMesh_lvg32")
 surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
 
+[node name="Tower" parent="Planet" instance=ExtResource("21_onhbx")]
+transform = Transform3D(0.627457, -1.18336, 0.219658, 1.16137, 0.530257, -0.460812, 0.315941, 0.400972, 1.25765, -126.158, 55.459, 31.4667)
+
 [node name="RocketPlatform" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.533267, 0.0464981, 1.17245, 0.0530296, 1.2875, -0.0269409, -1.17218, 0.0370932, -0.534612, 20.1387, 104.194, 16.6353)
 mesh = SubResource("CylinderMesh_1aoni")
@@ -3670,7 +3677,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.355755, 0.554292, 0.410092, 0.000224985, 0.461554, -0.623654, -0.689507, -0.285844, -0.211796, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.355772, 0.55429, 0.410081, 0.000225829, 0.461548, -0.623658, -0.689498, -0.285859, -0.211804, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
