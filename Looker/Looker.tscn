@@ -239,7 +239,6 @@ size_flags_horizontal = 10
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
-mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_n7ool")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
