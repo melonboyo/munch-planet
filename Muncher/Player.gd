@@ -102,6 +102,9 @@ func rotate_towards(pos: Vector3):
 
 
 func play_caught_cutscene(munchme_resource: MunchmeResource):
+	if munchme_resource.caught_dialogue_scenes.size() == 0:
+		return
+	
 	$MunchmeCaughtCutscene.scenes.clear()
 	$MunchmeCaughtCutscene.scenes.append_array(munchme_resource.caught_dialogue_scenes)
 	CutsceneManager.play_cutscene($MunchmeCaughtCutscene)

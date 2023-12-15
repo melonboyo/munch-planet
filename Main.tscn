@@ -2360,7 +2360,6 @@ _data = {
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
 debug_tutorial_stage = 8
-debug_initial_munchme_type = 1
 debug_initial_munchme_spawn = true
 
 [node name="DebugSpawn" type="Marker3D" parent="."]
