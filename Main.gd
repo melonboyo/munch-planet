@@ -46,7 +46,13 @@ func planet_specific_ready():
 		%Muncher.player_controlled = false
 	else:
 		if GameState.tutorial_cleared:
+			# TODO: Make it so you can start with rocket cutscene
+			# if you come from home planet after clearing tutorial
 			play_overworld_music()
+			clear_tutorial()
+			%Torpejo.visible = false
+			%Muncher.global_position = $FollowPoints/GuildFrontMuncher.global_position
+			%Dipshit.queue_free()
 	
 	GameState.water_height = 100.35
 	GameState.during_intro = false
@@ -146,7 +152,7 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 		%Torpejo.visible = true
 		add_munchme_to_inventory(Constants.Munchme.Dipshit)
 		_on_munchme_deployed(GameState.munchmes[0])
-	else: # Finished
+	else: # Finished ?
 		clear_tutorial()
 		%Torpejo.visible = false
 		%Muncher.global_position = $FollowPoints/GuildFrontMuncher.global_position
