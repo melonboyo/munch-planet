@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dl6rlbluelsaw"]
+[gd_scene load_steps=31 format=3 uid="uid://dl6rlbluelsaw"]
 
 [ext_resource type="Script" path="res://Menu/MainMenu.gd" id="1_60vhr"]
 [ext_resource type="Script" path="res://Menu/MainMenu3D.gd" id="2_6nrhx"]
