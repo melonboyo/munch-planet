@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba2fxpg42k462"]
+
+[ext_resource type="Texture2D" uid="uid://cagaff0rfbk81" path="res://Sprites/attribution.png" id="1_00ydv"]
+[ext_resource type="Script" path="res://Looker/Settings/CreditsButton.gd" id="2_58pdg"]
+
+[node name="CreditsButton" type="Button"]
+text = "Credits"
+icon = ExtResource("1_00ydv")
+script = ExtResource("2_58pdg")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

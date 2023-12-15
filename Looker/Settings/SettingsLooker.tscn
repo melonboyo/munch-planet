@@ -5,11 +5,11 @@
 
 [node name="SettingsLooker" instance=ExtResource("1_xnlt0")]
 offset_right = 193.0
-offset_bottom = 266.0
-pivot_offset = Vector2(96.5, 133)
+offset_bottom = 260.0
+pivot_offset = Vector2(96.5, 130)
 title = "Settings"
 window_width = 193
-window_height = 266
+window_height = 260
 is_deploy_looker = false
 
 [node name="PlaceholderBackground" parent="ContentMarginContainer" index="0"]
@@ -21,7 +21,7 @@ handle_input_locally = false
 screen_space_aa = 1
 audio_listener_enable_3d = true
 physics_object_picking = true
-size = Vector2i(2, 2)
+size = Vector2i(181, 222)
 render_target_update_mode = 4
 
 [node name="SettingsScene" parent="ContentMarginContainer/SubViewportContainer/SubViewport" index="0" instance=ExtResource("2_mfmqj")]

@@ -48,8 +48,6 @@ alignment = 1
 
 [node name="GeneralTabButton" type="TextureButton" parent="MarginContainer/Tabs/TabButtons"]
 layout_mode = 2
-focus_neighbor_right = NodePath("../AudioTabButton")
-focus_neighbor_bottom = NodePath("../../GeneralTab/TextSpeedSlider")
 toggle_mode = true
 button_pressed = true
 texture_normal = ExtResource("2_rsac4")
@@ -58,27 +56,16 @@ texture_hover = ExtResource("4_fqxui")
 
 [node name="AudioTabButton" type="TextureButton" parent="MarginContainer/Tabs/TabButtons"]
 layout_mode = 2
-focus_neighbor_left = NodePath("../GeneralTabButton")
-focus_neighbor_bottom = NodePath("../../AudioTab/MasterVolumeSlider")
 toggle_mode = true
 texture_normal = ExtResource("2_ls726")
 texture_pressed = ExtResource("3_s1q2h")
 texture_hover = ExtResource("4_kug1x")
 
 [node name="GeneralTab" parent="MarginContainer/Tabs" instance=ExtResource("8_fn3ej")]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-
-[node name="TextSpeedSlider" parent="MarginContainer/Tabs/GeneralTab" index="1"]
-focus_neighbor_top = NodePath("../../TabButtons/GeneralTabButton")
-focus_neighbor_right = NodePath("../../AudioTab/MasterVolumeSlider")
-
-[node name="GraphicsSlider" parent="MarginContainer/Tabs/GeneralTab" index="3"]
-focus_neighbor_right = NodePath("../../AudioTab/MusicVolumeSlider")
-
-[node name="FullscreenCheckBox" parent="MarginContainer/Tabs/GeneralTab" index="4"]
-focus_neighbor_right = NodePath("../../AudioTab/MasterVolumeSlider")
 
 [node name="AudioTab" parent="MarginContainer/Tabs" instance=ExtResource("9_6yh00")]
 visible = true
@@ -88,22 +75,12 @@ layout_mode = 2
 [node name="MasterVolumeLabel" parent="MarginContainer/Tabs/AudioTab" index="0"]
 text = "Master"
 
-[node name="MasterVolumeSlider" parent="MarginContainer/Tabs/AudioTab" index="1"]
-focus_neighbor_left = NodePath("../../GeneralTab/TextSpeedSlider")
-focus_neighbor_top = NodePath("../../TabButtons/AudioTabButton")
-
 [node name="MusicVolumeLabel" parent="MarginContainer/Tabs/AudioTab" index="2"]
 text = "Music"
-
-[node name="MusicVolumeSlider" parent="MarginContainer/Tabs/AudioTab" index="3"]
-focus_neighbor_left = NodePath("../../GeneralTab/TextSpeedSlider")
 
 [node name="EffectsVolumeLabel" parent="MarginContainer/Tabs/AudioTab" index="4"]
 text = "Effects
 "
-
-[node name="EffectsVolumeSlider" parent="MarginContainer/Tabs/AudioTab" index="5"]
-focus_neighbor_left = NodePath("../../GeneralTab/TextSpeedSlider")
 
 [connection signal="focus_entered" from="MarginContainer/Tabs/GeneralTab/TextSpeedSlider" to="." method="_on_text_speed_slider_focus_entered"]
 [connection signal="focus_entered" from="MarginContainer/Tabs/AudioTab/MasterVolumeSlider" to="." method="_on_master_volume_slider_focus_entered"]

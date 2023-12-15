@@ -13,7 +13,6 @@ text = "Master volume"
 [node name="MasterVolumeSlider" type="HSlider" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../MusicVolumeSlider")
 max_value = 9.0
 
 [node name="MusicVolumeLabel" type="Label" parent="."]
@@ -23,8 +22,6 @@ text = "Music volume"
 [node name="MusicVolumeSlider" type="HSlider" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../MasterVolumeSlider")
-focus_neighbor_bottom = NodePath("../EffectsVolumeSlider")
 max_value = 9.0
 
 [node name="EffectsVolumeLabel" type="Label" parent="."]
@@ -35,7 +32,6 @@ text = "Effects volume
 [node name="EffectsVolumeSlider" type="HSlider" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../MusicVolumeSlider")
 max_value = 9.0
 
 [node name="EffectsPlayer" type="AudioStreamPlayer" parent="."]

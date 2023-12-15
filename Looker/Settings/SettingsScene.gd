@@ -6,9 +6,19 @@ extends Control
 @onready var tab_buttons = %TabButtons.get_children()
 @onready var tabs = %Tabs.get_children().slice(1)
 
+var credits_button_scene = preload("res://Looker/Settings/CreditsButton.tscn")
+
+
+const LOOKER_WITH_CREDITS_HEIGHT = 279
+
 
 func _ready():
 	_view_tab(0)
+	
+	if looker.is_in_main_menu:
+		looker.window_height = LOOKER_WITH_CREDITS_HEIGHT
+		var credits_button = credits_button_scene.instantiate()
+		%GeneralTab.add_child(credits_button)
 	
 	for i in range(tabs.size()):
 		tab_buttons[i].pressed.connect(_view_tab.bind(i))

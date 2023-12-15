@@ -14,5 +14,8 @@ data_*/
 mono_crash.*.json
 
 # Exports
-win64/
-linux64/
+*.exe
+*.exe.console
+*.pck
+*.sh
+*.x86_64

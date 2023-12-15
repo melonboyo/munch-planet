@@ -8,6 +8,12 @@ class_name Main
 @export var debug_tutorial_stage: Constants.TutorialStage = Constants.TutorialStage.NotStarted:
 	get: return debug_tutorial_stage if OS.is_debug_build() else Constants.TutorialStage.NotStarted
 
+@export_subgroup("Initial Munchmee", "debug_initial_munchme_")
+@export var debug_initial_munchme_type: Constants.Munchme
+@export var debug_initial_munchme_spawn: bool:
+	get: return debug_initial_munchme_spawn if OS.is_debug_build() else false
+@export var debug_initial_munchme_caught: bool:
+	get: return debug_initial_munchme_caught if OS.is_debug_build() else false
 
 var catch_looker_scene := preload("res://Looker/Catch/CatchLooker.tscn")
 var manage_looker_scene := preload("res://Looker/Manage/ManageLooker.tscn")
@@ -78,6 +84,15 @@ func planet_specific_ready():
 	GameState.situation = Constants.Situation.Overworld
 	GameState.munchme_deployed.connect(_on_munchme_deployed)
 	GameState.munchme_added.connect(_on_munchme_added)
+	
+	if debug_initial_munchme_spawn:
+		var debug_munchme: Munchme = Scenes.munchmes[debug_initial_munchme_type].instantiate()
+		debug_munchme.name = StringName(debug_munchme.resource.name + "_debug")
+		debug_munchme.global_position = %Muncher.global_position
+		$Munchmes.add_child(debug_munchme)
+		
+		if debug_initial_munchme_caught:
+			GameState.add_munchme(debug_munchme.resource)
 
 
 func set_invis_wall_active(munchme: bool, player: bool):
