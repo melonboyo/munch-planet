@@ -21,6 +21,8 @@ var hovering_earth: bool
 var time_since_hovered_earth := 0.0
 const SHOW_EARTH_HINT_TIME := 9.0
 var show_earth_hint := false
+const SHOW_GREEN_TIME := 60.0
+var show_green := false
 
 
 func _ready():
@@ -53,6 +55,7 @@ func _process(delta):
 		return
 	
 	show_earth_hint = false
+	show_green = false
 	$MenuHints.visible = state == State.Title
 	if state == State.Title:
 		hovering_earth = is_mouse_hovering(EARTH_COLLISION_LAYER)
@@ -60,8 +63,11 @@ func _process(delta):
 		
 		time_since_hovered_earth = time_since_hovered_earth + delta if not hovering_earth else 0.0
 		show_earth_hint = time_since_hovered_earth > SHOW_EARTH_HINT_TIME
+		
+		show_green = time_since_hovered_earth > SHOW_GREEN_TIME
 	
 	%MainMenuCircle.modulate = %MainMenuCircle.modulate.lerp(Color.WHITE if show_earth_hint else Color.TRANSPARENT, 4.0 * delta if show_earth_hint else 10.0 * delta)
+	%Green.modulate = %Green.modulate.lerp(Color.WHITE if show_green else Color.TRANSPARENT, 4.0 * delta if show_green else 20.0 * delta)
 	
 	if hovering_earth and Input.is_action_just_pressed("interact"):
 		set_state(State.Menu)
