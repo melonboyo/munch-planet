@@ -5,8 +5,9 @@ signal grabbed(hand: Constants.SnakeHand)
 signal win
 signal failed
 
-const SNAKE_GRAVITY := 30.0
-const SPAWN_VELOCITY := 2.0
+const SNAKE_GRAVITY := 80.0
+const SPAWN_VELOCITY := 4.0
+const SNAKE_SLIP_VELOCITY := -80.0
 const SNAKE_SPAWN_Y := -200
 const SNAKE_DEATH_Y := 1050
 const SNAKE_SPAWN_OFFSET_X := 100
@@ -43,7 +44,7 @@ func get_random_hand():
 func set_new_snake_hand(hand: Constants.SnakeHand):
 	snake_hand = hand
 	can_catch = true
-	snake_velocity = 5.0
+	snake_velocity = SPAWN_VELOCITY
 	snake.global_position = Vector2(
 		snake_hands[snake_hand].global_position.x + SNAKE_SPAWN_OFFSET_X, 
 		SNAKE_SPAWN_Y
@@ -81,7 +82,7 @@ func _on_grab(hand: Constants.SnakeHand):
 		return
 	
 	# Not grabbed, SHOOT THAT GUY UP IN THE SKY
-	snake_velocity = -30
+	snake_velocity = SNAKE_SLIP_VELOCITY
 	await get_tree().create_timer(0.7).timeout
 	set_new_snake_hand(get_random_hand())
 
