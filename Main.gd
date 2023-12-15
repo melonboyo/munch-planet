@@ -75,8 +75,8 @@ func setup_graphics_detail():
 
 func planet_specific_ready():
 	tutorial_player_locations = {
-		Constants.TutorialStage.NotStarted: $FollowPoints/GuildFrontMuncher.global_position,
-		Constants.TutorialStage.Landed: $FollowPoints/GuildFrontMuncher.global_position,
+		Constants.TutorialStage.NotStarted: $RocketSpawn.global_position,
+		Constants.TutorialStage.Landed: $RocketSpawn.global_position,
 		Constants.TutorialStage.GuildEntered: %EnterGuildArea.global_position,
 		Constants.TutorialStage.GuildExited: $FollowPoints/GuildFront.global_position,
 		Constants.TutorialStage.Catching: $TutorialTorpejoPoints/AfterCatchMuncherPoint.global_position,

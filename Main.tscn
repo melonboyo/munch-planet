@@ -2508,6 +2508,9 @@ shape = SubResource("BoxShape3D_4ycc4")
 transform = Transform3D(-0.503255, 0.682498, 0.530051, -0.218217, 0.493139, -0.842156, -0.836143, -0.539481, -0.0992475, 85.5445, 84.4858, -21.1903)
 shape = SubResource("BoxShape3D_4ycc4")
 
+[node name="RocketSpawn" type="Marker3D" parent="."]
+transform = Transform3D(-0.0501459, 0.161398, -0.985613, -0.140531, 0.975897, 0.166956, 0.988805, 0.146882, -0.0262554, 19.0219, 104.505, 12.5638)
+
 [node name="Player" type="Node3D" parent="."]
 
 [node name="Muncher" parent="Player" instance=ExtResource("2_b0ky1")]
