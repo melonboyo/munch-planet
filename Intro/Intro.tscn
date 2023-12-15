@@ -873,6 +873,10 @@ _data = {
 script = ExtResource("1_08500")
 debug_play_intro = false
 
+[node name="DebugSpawn" type="Marker3D" parent="."]
+transform = Transform3D(0.999999, -2.33762e-07, 0, -2.75671e-07, 0.999998, -4.47035e-08, 5.58794e-08, -1.04308e-07, 1, 30.0192, -58.4841, 104.078)
+gizmo_extents = 2.0
+
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15

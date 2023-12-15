@@ -27,6 +27,10 @@ func planet_specific_ready():
 	GameState.situation = Constants.Situation.Overworld
 
 
+func reset_player_position():
+	set_muncher_position(%Outside.global_position)
+
+
 func play_intro_music():
 	Music.play(Music.Track.Intro)
 

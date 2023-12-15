@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjx6tnyx0v6iv"]
+
+[ext_resource type="Texture2D" uid="uid://dofmvcag14o4" path="res://Sprites/crisis_alert.png" id="1_6hafc"]
+
+[node name="ResetPlayerPositionButton" type="Button"]
+text = "I'm stuck!"
+icon = ExtResource("1_6hafc")

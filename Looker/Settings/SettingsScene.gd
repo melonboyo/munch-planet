@@ -7,18 +7,25 @@ extends Control
 @onready var tabs = %Tabs.get_children().slice(1)
 
 var credits_button_scene = preload("res://Looker/Settings/CreditsButton.tscn")
+var reset_player_position_button_scene = preload("res://Looker/Settings/ResetPlayerPositionButton.tscn")
 
 
-const LOOKER_WITH_CREDITS_HEIGHT = 279
+const LOOKER_WITH_BUTTON_HEIGHT = 279
 
 
 func _ready():
 	_view_tab(0)
 	
 	if looker.is_in_main_menu:
-		looker.window_height = LOOKER_WITH_CREDITS_HEIGHT
+		looker.window_height = LOOKER_WITH_BUTTON_HEIGHT
 		var credits_button = credits_button_scene.instantiate()
 		%GeneralTab.add_child(credits_button)
+	elif looker.has_reset_button:
+		looker.window_height = LOOKER_WITH_BUTTON_HEIGHT
+		var reset_player_position_button = reset_player_position_button_scene.instantiate()
+		print(reset_player_position_button)
+		%GeneralTab.add_child(reset_player_position_button)
+		reset_player_position_button.pressed.connect(func(): looker.reset_player_position.emit())
 	
 	for i in range(tabs.size()):
 		tab_buttons[i].pressed.connect(_view_tab.bind(i))

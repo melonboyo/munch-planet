@@ -35,7 +35,7 @@ var cursor_sensitivty: float = 0.5
 var has_game_started := true
 var tutorial_stage := Constants.TutorialStage.NotStarted:
 	set(value):
-		if value <= tutorial_stage:
+		if value <= tutorial_stage or tutorial_stage > Constants.TutorialStage.Finished:
 			return
 		tutorial_stage = value
 var tutorial_active: bool:

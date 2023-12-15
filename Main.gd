@@ -7,6 +7,8 @@ class_name Main
 	get: return debug_skip_rocket_cutscene if OS.is_debug_build() else false
 @export var debug_tutorial_stage: Constants.TutorialStage = Constants.TutorialStage.NotStarted:
 	get: return debug_tutorial_stage if OS.is_debug_build() else Constants.TutorialStage.NotStarted
+@export var debug_use_debug_spawn := false:
+	get: return debug_use_debug_spawn if OS.is_debug_build() else false
 
 @export_subgroup("Initial Munchmee", "debug_initial_munchme_")
 @export var debug_initial_munchme_type: Constants.Munchme
@@ -33,10 +35,19 @@ var manage_allowed = true:
 var tutorial_music: TutorialMusic
 var dipshit_id: int
 
+@onready var tutorial_player_locations: Dictionary
 
-func _ready():
+func _init():
 	rotation = Vector3.ZERO
 	position = Vector3.ZERO
+
+
+func _ready():
+	if $DebugSpawn != null:
+		if debug_use_debug_spawn:
+			set_muncher_position($DebugSpawn.global_position)
+		else:
+			$DebugSpawn.free()
 	
 	GameState.tutorial_stage = debug_tutorial_stage
 	setup_graphics_detail()
@@ -45,6 +56,13 @@ func _ready():
 	GameState.main_window = $UI
 	GameState.attempt_catch_munchme.connect(_on_attempt_catch_munchme)
 	planet_specific_ready()
+
+
+func set_muncher_position(new_global_position: Vector3, force: bool = true):
+	if not force and debug_use_debug_spawn:
+		return
+	
+	%Muncher.global_position = new_global_position
 
 
 func setup_graphics_detail():
@@ -56,6 +74,18 @@ func setup_graphics_detail():
 
 
 func planet_specific_ready():
+	tutorial_player_locations = {
+		Constants.TutorialStage.NotStarted: $RocketSpawn.global_position,
+		Constants.TutorialStage.Landed: $RocketSpawn.global_position,
+		Constants.TutorialStage.GuildEntered: %EnterGuildArea.global_position,
+		Constants.TutorialStage.GuildExited: $FollowPoints/GuildFront.global_position,
+		Constants.TutorialStage.Catching: $TutorialTorpejoPoints/AfterCatchMuncherPoint.global_position,
+		Constants.TutorialStage.Caught: $TutorialTorpejoPoints/DipshitWaitingPoints/Follow2.global_position,
+		Constants.TutorialStage.Deploying: $TutorialTorpejoPoints/DipshitWaitingPoints/Follow2.global_position,
+		Constants.TutorialStage.Kidnapped: $TutorialTorpejoPoints/DipshitWaitingPoints/Follow2.global_position,
+		Constants.TutorialStage.Finished: $FollowPoints/GuildFrontMuncher.global_position,
+	}
+	
 	if debug_skip_rocket_cutscene and debug_tutorial_stage == Constants.TutorialStage.NotStarted:
 		GameState.tutorial_stage = Constants.TutorialStage.Landed
 	
@@ -74,7 +104,7 @@ func planet_specific_ready():
 			play_overworld_music()
 			clear_tutorial()
 			%Torpejo.visible = false
-			%Muncher.global_position = $FollowPoints/GuildFrontMuncher.global_position
+			set_muncher_position($FollowPoints/GuildFrontMuncher.global_position, false)
 			%Dipshit.queue_free()
 	
 	GameState.water_height = 100.35
@@ -133,6 +163,8 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 	set_invis_wall_active(false, false)
 	manage_allowed = true
 	
+	set_muncher_position(tutorial_player_locations[stage], false)
+	
 	if stage > Constants.TutorialStage.NotStarted:
 		tutorial_music.play(stage)
 	
@@ -146,11 +178,9 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 		%Torpejo.visible = false
 		%Dipshit.freeze = true
 	elif stage == Constants.TutorialStage.GuildEntered:
-		%Muncher.global_position = get_point_on_surface(%EnterGuildArea)
 		%Torpejo.visible = false
 		%Dipshit.freeze = true
 	elif stage == Constants.TutorialStage.GuildExited:
-		%Muncher.global_position = get_point_on_surface($FollowPoints/GuildFront)
 		%Dipshit.freeze = true
 		$TutorialArea/TutorialProgressCollision.disabled = true
 		%TutorialWalkToMunchmeCutscene.play()
@@ -158,7 +188,6 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 		%Dipshit.visible = true
 		$TutorialArea/TutorialProgressCollision.disabled = true
 		%Dipshit.global_position = get_point_on_surface($TutorialTorpejoPoints/DipshitWaitingPoints/Follow2)
-		%Muncher.global_position = get_point_on_surface($TutorialTorpejoPoints/AfterCatchMuncherPoint)
 		%Torpejo.global_position = get_point_on_surface($TutorialTorpejoPoints/CatchMunchmePoint)
 		set_invis_wall_active(true, true)
 		manage_allowed = false
@@ -166,7 +195,6 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 		$TutorialArea/TutorialProgressCollision.disabled = true
 		set_invis_wall_active(true, true)
 		%Dipshit.queue_free()
-		%Muncher.global_position = get_point_on_surface($TutorialTorpejoPoints/DipshitWaitingPoints/Follow2)
 		%Torpejo.global_position = get_point_on_surface($TutorialTorpejoPoints/CatchMunchmePoint)
 		manage_allowed = false
 		%Muncher.player_controlled = false
@@ -177,7 +205,6 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 		$TutorialArea/TutorialProgressCollision.disabled = true
 		set_invis_wall_active(true, true)
 		%Dipshit.queue_free()
-		%Muncher.global_position = get_point_on_surface($TutorialTorpejoPoints/DipshitWaitingPoints/Follow2)
 		%Torpejo.global_position = get_point_on_surface($TutorialTorpejoPoints/CatchMunchmePoint)
 		manage_allowed = true
 		%Muncher.player_controlled = true
@@ -187,7 +214,6 @@ func ready_tutorial_stage(stage: Constants.TutorialStage):
 	else: # Finished ?
 		clear_tutorial()
 		%Torpejo.visible = false
-		%Muncher.global_position = $FollowPoints/GuildFrontMuncher.global_position
 		%Dipshit.queue_free()
 
 
@@ -259,8 +285,14 @@ func open_settings():
 			return
 	
 	var settings_looker = settings_looker_scene.instantiate()
+	settings_looker.has_reset_button = true
 	$UI.add_child(settings_looker)
+	settings_looker.reset_player_position.connect(reset_player_position)
 	settings_looker.start_close_looker.connect(_on_close_settings)
+
+
+func reset_player_position():
+	set_muncher_position(tutorial_player_locations[GameState.tutorial_stage])
 
 
 func _on_close_settings():
@@ -600,7 +632,7 @@ func delete_cage():
 
 
 func teleport_to_guild():
-	%Muncher.global_position = $FollowPoints/GuildFrontMuncher.global_position
+	set_muncher_position($FollowPoints/GuildFrontMuncher.global_position)
 	%Muncher.rotate_towards($FollowPoints/GuildFrontTorpejo.global_position)
 	%Torpejo.global_position = $FollowPoints/GuildFrontTorpejo.global_position
 	%Torpejo.rotate_towards($FollowPoints/GuildFrontMuncher.global_position)
