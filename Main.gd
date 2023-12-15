@@ -314,15 +314,18 @@ func _on_attempt_catch_munchme(munchme: Munchme):
 
 
 func _on_munchme_finish_catch(win: bool):
+	var munchme_resource = munchme_getting_caught.resource
 	munchme_getting_caught.in_catch_mode = false
 	manage_allowed = true
 	munchme_getting_caught.situation = Constants.Situation.Overworld
 	if win:
-		GameState.add_munchme(munchme_getting_caught.resource)
+		GameState.add_munchme(munchme_resource)
 		munchme_getting_caught.queue_free()
 		if GameState.tutorial_stage == Constants.TutorialStage.Catching:
 			go_to_tutorial_stage(Constants.TutorialStage.Caught)
 			%TutorialDeployCutscene.play()
+		else:
+			%Muncher.play_caught_cutscene(munchme_resource)
 	else:
 		pass
 
@@ -642,3 +645,7 @@ func tut_end_torpejo_walk_away():
 	%Torpejo.set_follow_point($FollowPoints/GuildFrontTorpejo2)
 	await get_tree().create_timer(2.0).timeout
 	%Torpejo.visible = false
+
+
+func _on_muncher_caught_cutscene_finished():
+	$MainCamera.set_current(true)

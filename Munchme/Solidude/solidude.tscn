@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cuw7r31kr73x"]
+[gd_scene load_steps=24 format=3 uid="uid://cuw7r31kr73x"]
 
 [ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_i02uy"]
 [ext_resource type="Script" path="res://Munchme/Solidude/Solidude.gd" id="2_qf85q"]
@@ -12,7 +12,32 @@
 [sub_resource type="Resource" id="Resource_6epoy"]
 script = ExtResource("3_i4nol")
 animation_name = ""
-dialogue_translation_key = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_1"
+
+[sub_resource type="Resource" id="Resource_eo0mr"]
+script = ExtResource("3_i4nol")
+animation_name = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_2"
+
+[sub_resource type="Resource" id="Resource_fthw6"]
+script = ExtResource("3_i4nol")
+animation_name = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_3"
+
+[sub_resource type="Resource" id="Resource_i7ybt"]
+script = ExtResource("3_i4nol")
+animation_name = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_4"
+
+[sub_resource type="Resource" id="Resource_kx4vc"]
+script = ExtResource("3_i4nol")
+animation_name = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_5"
+
+[sub_resource type="Resource" id="Resource_owfa6"]
+script = ExtResource("3_i4nol")
+animation_name = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_6"
 
 [sub_resource type="Resource" id="Resource_3mgou"]
 script = ExtResource("3_ek83g")
@@ -24,7 +49,7 @@ mood = 1
 catch_track = 3
 roam_track = 7
 catch_looker_size = Vector2(910, 647)
-caught_dialogue_scenes = Array[ExtResource("3_i4nol")]([SubResource("Resource_6epoy")])
+caught_dialogue_scenes = Array[ExtResource("3_i4nol")]([SubResource("Resource_6epoy"), SubResource("Resource_eo0mr"), SubResource("Resource_fthw6"), SubResource("Resource_i7ybt"), SubResource("Resource_kx4vc"), SubResource("Resource_owfa6")])
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_opjby"]
 radius = 0.46621
@@ -167,7 +192,7 @@ section_length = 0.01
 
 [node name="Solidude" instance=ExtResource("1_i02uy")]
 script = ExtResource("2_qf85q")
-required_punches = 100
+required_punches = 2
 smash_acceleration = 200.0
 resource = SubResource("Resource_3mgou")
 height = 1.0
