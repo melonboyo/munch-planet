@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dl6rlbluelsaw"]
+[gd_scene load_steps=34 format=3 uid="uid://dl6rlbluelsaw"]
 
 [ext_resource type="Script" path="res://Menu/MainMenu.gd" id="1_60vhr"]
 [ext_resource type="Script" path="res://Menu/MainMenu3D.gd" id="2_6nrhx"]
@@ -18,6 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://ddf57gvskakjl" path="res://Menu/MainMenuCircle.tscn" id="12_d6b7u"]
 [ext_resource type="Texture2D" uid="uid://bkpxgbqbn2n6b" path="res://Sprites/menu-button-hover-settings.png" id="12_xro2q"]
 [ext_resource type="Texture2D" uid="uid://dht3df12kirc0" path="res://Sprites/menu-button-hover-exit.png" id="13_tc04k"]
+[ext_resource type="Texture2D" uid="uid://ctsh5c6le0vwe" path="res://Sprites/green1.png" id="16_ueqbx"]
+[ext_resource type="Texture2D" uid="uid://ocobub0cb3my" path="res://Sprites/green2.png" id="17_ct1sp"]
+[ext_resource type="Texture2D" uid="uid://cvxdw0ux4he1t" path="res://Sprites/green3.png" id="18_kwe6i"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jqb1s"]
 radius = 100.35
@@ -28,6 +31,23 @@ dof_blur_far_distance = 100.0
 dof_blur_near_enabled = true
 dof_blur_near_distance = 1.5
 dof_blur_amount = 0.05
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xirsy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_ueqbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ct1sp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_kwe6i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
 
 [sub_resource type="Animation" id="Animation_iiptv"]
 length = 0.001
@@ -836,6 +856,14 @@ visible = false
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.601684)
 position = Vector2(1420, 772)
+
+[node name="Green" type="AnimatedSprite2D" parent="MenuHints"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(952, 632)
+sprite_frames = SubResource("SpriteFrames_xirsy")
+autoplay = "default"
+frame_progress = 0.383035
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
