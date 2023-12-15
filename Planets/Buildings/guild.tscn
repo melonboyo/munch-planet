@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckhytfotl50qm"]
+[gd_scene load_steps=14 format=3 uid="uid://ckhytfotl50qm"]
 
 [ext_resource type="PackedScene" uid="uid://dkfcc32y461yt" path="res://Models/guild.glb" id="1_8qsdr"]
-[ext_resource type="Shader" uid="uid://dh5xnuin5gmjj" path="res://Shaders/MuncherShader.tres" id="2_8jb4f"]
-[ext_resource type="Texture2D" uid="uid://uyff5plgwxle" path="res://Models/textures/FaceTexture.png" id="3_eycaj"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_pipim"]
+[ext_resource type="Texture2D" uid="uid://ec0frs8s2vdp" path="res://Models/textures/muncher-texture.png" id="3_eoxo5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ruxyt"]
 size = Vector3(85.2047, 21.2245, 75.4881)
@@ -22,47 +22,40 @@ size = Vector3(33.3349, 25.2153, 6.45768)
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1hq8"]
 size = Vector3(3.45224, 0.813721, 3.14215)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0nvi5"]
+[sub_resource type="Gradient" id="Gradient_6kjvt"]
 
-[sub_resource type="Gradient" id="Gradient_j6y4m"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8kajq"]
+frequency = 0.0031
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5y2og"]
-frequency = 0.019
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_is1dc"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_6kjvt")
+noise = SubResource("FastNoiseLite_8kajq")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8yt8x"]
-color_ramp = SubResource("Gradient_j6y4m")
-noise = SubResource("FastNoiseLite_5y2og")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_djq21"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k2w5e"]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_0nvi5")
-shader = ExtResource("2_8jb4f")
-shader_parameter/VertexVariationDisplacement = 0.006
-shader_parameter/VertexVariationFrequency = 0.785
-shader_parameter/NumberOfVertexVariations = 9
-shader_parameter/Albedo = Color(0.929412, 0.752941, 0.517647, 1)
-shader_parameter/AlbedoInfluence = 1.0
-shader_parameter/Roughness = 1.0
-shader_parameter/Specular = 0.174
-shader_parameter/LightBlendColor = Color(0.960784, 0.776471, 0.34902, 1)
-shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
-shader_parameter/FaceTexture = ExtResource("3_eycaj")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7287k"]
-render_priority = 0
-next_pass = SubResource("ShaderMaterial_0nvi5")
-shader = ExtResource("2_8jb4f")
-shader_parameter/VertexVariationDisplacement = 0.006
-shader_parameter/VertexVariationFrequency = 0.785
-shader_parameter/NumberOfVertexVariations = 9
-shader_parameter/Albedo = Color(0.796078, 0.384314, 0.517647, 1)
-shader_parameter/AlbedoInfluence = 1.0
-shader_parameter/Roughness = 1.0
-shader_parameter/Specular = 0.174
-shader_parameter/LightBlendColor = Color(0.960784, 0.776471, 0.34902, 1)
-shader_parameter/LightBlendColorInfluence = 0.15
-shader_parameter/VertexVariationNoise = SubResource("NoiseTexture2D_8yt8x")
+shader = ExtResource("2_pipim")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
+shader_parameter/use_normal_texture = true
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.717
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.13
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.12
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.309
+shader_parameter/wobble_displacement = 0.01
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/albedo_texture = ExtResource("3_eoxo5")
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_is1dc")
 
 [node name="guild" instance=ExtResource("1_8qsdr")]
 
@@ -109,5 +102,4 @@ transform = Transform3D(1, 0, 0, 0, 0.887461, -0.460881, 0, 0.460881, 0.887461, 
 shape = SubResource("BoxShape3D_w1hq8")
 
 [node name="MuncherHead" parent="." index="20"]
-surface_material_override/0 = SubResource("ShaderMaterial_djq21")
-surface_material_override/1 = SubResource("ShaderMaterial_7287k")
+surface_material_override/0 = SubResource("ShaderMaterial_k2w5e")
