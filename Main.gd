@@ -43,22 +43,11 @@ func _init():
 
 
 func _ready():
-	if debug_use_debug_spawn:
-		set_muncher_position($DebugSpawn.global_position)
-	else:
-		$DebugSpawn.free()
-	
-	tutorial_player_locations = {
-		Constants.TutorialStage.NotStarted: $FollowPoints/GuildFrontMuncher.global_position,
-		Constants.TutorialStage.Landed: $FollowPoints/GuildFrontMuncher.global_position,
-		Constants.TutorialStage.GuildEntered: %EnterGuildArea.global_position,
-		Constants.TutorialStage.GuildExited: $FollowPoints/GuildFront.global_position,
-		Constants.TutorialStage.Catching: $TutorialTorpejoPoints/AfterCatchMuncherPoint.global_position,
-		Constants.TutorialStage.Caught: $TutorialTorpejoPoints/DipshitWaitingPoints/Follow2.global_position,
-		Constants.TutorialStage.Deploying: $TutorialTorpejoPoints/DipshitWaitingPoints/Follow2.global_position,
-		Constants.TutorialStage.Kidnapped: $TutorialTorpejoPoints/DipshitWaitingPoints/Follow2.global_position,
-		Constants.TutorialStage.Finished: $FollowPoints/GuildFrontMuncher.global_position,
-	}
+	if $DebugSpawn != null:
+		if debug_use_debug_spawn:
+			set_muncher_position($DebugSpawn.global_position)
+		else:
+			$DebugSpawn.free()
 	
 	GameState.tutorial_stage = debug_tutorial_stage
 	setup_graphics_detail()
@@ -85,6 +74,18 @@ func setup_graphics_detail():
 
 
 func planet_specific_ready():
+	tutorial_player_locations = {
+		Constants.TutorialStage.NotStarted: $FollowPoints/GuildFrontMuncher.global_position,
+		Constants.TutorialStage.Landed: $FollowPoints/GuildFrontMuncher.global_position,
+		Constants.TutorialStage.GuildEntered: %EnterGuildArea.global_position,
+		Constants.TutorialStage.GuildExited: $FollowPoints/GuildFront.global_position,
+		Constants.TutorialStage.Catching: $TutorialTorpejoPoints/AfterCatchMuncherPoint.global_position,
+		Constants.TutorialStage.Caught: $TutorialTorpejoPoints/DipshitWaitingPoints/Follow2.global_position,
+		Constants.TutorialStage.Deploying: $TutorialTorpejoPoints/DipshitWaitingPoints/Follow2.global_position,
+		Constants.TutorialStage.Kidnapped: $TutorialTorpejoPoints/DipshitWaitingPoints/Follow2.global_position,
+		Constants.TutorialStage.Finished: $FollowPoints/GuildFrontMuncher.global_position,
+	}
+	
 	if debug_skip_rocket_cutscene and debug_tutorial_stage == Constants.TutorialStage.NotStarted:
 		GameState.tutorial_stage = Constants.TutorialStage.Landed
 	
