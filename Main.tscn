@@ -2344,8 +2344,9 @@ _data = {
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
 debug_tutorial_stage = 1
-debug_spawn_munchme = true
-debug_spawn_munchme_type = 1
+debug_initial_munchme_type = 1
+debug_initial_munchme_spawn = true
+debug_initial_munchme_caught = true
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
