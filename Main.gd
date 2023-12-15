@@ -115,12 +115,12 @@ func planet_specific_ready():
 	GameState.munchme_deployed.connect(_on_munchme_deployed)
 	GameState.munchme_added.connect(_on_munchme_added)
 	
-	if debug_initial_munchme_spawn:
+	if debug_initial_munchme_spawn or debug_initial_munchme_caught:
 		var debug_munchme: Munchme = Scenes.munchmes[debug_initial_munchme_type].instantiate()
-		debug_munchme.name = StringName(debug_munchme.resource.name + "_debug")
-		debug_munchme.global_position = %Muncher.global_position
-		$Munchmes.add_child(debug_munchme)
-		
+		if debug_initial_munchme_spawn:
+			debug_munchme.name = StringName(debug_munchme.resource.name + "_debug")
+			debug_munchme.global_position = %Muncher.global_position
+			$Munchmes.add_child(debug_munchme)
 		if debug_initial_munchme_caught:
 			GameState.add_munchme(debug_munchme.resource)
 
