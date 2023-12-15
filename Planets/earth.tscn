@@ -82,6 +82,7 @@ visible = false
 collision_layer = 17
 
 [node name="Water" parent="." index="1"]
+transform = Transform3D(0.858886, -0.140036, -0.492651, -0.0489139, 0.935071, -0.35107, 0.509826, 0.325627, 0.796269, 0, 0, 0)
 surface_material_override/0 = ExtResource("3_6a3y0")
 
 [node name="UnderWaterSurface" type="MeshInstance3D" parent="." index="2"]
@@ -92,4 +93,5 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("4_556qu")
 
 [node name="FoliageSpawner" parent="." index="3" instance=ExtResource("7_dhbis")]
+wait_for_physics = null
 models = Array[PackedScene]([null, null, null])

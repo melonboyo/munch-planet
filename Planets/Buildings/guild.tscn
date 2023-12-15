@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckhytfotl50qm"]
+[gd_scene load_steps=14 format=3 uid="uid://ckhytfotl50qm"]
 
 [ext_resource type="PackedScene" uid="uid://dkfcc32y461yt" path="res://Models/guild.glb" id="1_8qsdr"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_pipim"]
@@ -21,9 +21,6 @@ size = Vector3(33.3349, 47.6868, 24.493)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g5yqf"]
 size = Vector3(33.3349, 25.2153, 6.45768)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_w1hq8"]
-size = Vector3(3.45224, 0.813721, 3.14215)
 
 [sub_resource type="Gradient" id="Gradient_6kjvt"]
 
@@ -104,9 +101,5 @@ shape = SubResource("BoxShape3D_g5yqf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.757, 11.172, 8.601)
 shape = SubResource("BoxShape3D_g5yqf")
 
-[node name="Guild_StaticBody3D#CollisionShape3D2" type="CollisionShape3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.887461, -0.460881, 0, 0.460881, 0.887461, 3.29005, -0.0995483, 10.2983)
-shape = SubResource("BoxShape3D_w1hq8")
-
-[node name="MuncherHead" parent="." index="20"]
+[node name="MuncherHead" parent="." index="19"]
 surface_material_override/0 = SubResource("ShaderMaterial_k2w5e")

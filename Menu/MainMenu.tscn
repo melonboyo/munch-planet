@@ -766,7 +766,7 @@ transform = Transform3D(-0.0203961, -0.99596, -0.0874474, -0.0607988, -0.0860681
 collision_layer = 262152
 can_be_caught = false
 
-[node name="Model" parent="SubViewportContainer/SubViewport/MainMenu3D/Planet/Goby" index="3"]
+[node name="Model" parent="SubViewportContainer/SubViewport/MainMenu3D/Planet/Goby" index="1"]
 transform = Transform3D(1, -1.86265e-09, 2.98023e-08, 1.86265e-09, 1, -5.55112e-17, -2.98023e-08, 1.11022e-16, 1, -1.90735e-06, 0.00391388, 1.90735e-05)
 
 [node name="OverworldMovement" parent="SubViewportContainer/SubViewport/MainMenu3D/Planet/Goby" index="7"]

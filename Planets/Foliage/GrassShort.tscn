@@ -1,14 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddvp18e3wg75y"]
+[gd_scene load_steps=12 format=3 uid="uid://ddvp18e3wg75y"]
 
 [ext_resource type="Shader" path="res://Shaders/Grass/grass/grass.gdshader" id="1_dnrt8"]
 [ext_resource type="Texture2D" uid="uid://d1vn65xwrpky7" path="res://Shaders/Grass/textures/grass_texture.png" id="2_o7h0v"]
 [ext_resource type="Texture2D" uid="uid://0fc70i1qgmvs" path="res://Shaders/Grass/textures/grass_small_texture.png" id="3_bg2qt"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_1edtd"]
-size = Vector2(0.6, 0.6)
+size = Vector2(1.8, 1.8)
 
 [sub_resource type="Gradient" id="Gradient_fatq2"]
-colors = PackedColorArray(0.592396, 0.932, 0.303802, 1, 0.52549, 0.827451, 0.690196, 1)
+colors = PackedColorArray(0.720907, 0.923613, 0.595043, 1, 0.605133, 0.852695, 0.624601, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_131i4"]
 gradient = SubResource("Gradient_fatq2")
@@ -26,18 +26,30 @@ gradient = SubResource("Gradient_fatq2")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4pndb"]
 render_priority = 0
 shader = ExtResource("1_dnrt8")
-shader_parameter/bilboard_y = null
+shader_parameter/bilboard_y = false
 shader_parameter/enable_margin = true
-shader_parameter/color_margin = Color(0.388235, 0.576471, 0.329412, 1)
+shader_parameter/color_margin = Color(0.556863, 0.780392, 0.490196, 1)
 shader_parameter/terrain_size = Vector2(100, 100)
 shader_parameter/grass_color = SubResource("GradientTexture1D_131i4")
 shader_parameter/terrain_color = SubResource("GradientTexture1D_vky83")
 shader_parameter/mask_front = SubResource("GradientTexture2D_i5er0")
-shader_parameter/grass_variants = Array[Texture2D]([ExtResource("2_o7h0v"), ExtResource("3_bg2qt")])
+shader_parameter/grass_variants = Array[Texture2D]([ExtResource("3_bg2qt"), ExtResource("2_o7h0v")])
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bnmde"]
+height = 0.341899
+radius = 0.477847
 
 [node name="GrassShort" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 mesh = SubResource("QuadMesh_1edtd")
 surface_material_override/0 = SubResource("ShaderMaterial_4pndb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.216492, 0)
+shape = SubResource("CylinderShape3D_bnmde")

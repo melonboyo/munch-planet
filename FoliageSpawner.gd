@@ -6,10 +6,12 @@ extends Marker3D
 	set(value):
 		spawn = false
 		spawn_foliage()
+@export var wait_for_physics := true
+@export var set_owner := true
 @export var use_y_up_as_direction := false:
 	set(value):
 		use_y_up_as_direction = value
-@export_range(0, 500) var amount: int = 15:
+@export_range(0, 5000) var amount: int = 15:
 	set(value):
 		amount = value
 @export_range(0.5, 300) var ray_dist = 100.0:
@@ -88,9 +90,11 @@ func spawn_foliage():
 		var model: Node3D = models[id].instantiate()
 		add_child(model)
 		model.name = StringName(str(i))
-		model.set_owner(get_tree().get_edited_scene_root())
+		if set_owner:
+			model.set_owner(get_tree().get_edited_scene_root())
 		
-		await get_tree().physics_frame
+		if wait_for_physics:
+			await get_tree().physics_frame
 		
 		model.global_position = result.position
 		model.global_transform.basis = Basis(right, up, forward)

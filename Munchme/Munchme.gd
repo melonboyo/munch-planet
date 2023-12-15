@@ -104,7 +104,6 @@ func _physics_process(delta):
 	
 	if step_sounds_type == Constants.StepType.Slide:
 		var should_step = $OverworldMovement.move_velocity.length() > 0.05 and is_on_floor()
-		print($OverworldMovement.move_velocity.length())
 		if not is_stepping and should_step:
 			is_stepping = true
 			play_step_sound()
