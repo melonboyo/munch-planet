@@ -21,7 +21,7 @@ var hovering_earth: bool
 var time_since_hovered_earth := 0.0
 const SHOW_EARTH_HINT_TIME := 9.0
 var show_earth_hint := false
-const SHOW_GREEN_TIME := 90.0
+const SHOW_GREEN_TIME := 9.0
 var show_green := false
 
 
