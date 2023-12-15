@@ -2357,16 +2357,17 @@ _data = {
 }
 
 [node name="Main" type="Node3D"]
-transform = Transform3D(0.95882, 0.284015, 0, 0.277809, -0.937867, -0.207912, -0.0590501, 0.19935, -0.978148, 0, 0, 0)
+transform = Transform3D(-0.848048, 0.434084, -0.303949, 0, -0.573576, -0.819152, -0.529919, -0.69468, 0.486421, 0, 0, 0)
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
 debug_tutorial_stage = 8
+debug_use_debug_spawn = true
 debug_initial_munchme_type = 1
 debug_initial_munchme_spawn = true
 debug_initial_munchme_caught = true
 
 [node name="DebugSpawn" type="Marker3D" parent="."]
-transform = Transform3D(0.999999, -8.9407e-08, 0, -2.70084e-07, 0.999998, -4.47035e-08, 3.72529e-08, -1.19209e-07, 1, 7.488, 17.5801, -105.185)
+transform = Transform3D(0.999999, -2.33762e-07, 0, -2.75671e-07, 0.999998, -4.47035e-08, 5.58794e-08, -1.04308e-07, 1, 30.0192, -58.4841, 104.078)
 gizmo_extents = 2.0
 
 [node name="Overlay" type="Control" parent="."]
@@ -4403,7 +4404,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(0.567863, -0.333662, 0.410095, 0.208406, -0.411827, -0.623653, 0.485877, 0.566612, -0.211795, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(0.536593, 0.381925, 0.410095, 0.461036, 0.0219113, -0.623653, -0.318579, 0.675006, -0.211795, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
