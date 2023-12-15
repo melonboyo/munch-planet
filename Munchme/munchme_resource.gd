@@ -10,5 +10,6 @@ class_name MunchmeResource
 @export var catch_track: Music.Track = Music.Track.Catch
 @export var roam_track: Music.Track = Music.Track.Battle
 @export var catch_looker_size: Vector2 = Vector2(910, 647)
+@export var caught_dialogue_scenes: Array[CutsceneScene]
 
 var health = max_health

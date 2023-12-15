@@ -2406,9 +2406,9 @@ _data = {
 transform = Transform3D(0.795914, 0.605014, -0.0219, 0.583856, -0.776641, -0.236517, -0.160105, 0.175461, -0.971381, 0, 0, 0)
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
-debug_tutorial_stage = 3
+debug_tutorial_stage = 8
+debug_initial_munchme_type = 4
 debug_initial_munchme_spawn = true
-debug_initial_munchme_caught = true
 
 [node name="DebugSpawn" type="Marker3D" parent="."]
 transform = Transform3D(0.999999, -2.33762e-07, 0, -2.75671e-07, 0.999998, -4.47035e-08, 5.58794e-08, -1.04308e-07, 1, 30.0192, -58.4841, 104.078)
@@ -5144,6 +5144,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 [connection signal="focus_entered" from="UI" to="." method="_on_ui_focus_entered"]
 [connection signal="focus_exited" from="UI" to="." method="_on_ui_focus_exited"]
 [connection signal="body_entered" from="TutorialArea" to="." method="_on_tutorial_area_body_entered"]
+[connection signal="caught_cutscene_finished" from="Player/Muncher" to="." method="_on_muncher_caught_cutscene_finished"]
 [connection signal="torpejo_talked_to" from="Munchmes/Torpejo" to="." method="_on_torpejo_torpejo_talked_to"]
 [connection signal="body_entered" from="Planet/Guild/EnterGuildArea" to="." method="_on_enter_guild_area_entered"]
 [connection signal="body_entered" from="TutorialTorpejoPoints/CatchMunchmePoint/TorpejoArea" to="." method="_on_torpejo_area_body_entered"]

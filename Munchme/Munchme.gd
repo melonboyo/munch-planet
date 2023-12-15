@@ -85,6 +85,7 @@ func play_step_sound():
 
 
 func _process(delta):
+	_munchme_specific_process(delta)
 	if situation == Constants.Situation.Overworld:
 		_overworld_process(delta)
 
@@ -115,7 +116,6 @@ func _physics_process(delta):
 
 
 func _overworld_process(delta):
-	_munchme_specific_process(delta)
 	if in_catch_mode or not can_be_caught:
 		$CatchArea.monitoring = false
 		return

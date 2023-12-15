@@ -1,12 +1,43 @@
-[gd_scene load_steps=16 format=3 uid="uid://cuw7r31kr73x"]
+[gd_scene load_steps=24 format=3 uid="uid://cuw7r31kr73x"]
 
 [ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_i02uy"]
 [ext_resource type="Script" path="res://Munchme/Solidude/Solidude.gd" id="2_qf85q"]
 [ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="3_ek83g"]
+[ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="3_i4nol"]
 [ext_resource type="PackedScene" uid="uid://dxvcr50hyn1yv" path="res://Munchme/Solidude/solidude_model.tscn" id="4_h5uhp"]
 [ext_resource type="PackedScene" uid="uid://bjn2rcatd3p5i" path="res://Munchme/Solidude/solidude_minigame.tscn" id="4_q1idu"]
 [ext_resource type="PackedScene" uid="uid://c4ys6xwwbmvsm" path="res://Sprites/solidude/SolidudeDies.tscn" id="5_fe33d"]
 [ext_resource type="AudioStream" uid="uid://bhpemdup1hr05" path="res://SFX/Minigames/punch_hit.ogg" id="7_tgp74"]
+
+[sub_resource type="Resource" id="Resource_6epoy"]
+script = ExtResource("3_i4nol")
+animation_name = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_1"
+
+[sub_resource type="Resource" id="Resource_eo0mr"]
+script = ExtResource("3_i4nol")
+animation_name = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_2"
+
+[sub_resource type="Resource" id="Resource_fthw6"]
+script = ExtResource("3_i4nol")
+animation_name = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_3"
+
+[sub_resource type="Resource" id="Resource_i7ybt"]
+script = ExtResource("3_i4nol")
+animation_name = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_4"
+
+[sub_resource type="Resource" id="Resource_kx4vc"]
+script = ExtResource("3_i4nol")
+animation_name = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_5"
+
+[sub_resource type="Resource" id="Resource_owfa6"]
+script = ExtResource("3_i4nol")
+animation_name = ""
+dialogue_translation_key = "ON_SOLIDUDE_CAUGHT_6"
 
 [sub_resource type="Resource" id="Resource_3mgou"]
 script = ExtResource("3_ek83g")
@@ -18,6 +49,7 @@ mood = 1
 catch_track = 3
 roam_track = 7
 catch_looker_size = Vector2(910, 647)
+caught_dialogue_scenes = Array[ExtResource("3_i4nol")]([SubResource("Resource_6epoy"), SubResource("Resource_eo0mr"), SubResource("Resource_fthw6"), SubResource("Resource_i7ybt"), SubResource("Resource_kx4vc"), SubResource("Resource_owfa6")])
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_opjby"]
 radius = 0.46621
@@ -139,6 +171,9 @@ _data = {
 "punched": SubResource("Animation_030mv")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rw176"]
+size = Vector3(1.01501, 0.727051, 1)
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5e7dh"]
 lifetime_randomness = 0.2
 emission_shape = 1
@@ -157,6 +192,8 @@ section_length = 0.01
 
 [node name="Solidude" instance=ExtResource("1_i02uy")]
 script = ExtResource("2_qf85q")
+required_punches = 2
+smash_acceleration = 200.0
 resource = SubResource("Resource_3mgou")
 height = 1.0
 step_sounds_default = false
@@ -179,7 +216,7 @@ sneak_speed = 1.0
 air_speed = 3.0
 max_fall_speed = 100.0
 can_jump = true
-jump_velocity = 25.0
+jump_velocity = 15.0
 
 [node name="Animation" type="AnimationPlayer" parent="." index="7"]
 libraries = {
@@ -189,7 +226,14 @@ libraries = {
 [node name="SolidudeMinigame" parent="." index="8" instance=ExtResource("4_q1idu")]
 visible = false
 
-[node name="PunchParticles" type="GPUParticles3D" parent="." index="10"]
+[node name="SmashArea" type="Area3D" parent="." index="10"]
+collision_layer = 0
+
+[node name="SmashShape" type="CollisionShape3D" parent="SmashArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00750732, -0.136475, 0)
+shape = SubResource("BoxShape3D_rw176")
+
+[node name="PunchParticles" type="GPUParticles3D" parent="." index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.693873, -0.0947233)
 emitting = false
 amount = 500
@@ -199,14 +243,14 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_5e7dh")
 draw_pass_1 = SubResource("RibbonTrailMesh_ig382")
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." index="11"]
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0596607, -0.560593, -0.120207)
 size = Vector3(6.6236, 1.14893, 6.07568)
 
-[node name="PunchedAudioPlayer" type="AudioStreamPlayer" parent="." index="12"]
+[node name="PunchedAudioPlayer" type="AudioStreamPlayer" parent="." index="13"]
 bus = &"Effects"
 
-[node name="PunchedHitAudioPlayer" type="AudioStreamPlayer" parent="." index="13"]
+[node name="PunchedHitAudioPlayer" type="AudioStreamPlayer" parent="." index="14"]
 stream = ExtResource("7_tgp74")
 volume_db = -12.0
 bus = &"Effects"

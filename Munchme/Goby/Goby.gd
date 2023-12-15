@@ -66,6 +66,7 @@ func goby_win():
 	$GobyMinigameUi.disable()
 	$GobyMinigameUi.visible = false
 	await get_tree().create_timer(0.7).timeout
+	$GunPlayer.play()
 	lose_catch()
 
 

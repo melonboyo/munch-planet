@@ -23,7 +23,6 @@ func _ready():
 	elif looker.has_reset_button:
 		looker.window_height = LOOKER_WITH_BUTTON_HEIGHT
 		var reset_player_position_button = reset_player_position_button_scene.instantiate()
-		print(reset_player_position_button)
 		%GeneralTab.add_child(reset_player_position_button)
 		reset_player_position_button.pressed.connect(func(): looker.reset_player_position.emit())
 	

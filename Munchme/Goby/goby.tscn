@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://c6er7j0s48ko1"]
+[gd_scene load_steps=35 format=3 uid="uid://c6er7j0s48ko1"]
 
 [ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_7eeg5"]
 [ext_resource type="Script" path="res://Munchme/Goby/Goby.gd" id="2_osfwf"]
+[ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="3_33pn7"]
 [ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="3_66qx4"]
 [ext_resource type="PackedScene" uid="uid://0puha086kvgb" path="res://Munchme/Goby/goby_model.tscn" id="3_o5rs3"]
 [ext_resource type="Texture2D" uid="uid://degsvw6a5pv73" path="res://Sprites/rps/rps-9.png" id="5_o2vp1"]
@@ -9,6 +10,47 @@
 [ext_resource type="Texture2D" uid="uid://dvry7ms6jpadp" path="res://Sprites/rps/rps-11.png" id="7_xv53e"]
 [ext_resource type="PackedScene" uid="uid://oh3mtoqhkf6p" path="res://Munchme/Goby/GobyMinigameUI.tscn" id="8_16muq"]
 [ext_resource type="Texture2D" uid="uid://dpf841x0w3yjr" path="res://Sprites/rps/gun.png" id="8_rpvhp"]
+[ext_resource type="AudioStream" uid="uid://8robp7kb1v3w" path="res://SFX/Intro/shotgun.ogg" id="10_gb173"]
+
+[sub_resource type="Resource" id="Resource_71dr0"]
+script = ExtResource("3_33pn7")
+animation_name = ""
+dialogue_translation_key = "ON_GOBY_CAUGHT_1"
+
+[sub_resource type="Resource" id="Resource_4lhja"]
+script = ExtResource("3_33pn7")
+animation_name = ""
+dialogue_translation_key = "ON_GOBY_CAUGHT_2"
+
+[sub_resource type="Resource" id="Resource_mpwnx"]
+script = ExtResource("3_33pn7")
+animation_name = ""
+dialogue_translation_key = "ON_GOBY_CAUGHT_3"
+
+[sub_resource type="Resource" id="Resource_d6fmc"]
+script = ExtResource("3_33pn7")
+animation_name = ""
+dialogue_translation_key = "ON_GOBY_CAUGHT_4"
+
+[sub_resource type="Resource" id="Resource_ilegg"]
+script = ExtResource("3_33pn7")
+animation_name = ""
+dialogue_translation_key = "ON_GOBY_CAUGHT_5"
+
+[sub_resource type="Resource" id="Resource_xqubk"]
+script = ExtResource("3_33pn7")
+animation_name = ""
+dialogue_translation_key = "ON_GOBY_CAUGHT_6"
+
+[sub_resource type="Resource" id="Resource_pny6e"]
+script = ExtResource("3_33pn7")
+animation_name = ""
+dialogue_translation_key = "ON_GOBY_CAUGHT_7"
+
+[sub_resource type="Resource" id="Resource_v5l8e"]
+script = ExtResource("3_33pn7")
+animation_name = ""
+dialogue_translation_key = "ON_GOBY_CAUGHT_8"
 
 [sub_resource type="Resource" id="Resource_hsa0i"]
 script = ExtResource("3_66qx4")
@@ -20,6 +62,7 @@ mood = 1
 catch_track = 3
 roam_track = 2
 catch_looker_size = Vector2(910, 647)
+caught_dialogue_scenes = Array[ExtResource("3_33pn7")]([SubResource("Resource_71dr0"), SubResource("Resource_4lhja"), SubResource("Resource_mpwnx"), SubResource("Resource_d6fmc"), SubResource("Resource_ilegg"), SubResource("Resource_xqubk"), SubResource("Resource_pny6e"), SubResource("Resource_v5l8e")])
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y0bei"]
 radius = 0.334128
@@ -251,6 +294,10 @@ visible = false
 
 [node name="OverworldMovement" parent="." index="7"]
 walking_speed = 8.8
+
+[node name="GunPlayer" type="AudioStreamPlayer" parent="." index="11"]
+stream = ExtResource("10_gb173")
+bus = &"Effects"
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
 [connection signal="player_choose_hand" from="GobyMinigameUi" to="." method="_on_player_choose_hand"]

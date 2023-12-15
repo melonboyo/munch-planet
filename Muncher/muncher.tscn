@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3m5sa6by34tu"]
+[gd_scene load_steps=11 format=3 uid="uid://c3m5sa6by34tu"]
 
 [ext_resource type="Script" path="res://Muncher/Player.gd" id="1_dnfvd"]
 [ext_resource type="PackedScene" uid="uid://byqxhfjpv5fey" path="res://Muncher/muncher_model.tscn" id="2_4ecyd"]
@@ -6,10 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://cdumv0t8swix3" path="res://Movement/overworld_movement.tscn" id="4_2hhfk"]
 [ext_resource type="PackedScene" uid="uid://bcaj1ogqexsb7" path="res://Movement/float_movement.tscn" id="5_8aopf"]
 [ext_resource type="PackedScene" uid="uid://dco60ny2ql34u" path="res://Movement/ai_movement.tscn" id="5_w863o"]
+[ext_resource type="PackedScene" uid="uid://c2eraey620ohp" path="res://Globals/Cutscenes/Cutscene.tscn" id="7_muri6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wx677"]
 radius = 1.04752
 height = 2.28662
+
+[sub_resource type="Animation" id="Animation_nqvmm"]
+resource_name = "munchme_caught"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ma5u"]
+_data = {
+"munchme_caught": SubResource("Animation_nqvmm")
+}
 
 [node name="Muncher" type="CharacterBody3D"]
 collision_layer = 2
@@ -40,3 +49,15 @@ ok_distance = 0.5
 
 [node name="Emoter" parent="." instance=ExtResource("3_8mst7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51472, 0)
+
+[node name="MunchmeCaughtCutscene" parent="." instance=ExtResource("7_muri6")]
+
+[node name="CutsceneAnimation" parent="MunchmeCaughtCutscene" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_4ma5u")
+}
+
+[node name="CutsceneCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.970241, 0, 0.242142, 0, 1, 0, -0.242142, 0, 0.970241, 0.552733, 1.95649, 1.17519)
+
+[editable path="MunchmeCaughtCutscene"]

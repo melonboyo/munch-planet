@@ -2,6 +2,8 @@ extends CharacterBody3D
 class_name Muncher
 
 
+signal caught_cutscene_finished
+
 @export_node_path("Node3D") var camera_path: NodePath
 @export_range(0.0, 1.0) var move_input_deadzone: float = 0.15
 @export_range(0.0, 10.0) var height: float = 1.8
@@ -97,3 +99,20 @@ func set_is_movement_animating(yes: bool):
 
 func rotate_towards(pos: Vector3):
 	$OverworldMovement.last_strong_direction = (pos - global_position).normalized()
+
+
+func play_caught_cutscene(munchme_resource: MunchmeResource):
+	if munchme_resource.caught_dialogue_scenes.size() == 0:
+		return
+	
+	$MunchmeCaughtCutscene.scenes.clear()
+	$MunchmeCaughtCutscene.scenes.append_array(munchme_resource.caught_dialogue_scenes)
+	CutsceneManager.play_cutscene($MunchmeCaughtCutscene)
+	CutsceneManager.cutscene_finished.connect(_on_cutscene_finished)
+	player_controlled = false
+	$CutsceneCamera.current = true
+
+
+func _on_cutscene_finished():
+	caught_cutscene_finished.emit()
+	player_controlled = true

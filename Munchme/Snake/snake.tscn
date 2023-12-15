@@ -1,21 +1,53 @@
-[gd_scene load_steps=8 format=3 uid="uid://csd8neh0mqxfc"]
+[gd_scene load_steps=15 format=3 uid="uid://csd8neh0mqxfc"]
 
 [ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_pgcke"]
 [ext_resource type="Script" path="res://Munchme/Snake/snake.gd" id="2_6bh4c"]
+[ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="3_8udk6"]
 [ext_resource type="PackedScene" uid="uid://0puha086kvgb" path="res://Munchme/Goby/goby_model.tscn" id="3_gnsa3"]
 [ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="3_tpxde"]
 [ext_resource type="PackedScene" uid="uid://cdwym87s0llip" path="res://Munchme/Snake/snake_minigame.tscn" id="4_noe5r"]
 
+[sub_resource type="Resource" id="Resource_l3g42"]
+script = ExtResource("3_8udk6")
+animation_name = ""
+dialogue_translation_key = "ON_SNAKE_CAUGHT_1"
+
+[sub_resource type="Resource" id="Resource_anh2b"]
+script = ExtResource("3_8udk6")
+animation_name = ""
+dialogue_translation_key = "ON_SNAKE_CAUGHT_2"
+
+[sub_resource type="Resource" id="Resource_t3t28"]
+script = ExtResource("3_8udk6")
+animation_name = ""
+dialogue_translation_key = "ON_SNAKE_CAUGHT_3"
+
+[sub_resource type="Resource" id="Resource_w6u7s"]
+script = ExtResource("3_8udk6")
+animation_name = ""
+dialogue_translation_key = "ON_SNAKE_CAUGHT_4"
+
+[sub_resource type="Resource" id="Resource_l2dia"]
+script = ExtResource("3_8udk6")
+animation_name = ""
+dialogue_translation_key = "ON_SNAKE_CAUGHT_5"
+
+[sub_resource type="Resource" id="Resource_ks8o2"]
+script = ExtResource("3_8udk6")
+animation_name = ""
+dialogue_translation_key = "ON_SNAKE_CAUGHT_6"
+
 [sub_resource type="Resource" id="Resource_qbng2"]
 script = ExtResource("3_tpxde")
 id = 0
-name = "SNAKE MAN"
+name = "Snake"
 munchme_type = 2
 max_health = 100
 mood = 1
 catch_track = 3
 roam_track = 2
 catch_looker_size = Vector2(910, 910)
+caught_dialogue_scenes = Array[ExtResource("3_8udk6")]([SubResource("Resource_l3g42"), SubResource("Resource_anh2b"), SubResource("Resource_t3t28"), SubResource("Resource_w6u7s"), SubResource("Resource_l2dia"), SubResource("Resource_ks8o2")])
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_470d8"]
 radius = 0.356781
