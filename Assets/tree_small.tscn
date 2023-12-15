@@ -20,6 +20,7 @@ render_priority = 0
 shader = ExtResource("2_ov4kx")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
 shader_parameter/use_normal_texture = false
 shader_parameter/normal_depth = 1.0
 shader_parameter/roughness = 0.935
@@ -47,6 +48,7 @@ height = 0.756056
 radius = 1.06655
 
 [node name="tree_small" instance=ExtResource("1_3kscj")]
+metadata/_edit_group_ = true
 
 [node name="TreeSmall" parent="." index="0"]
 transform = Transform3D(0.0469408, 0, 0, 0, 0.0469408, 0, 0, 0, 0.0469408, 0, -0.0286606, 0)

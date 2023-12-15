@@ -68,6 +68,7 @@ folder_colors={
 "res://Sprites/": "green",
 "res://Tutorial/": "orange",
 "res://addons/": "gray",
+"res://exports/": "gray",
 "res://sketches/": "gray"
 }
 

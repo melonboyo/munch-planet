@@ -1,5 +1,5 @@
 @tool
-extends Node3D
+extends Marker3D
 
 @export_category("General")
 @export var spawn := false:
@@ -18,7 +18,7 @@ extends Node3D
 #@export_range(-360, 360) var y_rotation: float = 0.0:
 	#set(value):
 		#y_rotation = value
-@export_range(0, 10) var _scale: float = 1.0:
+@export_range(0, 50) var _scale: float = 1.0:
 	set(value):
 		_scale = value
 @export_category("Models")
@@ -90,7 +90,7 @@ func spawn_foliage():
 		model.name = StringName(str(i))
 		model.set_owner(get_tree().get_edited_scene_root())
 		
-		await get_tree().physics_frame * 2
+		await get_tree().physics_frame
 		
 		model.global_position = result.position
 		model.global_transform.basis = Basis(right, up, forward)

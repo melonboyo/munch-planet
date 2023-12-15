@@ -48,6 +48,7 @@ height = 1.26013
 radius = 3.18469
 
 [node name="tree_red" instance=ExtResource("1_la4ox")]
+metadata/_edit_group_ = true
 
 [node name="TreeRed" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0700591, 0)
