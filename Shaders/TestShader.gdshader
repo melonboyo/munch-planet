@@ -2,7 +2,7 @@ shader_type spatial;
 render_mode diffuse_lambert_wrap;
 
 uniform vec4 albedo : source_color;
-uniform sampler2D albedo_texture : hint_default_white, filter_nearest;
+uniform sampler2D albedo_texture : hint_default_white, filter_nearest_mipmap;
 //uniform sampler2D overlay_texture : hint_default_white, filter_nearest;
 uniform vec2 albedo_uv_scale = vec2(1.0);
 uniform vec2 albedo_uv_offset = vec2(0.0);

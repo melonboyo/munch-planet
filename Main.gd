@@ -26,10 +26,21 @@ var dipshit_id: int
 
 
 func _ready():
+	setup_graphics_detail()
+	Settings.changed.connect(setup_graphics_detail)
+	
 	GameState.tutorial_stage = tutorial_stage
 	GameState.main_window = $UI
 	GameState.attempt_catch_munchme.connect(_on_attempt_catch_munchme)
 	planet_specific_ready()
+
+
+func setup_graphics_detail():
+	var level = Settings.graphics_detail
+	$WorldEnvironment.environment.ssao_enabled = level > Constants.Graphics.Low
+	#$WorldEnvironment.environment.ssil_enabled = level > Constants.Graphics.Medium
+	$WorldEnvironment.environment.sdfgi_enabled = level > Constants.Graphics.Low
+	$WorldEnvironment.environment.volumetric_fog_enabled = false
 
 
 func planet_specific_ready():
@@ -533,10 +544,16 @@ func _on_finale_timer_timeout():
 	dipshit.player_controlled = false
 	dipshit.position = Vector3(86.597, 41.51, -65.318)
 	dipshit.resource.mood = Constants.Mood.Angry
-	dipshit.rotate_towards(%Torpejo.global_position)
 	GameState.munchme_windows[0].close()
 	manage_allowed = true
 	%TutorialFinaleCutscene.play()
+
+
+func rotate_dipshit_towards_torpejo():
+	var dipshit: Dipshit
+	if not GameState.deployed_munchmes.is_empty():
+		dipshit = GameState.deployed_munchmes[0]
+	dipshit.rotate_towards(%Torpejo.global_position)
 
 
 func kill_dipshit():
