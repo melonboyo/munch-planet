@@ -259,6 +259,7 @@ _data = {
 }
 
 [node name="Goby" instance=ExtResource("1_7eeg5")]
+floor_max_angle = 1.6057
 script = ExtResource("2_osfwf")
 resource = SubResource("Resource_hsa0i")
 
@@ -294,6 +295,7 @@ visible = false
 
 [node name="OverworldMovement" parent="." index="7"]
 walking_speed = 8.8
+jump_velocity = 20.0
 
 [node name="GunPlayer" type="AudioStreamPlayer" parent="." index="11"]
 stream = ExtResource("10_gb173")
