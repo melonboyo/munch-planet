@@ -43,6 +43,5 @@ shape = SubResource("CapsuleShape3D_qrvmv")
 
 [node name="GungunMinigame" parent="." index="8" instance=ExtResource("5_s4svl")]
 visible = false
-mouse_filter = 2
 
 [connection signal="shot" from="GungunMinigame" to="." method="_on_gungun_minigame_shot"]
