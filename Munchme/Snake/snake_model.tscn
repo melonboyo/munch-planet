@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cglc0dfhorwl"]
+
+[ext_resource type="PackedScene" uid="uid://bkwah6887on4l" path="res://Models/munchmes/snake.glb" id="1_wrohp"]
+[ext_resource type="Material" uid="uid://be83a65vy13cq" path="res://Materials/MainMaterial.tres" id="2_iuqll"]
+[ext_resource type="Script" path="res://Munchme/munchme_model.gd" id="2_vj44b"]
+[ext_resource type="Texture2D" uid="uid://j7m1s86na0q3" path="res://Sprites/Faces/snake-0.png" id="3_f4i26"]
+[ext_resource type="Texture2D" uid="uid://dtqugt7144var" path="res://Sprites/Faces/snake-1.png" id="4_skx3g"]
+[ext_resource type="Texture2D" uid="uid://4eb6uqkcl71t" path="res://Sprites/Faces/snake-2.png" id="5_3se5j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_obmd6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_f4i26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_skx3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3se5j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="snake" instance=ExtResource("1_wrohp")]
+script = ExtResource("2_vj44b")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/rotation = Quaternion(8.42937e-08, -0.707107, -1.15202e-07, 0.707107)
+bones/6/rotation = Quaternion(-0.289499, -2.96932e-14, -6.22557e-07, 0.957178)
+bones/7/position = Vector3(0.709802, 1.41538, 1.934e-06)
+bones/7/rotation = Quaternion(1.91662e-20, -0.707107, -1.97932e-13, 0.707107)
+
+[node name="Snake" parent="Armature/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("2_iuqll")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(-3.60459e-07, 0.554204, -0.832381, -1.47393e-06, 0.832381, 0.554204, 1, 1.42664e-06, 5.16817e-07, 2.10512e-07, 4.81595, 1.35872e-06)
+bone_name = "Bone.006"
+bone_idx = 6
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(-1, -7.13628e-08, 5.04986e-08, 8.74242e-08, -0.816299, 0.57763, -5.11591e-13, 0.57763, 0.816299, 8.74966e-08, 1.00086, 0.216233)
+sprite_frames = SubResource("SpriteFrames_obmd6")
+autoplay = "default"

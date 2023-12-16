@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_pgcke"]
 [ext_resource type="Script" path="res://Munchme/Snake/snake.gd" id="2_6bh4c"]
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="3_8udk6"]
-[ext_resource type="PackedScene" uid="uid://0puha086kvgb" path="res://Munchme/Goby/goby_model.tscn" id="3_gnsa3"]
 [ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="3_tpxde"]
 [ext_resource type="PackedScene" uid="uid://cdwym87s0llip" path="res://Munchme/Snake/snake_minigame.tscn" id="4_noe5r"]
+[ext_resource type="PackedScene" uid="uid://cglc0dfhorwl" path="res://Munchme/Snake/snake_model.tscn" id="5_0xlqu"]
 
 [sub_resource type="Resource" id="Resource_l3g42"]
 script = ExtResource("3_8udk6")
@@ -50,19 +50,19 @@ catch_looker_size = Vector2(910, 910)
 caught_dialogue_scenes = Array[ExtResource("3_8udk6")]([SubResource("Resource_l3g42"), SubResource("Resource_anh2b"), SubResource("Resource_t3t28"), SubResource("Resource_w6u7s"), SubResource("Resource_l2dia"), SubResource("Resource_ks8o2")])
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_470d8"]
-radius = 0.356781
-height = 3.02966
+radius = 0.64595
+height = 1.89496
 
 [node name="Snake" instance=ExtResource("1_pgcke")]
 script = ExtResource("2_6bh4c")
 resource = SubResource("Resource_qbng2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.278008, 0)
-shape = SubResource("CapsuleShape3D_470d8")
+[node name="Model" parent="." index="0" instance=ExtResource("5_0xlqu")]
+transform = Transform3D(0.733648, 0, 0, 0, 0.733648, 0, 0, 0, 0.733648, 0, 0, 0)
 
-[node name="Model" parent="." index="3" instance=ExtResource("3_gnsa3")]
-transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 1.65, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.06581e-14, 0, 1.06581e-14, 1, 0, 0.902264, 0)
+shape = SubResource("CapsuleShape3D_470d8")
 
 [node name="SnakeMinigame" parent="." index="4" instance=ExtResource("4_noe5r")]
 visible = false
