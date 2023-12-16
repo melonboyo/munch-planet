@@ -1,4 +1,4 @@
-[gd_scene load_steps=264 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=265 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -51,6 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://b2qwn7nfhqo00" path="res://Assets/glass_cage.tscn" id="37_64hg6"]
 [ext_resource type="PackedScene" uid="uid://bkkqy5uux65s7" path="res://Assets/dipshit_cage.tscn" id="37_wpyeb"]
 [ext_resource type="PackedScene" uid="uid://deax2ul2oi21o" path="res://Assets/breakable_rock.tscn" id="38_q4jm8"]
+[ext_resource type="AudioStream" uid="uid://bo0b7aaswqwnw" path="res://SFX/traffic.ogg" id="38_unaam"]
 [ext_resource type="Script" path="res://Assets/Crater.gd" id="39_3ye5h"]
 [ext_resource type="PackedScene" uid="uid://db6hg36h5tmog" path="res://Globals/Cutscenes/NewAreaCutscene.tscn" id="39_xa4cw"]
 [ext_resource type="PackedScene" uid="uid://devat1afyt0cf" path="res://Assets/pipe.tscn" id="41_1qvhh"]
@@ -529,6 +530,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%TorpejoAudioPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hlujm"]
@@ -3287,6 +3302,7 @@ script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
 debug_tutorial_stage = 8
 debug_use_debug_spawn = true
+debug_initial_munchme_type = 5
 debug_initial_munchme_spawn = true
 debug_initial_munchme_caught = true
 
@@ -5464,6 +5480,11 @@ libraries = {
 "": SubResource("AnimationLibrary_hlujm")
 }
 autoplay = "RESET"
+
+[node name="TorpejoAudioPlayer" type="AudioStreamPlayer" parent="Planet/TowerModel/TorpejoCutscene"]
+unique_name_in_owner = true
+stream = ExtResource("38_unaam")
+bus = &"Effects"
 
 [node name="RedTrees" type="Node3D" parent="Planet"]
 
