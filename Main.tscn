@@ -2988,9 +2988,8 @@ _data = {
 transform = Transform3D(0.895135, -0.109855, -0.432047, -0.42996, 0.0432589, -0.901811, 0.117758, 0.993006, -0.0085109, 0, 0, 0)
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
-debug_tutorial_stage = 8
-debug_use_debug_spawn = true
-debug_initial_munchme_type = 1
+debug_tutorial_stage = 1
+debug_initial_munchme_type = 5
 debug_initial_munchme_spawn = true
 debug_initial_munchme_caught = true
 
@@ -5531,6 +5530,7 @@ loop = false
 [node name="Rocket" parent="RocketPlatform/RocketPath/RocketPathFollow" instance=ExtResource("23_5lo66")]
 unique_name_in_owner = true
 transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988, 0.998136, -0.0250779, -0.999581, -0.0144419, -0.0261015, 0.132022, -0.98487)
+disabled = true
 
 [node name="RocketFocus" type="Node3D" parent="RocketPlatform/RocketPath/RocketPathFollow/Rocket"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)

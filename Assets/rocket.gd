@@ -1,7 +1,9 @@
 extends Node3D
 
+@export var disabled := false
+
 var is_in_area = false
-var can_enter = false
+var can_enter := false
 var is_entering = false
 var player: Node3D = null
 var move_input
@@ -14,6 +16,9 @@ func _ready():
 
 
 func _process(delta):
+	if disabled:
+		return
+	
 	if is_entering:
 		%GoText.visible = false
 		return
