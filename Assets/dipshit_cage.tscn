@@ -1,6 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkkqy5uux65s7"]
+[gd_scene load_steps=6 format=3 uid="uid://bkkqy5uux65s7"]
 
 [ext_resource type="PackedScene" uid="uid://43wx432oj5to" path="res://Models/Cage/cage.glb" id="1_720mh"]
+[ext_resource type="Script" path="res://Assets/dipshit_cage.gd" id="2_hvjvi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_745cv"]
+size = Vector3(3.64453, 0.445313, 3.65671)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6rb2c"]
 size = Vector3(3.63861, 0.23999, 3.59851)
@@ -10,11 +14,18 @@ size = Vector3(3.121, 0.213, 5.054)
 
 [node name="Cage" instance=ExtResource("1_720mh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.345734, 1)
+script = ExtResource("2_hvjvi")
 
 [node name="Object_4" parent="Sketchfab_model/root/GLTF_SceneRootNode/Cage _2" index="0"]
 transform = Transform3D(1.44719, 0, 0, 0, 1.01362, 0, 0, 0, 1.44719, -0.394689, 0, 0.382354)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+[node name="SmashableArea" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SmashableArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.995453, 5.56264, -1.02583)
+shape = SubResource("BoxShape3D_745cv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
 collision_layer = 1028
 collision_mask = 15
 

@@ -2413,7 +2413,7 @@ debug_initial_munchme_spawn = true
 debug_initial_munchme_caught = true
 
 [node name="DebugSpawn" type="Marker3D" parent="."]
-transform = Transform3D(0.999999, -2.33762e-07, 0, -2.75671e-07, 0.999998, -4.47035e-08, 5.58794e-08, -1.04308e-07, 1, 30.0192, -58.4841, 104.078)
+transform = Transform3D(0.999999, -4.24683e-07, 7.45058e-08, -2.98023e-07, 0.999998, -1.49012e-08, -1.19209e-07, 4.47035e-07, 1, 6.02929, -24.2892, -117.112)
 gizmo_extents = 2.0
 
 [node name="Overlay" type="Control" parent="."]
