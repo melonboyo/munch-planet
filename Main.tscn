@@ -1,4 +1,4 @@
-[gd_scene load_steps=265 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=263 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -3295,7 +3295,6 @@ transform = Transform3D(0.809517, 0.586917, -0.0144844, 0.557954, -0.776779, -0.
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
 debug_tutorial_stage = 8
-debug_use_debug_spawn = true
 debug_initial_munchme_type = 4
 debug_initial_munchme_caught = true
 
