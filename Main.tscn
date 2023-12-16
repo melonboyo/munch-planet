@@ -2407,11 +2407,12 @@ transform = Transform3D(0.795914, 0.605014, -0.0219, 0.583856, -0.776641, -0.236
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
 debug_tutorial_stage = 8
-debug_initial_munchme_type = 4
-debug_initial_munchme_spawn = true
+debug_use_debug_spawn = true
+debug_initial_munchme_type = 1
+debug_initial_munchme_caught = true
 
 [node name="DebugSpawn" type="Marker3D" parent="."]
-transform = Transform3D(0.999999, -2.33762e-07, 0, -2.75671e-07, 0.999998, -4.47035e-08, 5.58794e-08, -1.04308e-07, 1, 30.0192, -58.4841, 104.078)
+transform = Transform3D(0.999999, -4.24683e-07, 7.45058e-08, -2.98023e-07, 0.999998, -1.49012e-08, -1.19209e-07, 4.47035e-07, 1, 6.02929, -24.2892, -117.112)
 gizmo_extents = 2.0
 
 [node name="Overlay" type="Control" parent="."]
@@ -4869,7 +4870,7 @@ transform = Transform3D(0.423775, 0.758064, -0.495733, -0.760309, 0.00025329, -0
 curve = SubResource("Curve3D_g8sv8")
 
 [node name="RocketPathFollow" type="PathFollow3D" parent="RocketPlatform/RocketPath"]
-transform = Transform3D(0.59252, 0.0317618, 0.805124, 0, 0.99921, -0.0394434, -0.805411, 0.0233663, 0.592309, 0, 0, 0)
+transform = Transform3D(0.59252, 0.0317617, 0.805124, 0, 0.999209, -0.0394434, -0.805411, 0.0233663, 0.592309, 0, 0, 0)
 rotation_mode = 4
 loop = false
 
@@ -4881,7 +4882,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.411924, 0.307817, 0.580986, 0.443214, -0.376406, 0.51367, 0.485655, 0.604605, 0.0239999, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.411917, 0.307814, 0.580992, 0.443217, -0.376413, 0.513662, 0.485658, 0.604602, 0.0240009, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")

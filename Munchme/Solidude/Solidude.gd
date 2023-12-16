@@ -24,6 +24,8 @@ func munchme_specific_ready():
 	#$Animation.play("RESET")
 	if situation == Constants.Situation.Catch:
 		times_punched = 0
+	else:
+		$ParticleCollision.queue_free()
 	
 	step_sounds.append(walk_sound)
 
@@ -79,14 +81,16 @@ func perform_smash():
 	if smashable_body == null:
 		$PunchedHitAudioPlayer.pitch_scale = 1
 	else:
+		# Successful smash!
 		var times_smashed = smashable_body.smash()
 		$PunchedHitAudioPlayer.pitch_scale = min(float(times_smashed - 1) / 12 + 1, 2)
+		$Animation.play("punched")
 		
 	$PunchedHitAudioPlayer.play()
 
 
 func get_smashable_node():
-	for body in $SmashArea.get_overlapping_bodies():
+	for body in $SmashArea.get_overlapping_areas():
 		var parent = body.get_parent()
 		if parent != null and parent.has_method("smash"):
 			return parent

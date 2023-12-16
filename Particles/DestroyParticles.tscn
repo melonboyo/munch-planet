@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsga5fqk0jfre"]
+
+[ext_resource type="Script" path="res://Particles/DestroyParticles.gd" id="1_mtdvk"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hm6nn"]
+lifetime_randomness = 0.2
+emission_shape = 3
+emission_box_extents = Vector3(1.88, 2.58, 1.88)
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 0.8
+initial_velocity_max = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdnhc"]
+albedo_color = Color(0.407843, 0.25098, 0.14902, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_tmau8"]
+material = SubResource("StandardMaterial3D_rdnhc")
+size = 0.3
+section_length = 0.03
+
+[node name="DestroyParticles" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03421, 3.07119, -1.04789)
+amount = 3000
+lifetime = 2.0
+visibility_aabb = AABB(-5.04039, -2.47724, -5.88425, 10.2937, 5.17517, 11.5781)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_hm6nn")
+draw_pass_1 = SubResource("RibbonTrailMesh_tmau8")
+script = ExtResource("1_mtdvk")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="StopTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="StopTimer" to="." method="_on_stop_timer_timeout"]
