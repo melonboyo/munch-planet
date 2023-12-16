@@ -153,8 +153,9 @@ func set_invis_wall_active(munchme: bool, player: bool):
 		#$TutorialInvisWall/C4.disabled = true
 	#else:
 		#$TutorialInvisWall/C4.disabled = false
-		
-	$TutorialInvisWall.collision_layer = value
+	
+	if $TutorialInvisWall != null:
+		$TutorialInvisWall.collision_layer = value
 
 
 func get_point_on_surface(node: Node3D) -> Vector3:
