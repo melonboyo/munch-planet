@@ -24,7 +24,7 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 floor_block_on_wall = false
-floor_max_angle = 0.959931
+floor_max_angle = 1.0821
 floor_snap_length = 0.2
 script = ExtResource("1_dnfvd")
 

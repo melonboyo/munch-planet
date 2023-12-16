@@ -162,5 +162,9 @@ panning_strength = 0.2
 bus = &"Effects"
 attenuation_filter_db = 0.0
 
+[node name="CatchTimer" type="Timer" parent="."]
+wait_time = 2.2
+
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]
 [connection signal="body_exited" from="CatchArea" to="." method="_on_catch_area_body_exited"]
+[connection signal="timeout" from="CatchTimer" to="." method="_on_catch_timer_timeout"]

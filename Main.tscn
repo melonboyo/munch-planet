@@ -2404,7 +2404,6 @@ _data = {
 }
 
 [node name="Main" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
 debug_tutorial_stage = 8
@@ -4886,7 +4885,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(0.0480522, -0.511968, 0.580996, -0.0181787, 0.581207, 0.513658, -0.774173, -0.0454241, 0.0239992, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(0.0480536, -0.511974, 0.580991, -0.0181788, 0.581202, 0.513664, -0.774173, -0.0454254, 0.0239999, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")

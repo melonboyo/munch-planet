@@ -16,7 +16,6 @@ class_name Munchme
 @export var step_sounds_type := Constants.StepType.Step
 
 
-
 var is_in_area = false
 var can_catch = false
 var in_catch_mode = false
@@ -158,6 +157,8 @@ func _on_catch_area_body_exited(body):
 
 func attempt_catch():
 	in_catch_mode = true
+	freeze = true
+	can_be_caught = false
 	GameState.attempt_catch_munchme.emit(self)
 
 
@@ -197,3 +198,13 @@ func set_vector_follow_point(_point: Vector3, spherical: bool = true):
 
 func rotate_towards(pos: Vector3):
 	$OverworldMovement.last_strong_direction = (pos - global_position).normalized()
+
+
+func start_catch_timer():
+	$CatchTimer.start()
+	can_be_caught = false
+
+
+func _on_catch_timer_timeout():
+	if situation == Constants.Situation.Overworld:
+		can_be_caught = true

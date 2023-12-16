@@ -306,6 +306,8 @@ func _on_attempt_catch_munchme(munchme: Munchme):
 	GameState.situation = Constants.Situation.Catch
 	manage_allowed = false
 	munchme_getting_caught = munchme
+	munchme.freeze = true
+	munchme.can_be_caught = false
 	
 	var catch_ui: Control = catch_looker_scene.instantiate()
 	catch_ui.get_node("%CatchScene").munchme_resource = munchme.resource
@@ -314,6 +316,8 @@ func _on_attempt_catch_munchme(munchme: Munchme):
 
 
 func _on_munchme_finish_catch(win: bool):
+	if munchme_getting_caught == null:
+		return
 	var munchme_resource = munchme_getting_caught.resource
 	munchme_getting_caught.in_catch_mode = false
 	manage_allowed = true
@@ -327,7 +331,7 @@ func _on_munchme_finish_catch(win: bool):
 		else:
 			%Muncher.play_caught_cutscene(munchme_resource)
 	else:
-		pass
+		munchme_getting_caught.start_catch_timer()
 
 
 var tut_dep_2_scene_played = false
