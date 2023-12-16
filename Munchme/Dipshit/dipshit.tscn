@@ -58,7 +58,7 @@ shape = SubResource("CapsuleShape3D_ismua")
 [node name="OverworldMovement" parent="." index="4"]
 air_speed = 8.2
 can_jump = true
-jump_velocity = 11.4
+jump_velocity = 12.2
 
 [node name="DipshitMinigame" parent="." index="7" instance=ExtResource("4_54x24")]
 visible = false
