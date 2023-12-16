@@ -17,6 +17,7 @@ mood = 1
 catch_track = 3
 roam_track = 2
 catch_looker_size = Vector2(910, 647)
+caught_dialogue_scenes = Array[Resource("res://Globals/Cutscenes/CutsceneScene.gd")]([])
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1fjlo"]
 radius = 0.831939

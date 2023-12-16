@@ -126,6 +126,20 @@ func _overworld_physics_process(delta):
 	if gravity_velocity.length() > max_fall_speed:
 		gravity_velocity = gravity_velocity.normalized() * max_fall_speed
 	
+	if (
+		target is Gungun and 
+		Input.is_action_pressed("use_power") and 
+		Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and 
+		target.player_controlled and
+		not float_node.is_floating()
+	):
+		# TODO: Raycast down and do a height above hit result
+		if target.global_position.length() < 176.0:
+			gravity_velocity = target.up_direction * 400.0 * delta
+		else:
+			gravity_velocity = Vector3.ZERO
+			
+	
 	move_velocity = move_velocity.lerp(move_input * speed, delta * acceleration)
 	if target is Muncher and target.sitting:
 		move_velocity = Vector3.ZERO

@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://bla2vd7lvgvxm"]
+
+[ext_resource type="PackedScene" uid="uid://ifcqrs1gff13" path="res://Models/munchmes/gungun.glb" id="1_keos1"]
+[ext_resource type="Script" path="res://Munchme/munchme_model.gd" id="2_fkquw"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="3_p7m81"]
+[ext_resource type="Texture2D" uid="uid://dyq35dh8xrpli" path="res://Sprites/Faces/gun-0.png" id="4_ln30a"]
+[ext_resource type="Texture2D" uid="uid://drxojdd0pgl28" path="res://Sprites/Faces/gun-1.png" id="5_s0w01"]
+[ext_resource type="Texture2D" uid="uid://cxmqwtk138qia" path="res://Sprites/Faces/gun-2.png" id="6_fmwf6"]
+
+[sub_resource type="Gradient" id="Gradient_6kjvt"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8kajq"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_is1dc"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_6kjvt")
+noise = SubResource("FastNoiseLite_8kajq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0j1c5"]
+render_priority = 0
+shader = ExtResource("3_p7m81")
+shader_parameter/albedo = Color(0.960784, 0.858824, 0.529412, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
+shader_parameter/use_normal_texture = true
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.717
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.13
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.12
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.309
+shader_parameter/wobble_displacement = 1.15
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_is1dc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eojuu"]
+render_priority = 0
+shader = ExtResource("3_p7m81")
+shader_parameter/albedo = Color(0.972549, 0.572549, 0.592157, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
+shader_parameter/use_normal_texture = true
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.717
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.13
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.12
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.309
+shader_parameter/wobble_displacement = 1.15
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_is1dc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5eh6r"]
+render_priority = 0
+shader = ExtResource("3_p7m81")
+shader_parameter/albedo = Color(0.972549, 0.572549, 0.592157, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
+shader_parameter/use_normal_texture = true
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.717
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.13
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.12
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.309
+shader_parameter/wobble_displacement = 1.15
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_is1dc")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sfrip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ln30a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_s0w01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fmwf6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Model" instance=ExtResource("1_keos1")]
+transform = Transform3D(0.24922, 0, 0, 0, 0.24922, 0, 0, 0, 0.24922, 0, 0, 0)
+script = ExtResource("2_fkquw")
+
+[node name="Skeleton3D" parent="Armature_002" index="0"]
+bones/0/position = Vector3(0, 0.192578, 0)
+bones/2/position = Vector3(1.06324, 1.71378, -0.571637)
+bones/2/rotation = Quaternion(-0.248502, 0.0928672, -0.339967, 0.902244)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/position = Vector3(1.34647, 0.686369, -0.646054)
+bones/3/rotation = Quaternion(-0.179914, 0.211461, -0.705653, 0.651896)
+bones/4/position = Vector3(0.993873, 0.0703014, -0.315676)
+bones/4/rotation = Quaternion(0.0823323, -0.244341, 0.925283, -0.278156)
+bones/5/position = Vector3(-1.06324, 1.71378, -0.571637)
+bones/5/rotation = Quaternion(-0.248502, -0.0928672, 0.339967, 0.902244)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(-1.34647, 0.686369, -0.646054)
+bones/6/rotation = Quaternion(-0.179914, -0.211461, 0.705653, 0.651896)
+bones/7/position = Vector3(-0.993873, 0.0703014, -0.315676)
+bones/7/rotation = Quaternion(-0.0823323, -0.244341, 0.925283, 0.278156)
+bones/8/rotation = Quaternion(-0.00114754, 0.00764302, 0.989215, -0.146264)
+bones/8/scale = Vector3(0.999998, 1, 1)
+bones/9/scale = Vector3(0.999998, 1, 1)
+
+[node name="Body" parent="Armature_002/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_0j1c5")
+
+[node name="Foot" parent="Armature_002/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_eojuu")
+
+[node name="Wings" parent="Armature_002/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_5eh6r")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_002/Skeleton3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27777, 0)
+bone_name = "Head"
+bone_idx = 1
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Armature_002/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.540058, 1.41502)
+pixel_size = 0.0265
+sprite_frames = SubResource("SpriteFrames_sfrip")
+autoplay = "default"
+frame_progress = 0.788204

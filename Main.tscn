@@ -1,4 +1,4 @@
-[gd_scene load_steps=181 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=182 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dqcx081xjqlj7" path="res://Munchme/Dipshit/dipshit.tscn" id="8_82vux"]
 [ext_resource type="PackedScene" uid="uid://cuw7r31kr73x" path="res://Munchme/Solidude/solidude.tscn" id="8_e7ffo"]
 [ext_resource type="Environment" uid="uid://ddd2lxon2t62u" path="res://MiscResources/MainEnvironment.tres" id="9_18ahj"]
+[ext_resource type="PackedScene" uid="uid://c53qg6gndwonk" path="res://Munchme/Gungun/gungun.tscn" id="9_ptb15"]
 [ext_resource type="PackedScene" uid="uid://c2eraey620ohp" path="res://Globals/Cutscenes/Cutscene.tscn" id="10_01ks1"]
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="11_nrph8"]
 [ext_resource type="PackedScene" uid="uid://bx7g1p62e5vct" path="res://Assets/Rocks/big_rock.tscn" id="14_3ulth"]
@@ -2403,12 +2404,13 @@ _data = {
 }
 
 [node name="Main" type="Node3D"]
-transform = Transform3D(0.795914, 0.605014, -0.0219, 0.583856, -0.776641, -0.236517, -0.160105, 0.175461, -0.971381, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
 debug_tutorial_stage = 8
-debug_initial_munchme_type = 4
+debug_initial_munchme_type = 5
 debug_initial_munchme_spawn = true
+debug_initial_munchme_caught = true
 
 [node name="DebugSpawn" type="Marker3D" parent="."]
 transform = Transform3D(0.999999, -2.33762e-07, 0, -2.75671e-07, 0.999998, -4.47035e-08, 5.58794e-08, -1.04308e-07, 1, 30.0192, -58.4841, 104.078)
@@ -2584,6 +2586,9 @@ transform = Transform3D(-0.919388, 0.357602, -0.163852, -0.374069, -0.666026, 0.
 
 [node name="Dipshit2" parent="Munchmes" instance=ExtResource("8_82vux")]
 transform = Transform3D(-0.991463, 0.130388, -8.56817e-08, -0.0175107, -0.133151, -0.990941, -0.129207, -0.982482, 0.134298, 5.90839, -23.7244, -112.633)
+
+[node name="Gungun" parent="Munchmes" instance=ExtResource("9_ptb15")]
+transform = Transform3D(-0.979919, 0.195633, -0.0385317, -0.191874, -0.977762, -0.0846486, -0.054235, -0.0755562, 0.995665, 64.386, -217.341, -51.3485)
 
 [node name="FollowPoints" type="Node3D" parent="."]
 
@@ -4869,7 +4874,7 @@ transform = Transform3D(0.423775, 0.758064, -0.495733, -0.760309, 0.00025329, -0
 curve = SubResource("Curve3D_g8sv8")
 
 [node name="RocketPathFollow" type="PathFollow3D" parent="RocketPlatform/RocketPath"]
-transform = Transform3D(0.59252, 0.0317618, 0.805124, 0, 0.99921, -0.0394434, -0.805411, 0.0233663, 0.592309, 0, 0, 0)
+transform = Transform3D(0.59252, 0.0317617, 0.805124, 0, 0.999209, -0.0394434, -0.805411, 0.0233663, 0.592309, 0, 0, 0)
 rotation_mode = 4
 loop = false
 
@@ -4881,7 +4886,7 @@ transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988,
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.411924, 0.307817, 0.580986, 0.443214, -0.376406, 0.51367, 0.485655, 0.604605, 0.0239999, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(0.0480522, -0.511968, 0.580996, -0.0181787, 0.581207, 0.513658, -0.774173, -0.0454241, 0.0239992, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
