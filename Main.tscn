@@ -1,4 +1,4 @@
-[gd_scene load_steps=203 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=204 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -522,6 +522,33 @@ script = ExtResource("11_nrph8")
 animation_name = ""
 dialogue_translation_key = "ON_OVERVIEW_GUNGUN_AREA_4"
 
+[sub_resource type="Animation" id="Animation_hglhi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(68.6238, 28.2321, 52.2622)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.192617, 0.809206, 0.0211035)]
+}
+
 [sub_resource type="Animation" id="Animation_a7kbr"]
 resource_name = "flyby"
 length = 4.24
@@ -549,33 +576,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.450626, 1),
 "update": 0,
 "values": [Vector3(-0.192617, 0.809206, 0.0211035), Vector3(0.141056, 0.0907221, 0.0337239)]
-}
-
-[sub_resource type="Animation" id="Animation_hglhi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(68.6238, 28.2321, 52.2622)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Camera3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.192617, 0.809206, 0.0211035)]
 }
 
 [sub_resource type="Animation" id="Animation_ny2dw"]
@@ -5150,7 +5150,7 @@ libraries = {
 }
 
 [node name="Camera3D" parent="Planet/Lake/NewAreaLake" index="2"]
-transform = Transform3D(0.728231, 0.0784222, -0.68083, -0.650358, 0.392382, -0.650439, 0.216137, 0.916453, 0.336747, -72.7283, -13.4983, 29.4215)
+transform = Transform3D(0.728231, 0.0784206, -0.68083, -0.650358, 0.392382, -0.650439, 0.216138, 0.916453, 0.336746, -72.7283, -13.4983, 29.4215)
 
 [node name="MountainPath" type="Node3D" parent="Planet"]
 transform = Transform3D(1.90386, 1.48688, -0.832102, 0.0576969, 1.19076, 2.25979, 1.70291, -1.70269, 0.85373, 82.3341, 62.2429, -90.9571)
@@ -5174,7 +5174,7 @@ libraries = {
 }
 
 [node name="Camera3D" parent="Planet/MountainPath/NewAreaCutscene" index="2"]
-transform = Transform3D(0.268885, -0.0599127, 0.278028, 0.00810641, 0.38407, 0.0749236, -0.284294, -0.0457139, 0.265095, 68.6238, 28.2321, 52.2622)
+transform = Transform3D(0.268885, -0.0599127, 0.278028, 0.00810639, 0.38407, 0.0749236, -0.284294, -0.0457139, 0.265095, 68.6238, 28.2321, 52.2622)
 
 [node name="Tower" type="Node3D" parent="Planet"]
 transform = Transform3D(0.45518, -0.853072, 0.255107, 0.870747, 0.366611, -0.327713, 0.186038, 0.371301, 0.909684, -155.329, 66.5252, 46.3459)
