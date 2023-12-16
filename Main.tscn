@@ -1,4 +1,4 @@
-[gd_scene load_steps=239 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=244 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c53qg6gndwonk" path="res://Munchme/Gungun/gungun.tscn" id="9_ptb15"]
 [ext_resource type="PackedScene" uid="uid://c2eraey620ohp" path="res://Globals/Cutscenes/Cutscene.tscn" id="10_01ks1"]
 [ext_resource type="PackedScene" uid="uid://c6er7j0s48ko1" path="res://Munchme/Goby/goby.tscn" id="10_srj7n"]
+[ext_resource type="PackedScene" uid="uid://csd8neh0mqxfc" path="res://Munchme/Snake/snake.tscn" id="11_nrkt7"]
 [ext_resource type="Script" path="res://Globals/Cutscenes/CutsceneScene.gd" id="11_nrph8"]
 [ext_resource type="PackedScene" uid="uid://bx7g1p62e5vct" path="res://Assets/Rocks/big_rock.tscn" id="14_3ulth"]
 [ext_resource type="PackedScene" uid="uid://c24yymqlo81vu" path="res://Assets/tree_small.tscn" id="14_l7n5m"]
@@ -457,288 +458,148 @@ _data = {
 "overview": SubResource("Animation_5kvfn")
 }
 
-[sub_resource type="Resource" id="Resource_ys0ls"]
-script = ExtResource("11_nrph8")
-animation_name = "animation"
-dialogue_translation_key = ""
-
-[sub_resource type="Animation" id="Animation_ceg2w"]
-resource_name = "animation"
-length = 4.0
-step = 0.05
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CutscenePlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("44_s3b1x")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("45_aq2c6")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("46_onfkp")
-}],
-"times": PackedFloat32Array(0, 0.4, 0.65)
-}
-tracks/0/use_blend = true
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../SolidudeCutsceneSnake:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../SolidudeCutsceneSnake:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4, 1.3, 1.6, 2),
-"transitions": PackedFloat32Array(1, 0.366021, 1, 2, 1),
-"update": 0,
-"values": [Vector3(-5.395, -6.468, 2.942), Vector3(-5.395, -6.468, 2.942), Vector3(-5.395, 26.247, 2.942), Vector3(-5.395, 26.247, 2.942), Vector3(-5.395, 1.542, 2.942)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../glass_cage")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.65),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"destroy"
-}]
-}
-tracks/4/type = "animation"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../SolidudeCutsceneSnake/AnimationPlayer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"clips": PackedStringArray("Run", "Idle"),
-"times": PackedFloat32Array(0, 1.75)
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../../..")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(1.9),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"walk_solidude_to_end"
-}]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("%CatchSolidudeCamera:current")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_si4f6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../SolidudeCutsceneSnake:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../SolidudeCutsceneSnake:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-5.39465, -5.44758, 2.94196)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_e36o4"]
-_data = {
-"RESET": SubResource("Animation_si4f6"),
-"animation": SubResource("Animation_ceg2w")
-}
-
-[sub_resource type="Resource" id="Resource_ys0ls"]
-script = ExtResource("11_nrph8")
-animation_name = "animation"
-dialogue_translation_key = ""
-
-[sub_resource type="Animation" id="Animation_ceg2w"]
-resource_name = "animation"
-length = 4.0
-step = 0.05
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CutscenePlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("44_s3b1x")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("45_aq2c6")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("46_onfkp")
-}],
-"times": PackedFloat32Array(0, 0.4, 0.65)
-}
-tracks/0/use_blend = true
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../SolidudeCutsceneSnake:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../SolidudeCutsceneSnake:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4, 1.3, 1.6, 2),
-"transitions": PackedFloat32Array(1, 0.366021, 1, 2, 1),
-"update": 0,
-"values": [Vector3(-5.395, -6.468, 2.942), Vector3(-5.395, -6.468, 2.942), Vector3(-5.395, 26.247, 2.942), Vector3(-5.395, 26.247, 2.942), Vector3(-5.395, 1.542, 2.942)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../glass_cage")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.65),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"destroy"
-}]
-}
-tracks/4/type = "animation"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../SolidudeCutsceneSnake/AnimationPlayer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"clips": PackedStringArray("Run", "Idle"),
-"times": PackedFloat32Array(0, 1.75)
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../../..")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(1.9),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"walk_solidude_to_end"
-}]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("%CatchSolidudeCamera:current")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_si4f6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../SolidudeCutsceneSnake:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../SolidudeCutsceneSnake:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-5.39465, -5.44758, 2.94196)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_e36o4"]
-_data = {
-"RESET": SubResource("Animation_si4f6"),
-"animation": SubResource("Animation_ceg2w")
-}
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_rkuwq"]
 radius = 4.57491
+
+[sub_resource type="Resource" id="Resource_ys0ls"]
+script = ExtResource("11_nrph8")
+animation_name = "animation"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_si4f6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SolidudeCutsceneSnake:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SolidudeCutsceneSnake:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-5.39465, -5.44758, 2.94196)]
+}
+
+[sub_resource type="Animation" id="Animation_ceg2w"]
+resource_name = "animation"
+length = 4.0
+step = 0.05
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutscenePlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("44_s3b1x")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("45_aq2c6")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("46_onfkp")
+}],
+"times": PackedFloat32Array(0, 0.4, 0.65)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SolidudeCutsceneSnake:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SolidudeCutsceneSnake:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.3, 1.6, 2),
+"transitions": PackedFloat32Array(1, 0.366021, 1, 2, 1),
+"update": 0,
+"values": [Vector3(-5.395, -6.468, 2.942), Vector3(-5.395, -6.468, 2.942), Vector3(-5.395, 26.247, 2.942), Vector3(-5.395, 26.247, 2.942), Vector3(-5.395, 1.542, 2.942)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../glass_cage")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.65),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy"
+}]
+}
+tracks/4/type = "animation"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../SolidudeCutsceneSnake/AnimationPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": PackedStringArray("Run", "Idle"),
+"times": PackedFloat32Array(0, 1.75)
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"walk_solidude_to_end"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%CatchSolidudeCamera:current")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e36o4"]
+_data = {
+"RESET": SubResource("Animation_si4f6"),
+"animation": SubResource("Animation_ceg2w")
+}
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3p0x7"]
 radius = 52.2459
@@ -2280,11 +2141,6 @@ script = ExtResource("11_nrph8")
 animation_name = "Teach_Deploy"
 dialogue_translation_key = ""
 
-[sub_resource type="Resource" id="Resource_wrppn"]
-script = ExtResource("11_nrph8")
-animation_name = ""
-dialogue_translation_key = "DIPSHIT_CAUGHT_0"
-
 [sub_resource type="Resource" id="Resource_6buak"]
 script = ExtResource("11_nrph8")
 animation_name = ""
@@ -2599,6 +2455,11 @@ _data = {
 script = ExtResource("11_nrph8")
 animation_name = "Test_Dipshit_1"
 dialogue_translation_key = ""
+
+[sub_resource type="Resource" id="Resource_wy0o3"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "DIPSHIT_CAUGHT_POWER_0"
 
 [sub_resource type="Resource" id="Resource_tdxxs"]
 script = ExtResource("11_nrph8")
@@ -3478,6 +3339,15 @@ transform = Transform3D(0.187717, 0.85001, -0.492189, -0.709622, 0.463826, 0.530
 
 [node name="Goby3" parent="Munchmes" instance=ExtResource("10_srj7n")]
 transform = Transform3D(0.694825, -0.524376, -0.492188, 0.717035, 0.452282, 0.530381, -0.0555112, -0.721438, 0.690252, -55.9723, 92.1555, -69.3907)
+
+[node name="Snake" parent="Munchmes" instance=ExtResource("11_nrkt7")]
+transform = Transform3D(1, -3.72529e-09, 0, 0, 1, 0, 0, -2.98023e-08, 1, -24.8697, -5.72205e-06, 117.299)
+
+[node name="Snake2" parent="Munchmes" instance=ExtResource("11_nrkt7")]
+transform = Transform3D(1, -3.72529e-09, 0, 0, 1, 0, 0, -2.98023e-08, 1, 108.426, 24.1625, 50.3369)
+
+[node name="Solidude2" parent="Munchmes" instance=ExtResource("8_e7ffo")]
+transform = Transform3D(1, -3.72529e-09, 0, 0, 1, 0, 0, -2.98023e-08, 1, 107.522, 24.7365, 46.7826)
 
 [node name="FollowPoints" type="Node3D" parent="."]
 
@@ -5790,7 +5660,7 @@ bones/6/rotation = Quaternion(-0.261783, 9.70327e-05, 0.00392649, 0.965119)
 bones/7/position = Vector3(0.613441, 0.189342, -1.02956)
 
 [node name="BoneAttachment3D" parent="Planet/Crater/SolidudeCutsceneSnake/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.0257923, -0.258072, 0.965781, -0.99965, -0.00100257, 0.026429, -0.00585228, -0.966125, -0.258007, 0.901415, 0.190456, 0.0488417)
+transform = Transform3D(0.025793, -0.258071, 0.965781, -0.99965, -0.00100334, 0.0264293, -0.00585167, -0.966125, -0.258007, 0.901417, 0.190457, 0.0488439)
 
 [node name="AnimationPlayer" parent="Planet/Crater/SolidudeCutsceneSnake" index="1"]
 autoplay = "Run"
@@ -5927,7 +5797,7 @@ disabled = true
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.399268, 0.323669, 0.581206, 0.428193, -0.393734, 0.51342, 0.509133, 0.584972, 0.0239873, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.399516, 0.323749, 0.580992, 0.428097, -0.393523, 0.513663, 0.509021, 0.58507, 0.024001, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
@@ -6099,7 +5969,7 @@ libraries = {
 
 [node name="TutorialDeployCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
 unique_name_in_owner = true
-scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_5extt"), SubResource("Resource_wrppn"), SubResource("Resource_6buak"), SubResource("Resource_3i5k2"), SubResource("Resource_heb7n"), SubResource("Resource_desur"), SubResource("Resource_4lx56")])
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_5extt"), SubResource("Resource_6buak"), SubResource("Resource_3i5k2"), SubResource("Resource_heb7n"), SubResource("Resource_desur"), SubResource("Resource_4lx56")])
 
 [node name="CutsceneAnimation" parent="Cutscenes/TutorialDeployCutscene" index="0"]
 libraries = {
@@ -6121,7 +5991,7 @@ libraries = {
 
 [node name="TutorialCageCutscene" parent="Cutscenes" instance=ExtResource("10_01ks1")]
 unique_name_in_owner = true
-scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_167a4"), SubResource("Resource_tdxxs"), SubResource("Resource_eu2nn"), SubResource("Resource_ny15j"), SubResource("Resource_iras0"), SubResource("Resource_6s5wj"), SubResource("Resource_nmbbf"), SubResource("Resource_ys670"), SubResource("Resource_wkt80")])
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_167a4"), SubResource("Resource_wy0o3"), SubResource("Resource_tdxxs"), SubResource("Resource_eu2nn"), SubResource("Resource_ny15j"), SubResource("Resource_iras0"), SubResource("Resource_6s5wj"), SubResource("Resource_nmbbf"), SubResource("Resource_ys670"), SubResource("Resource_wkt80")])
 
 [node name="CutsceneAnimation" parent="Cutscenes/TutorialCageCutscene" index="0"]
 libraries = {
