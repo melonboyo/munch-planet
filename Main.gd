@@ -709,4 +709,5 @@ func _on_torpejo_cutscene_cutscene_finished():
 		looker.visible = true
 		looker.grab_focus()
 	set_main_camera()
+	%TorpejoAudioPlayer.stop()
 	Music.play(Music.Track.Battle)

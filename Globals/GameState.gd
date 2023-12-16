@@ -27,7 +27,7 @@ var munchme_windows: Array[Control] = []
 var active_window: int = -1
 var main_window: Control
 var focus_main = true
-var last_used_id = 10
+var last_used_id = 100
 var open_lookers: Array[Looker] = []
 var looker_music_map := {}
 var water_height = 0.0
@@ -110,6 +110,7 @@ func change_sitation_to(new_situation: Constants.Situation):
 
 
 func add_munchme(resource: MunchmeResource):
+	resource = resource.duplicate()
 	resource.id = last_used_id + 1
 	last_used_id += 1
 	munchme_added.emit(resource)
