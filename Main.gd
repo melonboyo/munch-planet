@@ -65,6 +65,19 @@ func set_muncher_position(new_global_position: Vector3, force: bool = true):
 	%Muncher.global_position = new_global_position
 
 
+func set_main_camera():
+	$MainCamera.set_current(true)
+
+
+func _on_new_area_cutscene_started():
+	%Muncher.player_controlled = false
+
+
+func _on_new_area_cutscene_finished():
+	%Muncher.player_controlled = true
+	set_main_camera()
+
+
 func setup_graphics_detail():
 	var level = Settings.graphics_detail
 	$WorldEnvironment.environment.ssao_enabled = level > Constants.Graphics.Low
