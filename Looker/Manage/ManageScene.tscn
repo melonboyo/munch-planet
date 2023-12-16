@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dg1b5732ogt5i"]
+[gd_scene load_steps=27 format=3 uid="uid://dg1b5732ogt5i"]
 
 [ext_resource type="Script" path="res://Looker/Manage/ManageScene.gd" id="1_uxug5"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_qq0rt"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b67nwdf3d0dyr" path="res://Sprites/glow.png" id="4_vhdkc"]
 [ext_resource type="Texture2D" uid="uid://fypmv6jiwbbk" path="res://Sprites/deploy-button-pressed.png" id="6_bowjn"]
 [ext_resource type="Texture2D" uid="uid://dxny06dda22rt" path="res://Sprites/deploy-button.png" id="6_t2roi"]
-[ext_resource type="PackedScene" uid="uid://dqcx081xjqlj7" path="res://Munchme/Dipshit/dipshit.tscn" id="8_sh313"]
 
 [sub_resource type="Gradient" id="Gradient_7abcu"]
 offsets = PackedFloat32Array(0, 0.345361, 1)
@@ -282,9 +281,6 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/MarginContainer/Control/DeployArea/DeployArea2D"]
 shape = SubResource("CircleShape2D_d5sf3")
-
-[node name="Dipshit" parent="." instance=ExtResource("8_sh313")]
-floor_block_on_wall = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0697739, 0.997563, 0, -0.997563, -0.0697739, 0, 7.97757, -0.557986)
