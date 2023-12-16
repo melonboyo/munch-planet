@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2qwn7nfhqo00"]
+[gd_scene load_steps=7 format=3 uid="uid://b2qwn7nfhqo00"]
 
 [ext_resource type="PackedScene" uid="uid://ceoncbn2vm7at" path="res://Models/glass_cage.glb" id="1_ht5r2"]
 [ext_resource type="Texture2D" uid="uid://dqs5tqvak1bmx" path="res://Models/glass_cage_garage_floor_rough_4k.png" id="2_avnpm"]
@@ -23,7 +23,32 @@ normal_scale = 0.6
 normal_texture = ExtResource("4_aj14b")
 refraction_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_bqwui"]
+size = Vector3(0.145264, 3.83655, 3.87)
+
 [node name="glass_cage" instance=ExtResource("1_ht5r2")]
 
 [node name="Cube" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ttxpt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86767, -0.00280762, -6.10352e-05)
+shape = SubResource("BoxShape3D_bqwui")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8651, -0.00280762, -6.10352e-05)
+shape = SubResource("BoxShape3D_bqwui")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00837047, -0.0216675, 1.84133)
+shape = SubResource("BoxShape3D_bqwui")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00837031, -0.0216675, -1.86566)
+shape = SubResource("BoxShape3D_bqwui")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+transform = Transform3D(0, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.0647459, 1.89141, -0.0103109)
+shape = SubResource("BoxShape3D_bqwui")
