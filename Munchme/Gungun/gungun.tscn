@@ -23,6 +23,7 @@ radius = 0.396091
 height = 1.04769
 
 [node name="Gungun" instance=ExtResource("1_xns5g")]
+floor_max_angle = 1.22173
 script = ExtResource("2_jyka8")
 resource = SubResource("Resource_vbim4")
 height = 1.1

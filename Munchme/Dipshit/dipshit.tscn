@@ -44,7 +44,7 @@ radius = 0.443271
 height = 1.49385
 
 [node name="Dipshit" instance=ExtResource("1_ogbw3")]
-floor_max_angle = 0.785398
+floor_max_angle = 0.872665
 script = ExtResource("2_db2f0")
 resource = SubResource("Resource_0yd1n")
 height = 1.5
@@ -56,8 +56,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.748874, 0)
 shape = SubResource("CapsuleShape3D_ismua")
 
 [node name="OverworldMovement" parent="." index="4"]
+air_speed = 8.2
 can_jump = true
-jump_velocity = 11.0
+jump_velocity = 11.4
 
 [node name="DipshitMinigame" parent="." index="7" instance=ExtResource("4_54x24")]
 visible = false
