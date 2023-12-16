@@ -57,14 +57,14 @@ func _ready():
 	add_child(music_player)
 
 
-func play(track: Track, from_position: float = 0.0, fade_in = null):
+func play(track: Track, from_position: float = 0.0, fade_in = null) -> PlayingTrack:
 	if GameState.tutorial_active and track != Track.Tutorial:
 		return
 	
 	return _play(track, from_position, fade_in or (fade_in == null && from_position > 0))
 
 
-func stop(fade_out: bool = true):
+func stop(fade_out: bool = true) -> PlayingTrack:
 	if GameState.tutorial_active:
 		return
 	
@@ -97,7 +97,7 @@ func get_playing_track() -> PlayingTrack:
 	return null
 
 
-func _play(track: Track, from_position: float = 0.0, fade_in: bool = false):
+func _play(track: Track, from_position: float = 0.0, fade_in: bool = false) -> PlayingTrack:
 	if streams[track] == null:
 		return
 	

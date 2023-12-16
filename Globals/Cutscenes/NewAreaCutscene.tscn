@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://db6hg36h5tmog"]
+
+[ext_resource type="Script" path="res://Globals/Cutscenes/NewAreaCutscene.gd" id="1_vbjeb"]
+[ext_resource type="PackedScene" uid="uid://c2eraey620ohp" path="res://Globals/Cutscenes/Cutscene.tscn" id="2_8mglu"]
+[ext_resource type="AudioStream" uid="uid://bkdxa1bw2p5aa" path="res://Music/rocket_piano_alternative.ogg" id="3_lutb5"]
+
+[node name="NewAreaCutscene" type="Node3D"]
+script = ExtResource("1_vbjeb")
+
+[node name="EnterArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Cutscene" parent="." instance=ExtResource("2_8mglu")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="JinglePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lutb5")
+
+[connection signal="area_entered" from="EnterArea" to="." method="_on_enter_area_area_entered"]
+[connection signal="body_entered" from="EnterArea" to="." method="_on_enter_area_body_entered"]
+
+[editable path="Cutscene"]
