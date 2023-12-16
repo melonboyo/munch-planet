@@ -17,6 +17,7 @@ collision_mask = 2
 
 [node name="JinglePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lutb5")
+bus = &"Music"
 
 [connection signal="area_entered" from="EnterArea" to="." method="_on_enter_area_area_entered"]
 [connection signal="body_entered" from="EnterArea" to="." method="_on_enter_area_body_entered"]

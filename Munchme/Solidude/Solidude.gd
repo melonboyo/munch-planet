@@ -2,7 +2,7 @@ extends Munchme
 class_name Solidude
 
 
-@export_range(1, 1000) var required_punches := 2
+@export_range(1, 1000) var required_punches := 100
 @export_range(1, 50) var smash_acceleration := 200.0
 
 

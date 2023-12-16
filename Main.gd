@@ -668,3 +668,7 @@ func tut_end_torpejo_walk_away():
 
 func _on_muncher_caught_cutscene_finished():
 	$MainCamera.set_current(true)
+
+
+func walk_solidude_to_end():
+	%Solidude.set_follow_point(%SolidudeEndPoint)
