@@ -323,6 +323,45 @@ script = ExtResource("11_nrph8")
 animation_name = ""
 dialogue_translation_key = "ON_OVERVIEW_TORPEJO_AREA_7"
 
+[sub_resource type="Animation" id="Animation_wbx4x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.242634, -3.82764, -58.0627)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.242534, -2.93703, 0.139788)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Camera3D:fov")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+
 [sub_resource type="Animation" id="Animation_o3ex4"]
 resource_name = "flyby"
 length = 4.24
@@ -362,45 +401,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(0.68302, 1),
 "update": 0,
 "values": [75.0, 15.0]
-}
-
-[sub_resource type="Animation" id="Animation_wbx4x"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.242634, -3.82764, -58.0627)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Camera3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.242534, -2.93703, 0.139788)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Camera3D:fov")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [75.0]
 }
 
 [sub_resource type="Animation" id="Animation_5kvfn"]
@@ -482,6 +482,33 @@ script = ExtResource("11_nrph8")
 animation_name = ""
 dialogue_translation_key = "ON_OVERVIEW_SOLIDUDE_AREA_5"
 
+[sub_resource type="Animation" id="Animation_pcr5s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4.82066, 9.13567, -12.2374)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.191218, 3.03794, -6.37468e-07)]
+}
+
 [sub_resource type="Animation" id="Animation_gxvpr"]
 resource_name = "flyby"
 length = 4.24
@@ -508,33 +535,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.594604, 1),
 "update": 0,
 "values": [Vector3(0.191218, 3.03794, -6.37468e-07), Vector3(-0.257384, 3.03794, -6.62576e-07)]
-}
-
-[sub_resource type="Animation" id="Animation_pcr5s"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-4.82066, 9.13567, -12.2374)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Camera3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.191218, 3.03794, -6.37468e-07)]
 }
 
 [sub_resource type="Animation" id="Animation_opnvl"]
@@ -2987,8 +2987,7 @@ _data = {
 [node name="Main" type="Node3D"]
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
-debug_tutorial_stage = 8
-debug_use_debug_spawn = true
+debug_tutorial_stage = 1
 debug_initial_munchme_type = 5
 debug_initial_munchme_spawn = true
 debug_initial_munchme_caught = true
@@ -5127,7 +5126,7 @@ libraries = {
 }
 
 [node name="Camera3D" parent="Planet/TowerModel/NewAreaTower" index="2"]
-transform = Transform3D(-0.719363, 0.0649218, -0.145279, 0.0996499, 0.708212, -0.176941, 0.12406, -0.192414, -0.700276, 0.242634, -3.82764, -58.0627)
+transform = Transform3D(-0.719362, 0.0649207, -0.145282, 0.0996496, 0.708212, -0.17694, 0.124063, -0.192414, -0.700275, 0.242634, -3.82764, -58.0627)
 
 [node name="RedTrees" type="Node3D" parent="Planet"]
 
@@ -5433,7 +5432,7 @@ libraries = {
 }
 
 [node name="Camera3D" parent="Planet/Crater/CraterNewArea" index="2"]
-transform = Transform3D(-0.994632, 0.0196643, 0.101584, -6.25849e-07, 0.981774, -0.190055, -0.103469, -0.189035, -0.976504, -4.82066, 9.13567, -12.2374)
+transform = Transform3D(-0.994632, 0.0196638, 0.101581, -6.25849e-07, 0.981774, -0.190055, -0.103467, -0.189035, -0.976504, -4.82066, 9.13567, -12.2374)
 
 [node name="Lake" type="Node3D" parent="Planet"]
 transform = Transform3D(0.99011, 3.72529e-09, 0.140296, -0.12662, 0.430653, 0.893591, -0.0604191, -0.902517, 0.426393, 6.14367, 98.4207, 46.1656)
@@ -5530,6 +5529,7 @@ loop = false
 [node name="Rocket" parent="RocketPlatform/RocketPath/RocketPathFollow" instance=ExtResource("23_5lo66")]
 unique_name_in_owner = true
 transform = Transform3D(0.997949, -0.0241805, -0.0592741, 0.0589001, -0.0158988, 0.998136, -0.0250779, -0.999581, -0.0144419, -0.0261015, 0.132022, -0.98487)
+disabled = true
 
 [node name="RocketFocus" type="Node3D" parent="RocketPlatform/RocketPath/RocketPathFollow/Rocket"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
