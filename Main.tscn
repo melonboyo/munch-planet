@@ -1,4 +1,4 @@
-[gd_scene load_steps=244 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=256 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -289,6 +289,9 @@ size = Vector3(6, 0.5, 2)
 [sub_resource type="BoxMesh" id="BoxMesh_xbpsw"]
 size = Vector3(6, 0.5, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_x4vvp"]
+size = Vector3(2.0969, 3.2345, 2.39606)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_3161g"]
 radius = 28.7093
 
@@ -456,6 +459,82 @@ _data = {
 "RESET": SubResource("Animation_wbx4x"),
 "flyby": SubResource("Animation_o3ex4"),
 "overview": SubResource("Animation_5kvfn")
+}
+
+[sub_resource type="Resource" id="Resource_ywe21"]
+script = ExtResource("11_nrph8")
+animation_name = "end"
+dialogue_translation_key = "END_1"
+
+[sub_resource type="Resource" id="Resource_fwmnr"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "END_2"
+
+[sub_resource type="Resource" id="Resource_omc5j"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "END_3"
+
+[sub_resource type="Resource" id="Resource_y8c3f"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "END_4"
+
+[sub_resource type="Resource" id="Resource_8lrqt"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "END_5"
+
+[sub_resource type="Resource" id="Resource_30ngs"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "END_6"
+
+[sub_resource type="Resource" id="Resource_68tqi"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "END_7"
+
+[sub_resource type="Resource" id="Resource_ixh55"]
+script = ExtResource("11_nrph8")
+animation_name = ""
+dialogue_translation_key = "END_8"
+
+[sub_resource type="Animation" id="Animation_mdnly"]
+resource_name = "end"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TorpejoCutscene/../../TorpejoCutsceneCamera:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_m5tbj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TorpejoCutscene/../../TorpejoCutsceneCamera:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hlujm"]
+_data = {
+"RESET": SubResource("Animation_m5tbj"),
+"end": SubResource("Animation_mdnly")
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rkuwq"]
@@ -3157,15 +3236,15 @@ _data = {
 }
 
 [node name="Main" type="Node3D"]
-transform = Transform3D(0.809517, 0.586917, -0.0144844, 0.557954, -0.776779, -0.292065, -0.182669, 0.22835, -0.956289, 0, 0, 0)
+transform = Transform3D(0.809517, 0.586917, -0.0144844, 0.557954, -0.776779, -0.292065, -0.182669, 0.22835, -0.956289, -0.220863, 0.20575, 0.0897369)
 script = ExtResource("1_12yvb")
 debug_tutorial_stage = 8
 debug_use_debug_spawn = true
-debug_initial_munchme_type = 4
+debug_initial_munchme_type = 5
 debug_initial_munchme_caught = true
 
 [node name="DebugSpawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 4.17233e-07, 2.08616e-07, -6.14673e-07, 1, 1.93715e-07, 0, 8.49366e-07, 1, 45.034, -154.149, 6.44811)
+transform = Transform3D(1, 4.35859e-07, 2.08616e-07, -7.22706e-07, 1, 1.93715e-07, 4.47035e-08, 8.49366e-07, 1, -142.183, 13.2624, -8.71954)
 gizmo_extents = 2.0
 
 [node name="Overlay" type="Control" parent="."]
@@ -5300,8 +5379,21 @@ shape = SubResource("BoxShape3D_o0bv4")
 mesh = SubResource("BoxMesh_lvg32")
 surface_material_override/0 = SubResource("ShaderMaterial_drwxt")
 
+[node name="TorpejoCutsceneCamera" type="Camera3D" parent="Planet"]
+transform = Transform3D(0.482748, -0.871843, -0.0827418, 0.583516, 0.390666, -0.711961, 0.653042, 0.295416, 0.697326, -156.641, 63.0745, 49.9601)
+
 [node name="TowerModel" parent="Planet" instance=ExtResource("21_onhbx")]
 transform = Transform3D(0.627457, -1.18336, 0.219658, 1.16137, 0.530257, -0.460812, 0.315941, 0.400972, 1.25765, -126.158, 55.459, 31.4667)
+
+[node name="TorpejoCutsceneTrigger" type="Area3D" parent="Planet/TowerModel"]
+unique_name_in_owner = true
+transform = Transform3D(1, -2.98023e-08, 1.49012e-08, 0, 1, -2.98023e-08, 2.23517e-08, 2.23517e-08, 1, 0, 0, 0)
+collision_layer = 0
+collision_mask = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/TowerModel/TorpejoCutsceneTrigger"]
+transform = Transform3D(1, 0, -3.05474e-07, 0, 1, 5.73695e-07, 2.98023e-08, -7.45058e-09, 1, -0.370956, 25.5626, 3.25173)
+shape = SubResource("BoxShape3D_x4vvp")
 
 [node name="NewAreaTower" parent="Planet/TowerModel" instance=ExtResource("39_xa4cw")]
 
@@ -5317,7 +5409,17 @@ libraries = {
 }
 
 [node name="Camera3D" parent="Planet/TowerModel/NewAreaTower" index="2"]
-transform = Transform3D(-0.719362, 0.0649207, -0.145282, 0.0996496, 0.708212, -0.17694, 0.124063, -0.192414, -0.700275, 0.242634, -3.82764, -58.0627)
+transform = Transform3D(-0.719362, 0.0649206, -0.145282, 0.0996496, 0.708212, -0.17694, 0.124063, -0.192414, -0.700275, 0.242634, -3.82764, -58.0627)
+
+[node name="TorpejoCutscene" parent="Planet/TowerModel" instance=ExtResource("10_01ks1")]
+unique_name_in_owner = true
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_ywe21"), SubResource("Resource_fwmnr"), SubResource("Resource_omc5j"), SubResource("Resource_y8c3f"), SubResource("Resource_8lrqt"), SubResource("Resource_30ngs"), SubResource("Resource_68tqi"), SubResource("Resource_ixh55")])
+
+[node name="CutsceneAnimation" parent="Planet/TowerModel/TorpejoCutscene" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_hlujm")
+}
+autoplay = "RESET"
 
 [node name="RedTrees" type="Node3D" parent="Planet"]
 
@@ -5671,7 +5773,7 @@ bones/6/rotation = Quaternion(-0.0668743, -8.67917e-14, -2.22737e-07, 0.997761)
 bones/7/position = Vector3(0.220807, -2.3301, 8.22756e-07)
 
 [node name="BoneAttachment3D" parent="Planet/Crater/SolidudeCutsceneSnake/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-6.39264e-06, -0.337281, 0.941404, 8.48391e-07, -0.941404, -0.33728, 1, -1.32864e-06, 6.2827e-06, 0.596976, -1.27945, 2.36059e-06)
+transform = Transform3D(-6.39263e-06, -0.337282, 0.941404, 1.11663e-06, -0.941404, -0.337282, 1, -1.138e-06, 6.47139e-06, 0.596975, -1.27945, 2.42468e-06)
 
 [node name="AnimationPlayer" parent="Planet/Crater/SolidudeCutsceneSnake" index="1"]
 autoplay = "Run"
@@ -5723,7 +5825,7 @@ libraries = {
 }
 
 [node name="Camera3D" parent="Planet/Lake/NewAreaLake" index="2"]
-transform = Transform3D(0.728231, 0.0784205, -0.68083, -0.650358, 0.392382, -0.650439, 0.216138, 0.916453, 0.336745, -72.7283, -13.4983, 29.4215)
+transform = Transform3D(0.728231, 0.0784206, -0.68083, -0.650358, 0.392382, -0.650439, 0.216138, 0.916453, 0.336745, -72.7283, -13.4983, 29.4215)
 
 [node name="MountainPath" type="Node3D" parent="Planet"]
 transform = Transform3D(1.90386, 1.48688, -0.832102, 0.0576969, 1.19076, 2.25979, 1.70291, -1.70269, 0.85373, 82.3341, 62.2429, -90.9571)
@@ -5770,7 +5872,7 @@ transform = Transform3D(4.18689, 0.10813, 5.96046e-08, -0.206738, 2.18186, -0.13
 [node name="Platform5" parent="Planet/MountainPath" instance=ExtResource("34_6q3kh")]
 transform = Transform3D(4.18689, 0.10813, 5.96046e-08, -0.206738, 2.18186, -0.132425, -0.0125297, 0.132264, 2.18453, 13.0839, 3.50806, -6.96357)
 
-[node name="Tower" type="Node3D" parent="Planet"]
+[node name="Tower" type="Marker3D" parent="Planet"]
 transform = Transform3D(0.45518, -0.853072, 0.255107, 0.870747, 0.366611, -0.327713, 0.186038, 0.371301, 0.909684, -155.329, 66.5252, 46.3459)
 
 [node name="TowerFaceDirection" type="Marker3D" parent="Planet"]
@@ -5808,7 +5910,7 @@ disabled = true
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, -1.49012e-08, -2.98023e-08, 0, 1, -1.90735e-06, -1.91344, 0)
 
 [node name="ReturnCamera" type="Camera3D" parent="RocketPlatform"]
-transform = Transform3D(-0.399516, 0.323749, 0.580992, 0.428097, -0.393523, 0.513663, 0.509021, 0.58507, 0.024001, 28.2968, 27.6146, 1.21693)
+transform = Transform3D(-0.399523, 0.323754, 0.580984, 0.428094, -0.393513, 0.513672, 0.509017, 0.585073, 0.0239979, 28.2968, 27.6146, 1.21693)
 fov = 80.0
 script = ExtResource("20_68thv")
 focus_path = NodePath("../RocketPath/RocketPathFollow/Rocket/RocketFocus")
@@ -6084,8 +6186,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 [connection signal="caught_cutscene_finished" from="Player/Muncher" to="." method="_on_muncher_caught_cutscene_finished"]
 [connection signal="torpejo_talked_to" from="Munchmes/Torpejo" to="." method="_on_torpejo_torpejo_talked_to"]
 [connection signal="body_entered" from="Planet/Guild/EnterGuildArea" to="." method="_on_enter_guild_area_entered"]
+[connection signal="body_entered" from="Planet/TowerModel/TorpejoCutsceneTrigger" to="." method="_on_torpejo_cutscene_trigger_body_entered"]
 [connection signal="cutscene_finished" from="Planet/TowerModel/NewAreaTower" to="." method="_on_new_area_cutscene_finished"]
 [connection signal="cutscene_started" from="Planet/TowerModel/NewAreaTower" to="." method="_on_new_area_cutscene_started"]
+[connection signal="cutscene_finished" from="Planet/TowerModel/TorpejoCutscene" to="." method="_on_torpejo_cutscene_cutscene_finished"]
 [connection signal="body_entered" from="Planet/MountainTop/ScareGungunArea" to="." method="_on_scare_gungun_area_body_entered"]
 [connection signal="snake_entered" from="Planet/Crater/pipe" to="Planet/Crater" method="_on_pipe_snake_entered"]
 [connection signal="cutscene_finished" from="Planet/Crater/CatchSolidudeCutscene" to="." method="set_main_camera"]
@@ -6110,6 +6214,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 [editable path="MainCamera"]
 [editable path="Planet/TowerModel/NewAreaTower"]
 [editable path="Planet/TowerModel/NewAreaTower/Cutscene"]
+[editable path="Planet/TowerModel/TorpejoCutscene"]
 [editable path="Planet/Crater/CatchSolidudeCutscene"]
 [editable path="Planet/Crater/CraterNewArea"]
 [editable path="Planet/Crater/CraterNewArea/Cutscene"]
