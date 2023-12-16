@@ -688,3 +688,25 @@ func _on_scare_gungun_area_body_entered(body):
 	if body is Gungun:
 		return
 	$Munchmes/Gungun.set_follow_point($Planet/GungunFlyToPoint)
+
+
+func _on_torpejo_cutscene_trigger_body_entered(body):
+	if body is Torpejo:
+		return
+	
+	Music.stop()
+	for m in GameState.deployed_munchmes:
+		m.player_controlled = false
+	for looker in GameState.open_lookers:
+		looker.visible = false
+	%TorpejoCutscene.play()
+
+
+func _on_torpejo_cutscene_cutscene_finished():
+	for m in GameState.deployed_munchmes:
+		m.player_controlled = true
+	for looker in GameState.open_lookers:
+		looker.visible = true
+		looker.grab_focus()
+	set_main_camera()
+	Music.play(Music.Track.Battle)
