@@ -201,7 +201,7 @@ section_length = 0.01
 
 [node name="Solidude" instance=ExtResource("1_i02uy")]
 script = ExtResource("2_qf85q")
-required_punches = 2
+required_punches = 100
 smash_acceleration = 200.0
 resource = SubResource("Resource_3mgou")
 height = 1.0

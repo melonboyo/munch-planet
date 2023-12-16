@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://devat1afyt0cf"]
+[gd_scene load_steps=10 format=3 uid="uid://devat1afyt0cf"]
 
 [ext_resource type="PackedScene" uid="uid://bd7mjlrqp4ben" path="res://Models/pipe.glb" id="1_1r2ly"]
+[ext_resource type="Script" path="res://Assets/pipe.gd" id="2_8q5wc"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_buo1n"]
 
 [sub_resource type="Gradient" id="Gradient_6kjvt"]
@@ -41,7 +42,12 @@ shader_parameter/wobble_noise = SubResource("NoiseTexture2D_is1dc")
 height = 7.30586
 radius = 0.781343
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ojodg"]
+height = 1.25373
+radius = 1.14071
+
 [node name="pipe" instance=ExtResource("1_1r2ly")]
+script = ExtResource("2_8q5wc")
 
 [node name="Cylinder" parent="." index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_ecrlf")
@@ -51,3 +57,13 @@ surface_material_override/0 = SubResource("ShaderMaterial_ecrlf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.437897)
 shape = SubResource("CylinderShape3D_xaaip")
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.99386e-07, 4.56142)
+shape = SubResource("CylinderShape3D_ojodg")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

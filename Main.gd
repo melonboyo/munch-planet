@@ -675,6 +675,10 @@ func _on_muncher_caught_cutscene_finished():
 	$MainCamera.set_current(true)
 
 
+func walk_solidude_to_end():
+	%Solidude.set_follow_point(%SolidudeEndPoint)
+
+
 func _on_catch_entered_area_body_entered(body):
 	$TutorialTorpejoPoints/CatchEnteredArea.monitoring = false
 	set_invis_wall_active(true, true)

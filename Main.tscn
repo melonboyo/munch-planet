@@ -1,4 +1,4 @@
-[gd_scene load_steps=232 format=3 uid="uid://cgni33flxl26p"]
+[gd_scene load_steps=239 format=3 uid="uid://cgni33flxl26p"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_12yvb"]
 [ext_resource type="PackedScene" uid="uid://c3m5sa6by34tu" path="res://Muncher/muncher.tscn" id="2_b0ky1"]
@@ -50,7 +50,14 @@
 [ext_resource type="PackedScene" uid="uid://b2qwn7nfhqo00" path="res://Assets/glass_cage.tscn" id="37_64hg6"]
 [ext_resource type="PackedScene" uid="uid://bkkqy5uux65s7" path="res://Assets/dipshit_cage.tscn" id="37_wpyeb"]
 [ext_resource type="PackedScene" uid="uid://deax2ul2oi21o" path="res://Assets/breakable_rock.tscn" id="38_q4jm8"]
+[ext_resource type="Script" path="res://Assets/Crater.gd" id="39_3ye5h"]
 [ext_resource type="PackedScene" uid="uid://db6hg36h5tmog" path="res://Globals/Cutscenes/NewAreaCutscene.tscn" id="39_xa4cw"]
+[ext_resource type="PackedScene" uid="uid://devat1afyt0cf" path="res://Assets/pipe.tscn" id="41_1qvhh"]
+[ext_resource type="Script" path="res://Assets/glass_cage.gd" id="42_skke2"]
+[ext_resource type="PackedScene" uid="uid://cglc0dfhorwl" path="res://Munchme/Snake/snake_model.tscn" id="43_6845g"]
+[ext_resource type="AudioStream" uid="uid://cgbi1ltvxcda5" path="res://SFX/flush.wav" id="44_s3b1x"]
+[ext_resource type="AudioStream" uid="uid://c57qh5t5jssm0" path="res://SFX/shew.wav" id="45_aq2c6"]
+[ext_resource type="AudioStream" uid="uid://kvoeywsx576c" path="res://SFX/break.wav" id="46_onfkp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dgl50"]
 shader = ExtResource("2_ww73t")
@@ -448,6 +455,286 @@ _data = {
 "RESET": SubResource("Animation_wbx4x"),
 "flyby": SubResource("Animation_o3ex4"),
 "overview": SubResource("Animation_5kvfn")
+}
+
+[sub_resource type="Resource" id="Resource_ys0ls"]
+script = ExtResource("11_nrph8")
+animation_name = "animation"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_ceg2w"]
+resource_name = "animation"
+length = 4.0
+step = 0.05
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutscenePlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("44_s3b1x")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("45_aq2c6")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("46_onfkp")
+}],
+"times": PackedFloat32Array(0, 0.4, 0.65)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SolidudeCutsceneSnake:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SolidudeCutsceneSnake:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.3, 1.6, 2),
+"transitions": PackedFloat32Array(1, 0.366021, 1, 2, 1),
+"update": 0,
+"values": [Vector3(-5.395, -6.468, 2.942), Vector3(-5.395, -6.468, 2.942), Vector3(-5.395, 26.247, 2.942), Vector3(-5.395, 26.247, 2.942), Vector3(-5.395, 1.542, 2.942)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../glass_cage")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.65),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy"
+}]
+}
+tracks/4/type = "animation"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../SolidudeCutsceneSnake/AnimationPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": PackedStringArray("Run", "Idle"),
+"times": PackedFloat32Array(0, 1.75)
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"walk_solidude_to_end"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%CatchSolidudeCamera:current")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_si4f6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SolidudeCutsceneSnake:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SolidudeCutsceneSnake:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-5.39465, -5.44758, 2.94196)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e36o4"]
+_data = {
+"RESET": SubResource("Animation_si4f6"),
+"animation": SubResource("Animation_ceg2w")
+}
+
+[sub_resource type="Resource" id="Resource_ys0ls"]
+script = ExtResource("11_nrph8")
+animation_name = "animation"
+dialogue_translation_key = ""
+
+[sub_resource type="Animation" id="Animation_ceg2w"]
+resource_name = "animation"
+length = 4.0
+step = 0.05
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutscenePlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("44_s3b1x")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("45_aq2c6")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("46_onfkp")
+}],
+"times": PackedFloat32Array(0, 0.4, 0.65)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SolidudeCutsceneSnake:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SolidudeCutsceneSnake:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.3, 1.6, 2),
+"transitions": PackedFloat32Array(1, 0.366021, 1, 2, 1),
+"update": 0,
+"values": [Vector3(-5.395, -6.468, 2.942), Vector3(-5.395, -6.468, 2.942), Vector3(-5.395, 26.247, 2.942), Vector3(-5.395, 26.247, 2.942), Vector3(-5.395, 1.542, 2.942)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../glass_cage")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.65),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy"
+}]
+}
+tracks/4/type = "animation"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../SolidudeCutsceneSnake/AnimationPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": PackedStringArray("Run", "Idle"),
+"times": PackedFloat32Array(0, 1.75)
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"walk_solidude_to_end"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%CatchSolidudeCamera:current")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_si4f6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SolidudeCutsceneSnake:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SolidudeCutsceneSnake:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-5.39465, -5.44758, 2.94196)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e36o4"]
+_data = {
+"RESET": SubResource("Animation_si4f6"),
+"animation": SubResource("Animation_ceg2w")
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rkuwq"]
@@ -3174,6 +3461,7 @@ floor_block_on_wall = true
 freeze = true
 
 [node name="Solidude" parent="Munchmes" instance=ExtResource("8_e7ffo")]
+unique_name_in_owner = true
 transform = Transform3D(-0.919388, 0.357602, -0.163852, -0.374069, -0.666026, 0.645355, 0.12165, 0.654624, 0.746105, 38.5165, -67.8648, 81.8092)
 
 [node name="Dipshit2" parent="Munchmes" instance=ExtResource("8_82vux")]
@@ -5416,8 +5704,14 @@ collision_mask = 10
 transform = Transform3D(1, -1.29454e-07, 7.45058e-09, -5.96046e-08, 1, 0, -4.47035e-08, -4.47035e-08, 1, -1.38705, 11.7973, -2.7356)
 shape = SubResource("SphereShape3D_rkuwq")
 
+[node name="CatchSolidudeCamera" type="Camera3D" parent="Planet"]
+unique_name_in_owner = true
+transform = Transform3D(-0.751337, 0.13778, 0.645376, -0.659219, -0.111687, -0.74361, -0.0303745, -0.984145, 0.174742, 48.7295, -89.841, -87.8717)
+current = true
+
 [node name="Crater" type="Node3D" parent="Planet"]
 transform = Transform3D(0.927577, 0.369065, 0.0582408, 0.179454, -0.576786, 0.79694, 0.327715, -0.728771, -0.601244, 42.6968, -58.7905, -83.3132)
+script = ExtResource("39_3ye5h")
 
 [node name="flat_rock" parent="Planet/Crater" instance=ExtResource("35_bl2y1")]
 transform = Transform3D(12.4803, -1.94032, 0.881787, -0.457074, 2.6797, 12.3657, -2.0817, -12.221, 2.57141, 1.21899, 4.73683, 34.7589)
@@ -5445,6 +5739,22 @@ transform = Transform3D(-1.49603, 4.34685, -0.200748, 0.717877, 0.455912, 4.5222
 
 [node name="glass_cage" parent="Planet/Crater" instance=ExtResource("37_64hg6")]
 transform = Transform3D(-3.61891, -0.102057, -0.559966, -0.217605, 3.57832, 0.754167, 0.525956, 0.778268, -3.54093, -5.8429, 8.6675, 1.52947)
+script = ExtResource("42_skke2")
+
+[node name="pipe" parent="Planet/Crater" instance=ExtResource("41_1qvhh")]
+transform = Transform3D(-0.500552, -0.145889, 0.962263, -1.78814e-07, 1.08207, 0.164053, -0.97326, 0.0750313, -0.494897, 1.31401, 1.30404, -0.116352)
+
+[node name="CatchSolidudeCutscene" parent="Planet/Crater" instance=ExtResource("10_01ks1")]
+scenes = Array[ExtResource("11_nrph8")]([SubResource("Resource_ys0ls")])
+
+[node name="CutsceneAnimation" parent="Planet/Crater/CatchSolidudeCutscene" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_e36o4")
+}
+
+[node name="CutscenePlayer" type="AudioStreamPlayer" parent="Planet/Crater/CatchSolidudeCutscene"]
+max_polyphony = 3
+bus = &"Effects"
 
 [node name="CraterNewArea" parent="Planet/Crater" instance=ExtResource("39_xa4cw")]
 
@@ -5461,7 +5771,33 @@ libraries = {
 }
 
 [node name="Camera3D" parent="Planet/Crater/CraterNewArea" index="2"]
-transform = Transform3D(-0.994632, 0.0196638, 0.101581, -6.25849e-07, 0.981773, -0.190055, -0.103467, -0.189035, -0.976504, -4.82066, 9.13567, -12.2374)
+transform = Transform3D(-0.994632, 0.0196638, 0.101581, -6.25849e-07, 0.981774, -0.190055, -0.103467, -0.189035, -0.976504, -4.82066, 9.13567, -12.2374)
+
+[node name="SolidudeCutsceneSnake" parent="Planet/Crater" instance=ExtResource("43_6845g")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 1.49012e-08, 1, 0, -8.9407e-08, 0, 1, -5.39465, -5.44758, 2.94196)
+visible = false
+
+[node name="Skeleton3D" parent="Planet/Crater/SolidudeCutsceneSnake/Armature" index="0"]
+bones/0/position = Vector3(-0.108193, 0.16468, -1.19741)
+bones/0/rotation = Quaternion(0.676247, -0.675184, -0.20757, 0.209119)
+bones/1/rotation = Quaternion(-0.373199, -0.00372338, 0.00105072, 0.927743)
+bones/2/rotation = Quaternion(-0.236974, 0.00106805, 0.0033646, 0.971509)
+bones/3/rotation = Quaternion(-0.399226, 0.00100964, 0.00562379, 0.916835)
+bones/4/rotation = Quaternion(-0.457658, 0.000796559, 0.00664079, 0.889103)
+bones/5/rotation = Quaternion(-0.403009, 0.000408937, 0.00599983, 0.915176)
+bones/6/rotation = Quaternion(-0.261783, 9.70327e-05, 0.00392649, 0.965119)
+bones/7/position = Vector3(0.613441, 0.189342, -1.02956)
+
+[node name="BoneAttachment3D" parent="Planet/Crater/SolidudeCutsceneSnake/Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.0257923, -0.258072, 0.965781, -0.99965, -0.00100257, 0.026429, -0.00585228, -0.966125, -0.258007, 0.901415, 0.190456, 0.0488417)
+
+[node name="AnimationPlayer" parent="Planet/Crater/SolidudeCutsceneSnake" index="1"]
+autoplay = "Run"
+
+[node name="SolidudeEndPoint" type="Marker3D" parent="Planet/Crater"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, -5.96046e-08, 1, 0, -8.9407e-08, 0, 1, -6.54938, 1.91993, -13.3863)
 
 [node name="Lake" type="Node3D" parent="Planet"]
 transform = Transform3D(0.99011, 3.72529e-09, 0.140296, -0.12662, 0.430653, 0.893591, -0.0604191, -0.902517, 0.426393, 6.14367, 98.4207, 46.1656)
@@ -5870,6 +6206,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 [connection signal="cutscene_finished" from="Planet/TowerModel/NewAreaTower" to="." method="_on_new_area_cutscene_finished"]
 [connection signal="cutscene_started" from="Planet/TowerModel/NewAreaTower" to="." method="_on_new_area_cutscene_started"]
 [connection signal="body_entered" from="Planet/MountainTop/ScareGungunArea" to="." method="_on_scare_gungun_area_body_entered"]
+[connection signal="snake_entered" from="Planet/Crater/pipe" to="Planet/Crater" method="_on_pipe_snake_entered"]
+[connection signal="cutscene_finished" from="Planet/Crater/CatchSolidudeCutscene" to="." method="set_main_camera"]
+[connection signal="cutscene_finished" from="Planet/Crater/CatchSolidudeCutscene" to="Planet/Crater" method="_on_catch_solidude_cutscene_cutscene_finished"]
 [connection signal="cutscene_finished" from="Planet/Crater/CraterNewArea" to="." method="_on_new_area_cutscene_finished"]
 [connection signal="cutscene_started" from="Planet/Crater/CraterNewArea" to="." method="_on_new_area_cutscene_started"]
 [connection signal="cutscene_finished" from="Planet/Lake/NewAreaLake" to="." method="_on_new_area_cutscene_finished"]
@@ -5890,8 +6229,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1343, 105.082, 0.334906)
 [editable path="MainCamera"]
 [editable path="Planet/TowerModel/NewAreaTower"]
 [editable path="Planet/TowerModel/NewAreaTower/Cutscene"]
+[editable path="Planet/Crater/CatchSolidudeCutscene"]
 [editable path="Planet/Crater/CraterNewArea"]
 [editable path="Planet/Crater/CraterNewArea/Cutscene"]
+[editable path="Planet/Crater/SolidudeCutsceneSnake"]
 [editable path="Planet/Lake/NewAreaLake"]
 [editable path="Planet/Lake/NewAreaLake/Cutscene"]
 [editable path="Planet/MountainPath/NewAreaMountain"]
