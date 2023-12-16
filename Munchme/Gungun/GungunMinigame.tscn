@@ -1,0 +1,144 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqkplvobiovtj"]
+
+[ext_resource type="Script" path="res://Munchme/Gungun/GungunMinigame.gd" id="1_a5dmf"]
+[ext_resource type="Texture2D" uid="uid://b4iis2ivmjkv1" path="res://Sprites/ready-0.png" id="1_p63lr"]
+[ext_resource type="Texture2D" uid="uid://7sxdwm7c7mb5" path="res://Sprites/ready-1.png" id="2_ywjft"]
+[ext_resource type="Texture2D" uid="uid://dggdgsrs3jcw5" path="res://Sprites/shoot-0.png" id="4_xseno"]
+[ext_resource type="Texture2D" uid="uid://colyywsnxeot1" path="res://Sprites/shoot-1.png" id="5_rwc5d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vyxfx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p63lr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ywjft")
+}],
+"loop": true,
+"name": &"ready",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xseno")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rwc5d")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 14.0
+}]
+
+[sub_resource type="Animation" id="Animation_0jwr7"]
+resource_name = "enter_ready"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ReadyText:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ReadyText:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(327, -79), Vector2(327, 184)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ReadyText")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"ready", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2lqrg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ReadyText:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ReadyText:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(327, -79)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ukbxt"]
+_data = {
+"RESET": SubResource("Animation_2lqrg"),
+"enter_ready": SubResource("Animation_0jwr7")
+}
+
+[node name="GungunMinigame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a5dmf")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 700.0
+offset_bottom = 500.0
+mouse_filter = 2
+
+[node name="ReadyText" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 0.827451, 0.784314, 1)
+position = Vector2(327, -79)
+sprite_frames = SubResource("SpriteFrames_vyxfx")
+animation = &"shoot"
+autoplay = "ready"
+frame_progress = 0.990461
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ukbxt")
+}
+
+[node name="ReadyTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="timeout" from="ReadyTimer" to="." method="_on_ready_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

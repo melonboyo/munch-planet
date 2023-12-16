@@ -34,6 +34,8 @@ enum Munchme {
 	Snake,
 	Torpejo,
 	Dipshit,
+	Gungun,
+	Fish,
 }
 
 enum StepType {

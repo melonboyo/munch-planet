@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://c53qg6gndwonk"]
+
+[ext_resource type="PackedScene" uid="uid://bx0l5b5fqhk0l" path="res://Munchme/munchme.tscn" id="1_xns5g"]
+[ext_resource type="Script" path="res://Gungun.gd" id="2_jyka8"]
+[ext_resource type="PackedScene" uid="uid://bla2vd7lvgvxm" path="res://Munchme/Gungun/gungun_model.tscn" id="3_ku6fl"]
+[ext_resource type="Script" path="res://Munchme/munchme_resource.gd" id="3_xdrds"]
+[ext_resource type="PackedScene" uid="uid://dqkplvobiovtj" path="res://Munchme/Gungun/GungunMinigame.tscn" id="5_s4svl"]
+
+[sub_resource type="Resource" id="Resource_vbim4"]
+script = ExtResource("3_xdrds")
+id = 190
+name = "Gungun"
+munchme_type = 5
+max_health = 100
+mood = 1
+catch_track = 3
+roam_track = 2
+catch_looker_size = Vector2(700, 500)
+caught_dialogue_scenes = Array[Resource("res://Globals/Cutscenes/CutsceneScene.gd")]([])
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qrvmv"]
+radius = 0.396091
+height = 1.04769
+
+[node name="Gungun" instance=ExtResource("1_xns5g")]
+script = ExtResource("2_jyka8")
+resource = SubResource("Resource_vbim4")
+height = 1.1
+
+[node name="OverworldMovement" parent="." index="2"]
+walking_speed = 7.0
+air_speed = 14.0
+walking_acceleration = 16.0
+air_acceleration = 8.0
+max_fall_speed = 16.0
+jump_velocity = 7.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520526, 0)
+shape = SubResource("CapsuleShape3D_qrvmv")
+
+[node name="Model" parent="." index="7" instance=ExtResource("3_ku6fl")]
+
+[node name="GungunMinigame" parent="." index="8" instance=ExtResource("5_s4svl")]
+visible = false
+mouse_filter = 2
+
+[connection signal="shot" from="GungunMinigame" to="." method="_on_gungun_minigame_shot"]
