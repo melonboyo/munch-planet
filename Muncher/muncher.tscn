@@ -22,9 +22,9 @@ _data = {
 
 [node name="Muncher" type="CharacterBody3D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 16389
 floor_block_on_wall = false
-floor_max_angle = 0.837758
+floor_max_angle = 0.890118
 floor_snap_length = 0.2
 script = ExtResource("1_dnfvd")
 

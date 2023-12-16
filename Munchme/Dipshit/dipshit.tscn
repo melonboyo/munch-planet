@@ -44,6 +44,7 @@ radius = 0.443271
 height = 1.49385
 
 [node name="Dipshit" instance=ExtResource("1_ogbw3")]
+floor_max_angle = 0.785398
 script = ExtResource("2_db2f0")
 resource = SubResource("Resource_0yd1n")
 height = 1.5

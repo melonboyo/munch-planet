@@ -225,7 +225,7 @@ sneak_speed = 1.0
 air_speed = 4.5
 max_fall_speed = 100.0
 can_jump = true
-jump_velocity = 15.0
+jump_velocity = 16.0
 
 [node name="Animation" type="AnimationPlayer" parent="." index="7"]
 libraries = {

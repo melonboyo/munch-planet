@@ -37,7 +37,7 @@ bones/7/rotation = Quaternion(1.91662e-20, -0.707107, -1.97932e-13, 0.707107)
 surface_material_override/0 = ExtResource("2_iuqll")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(-3.60459e-07, 0.554204, -0.832381, -1.47393e-06, 0.832381, 0.554204, 1, 1.42664e-06, 5.16817e-07, 2.10512e-07, 4.81595, 1.35872e-06)
+transform = Transform3D(-3.6046e-07, 0.554205, -0.83238, -1.47393e-06, 0.83238, 0.554204, 1, 1.42664e-06, 5.16817e-07, 2.10509e-07, 4.81595, 1.35872e-06)
 bone_name = "Bone.006"
 bone_idx = 6
 

@@ -36,7 +36,8 @@ DIPSHIT_CAUGHT_MOVE_2,"or simply by clicking into a viewer with your mouse"
 
 DIPSHIT_CAUGHT_CLOSE,"Press Q and click the close button to call your Munchme back"
 
-DIPSHIT_CAUGHT_POWER_1,"Dipshit's unique amazing power is"
+DIPSHIT_CAUGHT_POWER_0,"You can use a Munchme's unique power by pressing SPACE"
+DIPSHIT_CAUGHT_POWER_1,"Dipshit's amazing unique power is"
 DIPSHIT_CAUGHT_POWER_2,"It can run and jump"
 DIPSHIT_CAUGHT_POWER_3,"...and that's about it"
 DIPSHIT_CAUGHT_8,"You know what"

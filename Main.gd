@@ -99,6 +99,11 @@ func planet_specific_ready():
 		Constants.TutorialStage.Finished: $FollowPoints/GuildFrontMuncher.global_position,
 	}
 	
+	var i = 10
+	for m: Munchme in $Munchmes.get_children():
+		m.resource.id = i
+		i += 1
+	
 	if debug_skip_rocket_cutscene and debug_tutorial_stage == Constants.TutorialStage.NotStarted:
 		GameState.tutorial_stage = Constants.TutorialStage.Landed
 	
@@ -116,7 +121,6 @@ func planet_specific_ready():
 			# if you come from home planet after clearing tutorial
 			play_overworld_music()
 			clear_tutorial()
-			%Torpejo.visible = false
 			set_muncher_position($FollowPoints/GuildFrontMuncher.global_position, false)
 			%Dipshit.queue_free()
 	
@@ -144,7 +148,7 @@ func set_invis_wall_active(munchme: bool, player: bool):
 		#value += pow(2, 4-1)
 	var value = 0
 	if munchme or player:
-		value = 1
+		value = pow(2, 15-1)
 	#if not munchme:
 		#$TutorialInvisWall/C4.disabled = true
 	#else:
@@ -581,9 +585,10 @@ func _on_cutscene_animation_animation_finished(anim_name):
 func clear_tutorial():
 	$TutorialInvisWall.queue_free()
 	$TutorialArea.queue_free()
-	$TutorialTorpejoPoints.queue_free()
+	#$TutorialTorpejoPoints.queue_free()
 	%Muncher.player_controlled = true
 	%Torpejo.global_position = $Planet/Tower.global_position
+	%Torpejo.visible = true
 	go_to_tutorial_stage(Constants.TutorialStage.Finished)
 	play_overworld_music()
 	await get_tree().physics_frame
@@ -668,3 +673,14 @@ func tut_end_torpejo_walk_away():
 
 func _on_muncher_caught_cutscene_finished():
 	$MainCamera.set_current(true)
+
+
+func _on_catch_entered_area_body_entered(body):
+	$TutorialTorpejoPoints/CatchEnteredArea.monitoring = false
+	set_invis_wall_active(true, true)
+
+
+func _on_scare_gungun_area_body_entered(body):
+	if body is Gungun:
+		return
+	$Munchmes/Gungun.set_follow_point($Planet/GungunFlyToPoint)

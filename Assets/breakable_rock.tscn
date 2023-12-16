@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dc8x22br1udnx" path="res://Sprites/Faces/phone-2.png" id="4_urcj5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cccjh"]
-size = Vector3(17.6606, 10.4233, 12.311)
+size = Vector3(17.6606, 10.1701, 12.311)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wbj5b"]
 animations = [{
@@ -38,7 +38,7 @@ transform = Transform3D(0.397694, 0, 0, 0, 8.83058e-17, 0.397694, 0, -0.397694, 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.712402, 5.21836, -1.94409)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.712402, 5.09178, -1.94409)
 shape = SubResource("BoxShape3D_cccjh")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="2"]

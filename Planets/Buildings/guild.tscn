@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckhytfotl50qm"]
+[gd_scene load_steps=15 format=3 uid="uid://ckhytfotl50qm"]
 
 [ext_resource type="PackedScene" uid="uid://dkfcc32y461yt" path="res://Models/guild.glb" id="1_8qsdr"]
 [ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_pipim"]
@@ -21,6 +21,9 @@ size = Vector3(33.3349, 47.6868, 24.493)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g5yqf"]
 size = Vector3(33.3349, 25.2153, 6.45768)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iro2h"]
+size = Vector3(75.8802, 7.96361, 0.452473)
 
 [sub_resource type="Gradient" id="Gradient_6kjvt"]
 
@@ -100,6 +103,10 @@ shape = SubResource("BoxShape3D_g5yqf")
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D" index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.757, 11.172, 8.601)
 shape = SubResource("BoxShape3D_g5yqf")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="StaticBody3D" index="10"]
+transform = Transform3D(-4.37114e-08, -0.93824, -0.345986, 0, 0.345986, -0.93824, 1, -4.10118e-08, -1.51235e-08, 53.6122, -1.73729, -0.0443687)
+shape = SubResource("BoxShape3D_iro2h")
 
 [node name="MuncherHead" parent="." index="19"]
 surface_material_override/0 = SubResource("ShaderMaterial_k2w5e")

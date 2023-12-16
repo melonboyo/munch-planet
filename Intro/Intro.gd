@@ -13,6 +13,7 @@ var main_scene = preload("res://Main.tscn")
 
 
 func planet_specific_ready():
+	
 	GameState.during_intro = debug_play_intro
 	if not debug_play_intro:
 		$Overlay/CircleTransition.material.set_shader_parameter("circle_size", 1.05)
@@ -50,7 +51,7 @@ func stop_postlude():
 func _on_cutscene_animation_animation_finished(anim_name):
 	if anim_name == "Intro_2":
 		#GameState.during_intro = false
-		manage_allowed = true
+		#manage_allowed = true
 		pass
 	
 	if anim_name == "Enter_Rocket_1":
