@@ -2988,8 +2988,9 @@ _data = {
 transform = Transform3D(0.895135, -0.109855, -0.432047, -0.42996, 0.0432589, -0.901811, 0.117758, 0.993006, -0.0085109, 0, 0, 0)
 script = ExtResource("1_12yvb")
 debug_skip_rocket_cutscene = true
-debug_tutorial_stage = 1
-debug_initial_munchme_type = 5
+debug_tutorial_stage = 8
+debug_use_debug_spawn = true
+debug_initial_munchme_type = 1
 debug_initial_munchme_spawn = true
 debug_initial_munchme_caught = true
 
@@ -5127,7 +5128,7 @@ libraries = {
 }
 
 [node name="Camera3D" parent="Planet/TowerModel/NewAreaTower" index="2"]
-transform = Transform3D(-0.719362, 0.0649207, -0.145282, 0.0996496, 0.708212, -0.17694, 0.124063, -0.192414, -0.700275, 0.242634, -3.82764, -58.0627)
+transform = Transform3D(-0.719362, 0.0649206, -0.145282, 0.0996496, 0.708212, -0.17694, 0.124063, -0.192414, -0.700275, 0.242634, -3.82764, -58.0627)
 
 [node name="RedTrees" type="Node3D" parent="Planet"]
 

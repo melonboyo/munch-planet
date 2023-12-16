@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvkg8cuuxg00u"]
+
+[ext_resource type="PackedScene" uid="uid://dsga5fqk0jfre" path="res://Particles/DestroyParticles.tscn" id="1_dqdwy"]
+[ext_resource type="Shader" path="res://Shaders/TestShader.gdshader" id="2_3qv23"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gosko"]
+lifetime_randomness = 0.2
+emission_shape = 3
+emission_box_extents = Vector3(13.14, 7.68, 15.455)
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 0.8
+initial_velocity_max = 5.0
+scale_min = 0.3
+
+[sub_resource type="Gradient" id="Gradient_6kjvt"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8kajq"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_is1dc"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_6kjvt")
+noise = SubResource("FastNoiseLite_8kajq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qgy2v"]
+render_priority = 0
+shader = ExtResource("2_3qv23")
+shader_parameter/albedo = Color(0.737255, 0.72549, 0.729412, 1)
+shader_parameter/albedo_uv_scale = Vector2(1, 1)
+shader_parameter/albedo_uv_offset = Vector2(0, 0)
+shader_parameter/use_normal_texture = true
+shader_parameter/normal_depth = 1.0
+shader_parameter/roughness = 0.717
+shader_parameter/metallic = 0.0
+shader_parameter/specularity = 0.13
+shader_parameter/specular_tint = 0.5
+shader_parameter/sheen = 0.0
+shader_parameter/sheen_tint = 0.81
+shader_parameter/subsurface = 0.12
+shader_parameter/shadow_cutoff = 0.5
+shader_parameter/shadow_cutoff_smoothness = 0.309
+shader_parameter/wobble_displacement = 0.01
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/num_of_wobbles = 7
+shader_parameter/use_uv2 = true
+shader_parameter/wobble_noise = SubResource("NoiseTexture2D_is1dc")
+
+[sub_resource type="PrismMesh" id="PrismMesh_epwb0"]
+material = SubResource("ShaderMaterial_qgy2v")
+
+[node name="DestroyParticlesBigRock" instance=ExtResource("1_dqdwy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03421, 3.37926, -1.04789)
+amount = 1000
+visibility_aabb = AABB(-15.2772, -4.25346, -16.8225, 30.7672, 8.72761, 33.4546)
+process_material = SubResource("ParticleProcessMaterial_gosko")
+draw_pass_1 = SubResource("PrismMesh_epwb0")

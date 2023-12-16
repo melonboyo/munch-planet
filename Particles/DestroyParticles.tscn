@@ -26,8 +26,9 @@ section_length = 0.03
 
 [node name="DestroyParticles" type="GPUParticles3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03421, 3.07119, -1.04789)
-amount = 3000
+amount = 2000
 lifetime = 2.0
+explosiveness = 1.0
 visibility_aabb = AABB(-5.04039, -2.47724, -5.88425, 10.2937, 5.17517, 11.5781)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_hm6nn")
