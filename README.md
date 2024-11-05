@@ -1,3 +1,9 @@
+Source code for https://melonboyo.itch.io/munch-planet
+
+Below are the manic ramblings from during development.
+
+# Munch Planet
+
 Big Mode Game Jam game by GOFROG GAMES.
 
 Theme is "mode".
